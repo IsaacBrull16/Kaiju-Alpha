@@ -16,7 +16,6 @@ public class Board {
      */
     Board grid;
 
-
     public void add_card(){
 
          //Esta función simulará el hecho de añadir una carta al tablero
