@@ -6,7 +6,7 @@ public class Card {
     int damage;
     int life;
 
-    int type;
+    String type;
 
     /**
      * Constructor de la clase Card
@@ -16,7 +16,7 @@ public class Card {
      * @param life
      * @param type
      */
-    public Card(String name, int cost, int damage, int life, int type){
+    public Card(String name, int cost, int damage, int life, String type){
         this.name = name;
         this.cost = cost;
         this.damage = damage;
@@ -40,7 +40,7 @@ public class Card {
     public int getLife(){
         return life;
     }
-    public int getType(){
+    public String getType(){
         return type;
     }
 
@@ -53,10 +53,13 @@ public class Card {
     public void setLife(int life){
         this.life = life;
     }
-    public void setType(int type){
+    public void setType(String type){
         this.type = type;
     }
     public void setName(String name){
         this.name = name;
     }
+
+    Card Trotowild = new Card("Trotowild", 1, 2, 5, "Naturaleza");
 }
+
