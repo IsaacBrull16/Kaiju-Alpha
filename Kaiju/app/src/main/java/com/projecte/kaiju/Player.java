@@ -19,6 +19,7 @@ public class Player {
         this.name = name;
         this.life = life;
         this.pa = pa;
+        this.deck = deck;
     }
 
     /**
@@ -34,6 +35,9 @@ public class Player {
     public int getPa(){
         return pa;
     }
+    public ArrayList<Card> getDeck(){
+        return deck;
+    }
 
     public void setLife(int life){
         this.life = life;
@@ -44,6 +48,9 @@ public class Player {
     }
     public void setName(String name){
         this.name = name;
+    }
+    public void setDeck(ArrayList<Card> deck){
+        this.deck = deck;
     }
 
 }
