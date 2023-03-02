@@ -27,5 +27,13 @@
         android:inputType="textMultiLine"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="191dp"
-        tools:text="Authors:\nPaula Silland\nIsaac Brull\nCesar Crespo\nAlex Pellitero" />
+        tools:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: https://solvmusic.com/picaprojects/" />
+
+    <Button
+        android:id="@+id/homebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOME"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="21dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
