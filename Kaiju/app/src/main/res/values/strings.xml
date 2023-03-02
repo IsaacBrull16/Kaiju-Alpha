@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Kaiju</string>
-    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="title_activity_splash_screen">Kaiju</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

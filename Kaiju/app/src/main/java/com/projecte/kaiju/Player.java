@@ -6,6 +6,7 @@ public class Player {
     String name;
     int life;
     int pa;
+    Dice dice = new Dice();
 
     ArrayList<Card> deck = new ArrayList<Card>();
 
@@ -15,7 +16,7 @@ public class Player {
      * @param life
      * @param pa
      */
-    public Player(String name, int life, int pa){
+    public Player(String name, int life, int pa, ArrayList<Card> deck){
         this.name = name;
         this.life = life;
         this.pa = pa;
