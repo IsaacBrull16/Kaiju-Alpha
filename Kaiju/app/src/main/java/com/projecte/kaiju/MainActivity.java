@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         termsId = (EditText) findViewById(R.id.termsId);
         acceptTerms = (Button) findViewById(R.id.acceptTerms);
 
-        Button a = findViewById(R.id.aboutbutton);
+        /*Button a = findViewById(R.id.aboutbutton);
         Intent i = new Intent(this, About.class);
         startActivity(i);
-        finish();
+        finish();*/
     }
     public void invisible(View v){
 

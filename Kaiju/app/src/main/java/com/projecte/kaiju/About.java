@@ -13,9 +13,9 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        Button b = findViewById(R.id.homebutton);
+        /*Button b = findViewById(R.id.homebutton);
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
-        finish();
+        finish();*/
     }
 }
