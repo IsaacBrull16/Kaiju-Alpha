@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button jugar;
 
+    Button aboutbutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +29,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Partida.class);
                 startActivity(i);
+                finish();
 
+            }
+        });
+
+        aboutbutton = (Button) findViewById(R.id.aboutbutton);
+
+        aboutbutton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i2 = new Intent (MainActivity.this, About.class);
+                startActivity(i2);
+                finish();
             }
         });
 
 
         termsId = (EditText) findViewById(R.id.termsId);
         acceptTerms = (Button) findViewById(R.id.acceptTerms);
-
-        /*Button a = findViewById(R.id.aboutbutton);
-        Intent i = new Intent(this, About.class);
-        startActivity(i);
-        finish();*/
     }
     public void invisible(View v){
 
