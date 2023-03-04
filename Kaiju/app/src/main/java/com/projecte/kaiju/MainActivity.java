@@ -13,10 +13,24 @@ public class MainActivity extends AppCompatActivity {
     EditText termsId;
     Button acceptTerms;
 
+    Button jugar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        jugar=(Button)findViewById(R.id.jugar);
+
+        jugar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Partida.class);
+                startActivity(i);
+
+            }
+        });
+
 
         termsId = (EditText) findViewById(R.id.termsId);
         acceptTerms = (Button) findViewById(R.id.acceptTerms);
@@ -32,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         acceptTerms.setVisibility(View.INVISIBLE);
 
     }
+
+
 
 
 }
