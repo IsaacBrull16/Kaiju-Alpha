@@ -25,10 +25,5 @@ public class About extends AppCompatActivity {
                 finish();
             }
         });
-
-        /*Button b = findViewById(R.id.homebutton);
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();*/
     }
 }

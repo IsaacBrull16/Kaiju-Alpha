@@ -1,6 +1,7 @@
 package com.projecte.kaiju;
 
 public class Card {
+    int id;
     String name;
     int cost;
     int damage;
@@ -10,13 +11,15 @@ public class Card {
 
     /**
      * Constructor de la clase Card
+     * @param id
      * @param name
      * @param cost
      * @param damage
      * @param life
      * @param type
      */
-    public Card(String name, int cost, int damage, int life, String type){
+    public Card(int id, String name, int cost, int damage, int life, String type){
+        this.id = id;
         this.name = name;
         this.cost = cost;
         this.damage = damage;
@@ -28,6 +31,8 @@ public class Card {
      * Getters y setters de la clase Card
      * @return
      */
+
+    public int getId(){ return id; }
     public String getName(){
         return name;
     }
@@ -44,6 +49,7 @@ public class Card {
         return type;
     }
 
+    public void setId(int id){this.id = id;}
     public void setCost(int cost){
         this.cost = cost;
     }
@@ -59,7 +65,5 @@ public class Card {
     public void setName(String name){
         this.name = name;
     }
-
-    Card Trotowild = new Card("Trotowild", 1, 2, 5, "Naturaleza");
 }
 

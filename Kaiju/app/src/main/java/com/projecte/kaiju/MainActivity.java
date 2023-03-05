@@ -55,8 +55,4 @@ public class MainActivity extends AppCompatActivity {
         acceptTerms.setVisibility(View.INVISIBLE);
 
     }
-
-
-
-
 }

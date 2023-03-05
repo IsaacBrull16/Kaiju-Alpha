@@ -4,7 +4,7 @@ public class Dice {
 
     Random rand = new Random();
 
-    int dado = 7;
+    private int dado = 7;
 
     int int_random = rand.nextInt(dado);
 
@@ -12,6 +12,5 @@ public class Dice {
     public int getInt_random() {
         return int_random;
     }
-
 
 }
