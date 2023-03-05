@@ -1,7 +1,9 @@
 package com.projecte.kaiju;
 import java.util.Random;
 public class Dice {
-
+    /**
+     *Clase que genera un numero aleatorio entre 1 y 6
+     */
     Random rand = new Random();
 
     private int dado = 6;
