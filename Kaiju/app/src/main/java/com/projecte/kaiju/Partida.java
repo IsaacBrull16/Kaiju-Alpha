@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 public class Partida extends AppCompatActivity {
     public static Game game;
-
+    /**
+     * Declaramos todos los objetos del layout que querramos modificar/usar
+     */
     Button dado;
     Button homeButton;
     Button deckButton;
@@ -37,6 +39,10 @@ public class Partida extends AppCompatActivity {
         setContentView(R.layout.activity_partida);
         valorDado = (TextView) findViewById(R.id.valorDado);
 
+        /**
+         * Encontramos cada uno de los TextViews del layout
+         */
+
         nameText1 = (TextView) findViewById(R.id.nameText1);
         costText1 = (TextView) findViewById(R.id.costText1);
         damageText1 = (TextView) findViewById(R.id.damageText1);
@@ -53,6 +59,10 @@ public class Partida extends AppCompatActivity {
         lifeText3 = (TextView) findViewById(R.id.lifeText3);
         typeText3 = (TextView) findViewById(R.id.typeText3);
 
+        /**
+         * Hacemos un dado que sea tirable
+         */
+
         dado = (Button) findViewById(R.id.dado);
         dado.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -66,7 +76,11 @@ public class Partida extends AppCompatActivity {
             }
         });
 
-         homeButton = (Button) findViewById(R.id.homeButton);
+        /**
+         * Hacemos un botón para ir a la MainActivity(Página Principal)
+         */
+
+        homeButton = (Button) findViewById(R.id.homeButton);
 
         homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,12 +91,22 @@ public class Partida extends AppCompatActivity {
             }
         });
 
+        /**
+         * Ahora haremos un botón que emulará una baraja de cartas, y colocará las cartas primero
+         * en el primer hueco, después en el segundo y acabará con el tercero, y no repetirá ninguna
+         * carta
+         */
+
         deckButton = (Button) findViewById(R.id.deckButton);
 
         deckButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
+                /**
+                 * Primero creamos una clase Deck(Baraja), creamos un contador de las cartas
+                 * restantes (resDeck) y escogemos una carta aleatoria de entre las disponibles
+                 */
                 Deck deck = new Deck();
                 int resDeck = deck.resDeck;
                 Card cardr = deck.Random_Card();
@@ -91,6 +115,10 @@ public class Partida extends AppCompatActivity {
                 System.out.println(nameText1.getText());
                 System.out.println(randomCard);
                 System.out.println(cardr);*/
+                /**
+                 * El primer if nos verá si la primera carta ya está puesta, en caso que no,
+                 * añadimos las caracteristicas de nuestra carta
+                 */
                 if ((resDeck != 0) && (nameText1.getText().equals("Name"))){
                     nameText1.setText("Name: " + cardr.getName());
                     costText1.setText("Cost: " + cardr.getCost());
@@ -98,7 +126,20 @@ public class Partida extends AppCompatActivity {
                     lifeText1.setText("Life: " + cardr.getLife());
                     typeText1.setText("Type: " + cardr.getType());
                     resDeck--;
-                } else if ((resDeck != 0) && (!nameText1.getText().equals("Name")) && (nameText2.getText().equals("Name"))){
+                }
+
+                /**
+                 * Si la primera carta si está ocupada pero la segunda no, se pone en la segunda
+                 * posición del tablero
+                 */
+
+                else if ((resDeck != 0) && (!nameText1.getText().equals("Name")) && (nameText2.getText().equals("Name"))){
+
+                    /**
+                     * Si la primera carta ya es la que acaba de salir obviamos el resultado
+                     * Si es diferente a la primera carta, se añade en la segunda posición
+                     */
+
                     if (nameText1.getText().equals("Name: " + cardr.getName())){
                         nameText2.setText("Name");
                         costText2.setText("Cost");
@@ -113,7 +154,20 @@ public class Partida extends AppCompatActivity {
                         typeText2.setText("Type: " + cardr.getType());
                         resDeck--;
                     }
-                } else if ((resDeck != 0) && (!nameText1.getText().equals("Name")) && (!nameText2.getText().equals("Name")) && (nameText3.getText().equals("Name"))) {
+                }
+
+                /**
+                 * Si la primera y segunda cartas son ocupadas y la tercera está disponible,
+                 * pondremos la carta en la tercera y última posición disponible
+                 */
+
+                else if ((resDeck != 0) && (!nameText1.getText().equals("Name")) && (!nameText2.getText().equals("Name")) && (nameText3.getText().equals("Name"))) {
+
+                    /**
+                     * Si la carta ya existe en la primera posición o en la segunda, no se añadirá
+                     * Si no, se pondrá en el tablero
+                     */
+
                     if (nameText1.getText().equals("Name: " + cardr.getName())) {
                         nameText3.setText("Name");
                         costText3.setText("Cost");

@@ -15,6 +15,10 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        /**
+         * Creamos botón para ir a la MainActivity (Home)
+         */
+
         homebutton = (Button) findViewById(R.id.homebutton);
 
         homebutton.setOnClickListener(new View.OnClickListener(){
