@@ -1,0 +1,1 @@
+Tindrem una branch de "proves" i una altra de "main" o "master", totes dues les tindrem cada membre del grup on cada canvi nou que fesim es fara a la branca de "proves" i despres una vegada estiguem segurs farem un merch a la "main" o "master" revisant que no hi hagin conflictes.
