@@ -25,16 +25,6 @@ public class Partida extends AppCompatActivity {
     TextView damageText1;
     TextView lifeText1;
     TextView typeText1;
-    TextView nameText2;
-    TextView costText2;
-    TextView damageText2;
-    TextView lifeText2;
-    TextView typeText2;
-    TextView nameText3;
-    TextView costText3;
-    TextView damageText3;
-    TextView lifeText3;
-    TextView typeText3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,16 +40,6 @@ public class Partida extends AppCompatActivity {
         damageText1 = (TextView) findViewById(R.id.damageText1);
         lifeText1 = (TextView) findViewById(R.id.lifeText1);
         typeText1 = (TextView) findViewById(R.id.typeText1);
-        nameText2 = (TextView) findViewById(R.id.nameText2);
-        costText2 = (TextView) findViewById(R.id.costText2);
-        damageText2 = (TextView) findViewById(R.id.damageText2);
-        lifeText2 = (TextView) findViewById(R.id.lifeText2);
-        typeText2 = (TextView) findViewById(R.id.typeText2);
-        nameText3 = (TextView) findViewById(R.id.nameText3);
-        costText3 = (TextView) findViewById(R.id.costText3);
-        damageText3 = (TextView) findViewById(R.id.damageText3);
-        lifeText3 = (TextView) findViewById(R.id.lifeText3);
-        typeText3 = (TextView) findViewById(R.id.typeText3);
 
         /**
          * Hacemos un dado que sea tirable
@@ -129,68 +109,6 @@ public class Partida extends AppCompatActivity {
                     lifeText1.setText("Life: " + cardr.getLife());
                     typeText1.setText("Type: " + cardr.getType());
                     resDeck--;
-                }
-
-                /**
-                 * Si la primera carta si está ocupada pero la segunda no, se pone en la segunda
-                 * posición del tablero
-                 */
-
-                else if ((resDeck != 0) && (!nameText1.getText().equals("Name")) && (nameText2.getText().equals("Name"))){
-
-                    /**
-                     * Si la primera carta ya es la que acaba de salir obviamos el resultado
-                     * Si es diferente a la primera carta, se añade en la segunda posición
-                     */
-
-                    if (nameText1.getText().equals("Name: " + cardr.getName())){
-                        nameText2.setText("Name");
-                        costText2.setText("Cost");
-                        damageText2.setText("Damage");
-                        lifeText2.setText("Life");
-                        typeText2.setText("Type");
-                    } else {
-                        nameText2.setText("Name: " + cardr.getName());
-                        costText2.setText("Cost: " + cardr.getCost());
-                        damageText2.setText("Damage: " + cardr.getDamage());
-                        lifeText2.setText("Life: " + cardr.getLife());
-                        typeText2.setText("Type: " + cardr.getType());
-                        resDeck--;
-                    }
-                }
-
-                /**
-                 * Si la primera y segunda cartas son ocupadas y la tercera está disponible,
-                 * pondremos la carta en la tercera y última posición disponible
-                 */
-
-                else if ((resDeck != 0) && (!nameText1.getText().equals("Name")) && (!nameText2.getText().equals("Name")) && (nameText3.getText().equals("Name"))) {
-
-                    /**
-                     * Si la carta ya existe en la primera posición o en la segunda, no se añadirá
-                     * Si no, se pondrá en el tablero
-                     */
-
-                    if (nameText1.getText().equals("Name: " + cardr.getName())) {
-                        nameText3.setText("Name");
-                        costText3.setText("Cost");
-                        damageText3.setText("Damage");
-                        lifeText3.setText("Life");
-                        typeText3.setText("Type");
-                    } else if (nameText2.getText().equals("Name: " + cardr.getName())) {
-                        nameText3.setText("Name");
-                        costText3.setText("Cost");
-                        damageText3.setText("Damage");
-                        lifeText3.setText("Life");
-                        typeText3.setText("Type");
-                    } else {
-                        nameText3.setText("Name: " + cardr.getName());
-                        costText3.setText("Cost: " + cardr.getCost());
-                        damageText3.setText("Damage: " + cardr.getDamage());
-                        lifeText3.setText("Life: " + cardr.getLife());
-                        typeText3.setText("Type: " + cardr.getType());
-                        resDeck--;
-                    }
                 }
             }
         });
