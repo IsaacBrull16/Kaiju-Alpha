@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    EditText termsId;
+    TextView termsId;
     Button acceptTerms;
 
     Button jugar;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        termsId = (EditText) findViewById(R.id.termsId);
+        termsId = (TextView) findViewById(R.id.termsId);
         acceptTerms = (Button) findViewById(R.id.acceptTerms);
     }
     public void invisible(View v){

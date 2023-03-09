@@ -19,19 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.188" />
 
-    <EditText
-        android:id="@+id/editTextAbout"
-        android:layout_width="269dp"
-        android:layout_height="275dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: https://solvmusic.com/picaprojects/" />
-
     <Button
         android:id="@+id/homebutton"
         android:layout_width="wrap_content"
@@ -43,4 +30,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.061" />
+
+    <TextView
+        android:id="@+id/textViewAbout"
+        android:layout_width="359dp"
+        android:layout_height="333dp"
+        android:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: https://solvmusic.com/picaprojects/"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.675" />
 </androidx.constraintlayout.widget.ConstraintLayout>
