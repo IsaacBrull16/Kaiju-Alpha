@@ -6,7 +6,7 @@ public class Player {
     String name;
     int life;
     int pa;
-    Dice dice = new Dice();
+
 
     ArrayList<Card> deck = new ArrayList<Card>();
 

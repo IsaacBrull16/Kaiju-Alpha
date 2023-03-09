@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class Partida extends AppCompatActivity {
     public static Game game;
     /**
@@ -63,18 +65,19 @@ public class Partida extends AppCompatActivity {
          * Hacemos un dado que sea tirable
          */
 
-        dado = (Button) findViewById(R.id.dado);
-        dado.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Dice dice = new Dice();
-                //valorDado.setText("");
-                int int_random = dice.getInt_random();
-                System.out.println(int_random);
-                //valorDado.setText(int_random);
+        Button dado = findViewById(R.id.dado);
+        TextView valorDado = findViewById(R.id.valorDado);
 
-            }
+        dado.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Random rand = new Random();
+                int valor = rand.nextInt(6) + 1;
+
+                valorDado.setText(String.valueOf(valor));
+           }
         });
+
 
         /**
          * Hacemos un botón para ir a la MainActivity(Página Principal)
