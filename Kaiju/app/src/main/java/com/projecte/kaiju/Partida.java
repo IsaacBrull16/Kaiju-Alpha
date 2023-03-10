@@ -49,15 +49,14 @@ public class Partida extends AppCompatActivity {
         TextView valorDado = findViewById(R.id.valorDado);
 
         dado.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Random rand = new Random();
+            @Override
+            public void onClick(View view) {
+                Random rand = new Random();
                 int valor = rand.nextInt(6) + 1;
 
                 valorDado.setText(String.valueOf(valor));
-           }
+            }
         });
-
 
         /**
          * Hacemos un botón para ir a la MainActivity(Página Principal)
@@ -80,36 +79,25 @@ public class Partida extends AppCompatActivity {
          * carta
          */
 
+        /**
+         * Primero creamos una clase Deck(Baraja), creamos un contador de las cartas
+         * restantes (resDeck) y escogemos una carta aleatoria de entre las disponibles
+         */
+
+        Deck deck = new Deck();
+        //deck.Shuffle();
+
         deckButton = (Button) findViewById(R.id.deckButton);
 
         deckButton.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
-                /**
-                 * Primero creamos una clase Deck(Baraja), creamos un contador de las cartas
-                 * restantes (resDeck) y escogemos una carta aleatoria de entre las disponibles
-                 */
-                Deck deck = new Deck();
-                int resDeck = deck.resDeck;
-                Card cardr = deck.Random_Card();
-                /*int randomCard = deck.getCard_random();
-                System.out.println(resDeck);
-                System.out.println(nameText1.getText());
-                System.out.println(randomCard);
-                System.out.println(cardr);*/
-                /**
-                 * El primer if nos verá si la primera carta ya está puesta, en caso que no,
-                 * añadimos las caracteristicas de nuestra carta
-                 */
-                if ((resDeck != 0) && (nameText1.getText().equals("Name"))){
-                    nameText1.setText("Name: " + cardr.getName());
-                    costText1.setText("Cost: " + cardr.getCost());
-                    damageText1.setText("Damage: " + cardr.getDamage());
-                    lifeText1.setText("Life: " + cardr.getLife());
-                    typeText1.setText("Type: " + cardr.getType());
-                    resDeck--;
-                }
+                Card cardr = deck.putCard();
+                nameText1.setText("Name: " + cardr.getName());
+                costText1.setText("Cost: " + cardr.getCost());
+                damageText1.setText("Damage: " + cardr.getDamage());
+                lifeText1.setText("Life: " + cardr.getLife());
+                typeText1.setText("Type: " + cardr.getType());
             }
         });
     }

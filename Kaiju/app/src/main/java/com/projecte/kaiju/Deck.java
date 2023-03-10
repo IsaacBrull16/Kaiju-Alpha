@@ -1,5 +1,6 @@
 package com.projecte.kaiju;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Deck {
@@ -8,43 +9,56 @@ public class Deck {
      * Privatizamos nuestro número de cartas para que no se le pueda cambiar
      */
 
-    private int CARDS = 3;
+    private static ArrayList<Card> deckCards = new ArrayList<Card>();
+    private int actualCard;
+    private Random randNum;
+    private final int NUM_CARDS = deckCards.size();
 
-    /**
-     * Generamos un número aleatorio
-     */
-
-    Random rand = new Random();
-
-    int resDeck = CARDS;
-
-    int deckRandom = rand.nextInt(CARDS);
-
-    public int getCard_random() {
-        return deckRandom;
+    public Deck(){
+        deckCards.add(Trotowild);
+        deckCards.add(PlantBot);
+        deckCards.add(ElectroRazz);
+        actualCard = 0;
+        randNum = new Random();
     }
 
     /**
-     * Comparamos el número aleatorio (deckRandom) con el id de cada carta,
-     * y retornaremos la carta correspondiente al id
+     * Mezclará las cartas
+     */
+
+    public void Shuffle(){
+        actualCard = 0;
+
+        for (int first = 0; first < NUM_CARDS; first++){
+
+            int second = randNum.nextInt(NUM_CARDS);
+
+            Card temp = deckCards.get(first);
+            deckCards.set(first, deckCards.get(second));
+            deckCards.set(second, temp);
+        }
+    }
+
+    /**
+     * Seleccionará la primera carta del mazo
      * @return
      */
 
-    public Card Random_Card() {
-        if (deckRandom == Trotowild.getId()){
-            return Trotowild;
-        } else if (deckRandom == PlantBot.getId()){
-            return PlantBot;
-        } else {
-            return ElectroRazz;
-        }
+    public Card putCard() {
+        if (actualCard < NUM_CARDS) {
+            return deckCards.get(actualCard++);
+        } else if (actualCard >= NUM_CARDS) {
+            actualCard = 0;
+            return deckCards.get(actualCard++);
+        } else return null;
     }
 
     /**
      * Creamos nuestra baraja de cartas
      */
 
-    Card Trotowild = new Card(0, "Trotowild", 1, 2, 5, "Naturaleza");
-    Card PlantBot = new Card(1,"PlantBot", 2, 6, 2, "Tecnología");
+    Card Trotowild = new Card(0, "Trotowild", 1, 2, 5, "Nature");
+    Card PlantBot = new Card(1,"PlantBot", 2, 6, 2, "Technology");
     Card ElectroRazz = new Card(2, "ElectroRazz", 1, 2, 4, "Science");
+
 }
