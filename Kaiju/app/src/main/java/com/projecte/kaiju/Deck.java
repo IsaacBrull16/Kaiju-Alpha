@@ -1,6 +1,7 @@
 package com.projecte.kaiju;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
@@ -28,15 +29,16 @@ public class Deck {
 
     public void Shuffle(){
         actualCard = 0;
+        Collections.shuffle(deckCards);
 
-        for (int first = 0; first < NUM_CARDS; first++){
+        /*for (int first = 0; first < NUM_CARDS; first++){
 
             int second = randNum.nextInt(NUM_CARDS);
 
             Card temp = deckCards.get(first);
             deckCards.set(first, deckCards.get(second));
             deckCards.set(second, temp);
-        }
+        }*/
     }
 
     /**
