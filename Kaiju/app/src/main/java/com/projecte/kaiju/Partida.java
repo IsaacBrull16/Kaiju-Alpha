@@ -92,7 +92,6 @@ public class Partida extends AppCompatActivity {
         deckButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //deck.Shuffle();
                 Card cardr = deck.putCard();
                 nameText1.setText("Name: " + cardr.getName());
                 costText1.setText("Cost: " + cardr.getCost());

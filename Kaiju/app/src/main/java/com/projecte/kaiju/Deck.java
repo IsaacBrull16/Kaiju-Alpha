@@ -13,13 +13,13 @@ public class Deck {
     private static ArrayList<Card> deckCards = new ArrayList<Card>();
     private int actualCard;
     private Random randNum;
-    private final int NUM_CARDS = deckCards.size();
+    private int numCards;
 
     public Deck(){
         deckCards.add(Trotowild);
         deckCards.add(PlantBot);
         deckCards.add(ElectroRazz);
-        actualCard = 0;
+        numCards = deckCards.size();
         randNum = new Random();
     }
 
@@ -28,7 +28,6 @@ public class Deck {
      */
 
     public void Shuffle(){
-        actualCard = 0;
         Collections.shuffle(deckCards);
 
         /*for (int first = 0; first < NUM_CARDS; first++){
@@ -47,12 +46,14 @@ public class Deck {
      */
 
     public Card putCard() {
-        if (actualCard < NUM_CARDS) {
+        //if (actualCard < numCards) {
+            Card card = deckCards.get(0);
+            //actualCard++;
+            deckCards.remove(0);
+            return card;
+        /*} else if (actualCard >= numCards) {
             return deckCards.get(actualCard++);
-        } else if (actualCard >= NUM_CARDS) {
-            actualCard = 0;
-            return deckCards.get(actualCard++);
-        } else return null;
+        } else return null;*/
     }
 
     /**
