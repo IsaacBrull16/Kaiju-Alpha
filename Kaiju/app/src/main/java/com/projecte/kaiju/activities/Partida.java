@@ -38,7 +38,7 @@ public class Partida extends AppCompatActivity {
         setContentView(R.layout.activity_partida);
         valorDado = (TextView) findViewById(R.id.valorDado);
         ArrayList<Player> jugadores = new ArrayList<>();
-        
+
 
 
         /**
