@@ -1,4 +1,4 @@
-package com.projecte.kaiju;
+package com.projecte.kaiju.javaclasses;
 
 public class Card {
     int id;

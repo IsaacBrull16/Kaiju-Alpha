@@ -1,4 +1,4 @@
-package com.projecte.kaiju;
+package com.projecte.kaiju.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.projecte.kaiju.R;
+import com.projecte.kaiju.javaclasses.Card;
+import com.projecte.kaiju.javaclasses.Deck;
+import com.projecte.kaiju.javaclasses.Game;
 
 import java.util.Random;
 
@@ -98,6 +103,11 @@ public class Partida extends AppCompatActivity {
                 damageText1.setText("Damage: " + cardr.getDamage());
                 lifeText1.setText("Life: " + cardr.getLife());
                 typeText1.setText("Type: " + cardr.getType());
+                /*if (deck.deckSize() == 0){
+                    Intent i = new Intent (Partida.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }*/
             }
         });
     }

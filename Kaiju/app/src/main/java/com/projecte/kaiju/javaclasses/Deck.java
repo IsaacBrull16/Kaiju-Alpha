@@ -1,4 +1,6 @@
-package com.projecte.kaiju;
+package com.projecte.kaiju.javaclasses;
+
+import com.projecte.kaiju.javaclasses.Card;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,14 +48,16 @@ public class Deck {
      */
 
     public Card putCard() {
-        //if (actualCard < numCards) {
+        while (deckCards.size() != 0) {
             Card card = deckCards.get(0);
-            //actualCard++;
             deckCards.remove(0);
             return card;
-        /*} else if (actualCard >= numCards) {
-            return deckCards.get(actualCard++);
-        } else return null;*/
+        }
+        return new Card (0,"", 0, 0, 0, "");
+    }
+
+    public int deckSize(){
+        return deckCards.size();
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.projecte.kaiju;
+package com.projecte.kaiju.activities;
 
 import android.annotation.SuppressLint;
 
@@ -14,7 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 
-import com.projecte.kaiju.databinding.ActivitySplashScreenBinding;
+import com.projecte.kaiju.R;
+import com.projecte.kaiju.activities.MainActivity;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -84,7 +85,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             return false;
         }
     };
-    private ActivitySplashScreenBinding binding;
+    //private ActivitySplashScreenBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run(){
                 try{
                     sleep(2000);
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 } catch (InterruptedException e){
                     e.printStackTrace();

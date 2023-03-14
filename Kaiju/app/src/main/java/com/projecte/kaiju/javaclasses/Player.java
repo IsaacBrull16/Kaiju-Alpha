@@ -1,4 +1,6 @@
-package com.projecte.kaiju;
+package com.projecte.kaiju.javaclasses;
+
+import com.projecte.kaiju.javaclasses.Card;
 
 import java.util.ArrayList;
 
