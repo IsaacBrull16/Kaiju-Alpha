@@ -12,11 +12,13 @@ import com.projecte.kaiju.R;
 import com.projecte.kaiju.javaclasses.Card;
 import com.projecte.kaiju.javaclasses.Deck;
 import com.projecte.kaiju.javaclasses.Game;
+import com.projecte.kaiju.javaclasses.Player;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Partida extends AppCompatActivity {
-    public static Game game;
+    private Game game;
     /**
      * Declaramos todos los objetos del layout que querramos modificar/usar
      */
@@ -35,6 +37,9 @@ public class Partida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
         valorDado = (TextView) findViewById(R.id.valorDado);
+        ArrayList<Player> jugadores = new ArrayList<>();
+        
+
 
         /**
          * Encontramos cada uno de los TextViews del layout
@@ -52,6 +57,7 @@ public class Partida extends AppCompatActivity {
 
         Button dado = findViewById(R.id.dado);
         TextView valorDado = findViewById(R.id.valorDado);
+        TextView turnIndicator = findViewById(R.id.turnIndicator);
 
         dado.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -72,4 +72,9 @@ public class Deck {
     Card TechnoLight = new Card(3, "TechnoLight", 5, 10, 2, "Technology");
     Card DuckWind = new Card(4, "DuckWind", 4, 2, 9, "Nature");
 
+    public Card sacarCarta() {
+        Card carta = deckCards.get(0);
+        deckCards.remove(0);
+        return carta;
+    }
 }

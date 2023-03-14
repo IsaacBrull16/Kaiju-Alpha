@@ -1,20 +1,35 @@
 package com.projecte.kaiju.javaclasses;
 
+import java.util.ArrayList;
+
 public class Game {
-    Player player1;
-    Player player2;
-    int turn = 0;
-    int round = 0;
+    private ArrayList<Player> players;
+    private Deck deck;
+    private ArrayList<Card> table;
+    private int actualTurn;
+    private int actualPlayer;
 
     /**
      * Constructor de la clase Game
      *
-     * @param player1
-     * @param player2
+     * @param players
+     *
      */
-    public Game(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Game(ArrayList<Player> players){
+        this.players = players;
+        this.deck = new Deck();
+        this.table = new ArrayList<>();
+        this.actualTurn = 1;
+        this.actualPlayer = 0;
+        repartiCartes();
+    }
+
+    public void repartiCartes(){
+        for (Player player : players) {
+            for (int i = 0; i < 2; i++) {
+                player.addCard(deck.sacarCarta());
+            }
+        }
     }
 
     /**
@@ -22,105 +37,31 @@ public class Game {
      *
      * @return
      */
-    public Player getPlayer1() {
-        return player1;
+
+    public void siguienteTurno(){
+        actualPlayer = (actualPlayer + 1) % players.size();
     }
 
-    public Player getPlayer2() {
-        return player2;
+    public void jugarCarta(int id){
+        Player actualPlayer = players.get(this.actualPlayer);
+        Card card = actualPlayer.JugarCarta(id);
+        table.add(card);
+        siguienteTurno();
     }
-
-    public int getTurn() {
-        return turn;
+    public ArrayList<Player> getPlayers(){
+        return players;
     }
-
-    public int getRound() {
-        return round;
+    public Deck getDeck(){
+        return deck;
     }
-
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
+    public ArrayList<Card> getTable(){
+        return table;
     }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
+    public int getActualTurn(){
+        return actualTurn;
     }
-
-    public void setTurn(int turn) {
-        this.turn = turn;
-    }
-
-    public void setRound(int round) {
-        this.round = round;
-    }
-
-    /**
-     * Funcion que devuelve el jugador que tiene el turno
-     *
-     * @return
-     */
-    public Player getTurnPlayer() {
-        if (turn == 0) {
-            return player1;
-        } else {
-            return player2;
-        }
-    }
-
-    /**
-     * Funcion que devuelve el jugador que no tiene el turno
-     *
-     * @return
-     */
-    public Player getNotTurnPlayer() {
-        if (turn == 0) {
-            return player2;
-        } else {
-            return player1;
-        }
-    }
-
-    /**
-     * Funcion que cambia el turno
-     */
-    public void changeTurn() {
-        if (turn == 0) {
-            turn = 1;
-        } else {
-            turn = 0;
-        }
-    }
-
-    /**
-     * Funcion que cambia el turno
-     */
-    public void changeRound() {
-        round++;
-    }
-
-    /**
-     * Funcion que devuelve el jugador que tiene el turno
-     *
-     * @return
-     */
-    public Player getRoundPlayer() {
-        if (round % 2 == 0) {
-            return player1;
-        } else {
-            return player2;
-        }
-    }
-
-    /**
-     * Funcion que devuelve el jugador que no tiene el turno
-     *
-     * @return
-     */
-    public Player getNotRoundPlayer() {
-        if (round % 2 == 0) {
-            return player2;
-        }
-        return null;
+    public int getActualPlayer(){
+        return actualPlayer;
     }
 }
 

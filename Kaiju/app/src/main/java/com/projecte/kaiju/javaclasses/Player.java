@@ -5,24 +5,22 @@ import com.projecte.kaiju.javaclasses.Card;
 import java.util.ArrayList;
 
 public class Player {
-    String name;
-    int life;
-    int pa;
+    private String name;
+    private ArrayList<Card> deck;
+    private int life;
+    private int pa;
 
-
-    ArrayList<Card> deck = new ArrayList<Card>();
 
     /**
      * Constructor de la clase Player
      * @param name
-     * @param life
-     * @param pa
+     *
      */
-    public Player(String name, int life, int pa, ArrayList<Card> deck){
+    public Player(String name){
         this.name = name;
-        this.life = life;
-        this.pa = pa;
-        this.deck = deck;
+        this.deck = new ArrayList<>();
+        this.pa = 0;
+
     }
 
     /**
@@ -32,28 +30,33 @@ public class Player {
     public String getName(){
         return name;
     }
-    public int getLife(){
-        return life;
-    }
-    public int getPa(){
-        return pa;
-    }
     public ArrayList<Card> getDeck(){
         return deck;
     }
 
-    public void setLife(int life){
-        this.life = life;
+    public int getPa(){
+        return pa;
     }
+
+
+
 
     public void setPa(int pa){
         this.pa = pa;
     }
-    public void setName(String name){
-        this.name = name;
+
+    public void addCard(Card card){
+        deck.add(card);
     }
-    public void setDeck(ArrayList<Card> deck){
-        this.deck = deck;
+    public void removeCard(Card card){
+        deck.remove(card);
     }
+    public Card JugarCarta(int id){
+        Card card = deck.get(id);
+        deck.remove(id);
+        return card;
+    }
+
+
 
 }
