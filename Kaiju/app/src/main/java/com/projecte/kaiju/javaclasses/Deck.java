@@ -14,15 +14,17 @@ public class Deck {
 
     private static ArrayList<Card> deckCards = new ArrayList<Card>();
     private int actualCard;
-    private Random randNum;
+    //private Random randNum;
     private int numCards;
 
     public Deck(){
         deckCards.add(Trotowild);
         deckCards.add(PlantBot);
         deckCards.add(ElectroRazz);
+        deckCards.add(TechnoLight);
+        deckCards.add(DuckWind);
         numCards = deckCards.size();
-        randNum = new Random();
+        //randNum = new Random();
     }
 
     /**
@@ -48,12 +50,12 @@ public class Deck {
      */
 
     public Card putCard() {
-        while (deckCards.size() != 0) {
+        //while (deckCards.size() != 0) {
             Card card = deckCards.get(0);
             deckCards.remove(0);
             return card;
-        }
-        return new Card (0,"", 0, 0, 0, "");
+        //}
+        //return new Card (0,"", 0, 0, 0, "");
     }
 
     public int deckSize(){
@@ -67,5 +69,7 @@ public class Deck {
     Card Trotowild = new Card(0, "Trotowild", 1, 2, 5, "Nature");
     Card PlantBot = new Card(1,"PlantBot", 2, 6, 2, "Technology");
     Card ElectroRazz = new Card(2, "ElectroRazz", 1, 2, 4, "Science");
+    Card TechnoLight = new Card(3, "TechnoLight", 5, 10, 2, "Technology");
+    Card DuckWind = new Card(4, "DuckWind", 4, 2, 9, "Nature");
 
 }

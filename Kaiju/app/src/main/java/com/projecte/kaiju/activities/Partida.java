@@ -97,17 +97,14 @@ public class Partida extends AppCompatActivity {
         deckButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Card cardr = deck.putCard();
-                nameText1.setText("Name: " + cardr.getName());
-                costText1.setText("Cost: " + cardr.getCost());
-                damageText1.setText("Damage: " + cardr.getDamage());
-                lifeText1.setText("Life: " + cardr.getLife());
-                typeText1.setText("Type: " + cardr.getType());
-                /*if (deck.deckSize() == 0){
-                    Intent i = new Intent (Partida.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-                }*/
+                if (deck.deckSize() != 0){
+                    Card cardr = deck.putCard();
+                    nameText1.setText("Name: " + cardr.getName());
+                    costText1.setText("Cost: " + cardr.getCost());
+                    damageText1.setText("Damage: " + cardr.getDamage());
+                    lifeText1.setText("Life: " + cardr.getLife());
+                    typeText1.setText("Type: " + cardr.getType());
+                }
             }
         });
     }
