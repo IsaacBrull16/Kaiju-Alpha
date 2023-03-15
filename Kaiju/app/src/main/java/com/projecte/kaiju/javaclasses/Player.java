@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Player {
     private String name;
-    private ArrayList<Card> deck;
+    private ArrayList<Card> deckOfPlayer;
     private int life;
     private int pa;
 
@@ -18,7 +18,7 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
-        this.deck = new ArrayList<>();
+        this.deckOfPlayer = new ArrayList<>();
         this.pa = 0;
 
     }
@@ -31,7 +31,7 @@ public class Player {
         return name;
     }
     public ArrayList<Card> getDeck(){
-        return deck;
+        return deckOfPlayer;
     }
 
     public int getPa(){
@@ -46,14 +46,14 @@ public class Player {
     }
 
     public void addCard(Card card){
-        deck.add(card);
+        deckOfPlayer.add(card);
     }
     public void removeCard(Card card){
-        deck.remove(card);
+        deckOfPlayer.remove(card);
     }
     public Card JugarCarta(int id){
-        Card card = deck.get(id);
-        deck.remove(id);
+        Card card = deckOfPlayer.get(id);
+        deckOfPlayer.remove(id);
         return card;
     }
 

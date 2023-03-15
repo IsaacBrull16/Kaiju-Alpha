@@ -23,6 +23,7 @@ public class Deck {
         deckCards.add(ElectroRazz);
         deckCards.add(TechnoLight);
         deckCards.add(DuckWind);
+        deckCards.add(PlasticKiller);
         numCards = deckCards.size();
         //randNum = new Random();
     }
@@ -68,9 +69,10 @@ public class Deck {
 
     Card Trotowild = new Card(0, "Trotowild", 1, 2, 5, "Nature");
     Card PlantBot = new Card(1,"PlantBot", 2, 6, 2, "Technology");
-    Card ElectroRazz = new Card(2, "ElectroRazz", 1, 2, 4, "Science");
+    Card ElectroRazz = new Card(2, "ElectroRazz", 3, 2, 4, "Science");
     Card TechnoLight = new Card(3, "TechnoLight", 5, 10, 2, "Technology");
     Card DuckWind = new Card(4, "DuckWind", 4, 2, 9, "Nature");
+    Card PlasticKiller = new Card(5, "PlasticKiller", 6, 11, 3, "Science");
 
     public Card sacarCarta() {
         Card carta = deckCards.get(0);
