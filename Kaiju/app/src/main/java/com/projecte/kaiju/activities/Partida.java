@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.javaclasses.Card;
 import com.projecte.kaiju.javaclasses.Deck;
+import com.projecte.kaiju.javaclasses.Dice;
 import com.projecte.kaiju.javaclasses.Game;
 import com.projecte.kaiju.javaclasses.Player;
 
@@ -18,10 +19,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Partida extends AppCompatActivity {
-    private Game game;
+    //private Game game;
     /**
      * Declaramos todos los objetos del layout que querramos modificar/usar
      */
+
+    public static int diceValue = 0;
+
     Button dado;
     Button homeButton;
     Button deckButton;
@@ -37,7 +41,7 @@ public class Partida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
         valorDado = (TextView) findViewById(R.id.valorDado);
-        ArrayList<Player> jugadores = new ArrayList<>();
+        //ArrayList<Player> jugadores = new ArrayList<>();
 
 
 
@@ -51,21 +55,26 @@ public class Partida extends AppCompatActivity {
         lifeText1 = (TextView) findViewById(R.id.lifeText1);
         typeText1 = (TextView) findViewById(R.id.typeText1);
 
+        Dice dice = new Dice();
+        Deck deck = new Deck();
+        deck.Shuffle();
+
+        deckButton = (Button) findViewById(R.id.deckButton);
+
         /**
          * Hacemos un dado que sea tirable
          */
 
-        Button dado = findViewById(R.id.dado);
-        TextView valorDado = findViewById(R.id.valorDado);
-        TextView turnIndicator = findViewById(R.id.turnIndicator);
+        dado = (Button) findViewById(R.id.dado);
+        valorDado = (TextView) findViewById(R.id.valorDado);
+        //turnIndicator = (TextView) findViewById(R.id.turnIndicator);
 
         dado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Random rand = new Random();
-                int valor = rand.nextInt(6) + 1;
-
-                valorDado.setText(String.valueOf(valor));
+                dice.rollDice();
+                diceValue = dice.getValue();
+                valorDado.setText(String.valueOf(diceValue));
             }
         });
 
@@ -94,11 +103,6 @@ public class Partida extends AppCompatActivity {
          * Primero creamos una clase Deck(Baraja), creamos un contador de las cartas
          * restantes (resDeck) y escogemos una carta aleatoria de entre las disponibles
          */
-
-        Deck deck = new Deck();
-        deck.Shuffle();
-
-        deckButton = (Button) findViewById(R.id.deckButton);
 
         deckButton.setOnClickListener(new View.OnClickListener(){
             @Override

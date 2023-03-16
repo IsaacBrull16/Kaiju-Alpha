@@ -74,9 +74,9 @@ public class Deck {
     Card DuckWind = new Card(4, "DuckWind", 4, 2, 9, "Nature");
     Card PlasticKiller = new Card(5, "PlasticKiller", 6, 11, 3, "Science");
 
-    public Card sacarCarta() {
+    /*public Card sacarCarta() {
         Card carta = deckCards.get(0);
         deckCards.remove(0);
         return carta;
-    }
+    }*/
 }
