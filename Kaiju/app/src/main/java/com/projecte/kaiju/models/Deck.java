@@ -1,10 +1,7 @@
-package com.projecte.kaiju.javaclasses;
-
-import com.projecte.kaiju.javaclasses.Card;
+package com.projecte.kaiju.models;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class Deck {
 

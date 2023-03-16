@@ -1,4 +1,4 @@
-package com.projecte.kaiju.javaclasses;
+package com.projecte.kaiju.models;
 
 
 

@@ -1,36 +1,45 @@
-package com.projecte.kaiju.javaclasses;
-
-import java.util.ArrayList;
+package com.projecte.kaiju.models;
 
 public class Game {
-    private ArrayList<Player> players;
+    /*private ArrayList<Player> players;
     private Deck deck;
     private ArrayList<Card> table;
     private int actualTurn;
     private int actualPlayer;
-
     /**
      * Constructor de la clase Game
      *
      * @param players
      *
      */
-    public Game(ArrayList<Player> players){
+    private static Player player1 = new Player("J1");
+    private static Player player2 = new Player("J2");
+    private static Turn turn = new Turn();
+    public Game(){
+        turn.player = true;
+        player1.setLife(25);
+        player2.setLife(25);
+        player1.getDeck().Shuffle();
+        player2.getDeck().Shuffle();
+    }
+
+
+    /*public Game(ArrayList<Player> players){
         this.players = players;
         this.deck = new Deck();
         this.table = new ArrayList<>();
         this.actualTurn = 1;
         this.actualPlayer = 0;
-        repartiCartes();
-    }
+        repartirCartes();
+    }*/
 
-    public void repartiCartes(){
+    /*public void repartirCartes(){
         for (Player player : players) {
             for (int i = 0; i < 2; i++) {
                 player.addCard(deck.sacarCarta());
             }
         }
-    }
+    }*/
 
     /**
      * Getters y setters de la clase Game
@@ -38,7 +47,7 @@ public class Game {
      * @return
      */
 
-    public void siguienteTurno(){
+    /*public void siguienteTurno(){
         actualPlayer = (actualPlayer + 1) % players.size();
     }
 
@@ -62,6 +71,6 @@ public class Game {
     }
     public int getActualPlayer(){
         return actualPlayer;
-    }
+    }*/
 }
 

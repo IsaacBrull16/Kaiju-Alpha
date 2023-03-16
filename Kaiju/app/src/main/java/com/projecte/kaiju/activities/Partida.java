@@ -9,14 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.projecte.kaiju.R;
-import com.projecte.kaiju.javaclasses.Card;
-import com.projecte.kaiju.javaclasses.Deck;
-import com.projecte.kaiju.javaclasses.Dice;
-import com.projecte.kaiju.javaclasses.Game;
-import com.projecte.kaiju.javaclasses.Player;
-
-import java.util.ArrayList;
-import java.util.Random;
+import com.projecte.kaiju.models.Card;
+import com.projecte.kaiju.models.Deck;
+import com.projecte.kaiju.models.Dice;
+import com.projecte.kaiju.models.Turn;
 
 public class Partida extends AppCompatActivity {
     //private Game game;
@@ -36,6 +32,7 @@ public class Partida extends AppCompatActivity {
     TextView damageText1;
     TextView lifeText1;
     TextView typeText1;
+    TextView turnIndicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +56,8 @@ public class Partida extends AppCompatActivity {
         Deck deck = new Deck();
         deck.Shuffle();
 
+        Turn turn = new Turn();
+
         deckButton = (Button) findViewById(R.id.deckButton);
 
         /**
@@ -67,7 +66,7 @@ public class Partida extends AppCompatActivity {
 
         dado = (Button) findViewById(R.id.dado);
         valorDado = (TextView) findViewById(R.id.valorDado);
-        //turnIndicator = (TextView) findViewById(R.id.turnIndicator);
+        turnIndicator = (TextView) findViewById(R.id.turnIndicator);
 
         dado.setOnClickListener(new View.OnClickListener() {
             @Override

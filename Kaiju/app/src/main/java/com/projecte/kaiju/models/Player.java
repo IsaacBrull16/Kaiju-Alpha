@@ -1,15 +1,11 @@
-package com.projecte.kaiju.javaclasses;
-
-import com.projecte.kaiju.javaclasses.Card;
-
-import java.util.ArrayList;
+package com.projecte.kaiju.models;
 
 public class Player {
     private String name;
-    private ArrayList<Card> deckOfPlayer;
+    private static Deck deckOfPlayer;
+    private static Dice playerDice;
     private int life;
-    private int pa;
-
+    //private int pa;
 
     /**
      * Constructor de la clase Player
@@ -18,8 +14,10 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
-        this.deckOfPlayer = new ArrayList<>();
-        this.pa = 0;
+        this.deckOfPlayer = new Deck();
+        playerDice = new Dice();
+        this.life = life;
+        //this.pa = 0;
 
     }
 
@@ -30,32 +28,42 @@ public class Player {
     public String getName(){
         return name;
     }
-    public ArrayList<Card> getDeck(){
+    public Deck getDeck(){
         return deckOfPlayer;
     }
 
-    public int getPa(){
+    /*public int getPa(){
         return pa;
+    }*/
+
+    public int getLife(){
+        return life;
+    }
+
+    public void setLife(int l){
+        this.life = l;
+    }
+
+    public void setName(String n){
+        this.name = n;
     }
 
 
-
-
-    public void setPa(int pa){
+    /*public void setPa(int pa){
         this.pa = pa;
-    }
+    }*/
 
-    public void addCard(Card card){
+    /*public void addCard(Card card){
         deckOfPlayer.add(card);
     }
     public void removeCard(Card card){
         deckOfPlayer.remove(card);
     }
-    public Card JugarCarta(int id){
+    /*public Card JugarCarta(int id){
         Card card = deckOfPlayer.get(id);
         deckOfPlayer.remove(id);
         return card;
-    }
+    }*/
 
 
 
