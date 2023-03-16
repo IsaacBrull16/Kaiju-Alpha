@@ -22,4 +22,8 @@ public class Turn {
             player = true;
         }
     }
+
+    public boolean getTurnValue(){
+        return player;
+    }
 }

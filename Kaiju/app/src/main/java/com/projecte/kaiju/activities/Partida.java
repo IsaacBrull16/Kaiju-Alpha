@@ -12,6 +12,7 @@ import com.projecte.kaiju.R;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.models.Deck;
 import com.projecte.kaiju.models.Dice;
+import com.projecte.kaiju.models.Game;
 import com.projecte.kaiju.models.Turn;
 
 public class Partida extends AppCompatActivity {
@@ -30,9 +31,8 @@ public class Partida extends AppCompatActivity {
     TextView nameText1;
     TextView costText1;
     TextView damageText1;
-    TextView lifeText1;
-    TextView typeText1;
     TextView turnIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +49,13 @@ public class Partida extends AppCompatActivity {
         nameText1 = (TextView) findViewById(R.id.nameText1);
         costText1 = (TextView) findViewById(R.id.costText1);
         damageText1 = (TextView) findViewById(R.id.damageText1);
-        lifeText1 = (TextView) findViewById(R.id.lifeText1);
-        typeText1 = (TextView) findViewById(R.id.typeText1);
 
+        Game game = new Game();
+        /*Deck deck = new Deck();
         Dice dice = new Dice();
-        Deck deck = new Deck();
         deck.Shuffle();
 
-        Turn turn = new Turn();
+        Turn turn = new Turn();*/
 
         deckButton = (Button) findViewById(R.id.deckButton);
 
@@ -71,9 +70,9 @@ public class Partida extends AppCompatActivity {
         dado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dice.rollDice();
-                diceValue = dice.getValue();
-                valorDado.setText(String.valueOf(diceValue));
+                game.getPlayer1().getPlayerDice().rollDice();
+                int diceValue1 = game.getPlayer1().getPlayerDice().getValue();
+                valorDado.setText(String.valueOf(diceValue1));
             }
         });
 
@@ -106,13 +105,13 @@ public class Partida extends AppCompatActivity {
         deckButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (deck.deckSize() != 0){
-                    Card cardr = deck.putCard();
-                    nameText1.setText("Name: " + cardr.getName());
-                    costText1.setText("Cost: " + cardr.getCost());
-                    damageText1.setText("Damage: " + cardr.getDamage());
-                    lifeText1.setText("Life: " + cardr.getLife());
-                    typeText1.setText("Type: " + cardr.getType());
+                if (game.getTurn().getTurnValue() == true) {
+                    if (game.getPlayer1().getDeck().deckSize() != 0) {
+                        Card cardr = game.getPlayer1().getDeck().putCard();
+                        nameText1.setText("Name: " + cardr.getName());
+                        costText1.setText("Cost: " + cardr.getCost());
+                        damageText1.setText("Damage: " + cardr.getDamage());
+                    }
                 }
             }
         });

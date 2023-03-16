@@ -32,6 +32,10 @@ public class Player {
         return deckOfPlayer;
     }
 
+    public Dice getPlayerDice(){
+        return playerDice;
+    }
+
     /*public int getPa(){
         return pa;
     }*/
