@@ -106,8 +106,8 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (game.getTurn().getTurnValue() == true) {
-                    if (game.getPlayer1().getDeck().deckSize() != 0) {
-                        Card cardr = game.getPlayer1().getDeck().putCard();
+                    if (game.getPlayer1().getDeckOfPlayer().deckSize() != 0) {
+                        Card cardr = game.getPlayer1().getDeckOfPlayer().putCard();
                         nameText1.setText("Name: " + cardr.getName());
                         costText1.setText("Cost: " + cardr.getCost());
                         damageText1.setText("Damage: " + cardr.getDamage());

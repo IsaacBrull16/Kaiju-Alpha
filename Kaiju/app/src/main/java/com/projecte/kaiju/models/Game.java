@@ -18,13 +18,13 @@ public class Game {
     public static Player player2;
     private static Turn turn = new Turn();
     public Game(){
-        turn.player = true;
+        turn.currentTurn = true;
         player1 = new Player("J1");
         player2 = new Player("J2");
         player1.setLife(25);
         player2.setLife(25);
-        player1.getDeck().Shuffle();
-        player2.getDeck().Shuffle();
+        player1.getDeckOfPlayer().Shuffle();
+        player2.getDeckOfPlayer().Shuffle();
     }
 
     public Player getPlayer1(){
