@@ -26,14 +26,14 @@ public class Player {
      * @return
      */
     public String getName(){
-        return name;
+        return this.name;
     }
     public Deck getDeckOfPlayer(){
-        return deckOfPlayer;
+        return this.deckOfPlayer;
     }
 
     public Dice getPlayerDice(){
-        return playerDice;
+        return this.playerDice;
     }
 
     /*public int getPa(){

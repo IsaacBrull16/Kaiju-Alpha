@@ -102,15 +102,18 @@ public class Partida extends AppCompatActivity {
          * restantes (resDeck) y escogemos una carta aleatoria de entre las disponibles
          */
 
+        Deck deckP1 = game.getPlayer1().getDeckOfPlayer();
+
         deckButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (game.getTurn().getTurnValue() == true) {
-                    if (game.getPlayer1().getDeckOfPlayer().deckSize() != 0) {
-                        Card cardr = game.getPlayer1().getDeckOfPlayer().putCard();
-                        nameText1.setText("Name: " + cardr.getName());
-                        costText1.setText("Cost: " + cardr.getCost());
-                        damageText1.setText("Damage: " + cardr.getDamage());
+                if ((game.getTurn().getTurnValue() == true) && (game.isCardOnTable() == false)) {
+                    if (deckP1.deckSize() != 0) {
+                        Card cardr1 = deckP1.putCard();
+                        nameText1.setText("Name: " + cardr1.getName());
+                        costText1.setText("Cost: " + cardr1.getCost());
+                        damageText1.setText("Damage: " + cardr1.getDamage());
+                        game.cardOnTable();
                     }
                 }
             }

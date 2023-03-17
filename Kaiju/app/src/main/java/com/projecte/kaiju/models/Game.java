@@ -17,6 +17,7 @@ public class Game {
     public static Player player1;
     public static Player player2;
     private static Turn turn = new Turn();
+    boolean cardTable = false;
     public Game(){
         turn.currentTurn = true;
         player1 = new Player("J1");
@@ -39,13 +40,16 @@ public class Game {
         return turn;
     }
 
-    public boolean cardOnTable(boolean cardTable){
+    public void cardOnTable(){
         if (cardTable == true){
-            return true;
+            this.cardTable = false;
         } else {
-            return false;
+            this.cardTable = true;
         }
+    }
 
+    public boolean isCardOnTable(){
+        return cardTable;
     }
     /*public Game(ArrayList<Player> players){
         this.players = players;
