@@ -1,10 +1,10 @@
 package com.projecte.kaiju.models;
 
 public class Turn {
-    boolean player = true;
+    boolean currentTurn = true;
 
     public Turn(){
-        player = true;
+        this.currentTurn = true;
     }
 
     /*public void turnPlayer(){
@@ -16,14 +16,14 @@ public class Turn {
     }*/
 
     public void changeTurn(){
-        if (player == true){
-            player = false;
+        if (currentTurn == true){
+            this.currentTurn = false;
         } else {
-            player = true;
+            this.currentTurn = true;
         }
     }
 
     public boolean getTurnValue(){
-        return player;
+        return currentTurn;
     }
 }

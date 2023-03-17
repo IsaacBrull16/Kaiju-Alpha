@@ -15,7 +15,7 @@ public class Player {
     public Player(String name){
         this.name = name;
         this.deckOfPlayer = new Deck();
-        playerDice = new Dice();
+        this.playerDice = new Dice();
         this.life = life;
         //this.pa = 0;
 
@@ -26,14 +26,14 @@ public class Player {
      * @return
      */
     public String getName(){
-        return name;
+        return this.name;
     }
-    public Deck getDeck(){
-        return deckOfPlayer;
+    public Deck getDeckOfPlayer(){
+        return this.deckOfPlayer;
     }
 
     public Dice getPlayerDice(){
-        return playerDice;
+        return this.playerDice;
     }
 
     /*public int getPa(){

@@ -17,14 +17,15 @@ public class Game {
     public static Player player1;
     public static Player player2;
     private static Turn turn = new Turn();
+    boolean cardTable = false;
     public Game(){
-        turn.player = true;
+        turn.currentTurn = true;
         player1 = new Player("J1");
         player2 = new Player("J2");
         player1.setLife(25);
         player2.setLife(25);
-        player1.getDeck().Shuffle();
-        player2.getDeck().Shuffle();
+        player1.getDeckOfPlayer().Shuffle();
+        player2.getDeckOfPlayer().Shuffle();
     }
 
     public Player getPlayer1(){
@@ -39,13 +40,16 @@ public class Game {
         return turn;
     }
 
-    public boolean cardOnTable(boolean cardTable){
+    public void cardOnTable(){
         if (cardTable == true){
-            return true;
+            this.cardTable = false;
         } else {
-            return false;
+            this.cardTable = true;
         }
+    }
 
+    public boolean isCardOnTable(){
+        return cardTable;
     }
     /*public Game(ArrayList<Player> players){
         this.players = players;
