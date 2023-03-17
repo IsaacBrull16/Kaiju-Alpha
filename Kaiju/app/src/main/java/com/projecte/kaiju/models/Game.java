@@ -17,7 +17,10 @@ public class Game {
     public static Player player1;
     public static Player player2;
     private static Turn turn = new Turn();
-    boolean cardTable = false;
+    boolean cardTableP1 = false;
+    boolean cardTableP2 = false;
+    boolean diceRolledP1 = false;
+    boolean diceRolledP2 = false;
     public Game(){
         turn.currentTurn = true;
         player1 = new Player("J1");
@@ -29,27 +32,62 @@ public class Game {
     }
 
     public Player getPlayer1(){
-        return player1;
+        return this.player1;
     }
 
     public Player getPlayer2(){
-        return player2;
+        return this.player2;
     }
 
     public Turn getTurn(){
-        return turn;
+        return this.turn;
     }
 
-    public void cardOnTable(){
-        if (cardTable == true){
-            this.cardTable = false;
+    public void changeCardOnTableP1(){
+        if (cardTableP1 == true){
+            this.cardTableP1 = false;
         } else {
-            this.cardTable = true;
+            this.cardTableP1 = true;
         }
     }
 
-    public boolean isCardOnTable(){
-        return cardTable;
+    public boolean isCardOnTableP1(){
+        return this.cardTableP1;
+    }
+
+    public void changeCardOnTableP2(){
+        if (cardTableP2 == true){
+            this.cardTableP2 = false;
+        } else {
+            this.cardTableP2 = true;
+        }
+    }
+
+    public boolean isCardOnTableP2(){
+        return this.cardTableP2;
+    }
+
+    public boolean getDiceRolledP1(){
+        return this.diceRolledP1;
+    }
+
+    public void changeDiceRolledP1(){
+        if (diceRolledP1 == true){
+            this.diceRolledP1 = false;
+        } else {
+            this.diceRolledP1 = true;
+        }
+    }
+    public boolean getDiceRolledP2(){
+        return this.diceRolledP2;
+    }
+
+    public void changeDiceRolledP2(){
+        if (diceRolledP2 == true){
+            this.diceRolledP2 = false;
+        } else {
+            this.diceRolledP2 = true;
+        }
     }
     /*public Game(ArrayList<Player> players){
         this.players = players;

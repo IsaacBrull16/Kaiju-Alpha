@@ -12,8 +12,8 @@ import com.projecte.kaiju.R;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.models.Deck;
 import com.projecte.kaiju.models.Dice;
-import com.projecte.kaiju.models.Game;
 import com.projecte.kaiju.models.Turn;
+import com.projecte.kaiju.models.Game;
 
 public class Partida extends AppCompatActivity {
     //private Game game;
@@ -23,64 +23,83 @@ public class Partida extends AppCompatActivity {
 
     public static int diceValue = 0;
 
-    Button dado;
+    Button dado1;
+    Button dado2;
     Button homeButton;
-    Button deckButton;
+    Button deckButton1;
+    Button deckButton2;
+    Button card1;
+    Button card2;
+    Button endTurn1;
+    Button endTurn2;
 
-    TextView valorDado;
-    TextView nameText1;
-    TextView costText1;
-    TextView damageText1;
+    TextView valorDado1;
+    TextView valorDado2;
     TextView turnIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
-        valorDado = (TextView) findViewById(R.id.valorDado);
+        dado1 = (Button) findViewById(R.id.dado1);
+        dado2 = (Button) findViewById(R.id.dado2);
+        homeButton = (Button) findViewById(R.id.homeButton);
+        deckButton1 = (Button) findViewById(R.id.deckButton1);
+        deckButton2 = (Button) findViewById(R.id.deckButton2);
+        endTurn1 = (Button) findViewById(R.id.endTurn1);
+        endTurn2 = (Button) findViewById(R.id.endTurn2);
+        valorDado1 = (TextView) findViewById(R.id.valorDado1);
+        valorDado2 = (TextView) findViewById(R.id.valorDado2);
+
+        turnIndicator = (TextView) findViewById(R.id.turnIndicator);
+        card1 = (Button) findViewById(R.id.card1);
+        card2 = (Button) findViewById(R.id.card2);
+
+
         //ArrayList<Player> jugadores = new ArrayList<>();
-
-
 
         /**
          * Encontramos cada uno de los TextViews del layout
          */
 
-        nameText1 = (TextView) findViewById(R.id.nameText1);
-        costText1 = (TextView) findViewById(R.id.costText1);
-        damageText1 = (TextView) findViewById(R.id.damageText1);
-
         Game game = new Game();
-        /*Deck deck = new Deck();
-        Dice dice = new Dice();
-        deck.Shuffle();
 
-        Turn turn = new Turn();*/
-
-        deckButton = (Button) findViewById(R.id.deckButton);
+        Turn actualTurn = game.getTurn();
+        Dice diceP1 = game.getPlayer1().getPlayerDice();
+        Dice diceP2 = game.getPlayer2().getPlayerDice();
+        Deck deckP1 = game.getPlayer1().getDeckOfPlayer();
+        Deck deckP2 = game.getPlayer2().getDeckOfPlayer();
 
         /**
          * Hacemos un dado que sea tirable
          */
 
-        dado = (Button) findViewById(R.id.dado);
-        valorDado = (TextView) findViewById(R.id.valorDado);
-        turnIndicator = (TextView) findViewById(R.id.turnIndicator);
-
-        dado.setOnClickListener(new View.OnClickListener() {
+        dado1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                game.getPlayer1().getPlayerDice().rollDice();
-                int diceValue1 = game.getPlayer1().getPlayerDice().getValue();
-                valorDado.setText(String.valueOf(diceValue1));
+                if ((actualTurn.getTurnValue() == true) && (game.getDiceRolledP1() == false)) {
+                    diceP1.rollDice();
+                    int diceValue1 = diceP1.getValue();
+                    valorDado1.setText(String.valueOf(diceValue1));
+                    game.changeDiceRolledP1();
+                }
+            }
+        });
+        dado2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if ((actualTurn.getTurnValue() == false) && (game.getDiceRolledP2() == false)) {
+                    diceP2.rollDice();
+                    int diceValue2 = diceP2.getValue();
+                    valorDado2.setText(String.valueOf(diceValue2));
+                    game.changeDiceRolledP2();
+                }
             }
         });
 
         /**
          * Hacemos un botón para ir a la MainActivity(Página Principal)
          */
-
-        homeButton = (Button) findViewById(R.id.homeButton);
 
         homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -102,19 +121,58 @@ public class Partida extends AppCompatActivity {
          * restantes (resDeck) y escogemos una carta aleatoria de entre las disponibles
          */
 
-        Deck deckP1 = game.getPlayer1().getDeckOfPlayer();
-
-        deckButton.setOnClickListener(new View.OnClickListener(){
+        deckButton1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if ((game.getTurn().getTurnValue() == true) && (game.isCardOnTable() == false)) {
+                if ((actualTurn.getTurnValue() == true) && (game.isCardOnTableP1() == false) && (game.getDiceRolledP1()) == true) {
                     if (deckP1.deckSize() != 0) {
                         Card cardr1 = deckP1.putCard();
-                        nameText1.setText("Name: " + cardr1.getName());
-                        costText1.setText("Cost: " + cardr1.getCost());
-                        damageText1.setText("Damage: " + cardr1.getDamage());
-                        game.cardOnTable();
+                        card1.setText("Name: " + cardr1.getName() + "\n\nCost: " + cardr1.getCost() + "\n\nDamage: " + cardr1.getDamage());
+                        game.changeCardOnTableP1();
                     }
+                }
+            }
+        });
+        deckButton2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == false) && (game.getDiceRolledP2()) == true) {
+                    if (deckP2.deckSize() != 0) {
+                        Card cardr2 = deckP2.putCard();
+                        card2.setText("Name: " + cardr2.getName() + "\n\nCost: " + cardr2.getCost() + "\n\nDamage: " + cardr2.getDamage());
+                        game.changeCardOnTableP2();
+                    }
+                }
+            }
+        });
+
+        card1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        card2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        endTurn1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (actualTurn.getTurnValue() == true) {
+                    game.changeDiceRolledP1();
+                    actualTurn.changeTurn();
+                }
+            }
+        });
+        endTurn2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (actualTurn.getTurnValue() == false) {
+                    game.changeDiceRolledP2();
+                    actualTurn.changeTurn();
                 }
             }
         });

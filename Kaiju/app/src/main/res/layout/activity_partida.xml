@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.026" />
 
     <Button
-        android:id="@+id/dado"
+        android:id="@+id/dado1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tirar"
@@ -80,7 +80,7 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <TextView
-        android:id="@+id/valorDado"
+        android:id="@+id/valorDado1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoText="true"
@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.872" />
 
     <Button
-        android:id="@+id/deckButton"
+        android:id="@+id/deckButton1"
         android:layout_width="103dp"
         android:layout_height="128dp"
         android:text="Baraja"
