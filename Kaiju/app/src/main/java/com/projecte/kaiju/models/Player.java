@@ -2,8 +2,8 @@ package com.projecte.kaiju.models;
 
 public class Player {
     private String name;
-    private static Deck deckOfPlayer;
-    private static Dice playerDice;
+    private Deck deckOfPlayer;
+    private Dice playerDice;
     private int life;
     //private int pa;
 

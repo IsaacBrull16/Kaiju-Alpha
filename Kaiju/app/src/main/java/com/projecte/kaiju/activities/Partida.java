@@ -3,6 +3,7 @@ package com.projecte.kaiju.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +22,6 @@ public class Partida extends AppCompatActivity {
      * Declaramos todos los objetos del layout que querramos modificar/usar
      */
 
-    public static int diceValue = 0;
-
     Button dado1;
     Button dado2;
     Button homeButton;
@@ -36,6 +35,15 @@ public class Partida extends AppCompatActivity {
     TextView valorDado1;
     TextView valorDado2;
     TextView turnIndicator;
+    TextView lifeP1;
+    TextView lifeP2;
+
+    public static int diceValue1 = 0;
+    public static int diceValue2 = 0;
+    public static Card cardT1;
+    public static Card cardT2;
+    public static int life1;
+    public static int life2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +62,8 @@ public class Partida extends AppCompatActivity {
         turnIndicator = (TextView) findViewById(R.id.turnIndicator);
         card1 = (Button) findViewById(R.id.card1);
         card2 = (Button) findViewById(R.id.card2);
-
+        lifeP1 = (TextView) findViewById(R.id.lifeP1);
+        lifeP2 = (TextView) findViewById(R.id.lifeP2);
 
         //ArrayList<Player> jugadores = new ArrayList<>();
 
@@ -70,6 +79,15 @@ public class Partida extends AppCompatActivity {
         Deck deckP1 = game.getPlayer1().getDeckOfPlayer();
         Deck deckP2 = game.getPlayer2().getDeckOfPlayer();
 
+        card1.setBackgroundColor(Color.GRAY);
+        card2.setBackgroundColor(Color.GRAY);
+
+        life1 = game.getPlayer1().getLife();
+        lifeP1.setText(String.valueOf(life1));
+        life2 = game.getPlayer2().getLife();
+        lifeP2.setText(String.valueOf(life2));
+        turnIndicator.setText("Turn of P1");
+
         /**
          * Hacemos un dado que sea tirable
          */
@@ -79,7 +97,7 @@ public class Partida extends AppCompatActivity {
             public void onClick(View view) {
                 if ((actualTurn.getTurnValue() == true) && (game.getDiceRolledP1() == false)) {
                     diceP1.rollDice();
-                    int diceValue1 = diceP1.getValue();
+                    diceValue1 = diceValue1 + (diceP1.getValue());
                     valorDado1.setText(String.valueOf(diceValue1));
                     game.changeDiceRolledP1();
                 }
@@ -90,7 +108,7 @@ public class Partida extends AppCompatActivity {
             public void onClick(View view) {
                 if ((actualTurn.getTurnValue() == false) && (game.getDiceRolledP2() == false)) {
                     diceP2.rollDice();
-                    int diceValue2 = diceP2.getValue();
+                    diceValue2 = diceValue2 + diceP2.getValue();
                     valorDado2.setText(String.valueOf(diceValue2));
                     game.changeDiceRolledP2();
                 }
@@ -128,20 +146,28 @@ public class Partida extends AppCompatActivity {
                     if (deckP1.deckSize() != 0) {
                         Card cardr1 = deckP1.putCard();
                         card1.setText("Name: " + cardr1.getName() + "\n\nCost: " + cardr1.getCost() + "\n\nDamage: " + cardr1.getDamage());
+                        cardT1 = cardr1;
                         game.changeCardOnTableP1();
                     }
+                }
+                if (diceValue1 >= cardT1.getCost()) {
+                    card1.setBackgroundColor(Color.parseColor("#3F2893"));
                 }
             }
         });
         deckButton2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == false) && (game.getDiceRolledP2()) == true) {
+                if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == false) && (game.getDiceRolledP2() == true)) {
                     if (deckP2.deckSize() != 0) {
                         Card cardr2 = deckP2.putCard();
                         card2.setText("Name: " + cardr2.getName() + "\n\nCost: " + cardr2.getCost() + "\n\nDamage: " + cardr2.getDamage());
+                        cardT2 = cardr2;
                         game.changeCardOnTableP2();
                     }
+                }
+                if (diceValue2 >= cardT2.getCost()) {
+                    card2.setBackgroundColor(Color.parseColor("#3F2893"));
                 }
             }
         });
@@ -149,13 +175,51 @@ public class Partida extends AppCompatActivity {
         card1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                if ((actualTurn.getTurnValue() == true) && (game.isCardOnTableP1() == true) && (game.getDiceRolledP1() == true)){
+                    if (diceValue1 >= cardT1.getCost()){
+                        diceValue1 = diceValue1 - cardT1.getCost();
+                        if (diceValue1 < 0){
+                            diceValue1 = 0;
+                            valorDado1.setText(String.valueOf(diceValue1));
+                        }
+                        valorDado1.setText(String.valueOf(diceValue1));
+                        life2 = life2 - cardT2.getDamage();
+                        if (life2 <= 0){
+                            Intent i2 = new Intent (Partida.this, Player1Win.class);
+                            startActivity(i2);
+                            finish();
+                        }
+                        lifeP2.setText(String.valueOf(life2));
+                        game.changeCardOnTableP1();
+                        card1.setText("");
+                        card1.setBackgroundColor(Color.GRAY);
+                    }
+                }
             }
         });
         card2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+                if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == true) && (game.getDiceRolledP2() == true)){
+                    if (diceValue2 >= cardT2.getCost()){
+                        diceValue2 = diceValue2 - cardT2.getCost();
+                        if (diceValue2 < 0){
+                            diceValue2 = 0;
+                            valorDado2.setText(String.valueOf(diceValue2));
+                        }
+                        valorDado2.setText(String.valueOf(diceValue2));
+                        life1 = life1 - cardT1.getDamage();
+                        if (life1 <= 0){
+                            Intent i3 = new Intent (Partida.this, Player2Win.class);
+                            startActivity(i3);
+                            finish();
+                        }
+                        lifeP1.setText(String.valueOf(life1));
+                        game.changeCardOnTableP2();
+                        card2.setText("");
+                        card2.setBackgroundColor(Color.GRAY);
+                    }
+                }
             }
         });
         endTurn1.setOnClickListener(new View.OnClickListener(){
@@ -164,6 +228,7 @@ public class Partida extends AppCompatActivity {
                 if (actualTurn.getTurnValue() == true) {
                     game.changeDiceRolledP1();
                     actualTurn.changeTurn();
+                    turnIndicator.setText("Turn of P2");
                 }
             }
         });
@@ -173,6 +238,7 @@ public class Partida extends AppCompatActivity {
                 if (actualTurn.getTurnValue() == false) {
                     game.changeDiceRolledP2();
                     actualTurn.changeTurn();
+                    turnIndicator.setText("Turn of P1");
                 }
             }
         });
