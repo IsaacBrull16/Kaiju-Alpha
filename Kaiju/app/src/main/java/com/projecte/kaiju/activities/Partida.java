@@ -157,9 +157,9 @@ public class Partida extends AppCompatActivity {
             public void onClick(View v) {
                 if ((actualTurn.getTurnValue() == true) && (game.isCardOnTableP1() == false) && (game.getDiceRolledP1() == true)) {
                     if (deckP1.deckSize() != 0) {
-                        Card cardr1 = deckP1.putCard();
-                        card1.setText("Name: " + cardr1.getName() + "\n\nCost: " + cardr1.getCost() + "\n\nDamage: " + cardr1.getDamage());
-                        cardT1 = cardr1;
+                        Card cardtemp1 = deckP1.putCard();
+                        card1.setText("Name: " + cardtemp1.getName() + "\n\nCost: " + cardtemp1.getCost() + "\n\nDamage: " + cardtemp1.getDamage());
+                        cardT1 = cardtemp1;
                         game.changeCardOnTableP1();
                     }
                 }
@@ -178,9 +178,9 @@ public class Partida extends AppCompatActivity {
             public void onClick(View v) {
                 if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == false) && (game.getDiceRolledP2() == true)) {
                     if (deckP2.deckSize() != 0) {
-                        Card cardr2 = deckP2.putCard();
-                        card2.setText("Name: " + cardr2.getName() + "\n\nCost: " + cardr2.getCost() + "\n\nDamage: " + cardr2.getDamage());
-                        cardT2 = cardr2;
+                        Card cardtemp2 = deckP2.putCard();
+                        card2.setText("Name: " + cardtemp2.getName() + "\n\nCost: " + cardtemp2.getCost() + "\n\nDamage: " + cardtemp2.getDamage());
+                        cardT2 = cardtemp2;
                         game.changeCardOnTableP2();
                     }
                 }
