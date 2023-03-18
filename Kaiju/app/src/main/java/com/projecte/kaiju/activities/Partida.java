@@ -17,7 +17,7 @@ import com.projecte.kaiju.models.Turn;
 import com.projecte.kaiju.models.Game;
 
 public class Partida extends AppCompatActivity {
-    //private Game game;
+
     /**
      * Declaramos todos los objetos del layout que querramos modificar/usar
      */
@@ -40,8 +40,9 @@ public class Partida extends AppCompatActivity {
 
     public static int diceValue1 = 0;
     public static int diceValue2 = 0;
-    public static Card cardT1;
-    public static Card cardT2;
+    public static Card cardT1 = new Card(0,"",1000,0,0,"");
+    public static Card cardT2 = new Card(0,"",1000,0,0,"");
+
     public static int life1;
     public static int life2;
 
@@ -99,6 +100,9 @@ public class Partida extends AppCompatActivity {
                     diceP1.rollDice();
                     diceValue1 = diceValue1 + (diceP1.getValue());
                     valorDado1.setText(String.valueOf(diceValue1));
+                    if ((diceValue1 >= cardT1.getCost()) && (game.isCardOnTableP1() == true)){
+                        card1.setBackgroundColor(Color.parseColor("#3F2893"));
+                    }
                     game.changeDiceRolledP1();
                 }
             }
@@ -110,6 +114,9 @@ public class Partida extends AppCompatActivity {
                     diceP2.rollDice();
                     diceValue2 = diceValue2 + diceP2.getValue();
                     valorDado2.setText(String.valueOf(diceValue2));
+                    if ((diceValue2 >= cardT2.getCost()) && (game.isCardOnTableP2() == true)){
+                        card2.setBackgroundColor(Color.parseColor("#3F2893"));
+                    }
                     game.changeDiceRolledP2();
                 }
             }
@@ -175,15 +182,15 @@ public class Partida extends AppCompatActivity {
         card1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if ((actualTurn.getTurnValue() == true) && (game.isCardOnTableP1() == true) && (game.getDiceRolledP1() == true)){
-                    if (diceValue1 >= cardT1.getCost()){
+                if ((actualTurn.getTurnValue() == true) && (game.isCardOnTableP1() == true)) {
+                    if (diceValue1 >= cardT1.getCost()) {
                         diceValue1 = diceValue1 - cardT1.getCost();
-                        if (diceValue1 < 0){
+                        if (diceValue1 < 0) {
                             diceValue1 = 0;
                             valorDado1.setText(String.valueOf(diceValue1));
                         }
                         valorDado1.setText(String.valueOf(diceValue1));
-                        life2 = life2 - cardT2.getDamage();
+                        life2 = life2 - cardT1.getDamage();
                         if (life2 <= 0){
                             Intent i2 = new Intent (Partida.this, Player1Win.class);
                             startActivity(i2);
@@ -200,10 +207,10 @@ public class Partida extends AppCompatActivity {
         card2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == true) && (game.getDiceRolledP2() == true)){
-                    if (diceValue2 >= cardT2.getCost()){
-                        diceValue2 = diceValue2 - cardT2.getCost();
-                        if (diceValue2 < 0){
+                if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == true)) {
+                    if (diceValue2 >= cardT2.getCost()) {
+                        diceValue2 = diceValue2 - cardT1.getCost();
+                        if (diceValue2 < 0) {
                             diceValue2 = 0;
                             valorDado2.setText(String.valueOf(diceValue2));
                         }
