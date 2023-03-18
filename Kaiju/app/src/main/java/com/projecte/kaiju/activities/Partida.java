@@ -233,13 +233,13 @@ public class Partida extends AppCompatActivity {
             public void onClick(View v) {
                 if ((actualTurn.getTurnValue() == false) && (game.isCardOnTableP2() == true)) {
                     if (diceValue2 >= cardT2.getCost()) {
-                        diceValue2 = diceValue2 - cardT1.getCost();
+                        diceValue2 = diceValue2 - cardT2.getCost();
                         if (diceValue2 < 0) {
                             diceValue2 = 0;
                             valorDado2.setText(String.valueOf(diceValue2));
                         }
                         valorDado2.setText(String.valueOf(diceValue2));
-                        life1 = life1 - cardT1.getDamage();
+                        life1 = life1 - cardT2.getDamage();
                         game.getPlayer1().setLife(life1);
                         if (life1 <= 0){
                             Intent i3 = new Intent (Partida.this, Player2Win.class);
