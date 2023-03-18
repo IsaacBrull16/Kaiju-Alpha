@@ -21,6 +21,10 @@ public class Player1Win extends AppCompatActivity {
         homeButton = (Button) findViewById(R.id.homeButton);
         playButton = (Button) findViewById(R.id.playButton);
 
+        /**
+         * Si el usuario quiere volver al menú pulsará esta opción
+         */
+
         homeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -29,6 +33,10 @@ public class Player1Win extends AppCompatActivity {
                 finish();
             }
         });
+
+        /**
+         * Si el usuario quiere volver a jugar, pulsará esta opción
+         */
 
         playButton.setOnClickListener(new View.OnClickListener(){
             @Override

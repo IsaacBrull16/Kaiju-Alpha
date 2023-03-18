@@ -50,6 +50,11 @@ public class Partida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
+
+        /**
+         * Encontramos las id de cada objeto del layout que querramos usar
+         */
+
         dado1 = (Button) findViewById(R.id.dado1);
         dado2 = (Button) findViewById(R.id.dado2);
         homeButton = (Button) findViewById(R.id.homeButton);
@@ -66,10 +71,8 @@ public class Partida extends AppCompatActivity {
         lifeP1 = (TextView) findViewById(R.id.lifeP1);
         lifeP2 = (TextView) findViewById(R.id.lifeP2);
 
-        //ArrayList<Player> jugadores = new ArrayList<>();
-
         /**
-         * Encontramos cada uno de los TextViews del layout
+         * Iniciamos el juego y declaramos unas variables que vienen del juego para acortar
          */
 
         Game game = new Game();
@@ -79,18 +82,22 @@ public class Partida extends AppCompatActivity {
         Dice diceP2 = game.getPlayer2().getPlayerDice();
         Deck deckP1 = game.getPlayer1().getDeckOfPlayer();
         Deck deckP2 = game.getPlayer2().getDeckOfPlayer();
+        life1 = game.getPlayer1().getLife();
+        life2 = game.getPlayer2().getLife();
+
+        /**
+         * Ponemos color gris a las cartas cuando no se pueden usar y ponemos información en los textos
+         */
 
         card1.setBackgroundColor(Color.GRAY);
         card2.setBackgroundColor(Color.GRAY);
-
-        life1 = game.getPlayer1().getLife();
         lifeP1.setText(String.valueOf(life1));
-        life2 = game.getPlayer2().getLife();
         lifeP2.setText(String.valueOf(life2));
-        turnIndicator.setText("Turn of P1");
+        turnIndicator.setText("Turn of " + game.getPlayer1().getName());
 
         /**
-         * Hacemos un dado que sea tirable
+         * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
+         * pondrá el valor por texto y te indicará si la carta la puedes usar
          */
 
         dado1.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +114,11 @@ public class Partida extends AppCompatActivity {
                 }
             }
         });
+
+        /**
+         * Mismas condiciones del dado del jugador 1 se aplican para jugador 2
+         */
+
         dado2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,20 +148,14 @@ public class Partida extends AppCompatActivity {
         });
 
         /**
-         * Ahora haremos un botón que emulará una baraja de cartas, y colocará las cartas primero
-         * en el primer hueco, después en el segundo y acabará con el tercero, y no repetirá ninguna
-         * carta
-         */
-
-        /**
-         * Primero creamos una clase Deck(Baraja), creamos un contador de las cartas
-         * restantes (resDeck) y escogemos una carta aleatoria de entre las disponibles
+         * La baraja del jugador 1 al ser pulsada sacará una carta que se mostrará en el tablero y
+         * será de color gris si no la puedes usar, y morada si es que sí
          */
 
         deckButton1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if ((actualTurn.getTurnValue() == true) && (game.isCardOnTableP1() == false) && (game.getDiceRolledP1()) == true) {
+                if ((actualTurn.getTurnValue() == true) && (game.isCardOnTableP1() == false) && (game.getDiceRolledP1() == true)) {
                     if (deckP1.deckSize() != 0) {
                         Card cardr1 = deckP1.putCard();
                         card1.setText("Name: " + cardr1.getName() + "\n\nCost: " + cardr1.getCost() + "\n\nDamage: " + cardr1.getDamage());
@@ -162,6 +168,11 @@ public class Partida extends AppCompatActivity {
                 }
             }
         });
+
+        /**
+         * Mismas condiciones de baraja de jugador 1 se aplican para jugador 2
+         */
+
         deckButton2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -179,6 +190,13 @@ public class Partida extends AppCompatActivity {
             }
         });
 
+        /**
+         * La carta solo se podrá usar si su valor es menor o igual al del dado.
+         * Al ser pulsada la carta desaparecerá del tablero y restará vida al jugador contrario,
+         * el valor del dado se reducirá por el coste de la carta y si la vida del jugador es igual
+         * o inferior a 0, se irá a la pantalla del jugador ganador
+         */
+
         card1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -191,6 +209,7 @@ public class Partida extends AppCompatActivity {
                         }
                         valorDado1.setText(String.valueOf(diceValue1));
                         life2 = life2 - cardT1.getDamage();
+                        game.getPlayer2().setLife(life2);
                         if (life2 <= 0){
                             Intent i2 = new Intent (Partida.this, Player1Win.class);
                             startActivity(i2);
@@ -204,6 +223,11 @@ public class Partida extends AppCompatActivity {
                 }
             }
         });
+
+        /**
+         * Mismas condiciones de la carta del jugador 1 se aplican al jugador 2
+         */
+
         card2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -216,6 +240,7 @@ public class Partida extends AppCompatActivity {
                         }
                         valorDado2.setText(String.valueOf(diceValue2));
                         life1 = life1 - cardT1.getDamage();
+                        game.getPlayer1().setLife(life1);
                         if (life1 <= 0){
                             Intent i3 = new Intent (Partida.this, Player2Win.class);
                             startActivity(i3);
@@ -229,23 +254,33 @@ public class Partida extends AppCompatActivity {
                 }
             }
         });
+
+        /**
+         * Para acabar el turno, el jugador pulsa el botón
+         */
+
         endTurn1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 if (actualTurn.getTurnValue() == true) {
                     game.changeDiceRolledP1();
                     actualTurn.changeTurn();
-                    turnIndicator.setText("Turn of P2");
+                    turnIndicator.setText("Turn of " + game.getPlayer2().getName());
                 }
             }
         });
+
+        /**
+         * Mismas condiciones del botón acabar turno del jugador 1 se aplican para el jugador 2
+         */
+
         endTurn2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 if (actualTurn.getTurnValue() == false) {
                     game.changeDiceRolledP2();
                     actualTurn.changeTurn();
-                    turnIndicator.setText("Turn of P1");
+                    turnIndicator.setText("Turn of " + game.getPlayer1().getName());
                 }
             }
         });

@@ -6,12 +6,11 @@ import java.util.Collections;
 public class Deck {
 
     /**
-     * Privatizamos nuestro número de cartas para que no se le pueda cambiar
+     * Privatizamos nuestro número de cartas para que no se le pueda cambiar y un arraylist
+     * con todas las cartas del jugador
      */
 
     private static ArrayList<Card> deckCards = new ArrayList<Card>();
-    private int actualCard;
-    //private Random randNum;
     private int numCards;
 
     public Deck(){
@@ -22,7 +21,6 @@ public class Deck {
         deckCards.add(DuckWind);
         deckCards.add(PlasticKiller);
         numCards = deckCards.size();
-        //randNum = new Random();
     }
 
     /**
@@ -31,15 +29,6 @@ public class Deck {
 
     public void Shuffle(){
         Collections.shuffle(deckCards);
-
-        /*for (int first = 0; first < NUM_CARDS; first++){
-
-            int second = randNum.nextInt(NUM_CARDS);
-
-            Card temp = deckCards.get(first);
-            deckCards.set(first, deckCards.get(second));
-            deckCards.set(second, temp);
-        }*/
     }
 
     /**
@@ -48,12 +37,9 @@ public class Deck {
      */
 
     public Card putCard() {
-        //while (deckCards.size() != 0) {
-            Card card = deckCards.get(0);
-            deckCards.remove(0);
-            return card;
-        //}
-        //return new Card (0,"", 0, 0, 0, "");
+        Card card = deckCards.get(0);
+        deckCards.remove(0);
+        return card;
     }
 
     public int deckSize(){
@@ -70,10 +56,4 @@ public class Deck {
     Card TechnoLight = new Card(3, "TechnoLight", 5, 10, 2, "Technology");
     Card DuckWind = new Card(4, "DuckWind", 4, 2, 9, "Nature");
     Card PlasticKiller = new Card(5, "PlasticKiller", 6, 11, 3, "Science");
-
-    /*public Card sacarCarta() {
-        Card carta = deckCards.get(0);
-        deckCards.remove(0);
-        return carta;
-    }*/
 }

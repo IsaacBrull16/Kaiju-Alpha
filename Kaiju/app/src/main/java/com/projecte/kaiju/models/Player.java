@@ -5,20 +5,17 @@ public class Player {
     private Deck deckOfPlayer;
     private Dice playerDice;
     private int life;
-    //private int pa;
 
     /**
-     * Constructor de la clase Player
+     * Constructor de la clase Player, en el que cada jugador tendrá un nombre, una baraja, un dado
+     * y su vida
      * @param name
-     *
      */
     public Player(String name){
         this.name = name;
         this.deckOfPlayer = new Deck();
         this.playerDice = new Dice();
         this.life = life;
-        //this.pa = 0;
-
     }
 
     /**
@@ -36,10 +33,6 @@ public class Player {
         return this.playerDice;
     }
 
-    /*public int getPa(){
-        return pa;
-    }*/
-
     public int getLife(){
         return life;
     }
@@ -51,24 +44,4 @@ public class Player {
     public void setName(String n){
         this.name = n;
     }
-
-
-    /*public void setPa(int pa){
-        this.pa = pa;
-    }*/
-
-    /*public void addCard(Card card){
-        deckOfPlayer.add(card);
-    }
-    public void removeCard(Card card){
-        deckOfPlayer.remove(card);
-    }
-    /*public Card JugarCarta(int id){
-        Card card = deckOfPlayer.get(id);
-        deckOfPlayer.remove(id);
-        return card;
-    }*/
-
-
-
 }
