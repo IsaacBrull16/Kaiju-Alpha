@@ -4,4 +4,13 @@
     <string name="title_activity_splash_screen">Kaiju</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Inicia sesión o Registrate</string>
+    <string name="action_sign_in_short">Registrarse</string>
+    <string name="welcome">"Bienvenido/a !"</string>
+    <string name="invalid_username">Nombre de usuario no válido</string>
+    <string name="invalid_password">La contraseña ha de tener >5 carácteres</string>
+    <string name="login_failed">"Error de Inicio de Sesión"</string>
 </resources>
