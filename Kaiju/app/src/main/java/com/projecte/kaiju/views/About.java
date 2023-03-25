@@ -1,4 +1,4 @@
-package com.projecte.kaiju.activities;
+package com.projecte.kaiju.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 

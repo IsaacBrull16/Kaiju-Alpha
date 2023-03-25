@@ -12,25 +12,25 @@
         android:theme="@style/Theme.Kaiju"
         tools:targetApi="31">
         <activity
-            android:name=".activities.SignUp"
+            android:name=".views.SignUp"
             android:exported="false" />
         <activity
-            android:name=".activities.Login"
+            android:name=".views.Login"
             android:exported="false" />
         <activity
-            android:name=".activities.Player2Win"
+            android:name=".views.Player2Win"
             android:exported="false" />
         <activity
-            android:name=".activities.Player1Win"
+            android:name=".views.Player1Win"
             android:exported="false" />
         <activity
-            android:name=".activities.Partida"
+            android:name=".views.Partida"
             android:exported="false" />
         <activity
-            android:name=".activities.About"
+            android:name=".views.About"
             android:exported="false" />
         <activity
-            android:name=".activities.SplashScreenActivity"
+            android:name=".views.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/title_activity_splash_screen"
@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".views.MainActivity"
             android:exported="true" />
     </application>
 

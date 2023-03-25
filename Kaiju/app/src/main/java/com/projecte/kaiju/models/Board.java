@@ -1,8 +1,5 @@
 package com.projecte.kaiju.models;
 
-
-
-
 /**
  * @author: Álex Pellitero García
  * @version: 17/02/2023/A
@@ -10,52 +7,123 @@ package com.projecte.kaiju.models;
  */
 
 public class Board {
+
+    boolean cardTableP1 = false;
+    boolean cardTableP2 = false;
+    boolean diceRolledP1 = false;
+    boolean diceRolledP2 = false;
+    private static Player player1;
+    private static Player player2;
+
+    public Board() {
+        player1 = new Player("J1");
+        player2 = new Player("J2");
+        player1.setLife(25);
+        player2.setLife(25);
+        player1.getDeckOfPlayer().Shuffle();
+        player2.getDeckOfPlayer().Shuffle();
+    }
+
     /**
-     * Grid será el tablero de tamaño 3x1
-     * Y dice serán los valores que puedan salir con el dado
+     * Método getter de jugador 1
+     * @return
      */
-    Board grid;
 
-    public void add_card(){
-
-         //Esta función simulará el hecho de añadir una carta al tablero
-
-
-
+    public Player getPlayer1(){
+        return this.player1;
     }
 
-    public void grid_empty(){
-        /**
-         * Esta función mirará si el tablero es vacío
-         */
+    /**
+     * Método getter de jugador 2
+     * @return
+     */
 
+    public Player getPlayer2(){
+        return this.player2;
     }
 
-    public void isfull(){
-        /**
-         * Función que mira si está vacío el tablero
-         */
+    /**
+     * Método que nos permitirá decidir si hay una carta o no en el tablero del jugador 1
+     */
 
+    public void changeCardOnTableP1(){
+        if (cardTableP1 == true){
+            this.cardTableP1 = false;
+        } else {
+            this.cardTableP1 = true;
+        }
     }
 
-    public void check_deck(){
-        /**
-         * Comprueba si la baraja de un jugador ya se ha acabado
-         */
+    /**
+     * Método que nos retornará el estado de la carta en el tablero del jugador 1
+     * @return
+     */
 
+    public boolean isCardOnTableP1(){
+        return this.cardTableP1;
     }
 
-    public void card_in_play(){
-        /**
-         * Mira las cartas que hay en el tablero
-         */
+    /**
+     * Método que nos permitirá decidir si hay una carta o no en el tablero del jugador 2
+     */
 
+    public void changeCardOnTableP2(){
+        if (cardTableP2 == true){
+            this.cardTableP2 = false;
+        } else {
+            this.cardTableP2 = true;
+        }
     }
 
-    public void remove_card(){
-        /**
-         * Quita la carta del tablero
-         */
+    /**
+     * Método que nos retornará el estado de la carta en el tablero del jugador 2
+     * @return
+     */
 
+    public boolean isCardOnTableP2(){
+        return this.cardTableP2;
     }
+
+    /**
+     * Método que nos retornará el estado del dado en el tablero del jugador 1
+     * @return
+     */
+
+    public boolean getDiceRolledP1(){
+        return this.diceRolledP1;
+    }
+
+    /**
+     * Método que nos permitirá decidir si hay un dado o no en el tablero del jugador 1
+     */
+
+    public void changeDiceRolledP1(){
+        if (diceRolledP1 == true){
+            this.diceRolledP1 = false;
+        } else {
+            this.diceRolledP1 = true;
+        }
+    }
+
+    /**
+     * Método que nos retornará el estado del dado en el tablero del jugador 2
+     * @return
+     */
+
+    public boolean getDiceRolledP2(){
+        return this.diceRolledP2;
+    }
+
+    /**
+     * Método que nos permitirá decidir si hay un dado o no en el tablero del jugador 2
+     */
+
+    public void changeDiceRolledP2(){
+        if (diceRolledP2 == true){
+            this.diceRolledP2 = false;
+        } else {
+            this.diceRolledP2 = true;
+        }
+    }
+
 }

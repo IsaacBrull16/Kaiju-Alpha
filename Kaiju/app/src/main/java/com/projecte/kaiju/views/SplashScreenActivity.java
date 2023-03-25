@@ -1,4 +1,4 @@
-package com.projecte.kaiju.activities;
+package com.projecte.kaiju.views;
 
 import android.annotation.SuppressLint;
 
@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.WindowInsets;
 
 import com.projecte.kaiju.R;
-import com.projecte.kaiju.activities.MainActivity;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

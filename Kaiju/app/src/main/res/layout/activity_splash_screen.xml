@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#2C2C2C"
     android:theme="@style/ThemeOverlay.Kaiju.FullscreenContainer"
-    tools:context=".activities.SplashScreenActivity">
+    tools:context=".views.SplashScreenActivity">
 
     <ImageView
         android:id="@+id/imageView3"
