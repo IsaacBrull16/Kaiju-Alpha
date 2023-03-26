@@ -129,5 +129,13 @@ public class Game {
             turn.changeTurn();
         }
     }
+
+    public Card cardOnTable1(){
+        return cardT1;
+    }
+
+    public Card cardOnTable2(){
+        return cardT2;
+    }
 }
 
