@@ -3,15 +3,14 @@ package com.projecte.kaiju.models;
 import java.util.Random;
 
 public class Dice {
-    Random rand = new Random();
-    private int value = 0;
+    private int acumValue = 0;
 
     /**
      * El objeto dado tendrá un 0 de valor inicial
      */
 
     public Dice(){
-        value = 0;
+        this.acumValue = 0;
     }
 
     /**
@@ -20,7 +19,16 @@ public class Dice {
      */
 
     public int getValue(){
-        return value;
+        return this.acumValue;
+    }
+
+    /**
+     * Método setter del valor del dado
+     * @param value
+     */
+
+    public void setDiceValue(int value){
+        this.acumValue = value;
     }
 
     /**
@@ -28,6 +36,8 @@ public class Dice {
      */
 
     public void rollDice(){
-        value = rand.nextInt(6) + 1;
+        Random rand = new Random();
+        int value = rand.nextInt(6) + 1;
+        this.acumValue += value;
     }
 }

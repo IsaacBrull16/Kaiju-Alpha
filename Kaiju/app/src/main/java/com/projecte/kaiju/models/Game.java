@@ -53,89 +53,98 @@ public class Game {
     }
 
     public void dice1Actions(){
-        if ((turn.getTurnValue() == true) && (board.getDiceRolledP1() == false)) {
+        //if ((turn.getTurnValue() == true) && (board.getDiceRolledP1() == false)) {
             board.getPlayer1().getPlayerDice().rollDice();
-            diceValue1 = diceValue1 + (board.getPlayer1().getPlayerDice().getValue());
+            //diceValue1 = diceValue1 + (board.getPlayer1().getPlayerDice().getValue());
             board.changeDiceRolledP1();
-        }
+        //}
     }
 
     public void dice2Actions(){
-        if ((turn.getTurnValue() == false) && (board.getDiceRolledP1() == false)) {
+        //if ((turn.getTurnValue() == false) && (board.getDiceRolledP1() == false)) {
             board.getPlayer2().getPlayerDice().rollDice();
-            diceValue2 = diceValue2 + (board.getPlayer2().getPlayerDice().getValue());
+            //diceValue2 = diceValue2 + (board.getPlayer2().getPlayerDice().getValue());
             board.changeDiceRolledP2();
-        }
+        //}
     }
 
     public void deck1Actions(){
-        if ((turn.getTurnValue() == true) && (board.isCardOnTableP1() == false) && (board.getDiceRolledP1() == true)) {
-            if (board.getPlayer1().getDeckOfPlayer().deckSize() != 0) {
+        //if ((turn.getTurnValue() == true) && (board.isCardOnTableP1() == false) && (board.getDiceRolledP1() == true)) {
+            //if (board.getPlayer1().getDeckOfPlayer().deckSize() != 0) {
                 Card cardtemp1 = board.getPlayer1().getDeckOfPlayer().putCard();
                 cardT1 = cardtemp1;
                 board.changeCardOnTableP1();
-            }
-        }
+           //}
+        //}
     }
 
     public void deck2Actions(){
-        if ((turn.getTurnValue() == false) && (board.isCardOnTableP2() == false) && (board.getDiceRolledP2() == true)) {
-            if (board.getPlayer2().getDeckOfPlayer().deckSize() != 0) {
+        //if ((turn.getTurnValue() == false) && (board.isCardOnTableP2() == false) && (board.getDiceRolledP2() == true)) {
+            //if (board.getPlayer2().getDeckOfPlayer().deckSize() != 0) {
                 Card cardtemp2 = board.getPlayer2().getDeckOfPlayer().putCard();
                 cardT2 = cardtemp2;
                 board.changeCardOnTableP2();
-            }
-        }
+            //}
+        //}
     }
 
+    public Card getCardT1(){
+        return this.cardT1;
+    }
+    public void setCardT1(Card card){this.cardT1 = card;}
+    public Card getCardT2(){
+        return this.cardT2;
+    }
+    public void setCardT2(Card card){this.cardT2 = card;}
+
     public void card1Actions(){
-        if ((turn.getTurnValue() == true) && (board.isCardOnTableP1() == true)) {
-            if (diceValue1 >= cardT1.getCost()) {
+        //if ((turn.getTurnValue() == true) && (board.isCardOnTableP1() == true)) {
+            //if (diceValue1 >= cardT1.getCost()) {
+                diceValue1 = board.getPlayer1().getPlayerDice().getValue();
                 diceValue1 = diceValue1 - cardT1.getCost();
-                if (diceValue1 < 0) {
+                if (diceValue1 >= 0){
+                    board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
+                } else {
                     diceValue1 = 0;
+                    board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 }
                 life2 = life2 - cardT1.getDamage();
                 board.getPlayer2().setLife(life2);
                 board.changeCardOnTableP1();
-            }
-        }
+            //}
+        //}
     }
 
     public void card2Actions(){
-        if ((turn.getTurnValue() == false) && (board.isCardOnTableP2() == true)) {
-            if (diceValue2 >= cardT2.getCost()) {
+        //if ((turn.getTurnValue() == false) && (board.isCardOnTableP2() == true)) {
+            //if (diceValue2 >= cardT2.getCost()) {
+                diceValue2 = board.getPlayer2().getPlayerDice().getValue();
                 diceValue2 = diceValue2 - cardT2.getCost();
-                if (diceValue2 < 0) {
+                if (diceValue2 >= 0){
+                    board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+                } else {
                     diceValue2 = 0;
+                    board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 }
                 life1 = life1 - cardT2.getDamage();
                 board.getPlayer1().setLife(life1);
                 board.changeCardOnTableP2();
-            }
-        }
+            //}
+        //}
     }
 
     public void endTurn1(){
-        if (turn.getTurnValue() == true) {
+        //if (turn.getTurnValue() == true) {
             board.changeDiceRolledP1();
             turn.changeTurn();
-        }
+        //}
     }
 
     public void endTurn2(){
-        if (turn.getTurnValue() == false) {
+        //if (turn.getTurnValue() == false) {
             board.changeDiceRolledP2();
             turn.changeTurn();
-        }
-    }
-
-    public Card cardOnTable1(){
-        return cardT1;
-    }
-
-    public Card cardOnTable2(){
-        return cardT2;
+        //}
     }
 }
 

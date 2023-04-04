@@ -1,6 +1,8 @@
 package com.projecte.kaiju.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,7 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.projecte.kaiju.R;
-import com.projecte.kaiju.models.Game;
+import com.projecte.kaiju.models.Card;
+import com.projecte.kaiju.viewmodels.PartidaViewModel;
 
 public class Partida extends AppCompatActivity {
 
@@ -34,10 +37,14 @@ public class Partida extends AppCompatActivity {
     TextView lifeP1;
     TextView lifeP2;
 
+    private PartidaViewModel partidaviewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
+
+        partidaviewModel = new ViewModelProvider(this).get(PartidaViewModel.class);
 
         /**
          * Encontramos las id de cada objeto del layout que querramos usar
@@ -63,17 +70,104 @@ public class Partida extends AppCompatActivity {
          * Iniciamos el juego y declaramos unas variables que vienen del juego para acortar
          */
 
-        Game game = new Game();
+        //Game game = new Game();
 
         /**
          * Ponemos color gris a las cartas cuando no se pueden usar y ponemos información en los textos
          */
 
-        card1.setBackgroundColor(Color.GRAY);
-        card2.setBackgroundColor(Color.GRAY);
-        lifeP1.setText(String.valueOf(game.getBoard().getPlayer1().getLife()));
+        //card1.setBackgroundColor(Color.GRAY);
+        //card2.setBackgroundColor(Color.GRAY);
+        /*lifeP1.setText(String.valueOf(game.getBoard().getPlayer1().getLife()));
         lifeP2.setText(String.valueOf(game.getBoard().getPlayer2().getLife()));
-        turnIndicator.setText("Turn of " + game.getBoard().getPlayer1().getName());
+        turnIndicator.setText("Turn of " + game.getBoard().getPlayer1().getName());*/
+
+        partidaviewModel.getDice1().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                valorDado1.setText(String.valueOf(integer));
+            }
+        });
+
+        partidaviewModel.getDice2().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                valorDado2.setText(String.valueOf(integer));
+            }
+        });
+
+        partidaviewModel.getCard1().observe(this, new Observer<Card>() {
+            @Override
+            public void onChanged(Card card) {
+                card1.setText("Name: " + card.getName() + "\n\nCost: " + card.getCost() + "\n\nDamage: " + card.getDamage());
+            }
+        });
+
+        partidaviewModel.getCard2().observe(this, new Observer<Card>() {
+            @Override
+            public void onChanged(Card card) {
+                card2.setText("Name: " + card.getName() + "\n\nCost: " + card.getCost() + "\n\nDamage: " + card.getDamage());
+            }
+        });
+
+        partidaviewModel.getLife1().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                lifeP1.setText(String.valueOf(integer));
+                if (integer <= 0){
+                    Intent i2 = new Intent (Partida.this, Player2Win.class);
+                    startActivity(i2);
+                    finish();
+                }
+            }
+        });
+
+        partidaviewModel.getLife2().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                lifeP2.setText(String.valueOf(integer));
+                if (integer <= 0){
+                    Intent i3 = new Intent (Partida.this, Player1Win.class);
+                    startActivity(i3);
+                    finish();
+                }
+            }
+        });
+
+        partidaviewModel.getCurrentPlayer().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String string) {
+                turnIndicator.setText("Turn of: " + string);
+            }
+        });
+
+        partidaviewModel.getIsCard1Playable().observe(this, Boolean -> {
+                if (Boolean == true){
+                    card1.setBackgroundColor(Color.parseColor("#3F2893"));
+                } else {
+                    card1.setBackgroundColor(Color.GRAY);
+                }
+        });
+
+        partidaviewModel.getIsCard2Playable().observe(this, Boolean -> {
+            if (Boolean == true){
+                card2.setBackgroundColor(Color.parseColor("#3F2893"));
+            } else {
+                card2.setBackgroundColor(Color.GRAY);
+            }
+        });
+
+        partidaviewModel.getIsCard1OnTable().observe(this, Boolean -> {
+            if (Boolean == false){
+                card1.setText("");
+            }
+        });
+
+        partidaviewModel.getIsCard2OnTable().observe(this, Boolean -> {
+            if (Boolean == false) {
+                card2.setText("");
+            }
+        });
 
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
@@ -92,11 +186,13 @@ public class Partida extends AppCompatActivity {
                     }
                     game.getBoard().changeDiceRolledP1();
                 }*/
+                /*
                 game.dice1Actions();
                 valorDado1.setText(String.valueOf(game.getBoard().getPlayer1().getPlayerDice().getValue()));
                 if ((game.getBoard().getPlayer1().getPlayerDice().getValue() >= game.cardOnTable1().getCost()) && (game.getBoard().isCardOnTableP1() == true)){
                     card1.setBackgroundColor(Color.parseColor("#3F2893"));
-                }
+                }*/
+                partidaviewModel.launchDice1();
             }
         });
 
@@ -116,11 +212,13 @@ public class Partida extends AppCompatActivity {
                     }
                     game.getBoard().changeDiceRolledP2();
                 }*/
+                /*
                 game.dice2Actions();
                 valorDado2.setText(String.valueOf(game.getBoard().getPlayer2().getPlayerDice().getValue()));
                 if ((game.getBoard().getPlayer2().getPlayerDice().getValue() >= game.cardOnTable2().getCost()) && (game.getBoard().isCardOnTableP2() == true)){
                     card2.setBackgroundColor(Color.parseColor("#3F2893"));
-                }
+                }*/
+                partidaviewModel.launchDice2();
             }
         });
 
@@ -156,11 +254,12 @@ public class Partida extends AppCompatActivity {
                 if (diceValue1 >= cardT1.getCost()) {
                     card1.setBackgroundColor(Color.parseColor("#3F2893"));
                 }*/
-                game.deck1Actions();
+                /*game.deck1Actions();
                 card1.setText("Name: " + game.cardOnTable1().getName() + "\n\nCost: " + game.cardOnTable1().getCost() + "\n\nDamage: " + game.cardOnTable1().getDamage());
                 if (game.getBoard().getPlayer1().getPlayerDice().getValue() >= game.cardOnTable1().getCost()) {
                     card1.setBackgroundColor(Color.parseColor("#3F2893"));
-                }
+                }*/
+                partidaviewModel.setCardOnT1();
             }
         });
 
@@ -182,11 +281,12 @@ public class Partida extends AppCompatActivity {
                 if (diceValue2 >= cardT2.getCost()) {
                     card2.setBackgroundColor(Color.parseColor("#3F2893"));
                 }*/
-                game.deck2Actions();
+                /*game.deck2Actions();
                 card2.setText("Name: " + game.cardOnTable2().getName() + "\n\nCost: " + game.cardOnTable2().getCost() + "\n\nDamage: " + game.cardOnTable2().getDamage());
                 if (game.getBoard().getPlayer2().getPlayerDice().getValue() >= game.cardOnTable2().getCost()) {
                     card2.setBackgroundColor(Color.parseColor("#3F2893"));
-                }
+                }*/
+                partidaviewModel.setCardOnT2();
             }
         });
 
@@ -221,7 +321,7 @@ public class Partida extends AppCompatActivity {
                         card1.setBackgroundColor(Color.GRAY);
                     }
                 }*/
-                game.card1Actions();
+                /*game.card1Actions();
                 if (game.getBoard().getPlayer2().getLife() <= 0){
                     Intent i2 = new Intent (Partida.this, Player1Win.class);
                     startActivity(i2);
@@ -230,7 +330,8 @@ public class Partida extends AppCompatActivity {
                 valorDado1.setText(String.valueOf(game.getBoard().getPlayer1().getPlayerDice().getValue()));
                 lifeP2.setText(String.valueOf(game.getBoard().getPlayer2().getLife()));
                 card1.setText("");
-                card1.setBackgroundColor(Color.GRAY);
+                card1.setBackgroundColor(Color.GRAY);*/
+                partidaviewModel.useCard1();
             }
         });
 
@@ -262,7 +363,7 @@ public class Partida extends AppCompatActivity {
                         card2.setBackgroundColor(Color.GRAY);
                     }
                 }*/
-                game.card2Actions();
+                /*game.card2Actions();
                 if (game.getBoard().getPlayer1().getLife() <= 0){
                     Intent i3 = new Intent (Partida.this, Player2Win.class);
                     startActivity(i3);
@@ -271,7 +372,8 @@ public class Partida extends AppCompatActivity {
                 valorDado2.setText(String.valueOf(game.getBoard().getPlayer2().getPlayerDice().getValue()));
                 lifeP1.setText(String.valueOf(game.getBoard().getPlayer1().getLife()));
                 card2.setText("");
-                card2.setBackgroundColor(Color.GRAY);
+                card2.setBackgroundColor(Color.GRAY);*/
+                partidaviewModel.useCard2();
             }
         });
 
@@ -287,8 +389,9 @@ public class Partida extends AppCompatActivity {
                     actualTurn.changeTurn();
                     turnIndicator.setText("Turn of " + game.getBoard().getPlayer2().getName());
                 }*/
-                game.endTurn1();
-                turnIndicator.setText("Turn of " + game.getBoard().getPlayer2().getName());
+                /*game.endTurn1();
+                turnIndicator.setText("Turn of " + game.getBoard().getPlayer2().getName());*/
+                partidaviewModel.changeTurn1();
             }
         });
 
@@ -304,8 +407,9 @@ public class Partida extends AppCompatActivity {
                     actualTurn.changeTurn();
                     turnIndicator.setText("Turn of " + game.getBoard().getPlayer1().getName());
                 }*/
-                game.endTurn2();
-                turnIndicator.setText("Turn of " + game.getBoard().getPlayer1().getName());
+                /*game.endTurn2();
+                turnIndicator.setText("Turn of " + game.getBoard().getPlayer1().getName());*/
+                partidaviewModel.changeTurn2();
             }
         });
     }
