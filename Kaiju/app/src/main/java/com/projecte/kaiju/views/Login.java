@@ -32,6 +32,7 @@ package com.projecte.kaiju.views;
         import com.google.firebase.auth.FirebaseUser;
 
         import com.projecte.kaiju.R;
+        import com.projecte.kaiju.helpers.ActivityHelper;
 
 public class Login extends AppCompatActivity {
 
@@ -84,7 +85,7 @@ public class Login extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(myClassTag, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(Login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             etPassword.setText("");
                         }
@@ -97,11 +98,11 @@ public class Login extends AppCompatActivity {
         if(currentUser != null) {
             if (currentUser.isEmailVerified()){
                 etPassword.setText("");
-                etEmail.setText("");
+                etName.setText("");
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }else{
-                Toast.makeText(LoginActivity.this, R.string.VerifyEmail,
+                Toast.makeText(Login.this, "R.string.VerifyMail",
                         Toast.LENGTH_SHORT).show();
             }
         }
