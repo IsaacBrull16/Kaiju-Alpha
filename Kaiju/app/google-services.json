@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "327693006331",
+    "project_id": "kaiju-f8483",
+    "storage_bucket": "kaiju-f8483.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327693006331:android:aa83f67aabeb04197c875e",
+        "android_client_info": {
+          "package_name": "com.projecte.kaiju"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327693006331-c94j0381iqhmjgvm3gbbm79uvvlf41j1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS2q97WOOta2qjgpOAHr5mBAZIsYCGKWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327693006331-c94j0381iqhmjgvm3gbbm79uvvlf41j1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
