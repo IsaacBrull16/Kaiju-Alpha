@@ -13,7 +13,7 @@
         android:text="Sign Up"
         android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.194" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/signUpButton"
         android:layout_width="267dp"
         android:layout_height="41dp"
         android:backgroundTint="#009688"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/etEmail"
         android:layout_width="271dp"
         android:layout_height="41dp"
         android:ems="10"
@@ -85,7 +85,7 @@
         app:layout_constraintVertical_bias="0.298" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/etPasswordS"
         android:layout_width="276dp"
         android:layout_height="51dp"
         android:ems="10"
@@ -98,7 +98,7 @@
         app:layout_constraintVertical_bias="0.551" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etNameS"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:layout_marginStart="60dp"
@@ -112,7 +112,7 @@
         app:layout_constraintVertical_bias="0.428" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkTC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Accept the terms and conditions"

@@ -102,7 +102,7 @@ public class Login extends AppCompatActivity {
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }else{
-                Toast.makeText(Login.this, "R.string.VerifyMail",
+                Toast.makeText(Login.this, R.string.VerifyEmail,
                         Toast.LENGTH_SHORT).show();
             }
         }
