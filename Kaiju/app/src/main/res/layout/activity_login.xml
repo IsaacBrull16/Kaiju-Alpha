@@ -25,7 +25,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:text="Email"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.601" />
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etEmailL"
         android:layout_width="261dp"
         android:layout_height="41dp"
         android:ems="10"

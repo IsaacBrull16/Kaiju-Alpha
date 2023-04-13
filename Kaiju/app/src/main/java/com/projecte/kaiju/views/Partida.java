@@ -48,6 +48,8 @@ public class Partida extends AppCompatActivity {
         turnIndicator = (TextView) findViewById(R.id.turnIndicator);
         lifeP1 = (TextView) findViewById(R.id.lifeP1);
         lifeP2 = (TextView) findViewById(R.id.lifeP2);
+        card1 = findViewById(R.id.card1);
+        card2 = findViewById(R.id.card2);
 
         /**
          * Ponemos color gris a las cartas cuando no se pueden usar y ponemos información en los textos
@@ -186,13 +188,13 @@ public class Partida extends AppCompatActivity {
          * o inferior a 0, se irá a la pantalla del jugador ganador
          */
 
-        findViewById(R.id.card1).setOnClickListener(v -> partidaviewModel.useCard1());
+        card1.setOnClickListener(v -> partidaviewModel.useCard1());
 
         /**
          * Mismas condiciones de la carta del jugador 1 se aplican al jugador 2
          */
 
-        findViewById(R.id.card2).setOnClickListener(v -> partidaviewModel.useCard2());
+        card2.setOnClickListener(v -> partidaviewModel.useCard2());
 
         /**
          * Para acabar el turno, el jugador pulsa el botón

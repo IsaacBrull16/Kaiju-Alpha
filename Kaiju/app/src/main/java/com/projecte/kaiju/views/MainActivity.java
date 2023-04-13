@@ -8,24 +8,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import com.projecte.kaiju.R;
 
 public class MainActivity extends AppCompatActivity {
     TextView termsId;
     Button acceptTerms;
 
-    Button jugar;
-
-    Button aboutbutton;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        jugar=(Button)findViewById(R.id.jugar);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
-        jugar.setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.jugar).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Partida.class);
@@ -35,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        aboutbutton = (Button) findViewById(R.id.aboutbutton);
-
-        aboutbutton.setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.aboutbutton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent i2 = new Intent (MainActivity.this, About.class);
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.LogOutButton).setOnClickListener(v -> logOut());
 
         termsId = (TextView) findViewById(R.id.termsId);
         acceptTerms = (Button) findViewById(R.id.acceptTerms);
@@ -55,5 +59,10 @@ public class MainActivity extends AppCompatActivity {
         termsId.setVisibility(View.INVISIBLE);
         acceptTerms.setVisibility(View.INVISIBLE);
 
+    }
+
+    public void logOut(){
+        mAuth.signOut();
+        finish();
     }
 }

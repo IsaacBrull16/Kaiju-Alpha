@@ -3,7 +3,9 @@ package com.projecte.kaiju.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,8 +22,9 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     EditText etEmail;
-    EditText etNameS;
     EditText etPasswordS;
+
+    CheckBox checkTC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +32,25 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         etEmail = findViewById(R.id.etEmail);
-        etNameS = findViewById(R.id.etNameS);
         etPasswordS = findViewById(R.id.etPasswordS);
+        checkTC = findViewById(R.id.checkTC);
 
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.signUpButton).setOnClickListener(v -> signUp());
+        findViewById(R.id.TCButton).setOnClickListener(v -> readTC());
     }
 
     private void signUp(){
         String email = etEmail.getText().toString();
-        String name = etNameS.getText().toString();
         String password = etPasswordS.getText().toString();
 
         ActivityHelper.hideKeyboard(this);
 
-        if (email.equals("") || name.equals("") || password.equals("")){
+        if (email.equals("") || password.equals("")){
             Toast.makeText(SignUp.this, "You must fill all the gaps!", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if (!checkTC.isChecked()){
+            Toast.makeText(SignUp.this, "You must accept the Terms and Conditions!", Toast.LENGTH_SHORT).show();
+        }else {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -64,5 +69,10 @@ public class SignUp extends AppCompatActivity {
         }
 
 
+    }
+
+    public void readTC(){
+        Intent i = new Intent(this, TermsConditionsActivity.class);
+        startActivity(i);
     }
 }
