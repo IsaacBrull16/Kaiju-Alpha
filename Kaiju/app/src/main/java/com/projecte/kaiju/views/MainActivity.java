@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -49,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.LogOutButton).setOnClickListener(v -> logOut());
-
-        termsId = (TextView) findViewById(R.id.termsId);
-        acceptTerms = (Button) findViewById(R.id.acceptTerms);
+        findViewById(R.id.usrButton).setOnClickListener(v -> profile());
     }
     public void invisible(View v){
 
@@ -61,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void logOut(){
-        mAuth.signOut();
+    public void profile(){
+        Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
         finish();
     }
 }

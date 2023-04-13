@@ -31,5 +31,12 @@ public class About extends AppCompatActivity {
                 finish();
             }
         });
+
+        findViewById(R.id.TCButton2).setOnClickListener(v -> loadTC());
+    }
+
+    public void loadTC(){
+        Intent i = new Intent(this, TermsConditionsActivity.class);
+        startActivity(i);
     }
 }
