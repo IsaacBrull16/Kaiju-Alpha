@@ -14,8 +14,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.ActivityHelper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
@@ -36,6 +44,7 @@ public class SignUp extends AppCompatActivity {
         checkTC = findViewById(R.id.checkTC);
 
         mAuth = FirebaseAuth.getInstance();
+
         findViewById(R.id.signUpButton).setOnClickListener(v -> signUp());
         findViewById(R.id.TCButton).setOnClickListener(v -> readTC());
     }
@@ -57,11 +66,30 @@ public class SignUp extends AppCompatActivity {
                     if (task.isSuccessful()){
                         FirebaseUser user = mAuth.getCurrentUser();
                         user.sendEmailVerification();
+
+
+                        /*DatabaseReference usrRef = myRef.child("users");
+
+                        usrRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                count = snapshot.getChildrenCount();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        long nUsers = count + 1;
+                        String newName = "user" + nUsers;*/
+
                         mAuth.signOut();
                         Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        Toast.makeText(SignUp.this, "No s'ha pogut verificar l'email", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUp.this, "EMail can't be verified :(", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }
