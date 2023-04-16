@@ -14,16 +14,23 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.ActivityHelper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
     protected String myClassTag = this.getClass().getSimpleName();
-
     EditText etName;
     EditText etPassword;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,8 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.btSignUp).setOnClickListener(v -> loginToSignUp());
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance();
+        myRef = db.getReference("users");
         findViewById(R.id.changePswd2).setOnClickListener(v -> tochangePswd());
     }
 
@@ -87,6 +96,20 @@ public class Login extends AppCompatActivity {
             if (currentUser.isEmailVerified()){
                 etPassword.setText("");
                 etName.setText("");
+
+                String uId = currentUser.getUid();
+                DatabaseReference usrId = FirebaseDatabase.getInstance().getReference("users").child(uId);
+
+                //Query query
+                Map<String, Object> map = new HashMap<>();
+                map.put("name", uId);
+
+                usrId.setValue(map).addOnSuccessListener(a -> {
+                    Toast.makeText(this, "Todo guay", Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(f -> {
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                });
+
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }else{
