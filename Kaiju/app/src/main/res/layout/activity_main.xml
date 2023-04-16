@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#77009688"
+    android:background="#95009688"
     tools:context=".views.MainActivity">
 
     <Button
@@ -41,28 +41,16 @@
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:text="Profile"
         app:cornerRadius="20dp"
-        android:backgroundTint="@color/white"
-        app:strokeColor="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="109dp"
-        android:layout_height="103dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062"
-        app:srcCompat="@drawable/ic_launcher" />
+        app:layout_constraintVertical_bias="0.616"
+        app:strokeColor="#673AB7" />
 
     <TextView
         android:id="@+id/welcome"
@@ -72,7 +60,23 @@
         android:textColor="@color/black"
         android:textSize="30dp"
         android:textStyle="italic"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="174dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="177dp"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logogame1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
