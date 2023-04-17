@@ -14,4 +14,5 @@
     <string name="invalid_password">La contraseña ha de tener >5 carácteres</string>
     <string name="login_failed">"Error de Inicio de Sesión"</string>
     <string name="VerifyEmail">"Por favor, verifica tu correo electrónico"</string>
+    <string name="ErrorEmail">"El correo no se ha podido verificar :("</string>
 </resources>

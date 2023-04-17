@@ -89,7 +89,7 @@ public class SignUp extends AppCompatActivity {
                         Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        Toast.makeText(SignUp.this, "EMail can't be verified :(", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUp.this, R.string.ErrorEmail, Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }
