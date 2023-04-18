@@ -15,4 +15,9 @@
     <string name="login_failed">"Error de Inicio de Sesión"</string>
     <string name="VerifyEmail">"Por favor, verifica tu correo electrónico"</string>
     <string name="ErrorEmail">"El correo no se ha podido verificar :("</string>
+    <string name="FillGasps">"¡Debes rellenar todos los campos!"</string>
+    <string name="AcceptTerms">"¡Debes aceptar los Términos y Condiciones!"</string>
+    <string name="authentication_failed">"Error de autenticación."</string>
+    <string name="Error_Email">"Error con el correo :("</string>
+    <string name="EmailSent">"Correo enviado para cambiar la contraseña :)"</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#95009688"
+    android:background="#6B05577C"
     tools:context=".views.MainActivity">
 
     <Button
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:text="About"
+        android:textColor="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,12 +22,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.714"
-        app:strokeColor="#673AB7" />
+        app:strokeColor="#9F015887" />
 
     <Button
         android:id="@+id/jugar"
         android:layout_width="166dp"
         android:layout_height="73dp"
+        android:backgroundTint="#9F015887"
         android:text="Play"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +45,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:text="Profile"
+        android:textColor="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.616"
-        app:strokeColor="#673AB7" />
+        app:strokeColor="#9F015887" />
 
     <TextView
         android:id="@+id/welcome"
@@ -73,10 +76,10 @@
         android:layout_height="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.045"
         app:srcCompat="@drawable/logogame1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

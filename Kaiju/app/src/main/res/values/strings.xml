@@ -14,4 +14,9 @@
     <string name="login_failed">"Login failed"</string>
     <string name="VerifyEmail">"Please, verify your eMail"</string>
     <string name="ErrorEmail">"EMail can't be verified :("</string>
+    <string name="FillGasps">"You must fill all the gasps!"</string>
+    <string name="AcceptTerms">"You must accept the Terms and Conditions!"</string>
+    <string name="authentication_failed">"Authentication failed."</string>
+    <string name="Error_Email">"Error with the EMail :("</string>
+    <string name="EmailSent">"Email sent for changing password :)"</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#77009688"
+    android:background="#6B05577C"
     tools:context=".views.Player1Win">
 
     <TextView
@@ -41,6 +41,7 @@
         android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#9F015887"
         android:text="PLAY AGAIN"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

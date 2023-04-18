@@ -56,9 +56,9 @@ public class SignUp extends AppCompatActivity {
         ActivityHelper.hideKeyboard(this);
 
         if (email.equals("") || password.equals("")){
-            Toast.makeText(SignUp.this, "You must fill all the gaps!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUp.this, R.string.FillGasps, Toast.LENGTH_SHORT).show();
         } else if (!checkTC.isChecked()){
-            Toast.makeText(SignUp.this, "You must accept the Terms and Conditions!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUp.this, R.string.AcceptTerms, Toast.LENGTH_SHORT).show();
         }else {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override

@@ -38,16 +38,16 @@ public class ChangePasswordActivity extends AppCompatActivity {
         ActivityHelper.hideKeyboard(this);
 
         if (email.equals("")){
-            Toast.makeText(this, "You must fill all the gaps!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.FillGasps, Toast.LENGTH_SHORT).show();
         } else {
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(ChangePasswordActivity.this, "Email sent for changing password :)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this, R.string.EmailSent, Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        Toast.makeText(ChangePasswordActivity.this, "Error with the EMail :(", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this, R.string.Error_Email, Toast.LENGTH_SHORT).show();
                         emailText.setText("");
                     }
                 }
