@@ -29,8 +29,8 @@ public class Login extends AppCompatActivity {
     EditText etName;
     EditText etPassword;
     private FirebaseAuth mAuth;
-    private FirebaseDatabase db;
-    private DatabaseReference myRef;
+    /*private FirebaseDatabase db;
+    private DatabaseReference myRef;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.btSignUp).setOnClickListener(v -> loginToSignUp());
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance();
-        myRef = db.getReference("users");
+        /*db = FirebaseDatabase.getInstance();
+        myRef = db.getReference("users");*/
         findViewById(R.id.changePswd2).setOnClickListener(v -> tochangePswd());
     }
 
@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
                 etPassword.setText("");
                 etName.setText("");
 
-                String uId = currentUser.getUid();
+                /*String uId = currentUser.getUid();
                 DatabaseReference usrId = FirebaseDatabase.getInstance().getReference("users").child(uId);
 
                 //Query query
@@ -108,7 +108,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(this, "Todo guay", Toast.LENGTH_SHORT).show();
                 }).addOnFailureListener(f -> {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-                });
+                });*/
 
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);

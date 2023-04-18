@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.ActivityHelper;
+import com.projecte.kaiju.helpers.GlobalInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,9 @@ import java.util.Map;
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
+    private DatabaseReference myRef;
+    private long count;
 
     EditText etEmail;
     EditText etPasswordS;
@@ -43,7 +47,11 @@ public class SignUp extends AppCompatActivity {
         etPasswordS = findViewById(R.id.etPasswordS);
         checkTC = findViewById(R.id.checkTC);
 
+        String url = GlobalInfo.getInstance().getFB_DB();
+
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseDatabase.getInstance(url);
+        myRef = db.getReference("users");
 
         findViewById(R.id.signUpButton).setOnClickListener(v -> signUp());
         findViewById(R.id.TCButton).setOnClickListener(v -> readTC());
@@ -64,11 +72,11 @@ public class SignUp extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        user.sendEmailVerification();
+                        FirebaseUser usr = mAuth.getCurrentUser();
+                        usr.sendEmailVerification();
+                        String id = usr.getUid();
 
-
-                        /*DatabaseReference usrRef = myRef.child("users");
+                        DatabaseReference usrRef = myRef.child(id);
 
                         usrRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -83,7 +91,8 @@ public class SignUp extends AppCompatActivity {
                         });
 
                         long nUsers = count + 1;
-                        String newName = "user" + nUsers;*/
+                        String newName = "user" + nUsers;
+                        usrRef.child("name").setValue(newName);
 
                         mAuth.signOut();
                         Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
