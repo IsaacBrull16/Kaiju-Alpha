@@ -42,23 +42,26 @@ public class ProfileActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance(url);
 
         FirebaseUser usr = mAuth.getCurrentUser();
-        userEmail.setText(usr.getEmail());
-        String id = usr.getUid();
+        if (usr != null) {
+            userEmail.setText(usr.getEmail());
+            String id = usr.getUid();
 
-        usrRef = db.getReference("users").child(id);
-        usrRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                name = snapshot.getValue(String.class);
-            }
+            usrRef = db.getReference("users").child(id);
+            usrRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    name = snapshot.getValue(String.class);
+                    userNameP.setText(name);
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-        userNameP.setText(name);
-        System.out.println("\n\n\n\n" + name);
+                }
+            });
+        }
+
+
 
         findViewById(R.id.logOutButton).setOnClickListener(v -> logOut());
         findViewById(R.id.homeButtonP).setOnClickListener(v -> home());
@@ -73,7 +76,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void home(){
-        mAuth.signOut();
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
