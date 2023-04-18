@@ -61,10 +61,10 @@
         android:textSize="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.814"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintVertical_bias="0.632" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -97,7 +97,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"

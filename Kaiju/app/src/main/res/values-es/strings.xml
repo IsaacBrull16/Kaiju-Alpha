@@ -20,4 +20,6 @@
     <string name="authentication_failed">"Error de autenticación."</string>
     <string name="Error_Email">"Error con el correo :("</string>
     <string name="EmailSent">"Correo enviado para cambiar la contraseña :)"</string>
+    <string name="play">Jugar</string>
+    <string name="about">Sobre el Juego</string>
 </resources>

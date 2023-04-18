@@ -5,27 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import com.projecte.kaiju.R;
 
 public class MainActivity extends AppCompatActivity {
-    TextView termsId;
-    Button acceptTerms;
-
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
 
         findViewById(R.id.jugar).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -46,16 +34,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.usrButton).setOnClickListener(v -> profile());
-    }
-    public void invisible(View v){
-
-        termsId.setVisibility(View.INVISIBLE);
-        acceptTerms.setVisibility(View.INVISIBLE);
-
+        findViewById(R.id.usrButton).setOnClickListener(v -> toProfile());
     }
 
-    public void profile(){
+    public void toProfile(){
         Intent i = new Intent(this, ProfileActivity.class);
         startActivity(i);
         finish();

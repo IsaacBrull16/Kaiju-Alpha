@@ -19,4 +19,6 @@
     <string name="authentication_failed">"Authentication failed."</string>
     <string name="Error_Email">"Error with the EMail :("</string>
     <string name="EmailSent">"Email sent for changing password :)"</string>
+    <string name="play">Play</string>
+    <string name="about">About</string>
 </resources>

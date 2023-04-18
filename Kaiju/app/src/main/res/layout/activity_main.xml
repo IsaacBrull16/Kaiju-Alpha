@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6B05577C"
+    android:background="@drawable/fondo"
     tools:context=".views.MainActivity">
 
     <Button
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:text="About"
+        android:text="@string/about"
         android:textColor="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
         android:layout_width="166dp"
         android:layout_height="73dp"
         android:backgroundTint="#9F015887"
-        android:text="Play"
+        android:text="@string/play"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,10 +76,10 @@
         android:layout_height="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045"
+        app:layout_constraintVertical_bias="0.049"
         app:srcCompat="@drawable/logogame1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
