@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Edit photo"
         android:textColor="#9F015887"
+        android:textSize="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -21,32 +22,19 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#9F015887"
-        android:text="save"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.895" />
-
-    <Button
         android:id="@+id/changePswd"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change password"
         android:textColor="#9F015887"
+        android:textSize="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.779" />
+        app:layout_constraintVertical_bias="0.815" />
 
     <Button
         android:id="@+id/homeButtonP"
@@ -70,9 +58,10 @@
         android:layout_height="wrap_content"
         android:text="Edit Name"
         android:textColor="#9F015887"
+        android:textSize="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.699"
+        app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.636" />
@@ -127,6 +116,18 @@
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775" />
+        app:layout_constraintVertical_bias="0.73" />
+
+    <TextView
+        android:id="@+id/LastLoginText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.901" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,7 +62,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         findViewById(R.id.logOutButton).setOnClickListener(v -> logOut());
         findViewById(R.id.homeButtonP).setOnClickListener(v -> home());
-        findViewById(R.id.saveButton).setOnClickListener(v -> save());
         findViewById(R.id.editNameButton).setOnClickListener(v -> rename());
         findViewById(R.id.editPhotoButton).setOnClickListener(v -> changePhoto());
         findViewById(R.id.changePswd).setOnClickListener(v -> changePswd());
@@ -74,13 +73,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void home(){
-        mAuth.signOut();
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void save(){
         mAuth.signOut();
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
