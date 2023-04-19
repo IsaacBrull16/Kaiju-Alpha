@@ -73,30 +73,33 @@ public class SignUp extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         FirebaseUser usr = mAuth.getCurrentUser();
-                        usr.sendEmailVerification();
-                        String id = usr.getUid();
+                        if (usr != null){
+                            usr.sendEmailVerification();
+                            String id = usr.getUid();
 
-                        DatabaseReference usrRef = myRef.child(id);
+                            DatabaseReference usrRef = myRef.child(id);
 
-                        usrRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                count = snapshot.getChildrenCount();
-                            }
+                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    count = snapshot.getChildrenCount();
+                                }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
+                                }
+                            });
 
-                        long nUsers = count + 1;
-                        String newName = "user" + nUsers;
-                        usrRef.child("name").setValue(newName);
+                            long nUsers = count + 1;
+                            String newName = "user" + nUsers;
+                            usrRef.child("name").setValue(newName);
+                            usrRef.child("profile_image").setValue("ic_icono");
 
-                        mAuth.signOut();
-                        Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
-                        finish();
+                            mAuth.signOut();
+                            Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                     } else {
                         Toast.makeText(SignUp.this, R.string.ErrorEmail, Toast.LENGTH_SHORT).show();
                         finish();
