@@ -106,7 +106,7 @@
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="201dp"
         android:layout_height="41dp"
-        android:text="Our terms and condition"
+        android:text="@string/our_terms_and_condition"
         android:textColor="#9F015887"
         android:textSize="10dp"
         app:cornerRadius="20dp"

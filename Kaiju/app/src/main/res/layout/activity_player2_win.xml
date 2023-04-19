@@ -11,7 +11,7 @@
         android:id="@+id/winnerConditionsText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PLAYER 2 WINS"
+        android:text="@string/player_2_wins"
         android:textColor="@color/black"
         android:textSize="40dp"
         android:textStyle="italic"
