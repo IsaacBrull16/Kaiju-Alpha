@@ -30,6 +30,8 @@ public class PartidaViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> winner = new MutableLiveData<>();
 
+    private MutableLiveData<Boolean> isDice1Rolled = new MutableLiveData<>();
+
     Game game;
 
     public LiveData<Integer> getDice1(){
@@ -74,8 +76,11 @@ public class PartidaViewModel extends ViewModel {
 
     public LiveData<Boolean> getWinner(){return winner;}
 
+    public LiveData<Boolean> getIsDice1Rolled(){return isDice1Rolled;}
+
     public PartidaViewModel() {
         game = new Game();
+        isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
         isCard1Playable.setValue(false);
         isCard2Playable.setValue(false);
         life1.setValue(game.getBoard().getPlayer1().getLife());
@@ -90,6 +95,7 @@ public class PartidaViewModel extends ViewModel {
             }
             int res = game.getBoard().getPlayer1().getPlayerDice().getValue();
             numDice1.setValue(res);
+            isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
         }
     }
 
@@ -173,6 +179,7 @@ public class PartidaViewModel extends ViewModel {
             game.endTurn1();
             String p2 = game.getBoard().getPlayer2().getName();
             currentPlayer.setValue(p2);
+            isDice1Rolled.setValue(false);
         }
     }
 

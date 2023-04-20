@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.models.Card;
@@ -31,7 +32,12 @@ public class Partida extends AppCompatActivity {
     TextView lifeP2;
 
     private PartidaViewModel partidaviewModel;
-
+    private boolean diceRolledP1;
+    private boolean diceRolledP2;
+    private boolean cardUsedP1;
+    private boolean cardUsedP2;
+    private boolean cardCantUseP1;
+    private boolean cardCantUseP2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,24 +148,21 @@ public class Partida extends AppCompatActivity {
             }
         });
 
-       /* partidaviewModel.getWinner().observe(this, Boolean -> {
+        partidaviewModel.getIsDice1Rolled().observe(this, Boolean -> {
             if (Boolean == true){
-                Intent i = new Intent (Partida.this, Player1Win.class);
-                startActivity(i);
-                finish();
+                diceRolledP1 = true;
             } else {
-                Intent i = new Intent (Partida.this, Player2Win.class);
-                startActivity(i);
-                finish();
+                diceRolledP1 = false;
             }
-        });*/
+        });
 
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
          * pondrá el valor por texto y te indicará si la carta la puedes usar
          */
 
-        findViewById(R.id.dado1).setOnClickListener(v -> partidaviewModel.launchDice1());
+        findViewById(R.id.dado1).setOnClickListener(v -> playingDice1());
+
 
         /**
          * Mismas condiciones del dado del jugador 1 se aplican para jugador 2
@@ -219,5 +222,13 @@ public class Partida extends AppCompatActivity {
          */
 
         findViewById(R.id.endTurn2).setOnClickListener(v -> partidaviewModel.changeTurn2());
+    }
+
+    public void playingDice1(){
+        if(diceRolledP1 == false){
+            partidaviewModel.launchDice1();
+        } else {
+            Toast.makeText(this, "You have already rolled the dice", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -68,7 +68,7 @@ public class PersonalDeckActivity extends AppCompatActivity {
     }
 
     public void getPersonalDeck(){
-        mRef.child("personalDeck").addListenerForSingleValueEvent(new ValueEventListener() {
+        mRef.child("personal_deck").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int nChildren = (int) snapshot.getChildrenCount();

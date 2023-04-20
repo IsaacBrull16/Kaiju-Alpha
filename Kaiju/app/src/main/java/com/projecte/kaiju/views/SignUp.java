@@ -31,6 +31,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
     private DatabaseReference myRef;
+
     private long count;
 
     EditText etEmail;
@@ -52,6 +53,7 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance(url);
         myRef = db.getReference("users");
+
 
         findViewById(R.id.signUpButton).setOnClickListener(v -> signUp());
         findViewById(R.id.TCButton).setOnClickListener(v -> readTC());
@@ -95,6 +97,11 @@ public class SignUp extends AppCompatActivity {
                             String newName = "user" + nUsers;
                             usrRef.child("name").setValue(newName);
                             usrRef.child("profile_image").setValue("ic_icono");
+                            /*DatabaseReference deckRef = myRef.child(id).child("personal_deck");
+                            deckRef.child("Trotowild");
+                            deckRef.child("PlantBot");
+                            deckRef.child("ElectroRazz");*/
+
 
                             mAuth.signOut();
                             Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();

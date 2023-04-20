@@ -53,19 +53,13 @@ public class Game {
     }
 
     public void dice1Actions(){
-        //if ((turn.getTurnValue() == true) && (board.getDiceRolledP1() == false)) {
             board.getPlayer1().getPlayerDice().rollDice();
-            //diceValue1 = diceValue1 + (board.getPlayer1().getPlayerDice().getValue());
             board.changeDiceRolledP1();
-        //}
     }
 
     public void dice2Actions(){
-        //if ((turn.getTurnValue() == false) && (board.getDiceRolledP1() == false)) {
             board.getPlayer2().getPlayerDice().rollDice();
-            //diceValue2 = diceValue2 + (board.getPlayer2().getPlayerDice().getValue());
             board.changeDiceRolledP2();
-        //}
     }
 
     public void deck1Actions(){
