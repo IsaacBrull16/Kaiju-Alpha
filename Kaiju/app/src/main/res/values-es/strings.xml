@@ -30,7 +30,7 @@
     <string name="home">Inicio</string>
     <string name="terms_and_conditions">Términos y Condiciones</string>
     <string name="profile">Perfil</string>
-    <string name="welcome_to_kaiju">Bienvenido/a a Kaiju!</string>
+    <string name="welcome_to_kaiju">¡Bienvenido/a a Kaiju!</string>
     <string name="deck">Deck</string>
     <string name="end_turn">End Turn</string>
     <string name="lay">Tirar</string>
@@ -51,4 +51,6 @@
     <string name="back">Volver</string>
     <string name="change_photo">Cambiar foto</string>
     <string name="personalDeck">Baraja personal</string>
+    <string name="YouWin">¡Has ganado! :D </string>
+    <string name="YouLose">¡Has perdido :( </string>
 </resources>

@@ -50,4 +50,6 @@
     <string name="back">back</string>
     <string name="change_photo">Change Photo</string>
     <string name="personalDeck">Personal Deck</string>
+    <string name="YouWin">You Win! :D </string>
+    <string name="YouLose">You Lose! :( </string>
 </resources>

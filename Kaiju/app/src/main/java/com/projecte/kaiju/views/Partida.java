@@ -86,24 +86,24 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getLife1().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                lifeP1.setText(String.valueOf(integer));
                 if (integer <= 0){
-                    Intent i2 = new Intent (Partida.this, Player2Win.class);
+                    Intent i2 = new Intent (Partida.this, Player1Win.class);
                     startActivity(i2);
                     finish();
                 }
+                lifeP1.setText(String.valueOf(integer));
             }
         });
 
         partidaviewModel.getLife2().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                lifeP2.setText(String.valueOf(integer));
                 if (integer <= 0){
                     Intent i3 = new Intent (Partida.this, Player1Win.class);
                     startActivity(i3);
                     finish();
                 }
+                lifeP2.setText(String.valueOf(integer));
             }
         });
 
@@ -141,6 +141,18 @@ public class Partida extends AppCompatActivity {
                 card2.setText("");
             }
         });
+
+       /* partidaviewModel.getWinner().observe(this, Boolean -> {
+            if (Boolean == true){
+                Intent i = new Intent (Partida.this, Player1Win.class);
+                startActivity(i);
+                finish();
+            } else {
+                Intent i = new Intent (Partida.this, Player2Win.class);
+                startActivity(i);
+                finish();
+            }
+        });*/
 
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
