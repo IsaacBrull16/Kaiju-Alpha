@@ -72,31 +72,17 @@
         app:layout_constraintVertical_bias="0.811"
         app:strokeColor="#9F015887" />
 
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_to_kaiju"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:textStyle="italic"
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="176dp"
+        android:layout_height="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.318" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="177dp"
-        android:layout_height="180dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049"
+        app:layout_constraintVertical_bias="0.139"
         app:srcCompat="@drawable/logogame1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
