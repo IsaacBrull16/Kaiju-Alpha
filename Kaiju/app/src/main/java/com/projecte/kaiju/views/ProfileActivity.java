@@ -2,10 +2,14 @@ package com.projecte.kaiju.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
     EditText userNameP;
     EditText userEmail;
 
+    ImageView usrImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         userNameP = findViewById(R.id.userNameP);
         userEmail = findViewById(R.id.userEmail);
+        usrImage = findViewById(R.id.imageView);
 
         String url = GlobalInfo.getInstance().getFB_DB();
 
@@ -64,7 +71,11 @@ public class ProfileActivity extends AppCompatActivity {
             usrRef.child("profile_image").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String image = snapshot.getValue(String.class);
 
+                    if (image != null){
+                        usrImage.setImageDrawable(idDrawable(getApplicationContext(), image));
+                    }
                 }
 
                 @Override
@@ -114,5 +125,21 @@ public class ProfileActivity extends AppCompatActivity {
     public void changePhoto(){
         Intent i = new Intent(this, ChangePhotoActivity.class);
         startActivity(i);
+        finish();
+    }
+
+    public static Drawable idDrawable(Context cont, String profile){
+        switch (profile){
+            case "ic_icono":
+                return ContextCompat.getDrawable(cont, R.drawable.ic_icono);
+            case "plactbot":
+                return ContextCompat.getDrawable(cont, R.drawable.plactbot);
+            case "fondo":
+                return ContextCompat.getDrawable(cont, R.drawable.fondo);
+            case "logogame1":
+                return ContextCompat.getDrawable(cont, R.drawable.logogame1);
+            default:
+                return null;
+        }
     }
 }

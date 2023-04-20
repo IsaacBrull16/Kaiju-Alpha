@@ -35,10 +35,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.usrButton).setOnClickListener(v -> toProfile());
+        findViewById(R.id.usrDeckButton).setOnClickListener(v -> toPersonalDeck());
     }
 
     public void toProfile(){
         Intent i = new Intent(this, ProfileActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void toPersonalDeck(){
+        Intent i = new Intent(this, PersonalDeckActivity.class);
         startActivity(i);
         finish();
     }

@@ -30,7 +30,12 @@ public class PersonalDeckActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase= FirebaseDatabase.getInstance(url);
-        getPersonalDeck();
+
+        if (mAuth.getCurrentUser() != null){
+            String id = mAuth.getCurrentUser().getUid();
+            mRef = mDatabase.getReference("users").child(id);
+            getPersonalDeck();
+        }
 
         findViewById(R.id.ReturnbuttonDeck).setOnClickListener(v ->returnMain());
         findViewById(R.id.logoImageButton1).setOnClickListener(v -> addImage("image1"));
@@ -45,8 +50,8 @@ public class PersonalDeckActivity extends AppCompatActivity {
 
     public void addImage(String image){
         boolean found = false;
-        for (int i = 0; i < personalDeck.length; i++) {
-            if (personalDeck[i].equals(image)) {
+        for (String s : personalDeck) {
+            if (s.equals(image)) {
                 found = true;
             }
         }
@@ -63,26 +68,22 @@ public class PersonalDeckActivity extends AppCompatActivity {
     }
 
     public void getPersonalDeck(){
-        if(mAuth.getCurrentUser()!= null){
-            String id = mAuth.getCurrentUser().getUid();
-            mRef = mDatabase.getReference("users").child(id);
-            mRef.child("personalDeck").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    int nChildren= (int) snapshot.getChildrenCount();
-                    personalDeck= new String[nChildren];
-                    for(DataSnapshot ds : snapshot.getChildren()){
-                        for(int i = 0; i < personalDeck.length; i++){
-                            personalDeck[i] = ds.getValue(String.class);
-                        }
+        mRef.child("personalDeck").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int nChildren = (int) snapshot.getChildrenCount();
+                personalDeck = new String[nChildren];
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    for(int i = 0; i < personalDeck.length; i++){
+                        personalDeck[i] = ds.getValue(String.class);
                     }
-                    personalDeck = snapshot.getValue(String[].class);
                 }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-        }
+                personalDeck = snapshot.getValue(String[].class);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }
 

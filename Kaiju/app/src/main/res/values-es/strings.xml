@@ -50,4 +50,5 @@
     <string name="send_mail">Enviar correo</string>
     <string name="back">Volver</string>
     <string name="change_photo">Cambiar foto</string>
+    <string name="personalDeck">Baraja personal</string>
 </resources>

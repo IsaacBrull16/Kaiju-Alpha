@@ -3,6 +3,7 @@ package com.projecte.kaiju.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,20 +39,27 @@ public class ChangePhotoActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.savePhotoButton).setOnClickListener(v -> save());
-        findViewById(R.id.returnButton).setOnClickListener(v -> finish());
-        findViewById(R.id.imgButton1).setOnClickListener(v -> img = "ic_icono");
-        findViewById(R.id.imgButton2).setOnClickListener(v -> img = "plactbot");
-        findViewById(R.id.imgButton3).setOnClickListener(v -> img = "logogame1");
-        findViewById(R.id.imgButton4).setOnClickListener(v -> img = "fondo");
+        findViewById(R.id.returnButton).setOnClickListener(v -> notSave());
+        findViewById(R.id.profImgButton1).setOnClickListener(v -> img = "ic_icono");
+        findViewById(R.id.profImgButton2).setOnClickListener(v -> img = "plactbot");
+        findViewById(R.id.profImgButton3).setOnClickListener(v -> img = "logogame1");
+        findViewById(R.id.profImgButton4).setOnClickListener(v -> img = "fondo");
     }
 
     public void save(){
         usrRef.child("profile_image").setValue(img).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
+                Intent i = new Intent (ChangePhotoActivity.this, ProfileActivity.class);
+                startActivity(i);
+                finish();
             }
         });
+    }
+
+    public void notSave(){
+        Intent i = new Intent (ChangePhotoActivity.this, ProfileActivity.class);
+        startActivity(i);
         finish();
     }
 }
