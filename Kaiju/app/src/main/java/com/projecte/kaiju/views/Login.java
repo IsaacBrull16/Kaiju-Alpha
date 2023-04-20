@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             if (currentUser.isEmailVerified()){
-                //etPassword.setText("");
+                etPassword.setText("");
                 etName.setText("");
 
                 Intent i = new Intent(this, MainActivity.class);

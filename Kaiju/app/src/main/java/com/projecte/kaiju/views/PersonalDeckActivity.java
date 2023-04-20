@@ -17,7 +17,7 @@ import com.projecte.kaiju.helpers.GlobalInfo;
 
 public class PersonalDeckActivity extends AppCompatActivity {
 
-    private String[] personalDeck;
+    private String[] personalDeck = new String[0];
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
@@ -74,9 +74,7 @@ public class PersonalDeckActivity extends AppCompatActivity {
                 int nChildren = (int) snapshot.getChildrenCount();
                 personalDeck = new String[nChildren];
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    for(int i = 0; i < personalDeck.length; i++){
-                        personalDeck[i] = ds.getValue(String.class);
-                    }
+                    personalDeck[Integer.parseInt(ds.getKey())] = ds.getValue(String.class);
                 }
                 personalDeck = snapshot.getValue(String[].class);
             }
