@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Kaiju"
         tools:targetApi="31">
         <activity
+            android:name=".PersonalDeckActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.TermsConditionsActivity"
             android:exported="false" />
         <activity
