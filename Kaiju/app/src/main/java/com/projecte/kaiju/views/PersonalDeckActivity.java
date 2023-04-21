@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -46,8 +47,13 @@ public class PersonalDeckActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.ReturnbuttonDeck).setOnClickListener(v ->returnMain());
-        findViewById(R.id.logoImageButton1).setOnClickListener(v -> addCard("4", "Plastikiller"));
-        findViewById(R.id.SavebuttonDeck).setOnClickListener(v -> saveDeck());
+        findViewById(R.id.cardImgButton1).setOnClickListener(v -> addCard("0", "Trotowild"));
+        findViewById(R.id.cardImgButton2).setOnClickListener(v -> addCard("1", "PlantBot"));
+        findViewById(R.id.cardImgButton3).setOnClickListener(v -> addCard("2", "ElectroRazz"));
+        findViewById(R.id.cardImgButton4).setOnClickListener(v -> addCard("3", "TecnoLight"));
+        findViewById(R.id.cardImgButton5).setOnClickListener(v -> addCard("4", "DuckWind"));
+        findViewById(R.id.cardImgButton6).setOnClickListener(v -> addCard("5", "PlastiKiller"));
+        findViewById(R.id.SaveDeckButton).setOnClickListener(v -> saveDeck());
     }
 
     public void returnMain(){
@@ -70,7 +76,6 @@ public class PersonalDeckActivity extends AppCompatActivity {
                 personalDeck.set(i - 1, personalDeck.get(i));
             }
             personalDeck.set(personalDeck.size() - 1, newCard);
-            System.out.println(personalDeck);
         }
     }
     public void saveDeck(){
@@ -85,6 +90,7 @@ public class PersonalDeckActivity extends AppCompatActivity {
                         deck.put(idCard, idName);
                     }
                     mRef.setValue(deck);
+                    Toast.makeText(PersonalDeckActivity.this, "Your cards have been saved correctly :D", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d(myClassTag, "error loading into firebase");
                 }
@@ -104,7 +110,6 @@ public class PersonalDeckActivity extends AppCompatActivity {
                     String idCard = ds.getKey();
                     String nameCard = ds.getValue(String.class);
                     personalDeck.add(new CardHelper(idCard, nameCard));
-                    System.out.println(personalDeck);
                 }
             }
             @Override
