@@ -15,9 +15,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.GlobalInfo;
 
+import java.util.ArrayList;
+
 public class PersonalDeckActivity extends AppCompatActivity {
 
-    private String[] personalDeck = new String[0];
+    private ArrayList<String> personalDeck = new ArrayList<>();
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
@@ -33,12 +35,12 @@ public class PersonalDeckActivity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null){
             String id = mAuth.getCurrentUser().getUid();
-            mRef = mDatabase.getReference("users").child(id);
+            mRef = mDatabase.getReference("users").child(id).child("personal_deck");
             getPersonalDeck();
         }
 
         findViewById(R.id.ReturnbuttonDeck).setOnClickListener(v ->returnMain());
-        findViewById(R.id.logoImageButton1).setOnClickListener(v -> addImage("image1"));
+        findViewById(R.id.logoImageButton1).setOnClickListener(v -> addCard("image1"));
         findViewById(R.id.SavebuttonDeck).setOnClickListener(v -> saveDeck());
     }
 
@@ -48,19 +50,20 @@ public class PersonalDeckActivity extends AppCompatActivity {
         finish();
     }
 
-    public void addImage(String image){
+    public void addCard(String image){
         boolean found = false;
         for (String s : personalDeck) {
             if (s.equals(image)) {
                 found = true;
+                break;
             }
         }
         if(!found){
-            personalDeck[0] = "";
-            for(int j = 0; j < personalDeck.length; j++){
-                personalDeck[j] = personalDeck[j+1];
+            for(int i = 1; i < personalDeck.size(); i++){
+                personalDeck.set(i - 1, personalDeck.get(i));
             }
-            personalDeck[personalDeck.length-1] = image;
+            personalDeck.set(personalDeck.size() - 1, image);
+            System.out.println(personalDeck);
         }
     }
     public void saveDeck(){
@@ -68,15 +71,14 @@ public class PersonalDeckActivity extends AppCompatActivity {
     }
 
     public void getPersonalDeck(){
-        mRef.child("personal_deck").addListenerForSingleValueEvent(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int nChildren = (int) snapshot.getChildrenCount();
-                personalDeck = new String[nChildren];
+
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    personalDeck[Integer.parseInt(ds.getKey())] = ds.getValue(String.class);
+                    personalDeck.add(ds.getKey());
+                    System.out.println(personalDeck);
                 }
-                personalDeck = snapshot.getValue(String[].class);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

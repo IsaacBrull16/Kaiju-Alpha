@@ -95,13 +95,15 @@ public class SignUp extends AppCompatActivity {
 
                             long nUsers = count + 1;
                             String newName = "user" + nUsers;
+
+                            Map<String, String> deck = new HashMap<>();
+                            deck.put("0", "Trotowild");
+                            deck.put("1", "PlantBot");
+                            deck.put("2", "ElectroRazz");
+
                             usrRef.child("name").setValue(newName);
                             usrRef.child("profile_image").setValue("ic_icono");
-                            /*DatabaseReference deckRef = myRef.child(id).child("personal_deck");
-                            deckRef.child("Trotowild");
-                            deckRef.child("PlantBot");
-                            deckRef.child("ElectroRazz");*/
-
+                            usrRef.child("personal_deck").setValue(deck);
 
                             mAuth.signOut();
                             Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
