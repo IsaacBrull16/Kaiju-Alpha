@@ -16,6 +16,7 @@ import com.projecte.kaiju.helpers.GlobalInfo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,8 +30,8 @@ public class Deck {
      * con todas las cartas del jugador
      */
 
-    private static final String KAIJU_CSV = "Kaiju.csv";
-    private static final File csvFile = new File("Kaiju.csv");
+    private static final String KAIJU_CSV = "models/Kaiju.csv";
+    //private static final File csvFile = new File("Kaiju.csv");
 
     private static ArrayList<Card> deckCards = new ArrayList<Card>();
 
@@ -50,9 +51,6 @@ public class Deck {
 
         allCards();
 
-        for(int i=0; i<totalCards.size(); i++){
-            System.out.println(totalCards.get(i).getName());
-        }
         deckCards.add(Trotowild);
         deckCards.add(PlantBot);
         deckCards.add(ElectroRazz);
@@ -129,8 +127,8 @@ public class Deck {
 
     public void allCards() {
         try {
-            FileInputStream fis = new FileInputStream(csvFile);
-            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            //FileInputStream fis = new FileInputStream(csvFile);
+            BufferedReader br = new BufferedReader(new FileReader(KAIJU_CSV));
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
@@ -143,7 +141,7 @@ public class Deck {
                 totalCards.add(new Card(id, name, cost, damage, life, type));
             }
             br.close();
-            fis.close();
+            //fis.close();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
