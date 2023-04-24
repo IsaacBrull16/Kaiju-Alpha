@@ -32,7 +32,7 @@ public class PartidaViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> isDice1Rolled = new MutableLiveData<>();
 
-    Game game;
+    private Game game;
 
     public LiveData<Integer> getDice1(){
         return numDice1;

@@ -14,6 +14,8 @@ import com.projecte.kaiju.helpers.CardHelper;
 import com.projecte.kaiju.helpers.GlobalInfo;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,6 +29,9 @@ public class Deck {
      * con todas las cartas del jugador
      */
 
+    private static final String KAIJU_CSV = "Kaiju.csv";
+    private static final File csvFile = new File("Kaiju.csv");
+
     private static ArrayList<Card> deckCards = new ArrayList<Card>();
 
     private ArrayList<CardHelper> personalDeck = new ArrayList<CardHelper>();
@@ -38,14 +43,13 @@ public class Deck {
     private DatabaseReference mRef;
     private int numCards;
 
-    private Context context;
 
 
 
+    public Deck(){
 
-    public Deck(Context context) throws IOException {
-        this.context = context;
         allCards();
+
         for(int i=0; i<totalCards.size(); i++){
             System.out.println(totalCards.get(i).getName());
         }
@@ -123,22 +127,26 @@ public class Deck {
         });
     }
 
-    public void allCards() throws IOException {
-
-        InputStream  input  = context.getAssets().open("Kaiju.csv");
-        BufferedReader br = new BufferedReader(new InputStreamReader(input));
-        String line = "";
-        while ((line = br.readLine()) != null) {
-            String[] values = line.split(",");
-            int id = Integer.parseInt(values[0]);
-            String name= values[1];
-            int cost = Integer.parseInt(values[2]);
-            int damage = Integer.parseInt(values[3]);
-            int life = Integer.parseInt(values[4]);
-            String type = values[5];
-            totalCards.add(new Card(id, name, cost, damage, life, type));
+    public void allCards() {
+        try {
+            FileInputStream fis = new FileInputStream(csvFile);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                int id = Integer.parseInt(values[0]);
+                String name = values[1];
+                int cost = Integer.parseInt(values[2]);
+                int damage = Integer.parseInt(values[3]);
+                int life = Integer.parseInt(values[4]);
+                String type = values[5];
+                totalCards.add(new Card(id, name, cost, damage, life, type));
+            }
+            br.close();
+            fis.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
-        input.close();
     }
 }
 

@@ -1,8 +1,6 @@
 package com.projecte.kaiju.models;
 
-import android.app.Application;
-
-public class Player extends Application {
+public class Player {
     private String name;
     private Deck deckOfPlayer;
     private Dice playerDice;
@@ -17,11 +15,7 @@ public class Player extends Application {
      */
     public Player(String name){
         this.name = name;
-        try{
-            this.deckOfPlayer = new Deck(getApplicationContext());
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+        this.deckOfPlayer = new Deck();
         this.playerDice = new Dice();
         this.life = life;
     }
