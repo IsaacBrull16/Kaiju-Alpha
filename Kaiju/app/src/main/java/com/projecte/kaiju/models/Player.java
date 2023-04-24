@@ -1,10 +1,14 @@
 package com.projecte.kaiju.models;
 
-public class Player {
+import android.app.Application;
+
+public class Player extends Application {
     private String name;
     private Deck deckOfPlayer;
     private Dice playerDice;
     private int life;
+
+
 
     /**
      * Constructor de la clase Player, en el que cada jugador tendrá un nombre, una baraja, un dado
@@ -13,7 +17,11 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
-        this.deckOfPlayer = new Deck();
+        try{
+            this.deckOfPlayer = new Deck(getApplicationContext());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         this.playerDice = new Dice();
         this.life = life;
     }
