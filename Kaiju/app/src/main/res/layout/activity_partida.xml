@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lay"
+        android:backgroundTint="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +63,7 @@
         android:id="@+id/deckButton2"
         android:layout_width="103dp"
         android:layout_height="128dp"
+        android:backgroundTint="#9F015887"
         android:text="Deck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,6 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lay"
+        android:backgroundTint="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,29 +88,35 @@
 
     <Button
         android:id="@+id/endTurn1"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/end_turn"
+        android:textColor="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.975"
+        app:strokeColor="#9F015887" />
 
     <Button
         android:id="@+id/endTurn2"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="End turn"
+        android:textColor="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.038"
+        app:strokeColor="#9F015887" />
 
     <TextView
         android:id="@+id/valorDado1"
@@ -126,6 +135,7 @@
         android:id="@+id/deckButton1"
         android:layout_width="103dp"
         android:layout_height="128dp"
+        android:backgroundTint="#9F015887"
         android:text="@string/deck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

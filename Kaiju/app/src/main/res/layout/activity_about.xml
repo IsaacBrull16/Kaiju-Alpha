@@ -55,7 +55,7 @@
         android:id="@+id/textViewAbout"
         android:layout_width="385dp"
         android:layout_height="249dp"
-        android:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: https://solvmusic.com/picaprojects/"
+        android:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: https://www.pica-projects.com/"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
