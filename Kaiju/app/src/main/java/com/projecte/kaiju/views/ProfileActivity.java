@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,8 +32,13 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference usrRef;
     private String name;
 
+    private String lastLogin;
+
+
     EditText userNameP;
     EditText userEmail;
+
+    TextView LastLoginText;
 
     ImageView usrImage;
 
@@ -44,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         userNameP = findViewById(R.id.userNameP);
         userEmail = findViewById(R.id.userEmail);
         usrImage = findViewById(R.id.imageView);
+        LastLoginText = findViewById(R.id.LastLoginText);
 
         String url = GlobalInfo.getInstance().getFB_DB();
 
@@ -76,6 +83,18 @@ public class ProfileActivity extends AppCompatActivity {
                     if (image != null){
                         usrImage.setImageDrawable(idDrawable(getApplicationContext(), image));
                     }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            usrRef.child("last_login").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    lastLogin = snapshot.getValue(String.class);
+                    LastLoginText.setText(R.string.last_login + lastLogin);
                 }
 
                 @Override
