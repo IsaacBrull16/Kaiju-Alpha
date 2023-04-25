@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6B05577C"
+    android:background="@drawable/android_small___1"
     tools:context=".views.Player1Win">
 
     <TextView
@@ -52,11 +52,13 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="286dp"
-        android:layout_height="290dp"
+        android:layout_width="243dp"
+        android:layout_height="253dp"
         android:backgroundTint="#9C27B0"
         android:src="@drawable/logogame1"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="29dp" />
+        app:layout_constraintBottom_toTopOf="@+id/playButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
