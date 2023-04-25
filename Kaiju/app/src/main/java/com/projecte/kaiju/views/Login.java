@@ -93,12 +93,13 @@ public class Login extends AppCompatActivity {
 
     private void reload(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        String id= currentUser.getUid();
-        userRef = db.getReference("users").child(id);
+
         if(currentUser != null) {
             if (currentUser.isEmailVerified()){
                 etPassword.setText("");
                 etName.setText("");
+                String id= currentUser.getUid();
+                userRef = db.getReference("users").child(id);
                 userRef.child("last_login").setValue(ServerValue.TIMESTAMP);
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
