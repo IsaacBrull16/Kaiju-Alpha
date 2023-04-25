@@ -1,25 +1,31 @@
 package com.projecte.kaiju.views;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.ActivityHelper;
 import com.projecte.kaiju.helpers.GlobalInfo;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Login extends AppCompatActivity {
 
@@ -31,6 +37,7 @@ public class Login extends AppCompatActivity {
     private FirebaseDatabase db;
 
     private DatabaseReference userRef;
+    private String previousLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +107,13 @@ public class Login extends AppCompatActivity {
                 etName.setText("");
                 String id= currentUser.getUid();
                 userRef = db.getReference("users").child(id);
-                userRef.child("last_login").setValue(ServerValue.TIMESTAMP);
+                OnDataLoadedListener listener = new OnDataLoadedListener() {
+                    @Override
+                    public void onDataLoaded(String previousLogin) {
+                        catchPreviousLogin();
+                    }
+                };
+                newLastLogin(listener);
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }else{
@@ -108,5 +121,30 @@ public class Login extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public interface OnDataLoadedListener {
+        void onDataLoaded(String previousLogin);
+    }
+
+    public void catchPreviousLogin(){
+        userRef.child("last_login").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                previousLogin = snapshot.getValue(String.class);
+                userRef.child("previous_login").setValue(previousLogin);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void newLastLogin (final OnDataLoadedListener listener){
+        String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        userRef.child("last_login").setValue(time);
+        listener.onDataLoaded(previousLogin);
     }
 }
