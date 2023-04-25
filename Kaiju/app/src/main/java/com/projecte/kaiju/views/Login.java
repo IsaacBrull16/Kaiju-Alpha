@@ -14,8 +14,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.ActivityHelper;
+import com.projecte.kaiju.helpers.GlobalInfo;
 
 public class Login extends AppCompatActivity {
 
@@ -23,6 +27,10 @@ public class Login extends AppCompatActivity {
     EditText etName;
     EditText etPassword;
     private FirebaseAuth mAuth;
+
+    private FirebaseDatabase db;
+
+    private DatabaseReference userRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,8 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.btSignUp).setOnClickListener(v -> loginToSignUp());
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        String url= GlobalInfo.getInstance().getFB_DB();
+        db = FirebaseDatabase.getInstance(url);
 
         findViewById(R.id.changePswd2).setOnClickListener(v -> tochangePswd());
     }
@@ -83,11 +93,13 @@ public class Login extends AppCompatActivity {
 
     private void reload(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        String id= currentUser.getUid();
+        userRef = db.getReference("users").child(id);
         if(currentUser != null) {
             if (currentUser.isEmailVerified()){
                 etPassword.setText("");
                 etName.setText("");
-
+                userRef.child("last_login").setValue(ServerValue.TIMESTAMP);
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }else{
