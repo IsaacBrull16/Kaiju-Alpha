@@ -1,13 +1,13 @@
 package com.projecte.kaiju.views;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,7 +23,10 @@ import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.ActivityHelper;
 import com.projecte.kaiju.helpers.GlobalInfo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
@@ -104,6 +107,8 @@ public class SignUp extends AppCompatActivity {
                             usrRef.child("name").setValue(newName);
                             usrRef.child("profile_image").setValue("ic_icono");
                             usrRef.child("personal_deck").setValue(deck);
+                            String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                            usrRef.child("first_login").setValue(time);
 
                             mAuth.signOut();
                             Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();

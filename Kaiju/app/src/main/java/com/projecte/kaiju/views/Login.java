@@ -15,10 +15,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.ActivityHelper;
 import com.projecte.kaiju.helpers.GlobalInfo;
@@ -100,20 +98,14 @@ public class Login extends AppCompatActivity {
 
     private void reload(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
         if(currentUser != null) {
             if (currentUser.isEmailVerified()){
                 etPassword.setText("");
                 etName.setText("");
                 String id= currentUser.getUid();
                 userRef = db.getReference("users").child(id);
-                OnDataLoadedListener listener = new OnDataLoadedListener() {
-                    @Override
-                    public void onDataLoaded(String previousLogin) {
-                        catchPreviousLogin();
-                    }
-                };
-                newLastLogin(listener);
+
+                catchPreviousLogin();
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }else{
@@ -123,28 +115,26 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    public interface OnDataLoadedListener {
-        void onDataLoaded(String previousLogin);
-    }
-
     public void catchPreviousLogin(){
-        userRef.child("last_login").addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.child("last_login").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                previousLogin = snapshot.getValue(String.class);
-                userRef.child("previous_login").setValue(previousLogin);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()){
+                    DataSnapshot ds = task.getResult();
+                    if (ds.exists()){
+                        previousLogin = ds.getValue(String.class);
+                        userRef.child("previous_login").setValue(previousLogin);
+                        String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                        userRef.child("last_login").setValue(time);
+                    } else {
+                        String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                        userRef.child("last_login").setValue(time);
+                        Log.d(myClassTag, "error: datasnapshot does not exist:");
+                    }
+                } else {
+                    Log.d(myClassTag, "error: task not successful:");
+                }
             }
         });
-    }
-
-    public void newLastLogin (final OnDataLoadedListener listener){
-        String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
-        userRef.child("last_login").setValue(time);
-        listener.onDataLoaded(previousLogin);
     }
 }
