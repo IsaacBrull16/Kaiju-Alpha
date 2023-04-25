@@ -21,7 +21,7 @@
     <string name="Error_Email">"Error con el correo :("</string>
     <string name="EmailSent">"Correo enviado para cambiar la contraseña :)"</string>
     <string name="play">Jugar</string>
-    <string name="about">Sobre el Juego</string>
+    <string name="about">Sobre Nosotros</string>
     <string name="login">Iniciar sesión</string>
     <string name="sign_up">Registrarse</string>
     <string name="i_forgot_my_password">He olvidado mi contraseña</string>
@@ -53,4 +53,5 @@
     <string name="personalDeck">Baraja personal</string>
     <string name="YouWin">¡Has ganado! :D </string>
     <string name="YouLose">¡Has perdido :( </string>
+    <string name="about_us">Sobre Nosotros</string>
 </resources>
