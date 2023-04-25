@@ -10,7 +10,7 @@
         android:id="@+id/profImgButton4"
         android:layout_width="170dp"
         android:layout_height="159dp"
-        android:src="@drawable/fondo"
+        android:src="@drawable/component_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.937"
@@ -34,7 +34,7 @@
         android:id="@+id/profImgButton1"
         android:layout_width="170dp"
         android:layout_height="159dp"
-        android:src="@drawable/ic_icono"
+        android:src="@drawable/component_11"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"
@@ -46,7 +46,7 @@
         android:id="@+id/profImgButton2"
         android:layout_width="170dp"
         android:layout_height="159dp"
-        android:src="@drawable/plactbot"
+        android:src="@drawable/component_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.933"
@@ -69,6 +69,7 @@
 
     <Button
         android:id="@+id/savePhotoButton"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
@@ -81,9 +82,10 @@
 
     <Button
         android:id="@+id/returnButton"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="back"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
