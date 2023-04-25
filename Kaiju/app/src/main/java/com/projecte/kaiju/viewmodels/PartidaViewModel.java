@@ -111,7 +111,7 @@ public class PartidaViewModel extends ViewModel {
     }
 
     public void setCardOnT1(){
-        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP1() == false) && (game.getBoard().getDiceRolledP1() == true)) {
+        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP1() == false) && (game.getBoard().getDiceRolledP1() == true) && (numDice1.getValue() != null)) {
             if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() != 0) {
                 game.deck1Actions();
                 Card card1 = game.getCardT1();
@@ -126,7 +126,7 @@ public class PartidaViewModel extends ViewModel {
     }
 
     public void setCardOnT2(){
-        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP2() == false) && (game.getBoard().getDiceRolledP2() == true)) {
+        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP2() == false) && (game.getBoard().getDiceRolledP2() == true) && (numDice2.getValue() != null)) {
             if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() != 0) {
                 game.deck2Actions();
                 Card card2 = game.getCardT2();
