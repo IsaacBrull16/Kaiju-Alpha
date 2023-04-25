@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.projecte.kaiju.R;
+import com.projecte.kaiju.helpers.GlobalInfo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GlobalInfo.getInstance().setContext(this.getApplicationContext());
 
         findViewById(R.id.jugar).setOnClickListener(new View.OnClickListener(){
             @Override
