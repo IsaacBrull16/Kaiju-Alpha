@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:text="about us"
+        android:text="@string/about_us"
         android:textColor="#9F015887"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

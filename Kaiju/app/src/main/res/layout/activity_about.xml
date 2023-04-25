@@ -53,15 +53,15 @@
 
     <TextView
         android:id="@+id/textViewAbout"
-        android:layout_width="385dp"
-        android:layout_height="249dp"
-        android:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: https://www.pica-projects.com/"
+        android:layout_width="305dp"
+        android:layout_height="286dp"
+        android:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: \n\t\t\t https://www.pica-projects.com/"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639" />
+        app:layout_constraintVertical_bias="0.674" />
 
     <ImageView
         android:id="@+id/imageView3"

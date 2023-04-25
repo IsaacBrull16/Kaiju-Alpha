@@ -126,10 +126,14 @@ public class Login extends AppCompatActivity {
                         userRef.child("previous_login").setValue(previousLogin);
                         String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
                         userRef.child("last_login").setValue(time);
+                        String loggedText = "The last time you LoggedIn was at: "; //Frase a traducir
+                        String previousLoginText = loggedText + previousLogin;
+                        Toast.makeText(Login.this, previousLoginText, Toast.LENGTH_SHORT).show();
                     } else {
                         String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
                         userRef.child("last_login").setValue(time);
                         Log.d(myClassTag, "error: datasnapshot does not exist:");
+                        Toast.makeText(Login.this, "Congratulations it's your first LogIn! =)", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Log.d(myClassTag, "error: task not successful:");
