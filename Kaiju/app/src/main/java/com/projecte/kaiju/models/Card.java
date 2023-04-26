@@ -1,13 +1,13 @@
 package com.projecte.kaiju.models;
 
 public class Card {
-    int id;
-    String name;
-    int cost;
-    int damage;
-    int life;
+    private int id;
+    private String name;
+    private int cost;
+    private int damage;
+    private int life;
 
-    String type;
+    private String type;
 
     /**
      * Constructor de la clase Card

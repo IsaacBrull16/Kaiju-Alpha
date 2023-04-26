@@ -8,10 +8,10 @@ package com.projecte.kaiju.models;
 
 public class Board {
 
-    boolean cardTableP1 = false;
-    boolean cardTableP2 = false;
-    boolean diceRolledP1 = false;
-    boolean diceRolledP2 = false;
+    private boolean cardTableP1 = false;
+    private boolean cardTableP2 = false;
+    private boolean diceRolledP1 = false;
+    private boolean diceRolledP2 = false;
     private static Player player1;
     private static Player player2;
 
