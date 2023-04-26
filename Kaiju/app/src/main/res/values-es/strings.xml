@@ -54,4 +54,11 @@
     <string name="YouWin">¡Has ganado! :D </string>
     <string name="YouLose">¡Has perdido :( </string>
     <string name="about_us">Sobre Nosotros</string>
+    <string name="vida_j1">Vida Jugador1</string>
+    <string name="turno">Turno</string>
+    <string name="vida_j2">Vida Jugador2</string>
+    <string name="local">Local</string>
+    <string name="multijugador">Multijugador</string>
+    <string name="ia">IA</string>
+    <string name="play_mode">Modo de juego</string>
 </resources>
