@@ -179,7 +179,19 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getTurnChanged().observe(this, Boolean -> {
             if (Boolean == true){
                 currentPlayer = true;
+                findViewById(R.id.deckButton2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.endTurn2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.dado2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.deckButton1).setVisibility(View.VISIBLE);
+                findViewById(R.id.endTurn1).setVisibility(View.VISIBLE);
+                findViewById(R.id.dado1).setVisibility(View.VISIBLE);
             } else {
+                findViewById(R.id.deckButton2).setVisibility(View.VISIBLE);
+                findViewById(R.id.endTurn2).setVisibility(View.VISIBLE);
+                findViewById(R.id.dado2).setVisibility(View.VISIBLE);
+                findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.dado1).setVisibility(View.INVISIBLE);
                 currentPlayer = false;
             }
         });
