@@ -38,6 +38,8 @@ public class Partida extends AppCompatActivity {
     private boolean cardUsedP2;
     private boolean cardCantUseP1;
     private boolean cardCantUseP2;
+
+    private boolean currentPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +125,9 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getIsCard1Playable().observe(this, Boolean -> {
                 if (Boolean == true){
                     card1.setBackgroundColor(Color.parseColor("#3F2893"));
+                    cardCantUseP1 = true;
                 } else {
+                    cardCantUseP1 = false;
                     card1.setBackgroundColor(Color.GRAY);
                 }
         });
@@ -131,7 +135,9 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getIsCard2Playable().observe(this, Boolean -> {
             if (Boolean == true){
                 card2.setBackgroundColor(Color.parseColor("#3F2893"));
+                cardCantUseP2 = true;
             } else {
+                cardCantUseP2 = false;
                 card2.setBackgroundColor(Color.GRAY);
             }
         });
@@ -139,12 +145,18 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getIsCard1OnTable().observe(this, Boolean -> {
             if (Boolean == false){
                 card1.setText("");
+                cardUsedP1 = false;
+            } else {
+                cardUsedP1 = true;
             }
         });
 
         partidaviewModel.getIsCard2OnTable().observe(this, Boolean -> {
             if (Boolean == false) {
                 card2.setText("");
+                cardUsedP2 = false;
+            } else {
+                cardUsedP2 = true;
             }
         });
 
@@ -155,6 +167,23 @@ public class Partida extends AppCompatActivity {
                 diceRolledP1 = false;
             }
         });
+
+        partidaviewModel.getIsDice2Rolled().observe(this, Boolean -> {
+            if (Boolean == true){
+                diceRolledP2 = true;
+            } else {
+                diceRolledP2 = false;
+            }
+        });
+
+        partidaviewModel.getTurnChanged().observe(this, Boolean -> {
+            if (Boolean == true){
+                currentPlayer = true;
+            } else {
+                currentPlayer = false;
+            }
+        });
+
 
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
@@ -168,7 +197,7 @@ public class Partida extends AppCompatActivity {
          * Mismas condiciones del dado del jugador 1 se aplican para jugador 2
          */
 
-        findViewById(R.id.dado2).setOnClickListener(v -> partidaviewModel.launchDice2());
+        findViewById(R.id.dado2).setOnClickListener(v -> playingDice2());
 
         /**
          * Hacemos un botón para ir a la MainActivity(Página Principal)
@@ -188,13 +217,13 @@ public class Partida extends AppCompatActivity {
          * será de color gris si no la puedes usar, y morada si es que sí
          */
 
-        findViewById(R.id.deckButton1).setOnClickListener(v -> partidaviewModel.setCardOnT1());
+        findViewById(R.id.deckButton1).setOnClickListener(v -> addCard1());
 
         /**
          * Mismas condiciones de baraja de jugador 1 se aplican para jugador 2
          */
 
-        findViewById(R.id.deckButton2).setOnClickListener(v -> partidaviewModel.setCardOnT2());
+        findViewById(R.id.deckButton2).setOnClickListener(v -> addCard2());
 
         /**
          * La carta solo se podrá usar si su valor es menor o igual al del dado.
@@ -203,13 +232,13 @@ public class Partida extends AppCompatActivity {
          * o inferior a 0, se irá a la pantalla del jugador ganador
          */
 
-        card1.setOnClickListener(v -> partidaviewModel.useCard1());
+        card1.setOnClickListener(v -> useCard1());
 
         /**
          * Mismas condiciones de la carta del jugador 1 se aplican al jugador 2
          */
 
-        card2.setOnClickListener(v -> partidaviewModel.useCard2());
+        card2.setOnClickListener(v -> useCard2());
 
         /**
          * Para acabar el turno, el jugador pulsa el botón
@@ -227,8 +256,60 @@ public class Partida extends AppCompatActivity {
     public void playingDice1(){
         if(diceRolledP1 == false){
             partidaviewModel.launchDice1();
+        } else if (currentPlayer == false){
+            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You have already rolled the dice", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void playingDice2(){
+        if(diceRolledP2 == false){
+            partidaviewModel.launchDice2();
+        } else if (currentPlayer == true) {
+            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "You have already rolled the dice", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void addCard1(){
+        if(cardUsedP1 == false){
+            partidaviewModel.setCardOnT1();
+        } else if (currentPlayer == false) {
+            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "You have already a card on the table", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void addCard2(){
+        if(cardUsedP2 == false){
+            partidaviewModel.setCardOnT2();
+        } else if (currentPlayer == true) {
+            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "You have already a card on the table", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void useCard1(){
+        if(cardCantUseP1 == false){
+            partidaviewModel.useCard1();
+        } else if (currentPlayer == false) {
+            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "You can't use this card", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void useCard2(){
+        if(cardCantUseP2 == false){
+            partidaviewModel.useCard2();
+        } else if (currentPlayer == true) {
+            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "You can't use this card", Toast.LENGTH_SHORT).show();
         }
     }
 }
