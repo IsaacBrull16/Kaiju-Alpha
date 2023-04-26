@@ -125,9 +125,9 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getIsCard1Playable().observe(this, Boolean -> {
                 if (Boolean == true){
                     card1.setBackgroundColor(Color.parseColor("#3F2893"));
-                    cardCantUseP1 = true;
-                } else {
                     cardCantUseP1 = false;
+                } else {
+                    cardCantUseP1 = true;
                     card1.setBackgroundColor(Color.GRAY);
                 }
         });
@@ -135,9 +135,9 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getIsCard2Playable().observe(this, Boolean -> {
             if (Boolean == true){
                 card2.setBackgroundColor(Color.parseColor("#3F2893"));
-                cardCantUseP2 = true;
-            } else {
                 cardCantUseP2 = false;
+            } else {
+                cardCantUseP2 = true;
                 card2.setBackgroundColor(Color.GRAY);
             }
         });
@@ -268,8 +268,6 @@ public class Partida extends AppCompatActivity {
     public void playingDice1(){
         if(diceRolledP1 == false){
             partidaviewModel.launchDice1();
-        } else if (currentPlayer == false){
-            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You have already rolled the dice", Toast.LENGTH_SHORT).show();
         }
@@ -278,8 +276,6 @@ public class Partida extends AppCompatActivity {
     public void playingDice2(){
         if(diceRolledP2 == false){
             partidaviewModel.launchDice2();
-        } else if (currentPlayer == true) {
-            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You have already rolled the dice", Toast.LENGTH_SHORT).show();
         }
@@ -288,8 +284,6 @@ public class Partida extends AppCompatActivity {
     public void addCard1(){
         if(cardUsedP1 == false){
             partidaviewModel.setCardOnT1();
-        } else if (currentPlayer == false) {
-            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You have already a card on the table", Toast.LENGTH_SHORT).show();
         }
@@ -298,8 +292,6 @@ public class Partida extends AppCompatActivity {
     public void addCard2(){
         if(cardUsedP2 == false){
             partidaviewModel.setCardOnT2();
-        } else if (currentPlayer == true) {
-            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You have already a card on the table", Toast.LENGTH_SHORT).show();
         }

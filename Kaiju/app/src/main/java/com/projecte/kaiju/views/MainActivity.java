@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.jugar).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Partida.class);
+                Intent i = new Intent(MainActivity.this, PlayModeActivity.class);
                 startActivity(i);
                 finish();
 
