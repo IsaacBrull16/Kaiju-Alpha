@@ -3,7 +3,8 @@ package com.projecte.kaiju.models;
 import java.util.Random;
 
 public class Dice {
-    private int acumValue = 0;
+    private int acumValue;
+    private int originalValue;
 
     /**
      * El objeto dado tendrá un 0 de valor inicial
@@ -11,6 +12,7 @@ public class Dice {
 
     public Dice(){
         this.acumValue = 0;
+        this.originalValue = 0;
     }
 
     /**
@@ -18,7 +20,7 @@ public class Dice {
      * @return
      */
 
-    public int getValue(){
+    public int getAcumValue(){
         return this.acumValue;
     }
 
@@ -38,6 +40,11 @@ public class Dice {
     public void rollDice(){
         Random rand = new Random();
         int value = rand.nextInt(6) + 1;
+        this.originalValue = value;
         this.acumValue += value;
+    }
+
+    public int getOriginalValue() {
+        return originalValue;
     }
 }

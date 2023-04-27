@@ -94,7 +94,7 @@ public class Game {
     public void card1Actions(){
         //if ((turn.getTurnValue() == true) && (board.isCardOnTableP1() == true)) {
             //if (diceValue1 >= cardT1.getCost()) {
-                diceValue1 = board.getPlayer1().getPlayerDice().getValue();
+                diceValue1 = board.getPlayer1().getPlayerDice().getAcumValue();
                 diceValue1 = diceValue1 - cardT1.getCost();
                 if (diceValue1 >= 0){
                     board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
@@ -112,7 +112,7 @@ public class Game {
     public void card2Actions(){
         //if ((turn.getTurnValue() == false) && (board.isCardOnTableP2() == true)) {
             //if (diceValue2 >= cardT2.getCost()) {
-                diceValue2 = board.getPlayer2().getPlayerDice().getValue();
+                diceValue2 = board.getPlayer2().getPlayerDice().getAcumValue();
                 diceValue2 = diceValue2 - cardT2.getCost();
                 if (diceValue2 >= 0){
                     board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);

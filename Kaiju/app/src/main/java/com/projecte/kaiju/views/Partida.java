@@ -1,16 +1,17 @@
 package com.projecte.kaiju.views;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.models.Card;
@@ -44,6 +45,14 @@ public class Partida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
+
+        currentPlayer = true;
+        diceRolledP1 = false;
+        diceRolledP2 = false;
+        cardUsedP1 = false;
+        cardUsedP2 = false;
+        cardCantUseP1 = false;
+        cardCantUseP2 = false;
 
         partidaviewModel = new ViewModelProvider(this).get(PartidaViewModel.class);
 
@@ -277,31 +286,43 @@ public class Partida extends AppCompatActivity {
         if(diceRolledP2 == false){
             partidaviewModel.launchDice2();
         } else {
-            Toast.makeText(this, "You have already rolled the dice", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "You have already rolled the dice", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
         }
     }
 
     public void addCard1(){
-        if(cardUsedP1 == false){
-            partidaviewModel.setCardOnT1();
-        } else {
+        if(!diceRolledP1){
+            Toast.makeText(this, "You must roll the dice", Toast.LENGTH_SHORT).show();
+        } else if (cardUsedP1){
             Toast.makeText(this, "You have already a card on the table", Toast.LENGTH_SHORT).show();
+        } else {
+            partidaviewModel.setCardOnT1();
         }
     }
 
     public void addCard2(){
-        if(cardUsedP2 == false){
-            partidaviewModel.setCardOnT2();
+        if(!diceRolledP2){
+            Toast toast = Toast.makeText(this, "You must roll the dice", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
+        } else if (cardUsedP2){
+            Toast toast = Toast.makeText(this, "You have already a card on the table", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
         } else {
-            Toast.makeText(this, "You have already a card on the table", Toast.LENGTH_SHORT).show();
+            partidaviewModel.setCardOnT2();
         }
     }
 
-    public void useCard1(){
-        if(cardCantUseP1 == false){
+    public void useCard1() {
+        if (cardCantUseP1 == false) {
             partidaviewModel.useCard1();
         } else if (currentPlayer == false) {
             Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
+        } else if (cardUsedP1 == false){
+            Toast.makeText(this, "There is no Card on Table", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "You can't use this card", Toast.LENGTH_SHORT).show();
         }
@@ -311,9 +332,17 @@ public class Partida extends AppCompatActivity {
         if(cardCantUseP2 == false){
             partidaviewModel.useCard2();
         } else if (currentPlayer == true) {
-            Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "It's not your turn", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
+        } else if (cardUsedP2 == false){
+            Toast toast = Toast.makeText(this, "There is no Card on Table", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
         } else {
-            Toast.makeText(this, "You can't use this card", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "You can't use this card", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
         }
     }
 }

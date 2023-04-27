@@ -153,8 +153,8 @@ public class ProfileActivity extends AppCompatActivity {
         switch (profile){
             case "ic_icono":
                 return ContextCompat.getDrawable(cont, R.drawable.ic_icono);
-            case "plactbot":
-                return ContextCompat.getDrawable(cont, R.drawable.plactbot);
+            case "mecadog":
+                return ContextCompat.getDrawable(cont, R.drawable.mecadog);
             case "fondo":
                 return ContextCompat.getDrawable(cont, R.drawable.fondo);
             case "logogame1":

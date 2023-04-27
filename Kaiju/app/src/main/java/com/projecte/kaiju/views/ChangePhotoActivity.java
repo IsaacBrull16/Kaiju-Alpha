@@ -1,10 +1,10 @@
 package com.projecte.kaiju.views;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,7 +41,7 @@ public class ChangePhotoActivity extends AppCompatActivity {
         findViewById(R.id.savePhotoButton).setOnClickListener(v -> save());
         findViewById(R.id.returnButton).setOnClickListener(v -> notSave());
         findViewById(R.id.profImgButton1).setOnClickListener(v -> img = "ic_icono");
-        findViewById(R.id.profImgButton2).setOnClickListener(v -> img = "plactbot");
+        findViewById(R.id.profImgButton2).setOnClickListener(v -> img = "mecadog");
         findViewById(R.id.profImgButton3).setOnClickListener(v -> img = "logogame1");
         findViewById(R.id.profImgButton4).setOnClickListener(v -> img = "fondo");
     }

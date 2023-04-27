@@ -1,18 +1,11 @@
 package com.projecte.kaiju.viewmodels;
 
-import androidx.appcompat.app.AppCompatActivity;
-import com.projecte.kaiju.R;
-import android.os.Bundle;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import com.projecte.kaiju.views.Partida;
 
-import com.projecte.kaiju.models.Game;
 import com.projecte.kaiju.models.Card;
-import com.projecte.kaiju.models.Turn;
+import com.projecte.kaiju.models.Game;
 
 public class PartidaViewModel extends ViewModel {
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
@@ -99,10 +92,10 @@ public class PartidaViewModel extends ViewModel {
     public void launchDice1() {
         if ((game.getTurn().getTurnValue() == true) && (game.getBoard().getDiceRolledP1() == false)) {
             game.dice1Actions();
-            if ((game.getBoard().getPlayer1().getPlayerDice().getValue() >= game.getCardT1().getCost()) && (game.getBoard().isCardOnTableP1() == true)){
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) && (game.getBoard().isCardOnTableP1() == true)){
                 isCard1Playable.setValue(true);
             }
-            int res = game.getBoard().getPlayer1().getPlayerDice().getValue();
+            int res = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
             numDice1.setValue(res);
             isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
         }
@@ -111,10 +104,10 @@ public class PartidaViewModel extends ViewModel {
     public void launchDice2() {
         if ((game.getTurn().getTurnValue() == false) && (game.getBoard().getDiceRolledP2() == false)) {
             game.dice2Actions();
-            if ((game.getBoard().getPlayer2().getPlayerDice().getValue() >= game.getCardT2().getCost()) && (game.getBoard().isCardOnTableP2() == true)){
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) && (game.getBoard().isCardOnTableP2() == true)){
                 isCard2Playable.setValue(true);
             }
-            int res = game.getBoard().getPlayer2().getPlayerDice().getValue();
+            int res = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
             numDice2.setValue(res);
             isDice2Rolled.setValue(game.getBoard().getDiceRolledP2());
         }
@@ -152,10 +145,10 @@ public class PartidaViewModel extends ViewModel {
 
     public void useCard1(){
         if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP1() == true)) {
-            if (game.getBoard().getPlayer1().getPlayerDice().getValue() >= game.getCardT1().getCost()) {
+            if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) {
                 game.card1Actions();
                 int l2 = game.getBoard().getPlayer2().getLife();
-                int d1 = game.getBoard().getPlayer1().getPlayerDice().getValue();
+                int d1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
                 isCard1OnTable.setValue(false);
                 isCard1Playable.setValue(false);
                 numDice1.setValue(d1);
@@ -169,10 +162,10 @@ public class PartidaViewModel extends ViewModel {
 
     public void useCard2(){
         if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP2() == true)) {
-            if (game.getBoard().getPlayer2().getPlayerDice().getValue() >= game.getCardT2().getCost()) {
+            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) {
                 game.card2Actions();
                 int l1 = game.getBoard().getPlayer1().getLife();
-                int d2 = game.getBoard().getPlayer2().getPlayerDice().getValue();
+                int d2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
                 isCard2OnTable.setValue(false);
                 isCard2Playable.setValue(false);
                 life1.setValue(l1);
