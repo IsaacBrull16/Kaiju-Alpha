@@ -7,20 +7,6 @@
     android:background="@drawable/fondofigma"
     tools:context=".views.Partida">
 
-    <Button
-        android:id="@+id/dado2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lay"
-        android:backgroundTint="#9F015887"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
-
     <TextView
         android:id="@+id/valorDado2"
         android:layout_width="wrap_content"
@@ -76,20 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026" />
-
-    <Button
-        android:id="@+id/dado1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lay"
-        android:backgroundTint="#9F015887"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
 
     <Button
         android:id="@+id/endTurn1"
@@ -202,26 +174,28 @@
 
     <ImageButton
         android:id="@+id/dice2Button"
-        android:layout_width="61dp"
+        android:layout_width="64dp"
         android:layout_height="64dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.184"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/dado_5" />
 
     <ImageButton
         android:id="@+id/dice1Button"
-        android:layout_width="61dp"
+        android:layout_width="64dp"
         android:layout_height="64dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782"
+        app:layout_constraintVertical_bias="0.974"
         app:srcCompat="@drawable/dado_5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

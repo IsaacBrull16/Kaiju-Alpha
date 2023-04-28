@@ -45,6 +45,6 @@ public class Dice {
     }
 
     public int getOriginalValue() {
-        return originalValue;
+        return this.originalValue;
     }
 }

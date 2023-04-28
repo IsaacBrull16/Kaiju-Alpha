@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,8 @@ public class Partida extends AppCompatActivity {
         lifeP2 = (TextView) findViewById(R.id.lifeP2);
         card1 = findViewById(R.id.card1);
         card2 = findViewById(R.id.card2);
+        ImageButton dice1Button = findViewById(R.id.dice1Button);
+        ImageButton dice2Button = findViewById(R.id.dice2Button);
 
         /**
          * Ponemos color gris a las cartas cuando no se pueden usar y ponemos información en los textos
@@ -190,18 +193,58 @@ public class Partida extends AppCompatActivity {
                 currentPlayer = true;
                 findViewById(R.id.deckButton2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.INVISIBLE);
-                findViewById(R.id.dado2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.dice2Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.VISIBLE);
-                findViewById(R.id.dado1).setVisibility(View.VISIBLE);
+                findViewById(R.id.dice1Button).setVisibility(View.VISIBLE);
             } else {
                 findViewById(R.id.deckButton2).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.VISIBLE);
-                findViewById(R.id.dado2).setVisibility(View.VISIBLE);
+                findViewById(R.id.dice2Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
-                findViewById(R.id.dado1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
                 currentPlayer = false;
+            }
+        });
+
+        partidaviewModel.getActNum1().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (integer == 1){
+                    dice1Button.setImageResource(R.drawable.dado_1);
+                } else if (integer == 2){
+                    dice1Button.setImageResource(R.drawable.dado_2);
+                } else if (integer == 3){
+                    dice1Button.setImageResource(R.drawable.dado_3);
+                } else if (integer == 4) {
+                    dice1Button.setImageResource(R.drawable.dado_4);
+                } else if (integer == 5) {
+                    dice1Button.setImageResource(R.drawable.dado_5);
+                } else if (integer == 6) {
+                    dice1Button.setImageResource(R.drawable.dado_6);
+                }
+                valorDado1.setText(String.valueOf(integer));
+            }
+        });
+
+        partidaviewModel.getActNum2().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if (integer == 1){
+                    dice2Button.setImageResource(R.drawable.dado_1);
+                } else if (integer == 2){
+                    dice2Button.setImageResource(R.drawable.dado_2);
+                } else if (integer == 3){
+                    dice2Button.setImageResource(R.drawable.dado_3);
+                } else if (integer == 4) {
+                    dice2Button.setImageResource(R.drawable.dado_4);
+                } else if (integer == 5) {
+                    dice2Button.setImageResource(R.drawable.dado_5);
+                } else if (integer == 6) {
+                    dice2Button.setImageResource(R.drawable.dado_6);
+                }
+                valorDado2.setText(String.valueOf(integer));
             }
         });
 
@@ -211,14 +254,14 @@ public class Partida extends AppCompatActivity {
          * pondrá el valor por texto y te indicará si la carta la puedes usar
          */
 
-        findViewById(R.id.dado1).setOnClickListener(v -> playingDice1());
+        findViewById(R.id.dice1Button).setOnClickListener(v -> playingDice1());
 
 
         /**
          * Mismas condiciones del dado del jugador 1 se aplican para jugador 2
          */
 
-        findViewById(R.id.dado2).setOnClickListener(v -> playingDice2());
+        findViewById(R.id.dice2Button).setOnClickListener(v -> playingDice2());
 
         /**
          * Hacemos un botón para ir a la MainActivity(Página Principal)
