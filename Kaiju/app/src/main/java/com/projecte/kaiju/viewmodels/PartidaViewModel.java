@@ -98,6 +98,7 @@ public class PartidaViewModel extends ViewModel {
         life1.setValue(game.getBoard().getPlayer1().getLife());
         life2.setValue(game.getBoard().getPlayer2().getLife());
         turnChanged.setValue(true);
+        currentPlayer.setValue(game.getBoard().getPlayer1().getName());
     }
 
     public void launchDice1() {
@@ -109,11 +110,6 @@ public class PartidaViewModel extends ViewModel {
             int act = game.getBoard().getPlayer1().getPlayerDice().getOriginalValue();
             int acum = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
             actNum1.setValue(act);
-            /*try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e){
-                e.printStackTrace();
-            }*/
             numDice1.setValue(acum);
             isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
         }

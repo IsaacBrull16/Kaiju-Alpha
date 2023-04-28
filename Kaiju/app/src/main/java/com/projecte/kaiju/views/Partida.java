@@ -225,6 +225,11 @@ public class Partida extends AppCompatActivity {
                     dice1Button.setImageResource(R.drawable.dado_6);
                 }
                 valorDado1.setText(String.valueOf(integer));
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -245,6 +250,11 @@ public class Partida extends AppCompatActivity {
                     dice2Button.setImageResource(R.drawable.dado_6);
                 }
                 valorDado2.setText(String.valueOf(integer));
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
             }
         });
 
