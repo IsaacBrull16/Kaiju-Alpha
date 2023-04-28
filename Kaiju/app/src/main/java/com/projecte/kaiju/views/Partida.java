@@ -78,29 +78,13 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getDice1().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                String previousValor = valorDado1.getText().toString();
-                String acumValue = String.valueOf(integer);
-                valorDado1.setText(previousValor + acumValue);
-                try {
-                    Thread.sleep(250);
-                } catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                valorDado1.setText(acumValue);
+                valorDado1.setText(String.valueOf(integer));
             }
         });
 
         partidaviewModel.getDice2().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                String previousValor = valorDado2.getText().toString();
-                String acumValue = String.valueOf(integer);
-                valorDado2.setText(previousValor + acumValue);
-                try {
-                    Thread.sleep(250);
-                } catch (InterruptedException e){
-                    e.printStackTrace();
-                }
                 valorDado2.setText(String.valueOf(integer));
             }
         });
@@ -242,7 +226,7 @@ public class Partida extends AppCompatActivity {
                 }
                 valorDado1.setText(String.valueOf(integer));
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(500);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
@@ -267,13 +251,36 @@ public class Partida extends AppCompatActivity {
                 }
                 valorDado2.setText(String.valueOf(integer));
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(500);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
             }
         });
 
+        partidaviewModel.getActPlusNewDiceNum1().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String string) {
+                valorDado1.setText(string);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        partidaviewModel.getActPlusNewDiceNum2().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String string) {
+                valorDado2.setText(string);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        });
 
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,

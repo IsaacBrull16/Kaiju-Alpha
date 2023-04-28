@@ -31,6 +31,8 @@ public class PartidaViewModel extends ViewModel {
 
     private MutableLiveData<Integer> actNum1 = new MutableLiveData<>();
     private MutableLiveData<Integer> actNum2 = new MutableLiveData<>();
+    private MutableLiveData<String> actPlusNewDiceNum1 = new MutableLiveData<>();
+    private MutableLiveData<String> actPlusNewDiceNum2 = new MutableLiveData<>();
 
     private Game game;
 
@@ -90,6 +92,14 @@ public class PartidaViewModel extends ViewModel {
         return actNum2;
     }
 
+    public MutableLiveData<String> getActPlusNewDiceNum1() {
+        return actPlusNewDiceNum1;
+    }
+
+    public MutableLiveData<String> getActPlusNewDiceNum2() {
+        return actPlusNewDiceNum2;
+    }
+
     public PartidaViewModel() {
         game = new Game();
         isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
@@ -110,6 +120,11 @@ public class PartidaViewModel extends ViewModel {
             int act = game.getBoard().getPlayer1().getPlayerDice().getOriginalValue();
             int acum = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
             actNum1.setValue(act);
+            if (!((acum - act) == 0)){
+                actPlusNewDiceNum1.setValue(String.valueOf(act) + " + " + String.valueOf(acum - act));
+            } else {
+                actPlusNewDiceNum1.setValue(String.valueOf(act));
+            }
             numDice1.setValue(acum);
             isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
         }
@@ -124,6 +139,11 @@ public class PartidaViewModel extends ViewModel {
             int act = game.getBoard().getPlayer2().getPlayerDice().getOriginalValue();
             int acum = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
             actNum2.setValue(act);
+            if (!((acum - act) == 0)){
+                actPlusNewDiceNum2.setValue(String.valueOf(act) + " + " + String.valueOf(acum - act));
+            } else {
+                actPlusNewDiceNum2.setValue(String.valueOf(act));
+            }
             numDice2.setValue(acum);
             isDice2Rolled.setValue(game.getBoard().getDiceRolledP2());
         }
