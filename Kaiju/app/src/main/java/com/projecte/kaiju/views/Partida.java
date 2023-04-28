@@ -14,7 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.projecte.kaiju.R;
+import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.viewmodels.PartidaViewModel;
 
@@ -42,10 +46,24 @@ public class Partida extends AppCompatActivity {
     private boolean cardCantUseP2;
 
     private boolean currentPlayer;
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
+    private DatabaseReference deckRef;
+    private DatabaseReference playRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
+
+        String url = GlobalInfo.getInstance().getFB_DB();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        String id = mAuth.getCurrentUser().getUid();
+
+        db = FirebaseDatabase.getInstance();
+        deckRef = db.getReference(url).child(id).child("personal_deck");
 
         currentPlayer = true;
         diceRolledP1 = false;

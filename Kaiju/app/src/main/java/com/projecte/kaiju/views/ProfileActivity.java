@@ -151,12 +151,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     public static Drawable idDrawable(Context cont, String profile){
         switch (profile){
-            case "ic_icono":
-                return ContextCompat.getDrawable(cont, R.drawable.ic_icono);
-            case "mecadog":
-                return ContextCompat.getDrawable(cont, R.drawable.mecadog);
-            case "fondo":
-                return ContextCompat.getDrawable(cont, R.drawable.fondo);
+            case "component_11":
+                return ContextCompat.getDrawable(cont, R.drawable.component_11);
+            case "component_1":
+                return ContextCompat.getDrawable(cont, R.drawable.component_1);
+            case "component_2":
+                return ContextCompat.getDrawable(cont, R.drawable.component_2);
             case "logogame1":
                 return ContextCompat.getDrawable(cont, R.drawable.logogame1);
             default:

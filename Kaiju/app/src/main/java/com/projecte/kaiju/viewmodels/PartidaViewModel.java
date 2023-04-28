@@ -4,10 +4,17 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.models.Game;
 
 public class PartidaViewModel extends ViewModel {
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
+    private DatabaseReference playRef;
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
     private MutableLiveData<Integer> numDice2 = new MutableLiveData<>();
     private MutableLiveData<Card> cardOnT1 = new MutableLiveData<Card>();
@@ -109,6 +116,11 @@ public class PartidaViewModel extends ViewModel {
         life2.setValue(game.getBoard().getPlayer2().getLife());
         turnChanged.setValue(true);
         currentPlayer.setValue(game.getBoard().getPlayer1().getName());
+        mAuth = FirebaseAuth.getInstance();
+        String id = mAuth.getCurrentUser().getUid();
+        String url = GlobalInfo.getInstance().getFB_DB();
+        db = FirebaseDatabase.getInstance();
+        playRef = db.getReference(url).child(id).child("last_game_result");
     }
 
     public void launchDice1() {

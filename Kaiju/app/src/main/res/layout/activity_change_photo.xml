@@ -23,6 +23,7 @@
         android:layout_width="170dp"
         android:layout_height="159dp"
         android:src="@drawable/logogame1"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"

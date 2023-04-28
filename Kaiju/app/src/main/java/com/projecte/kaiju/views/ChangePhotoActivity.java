@@ -40,10 +40,10 @@ public class ChangePhotoActivity extends AppCompatActivity {
 
         findViewById(R.id.savePhotoButton).setOnClickListener(v -> save());
         findViewById(R.id.returnButton).setOnClickListener(v -> notSave());
-        findViewById(R.id.profImgButton1).setOnClickListener(v -> img = "ic_icono");
-        findViewById(R.id.profImgButton2).setOnClickListener(v -> img = "mecadog");
-        findViewById(R.id.profImgButton3).setOnClickListener(v -> img = "logogame1");
-        findViewById(R.id.profImgButton4).setOnClickListener(v -> img = "fondo");
+        findViewById(R.id.profImgButton1).setOnClickListener(v -> selectImg("component_11"));
+        findViewById(R.id.profImgButton2).setOnClickListener(v -> selectImg("component_1"));
+        findViewById(R.id.profImgButton3).setOnClickListener(v -> selectImg("logogame1"));
+        findViewById(R.id.profImgButton4).setOnClickListener(v -> selectImg("component_2"));
     }
 
     public void save(){
@@ -61,5 +61,9 @@ public class ChangePhotoActivity extends AppCompatActivity {
         Intent i = new Intent (ChangePhotoActivity.this, ProfileActivity.class);
         startActivity(i);
         finish();
+    }
+
+    public void selectImg(String newImg){
+        img = newImg;
     }
 }
