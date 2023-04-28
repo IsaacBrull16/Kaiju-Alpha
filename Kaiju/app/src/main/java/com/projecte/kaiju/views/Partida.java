@@ -78,13 +78,29 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getDice1().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                valorDado1.setText(String.valueOf(integer));
+                String previousValor = valorDado1.getText().toString();
+                String acumValue = String.valueOf(integer);
+                valorDado1.setText(previousValor + acumValue);
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                valorDado1.setText(acumValue);
             }
         });
 
         partidaviewModel.getDice2().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                String previousValor = valorDado2.getText().toString();
+                String acumValue = String.valueOf(integer);
+                valorDado2.setText(previousValor + acumValue);
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
                 valorDado2.setText(String.valueOf(integer));
             }
         });
@@ -226,7 +242,7 @@ public class Partida extends AppCompatActivity {
                 }
                 valorDado1.setText(String.valueOf(integer));
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(250);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
@@ -251,7 +267,7 @@ public class Partida extends AppCompatActivity {
                 }
                 valorDado2.setText(String.valueOf(integer));
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(250);
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
