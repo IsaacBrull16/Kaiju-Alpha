@@ -115,12 +115,15 @@ public class PartidaViewModel extends ViewModel {
         life1.setValue(game.getBoard().getPlayer1().getLife());
         life2.setValue(game.getBoard().getPlayer2().getLife());
         turnChanged.setValue(true);
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null){
+            String id = mAuth.getCurrentUser().getUid();
+            String url = GlobalInfo.getInstance().getFB_DB();
+            db = FirebaseDatabase.getInstance(url);
+            playRef = db.getReference(id).child("last_game_result");
+        }
         currentPlayer.setValue(game.getBoard().getPlayer1().getName());
         mAuth = FirebaseAuth.getInstance();
-        String id = mAuth.getCurrentUser().getUid();
-        String url = GlobalInfo.getInstance().getFB_DB();
-        db = FirebaseDatabase.getInstance();
-        playRef = db.getReference(url).child(id).child("last_game_result");
     }
 
     public void launchDice1() {
@@ -203,6 +206,7 @@ public class PartidaViewModel extends ViewModel {
                 life2.setValue(l2);
                 if(l2 <= 0){
                     winner.setValue(true);
+                    playRef.setValue("win");
                 }
             }
         }
@@ -220,6 +224,7 @@ public class PartidaViewModel extends ViewModel {
                 numDice2.setValue(d2);
                 if(l1 <= 0){
                     winner.setValue(false);
+                    playRef.setValue("lose");
                 }
             }
         }

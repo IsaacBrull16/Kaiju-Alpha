@@ -103,6 +103,9 @@ public class SignUp extends AppCompatActivity {
                             deck.put("0", "Trotowild");
                             deck.put("1", "PlantBot");
                             deck.put("2", "ElectroRazz");
+                            deck.put("3", "TechnoLight");
+                            deck.put("4", "DuckWind");
+                            deck.put("5", "PlasticKiller");
 
                             usrRef.child("name").setValue(newName);
                             usrRef.child("profile_image").setValue("ic_icono");

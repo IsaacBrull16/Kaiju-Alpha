@@ -1,15 +1,19 @@
 package com.projecte.kaiju.views;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.projecte.kaiju.R;
+import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.viewmodels.PartidaViewModel;
 
 public class Player1Win extends AppCompatActivity {
@@ -18,6 +22,11 @@ public class Player1Win extends AppCompatActivity {
     Button playButton;
 
     TextView winnerConditionsText;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
+    private DatabaseReference playRef;
+
+    private String result;
 
     private PartidaViewModel partidaviewModel;
     @Override
@@ -28,13 +37,31 @@ public class Player1Win extends AppCompatActivity {
         homeButton = (Button) findViewById(R.id.homeButton);
         playButton = (Button) findViewById(R.id.playButton);
 
-        partidaviewModel.getWinner().observe(this, Boolean -> {
-            if (Boolean == true){
-                winnerConditionsText.setText(R.string.YouWin);
-            } else {
-                winnerConditionsText.setText(R.string.YouLose);
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null){
+            String id = mAuth.getCurrentUser().getUid();
+            String url = GlobalInfo.getInstance().getFB_DB();
+            db = FirebaseDatabase.getInstance(url);
+            playRef = db.getReference(id).child("last_game_result");
+        }
+
+        /*playRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                result = snapshot.getValue(String.class);
+                if (result == "win"){
+                    winnerConditionsText.setText(R.string.YouWin);
+                } else {
+                    winnerConditionsText.setText(R.string.YouLose);
+                }
             }
-        });
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
+
         /**
          * Si el usuario quiere volver al menú pulsará esta opción
          */

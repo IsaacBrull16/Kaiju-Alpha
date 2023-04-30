@@ -1,117 +1,430 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:divider="@null"
+    android:showDividers="middle"
+    android:dividerPadding="16dp"
     tools:context=".views.PersonalDeckActivity">
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:divider="@null"
+        android:showDividers="middle"
+        android:dividerPadding="16dp">
+        
+
+        <Button
+            android:id="@+id/ReturnbuttonDeck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Return"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.106"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.048"
+            android:layout_marginRight="50dp"/>
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tus Cartas"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.559"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.101"
+            android:layout_marginRight="50dp"/>
+
+        <Button
+            android:id="@+id/SaveDeckButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.919"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.048" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tus Cartas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101" />
+        app:layout_constraintVertical_bias="1.0">
 
-    <ImageButton
-        android:id="@+id/cardImgButton1"
-        android:layout_width="163dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23"
-        app:srcCompat="@drawable/logogame1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-    <ImageButton
-        android:id="@+id/cardImgButton2"
-        android:layout_width="163dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.935"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229"
-        app:srcCompat="@drawable/logogame1" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:divider="@null"
+            android:showDividers="middle"
+            android:dividerPadding="16dp">
 
-    <ImageButton
-        android:id="@+id/cardImgButton3"
-        android:layout_width="163dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585"
-        app:srcCompat="@drawable/logogame1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
 
-    <ImageButton
-        android:id="@+id/cardImgButton4"
-        android:layout_width="163dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.935"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585"
-        app:srcCompat="@drawable/logogame1" />
+                <ImageButton
+                    android:id="@+id/cardImgButton1"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.077"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.23"
+                    app:srcCompat="@drawable/trotuvolco"
+                    android:layout_marginRight="40dp"/>
 
-    <ImageButton
-        android:id="@+id/cardImgButton5"
-        android:layout_width="163dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949"
-        app:srcCompat="@drawable/logogame1" />
+                <ImageButton
+                    android:id="@+id/cardImgButton2"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.229"
+                    app:srcCompat="@drawable/plactbot" />
 
-    <ImageButton
-        android:id="@+id/cardImgButton6"
-        android:layout_width="163dp"
-        android:layout_height="178dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.935"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949"
-        app:srcCompat="@drawable/logogame1" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/ReturnbuttonDeck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Return"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
 
-    <Button
-        android:id="@+id/SaveDeckButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.919"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+                <ImageButton
+                    android:id="@+id/cardImgButton3"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.076"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.585"
+                    app:srcCompat="@drawable/electrorazz"
+                    android:layout_marginRight="40dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageButton
+                    android:id="@+id/cardImgButton4"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.585"
+                    app:srcCompat="@drawable/technolight" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
+
+                <ImageButton
+                    android:id="@+id/cardImgButton5"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.064"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.949"
+                    app:srcCompat="@drawable/duckwind"
+                    android:layout_marginRight="40dp"/>
+
+                <ImageButton
+                    android:id="@+id/cardImgButton6"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.949"
+                    app:srcCompat="@drawable/plastickiller" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
+
+                <ImageButton
+                    android:id="@+id/cardImgButton7"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.077"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.23"
+                    app:srcCompat="@drawable/criogen"
+                    android:layout_marginRight="40dp"/>
+
+                <ImageButton
+                    android:id="@+id/cardImgButton8"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.229"
+                    app:srcCompat="@drawable/mecadog" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
+
+                <ImageButton
+                    android:id="@+id/cardImgButton9"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.076"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.585"
+                    app:srcCompat="@drawable/demoking"
+                    android:layout_marginRight="40dp"/>
+
+                <ImageButton
+                    android:id="@+id/cardImgButton10"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.585"
+                    app:srcCompat="@drawable/fyrex" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
+
+                <ImageButton
+                    android:id="@+id/cardImgButton11"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.064"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.949"
+                    app:srcCompat="@drawable/djbear"
+                    android:layout_marginRight="40dp"/>
+
+                <ImageButton
+                    android:id="@+id/cardImgButton12"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.949"
+                    app:srcCompat="@drawable/frozwolf" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
+
+                <ImageButton
+                    android:id="@+id/cardImgButton13"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.077"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.23"
+                    app:srcCompat="@drawable/frogburn"
+                    android:layout_marginRight="40dp"/>
+
+                <ImageButton
+                    android:id="@+id/cardImgButton14"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.229"
+                    app:srcCompat="@drawable/goldduck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
+
+                <ImageButton
+                    android:id="@+id/cardImgButton15"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.076"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.585"
+                    app:srcCompat="@drawable/darckbac"
+                    android:layout_marginRight="40dp"/>
+
+                <ImageButton
+                    android:id="@+id/cardImgButton16"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.585"
+                    app:srcCompat="@drawable/theeye" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:divider="@null"
+                android:showDividers="middle"
+                android:dividerPadding="16dp">
+
+                <ImageButton
+                    android:id="@+id/cardImgButton17"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.064"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.949"
+                    app:srcCompat="@drawable/mecamantis"
+                    android:layout_marginRight="40dp"/>
+
+                <ImageButton
+                    android:id="@+id/cardImgButton18"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.935"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.949"
+                    app:srcCompat="@drawable/sharkmaster" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
