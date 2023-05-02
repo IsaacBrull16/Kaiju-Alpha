@@ -104,8 +104,8 @@
     <Button
         android:id="@+id/TCButton"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="201dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/our_terms_and_condition"
         android:textColor="#9F015887"
         android:textSize="10dp"
