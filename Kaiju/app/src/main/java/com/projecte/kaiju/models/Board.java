@@ -20,8 +20,8 @@ public class Board {
         player2 = new Player("J2");
         player1.setLife(25);
         player2.setLife(25);
-        player1.getDeckOfPlayer().Shuffle();
-        player2.getDeckOfPlayer().Shuffle();
+        //player1.getDeckOfPlayer().Shuffle();
+        //player2.getDeckOfPlayer().Shuffle();
     }
 
     /**

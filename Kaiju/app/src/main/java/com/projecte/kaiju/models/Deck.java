@@ -134,7 +134,7 @@ public class Deck {
         for (int i = 0; i < deckCards.size(); i++) {
             System.out.println(deckCards.get(i).getName());
         }
-        numCards = deckCards.size();
+        Shuffle();
     }
 
     public interface OnDataLoadedListener {
