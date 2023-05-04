@@ -143,6 +143,7 @@ public class PartidaViewModel extends ViewModel {
         turnChanged.setValue(true);
         l1 = game.getBoard().getPlayer1().getLife();
         l2 = game.getBoard().getPlayer2().getLife();
+        currentPlayer.setValue(game.getBoard().getPlayer1().getName());
     }
 
     public void launchDice1() {
