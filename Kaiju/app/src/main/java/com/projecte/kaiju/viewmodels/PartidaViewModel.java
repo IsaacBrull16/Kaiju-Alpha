@@ -41,6 +41,9 @@ public class PartidaViewModel extends ViewModel {
     private MutableLiveData<String> actPlusNewDiceNum1 = new MutableLiveData<>();
     private MutableLiveData<String> actPlusNewDiceNum2 = new MutableLiveData<>();
     private MutableLiveData<String> objective1 = new MutableLiveData<>();
+    private MutableLiveData<String> objective2 = new MutableLiveData<>();
+    private MutableLiveData<Integer> card1Life = new MutableLiveData<>();
+    private MutableLiveData<Integer> card2Life = new MutableLiveData<>();
 
     private Game game;
 
@@ -112,8 +115,23 @@ public class PartidaViewModel extends ViewModel {
         return objective1;
     }
 
+    public MutableLiveData<String> getObjective2() {
+        return objective2;
+    }
+
+    public MutableLiveData<Integer> getCard1Life() {
+        return card1Life;
+    }
+
+    public MutableLiveData<Integer> getCard2Life() {
+        return card2Life;
+    }
+
     private int l1;
     private int l2;
+
+    private int cl1;
+    private int cl2;
 
     public PartidaViewModel() {
         game = new Game();
@@ -171,6 +189,8 @@ public class PartidaViewModel extends ViewModel {
                 game.deck1Actions();
                 Card card1 = game.getCardT1();
                 game.setCardT1(card1);
+                cl1 = game.getCardT1().getLife();
+                card1Life.setValue(cl1);
                 cardOnT1.setValue(card1);
                 isCard1OnTable.setValue(true);
                 if (card1.getCost() <= numDice1.getValue()){
@@ -186,6 +206,8 @@ public class PartidaViewModel extends ViewModel {
                 game.deck2Actions();
                 Card card2 = game.getCardT2();
                 game.setCardT2(card2);
+                cl2 = game.getCardT2().getLife();
+                card2Life.setValue(cl2);
                 cardOnT2.setValue(card2);
                 isCard2OnTable.setValue(true);
                 if (card2.getCost() <= numDice2.getValue()){
@@ -199,9 +221,15 @@ public class PartidaViewModel extends ViewModel {
         if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP1() == true)) {
             if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) {
                 game.card1Actions();
-                l2 = l2 - game.getCardT1().getDamage();
-                game.getBoard().getPlayer2().setLife(l2);
-                System.err.println("vida " + l2 + "coste " + game.getCardT1().getDamage());
+                String objectiveP1 = objective1.getValue();
+                if (objectiveP1.equals("player")){
+                    l2 = l2 - game.getCardT1().getDamage();
+                    game.getBoard().getPlayer2().setLife(l2);
+                } else if (objectiveP1.equals("card1")){
+                    cl1 = cl1 - game.getCardT1().getDamage();
+                    game.getCardT1().setLife(cl1);
+                    card1Life.setValue(cl1);
+                }
                 int d1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
                 isCard1OnTable.setValue(false);
                 isCard1Playable.setValue(false);
@@ -215,9 +243,15 @@ public class PartidaViewModel extends ViewModel {
         if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP2() == true)) {
             if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) {
                 game.card2Actions();
-                l1 = l1 - game.getCardT1().getDamage();
-                game.getBoard().getPlayer2().setLife(l1);
-                System.err.println("vida " + l1 + "coste " + game.getCardT2().getDamage());
+                String objectiveP2 = objective2.getValue();
+                if (objectiveP2.equals("player")){
+                    l1 = l1 - game.getCardT1().getDamage();
+                    game.getBoard().getPlayer2().setLife(l1);
+                } else if (objectiveP2.equals("card1")) {
+                    cl2 = cl2 - game.getCardT2().getDamage();
+                    game.getCardT1().setLife(cl2);
+                    card2Life.setValue(cl2);
+                }
                 int d2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
                 isCard2OnTable.setValue(false);
                 isCard2Playable.setValue(false);
@@ -237,7 +271,7 @@ public class PartidaViewModel extends ViewModel {
         }
     }
 
-    public void changeTurn2(){
+    public void changeTurn2() {
         if (game.getTurn().getTurnValue() == false) {
             game.endTurn2();
             String p1 = game.getBoard().getPlayer1().getName();
@@ -245,9 +279,5 @@ public class PartidaViewModel extends ViewModel {
             isDice2Rolled.setValue(false);
             turnChanged.setValue(true);
         }
-    }
-
-    public void objectiveP1(String objectivep1){
-            objective1.setValue(objectivep1);
     }
 }

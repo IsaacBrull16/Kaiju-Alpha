@@ -38,6 +38,9 @@ public class Partida extends AppCompatActivity {
     TextView turnIndicator;
     TextView lifeP1;
     TextView lifeP2;
+
+    TextView vidaCarta1;
+    TextView vidaCarta2;
     ImageButton dice1Button;
     ImageButton dice2Button;
 
@@ -83,6 +86,8 @@ public class Partida extends AppCompatActivity {
         card2 = findViewById(R.id.card2);
         dice1Button = findViewById(R.id.dice1Button);
         dice2Button = findViewById(R.id.dice2Button);
+        vidaCarta1 = findViewById(R.id.vidaCarta1);
+        vidaCarta2 = findViewById(R.id.vidaCarta2);
 
         card1.setVisibility(View.INVISIBLE);
         card2.setVisibility(View.INVISIBLE);
@@ -289,6 +294,34 @@ public class Partida extends AppCompatActivity {
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
+            }
+        });
+
+        partidaviewModel.getObjective1().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+            }
+        });
+
+        partidaviewModel.getObjective2().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+            }
+        });
+
+        partidaviewModel.getCard1Life().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                vidaCarta1.setText(String.valueOf(integer));
+            }
+        });
+
+        partidaviewModel.getCard2Life().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                vidaCarta2.setText(String.valueOf(integer));
             }
         });
 
