@@ -1,5 +1,7 @@
 package com.projecte.kaiju.viewmodels;
 
+import android.widget.Toast;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,11 +12,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.models.Game;
+import com.projecte.kaiju.views.Partida;
 
 public class PartidaViewModel extends ViewModel {
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase db;
-    private DatabaseReference playRef;
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
     private MutableLiveData<Integer> numDice2 = new MutableLiveData<>();
     private MutableLiveData<Card> cardOnT1 = new MutableLiveData<Card>();
@@ -40,6 +40,7 @@ public class PartidaViewModel extends ViewModel {
     private MutableLiveData<Integer> actNum2 = new MutableLiveData<>();
     private MutableLiveData<String> actPlusNewDiceNum1 = new MutableLiveData<>();
     private MutableLiveData<String> actPlusNewDiceNum2 = new MutableLiveData<>();
+    private MutableLiveData<String> objective1 = new MutableLiveData<>();
 
     private Game game;
 
@@ -107,6 +108,13 @@ public class PartidaViewModel extends ViewModel {
         return actPlusNewDiceNum2;
     }
 
+    public MutableLiveData<String> getObjective1() {
+        return objective1;
+    }
+
+    private int l1;
+    private int l2;
+
     public PartidaViewModel() {
         game = new Game();
         isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
@@ -115,15 +123,8 @@ public class PartidaViewModel extends ViewModel {
         life1.setValue(game.getBoard().getPlayer1().getLife());
         life2.setValue(game.getBoard().getPlayer2().getLife());
         turnChanged.setValue(true);
-        mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null){
-            String id = mAuth.getCurrentUser().getUid();
-            String url = GlobalInfo.getInstance().getFB_DB();
-            db = FirebaseDatabase.getInstance(url);
-            playRef = db.getReference(id).child("last_game_result");
-        }
-        currentPlayer.setValue(game.getBoard().getPlayer1().getName());
-        mAuth = FirebaseAuth.getInstance();
+        l1 = game.getBoard().getPlayer1().getLife();
+        l2 = game.getBoard().getPlayer2().getLife();
     }
 
     public void launchDice1() {
@@ -198,16 +199,14 @@ public class PartidaViewModel extends ViewModel {
         if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP1() == true)) {
             if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) {
                 game.card1Actions();
-                int l2 = game.getBoard().getPlayer2().getLife();
+                l2 = l2 - game.getCardT1().getDamage();
+                game.getBoard().getPlayer2().setLife(l2);
+                System.err.println("vida " + l2 + "coste " + game.getCardT1().getDamage());
                 int d1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
                 isCard1OnTable.setValue(false);
                 isCard1Playable.setValue(false);
                 numDice1.setValue(d1);
                 life2.setValue(l2);
-                if(l2 <= 0){
-                    winner.setValue(true);
-                    playRef.setValue("win");
-                }
             }
         }
     }
@@ -216,16 +215,14 @@ public class PartidaViewModel extends ViewModel {
         if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP2() == true)) {
             if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) {
                 game.card2Actions();
-                int l1 = game.getBoard().getPlayer1().getLife();
+                l1 = l1 - game.getCardT1().getDamage();
+                game.getBoard().getPlayer2().setLife(l1);
+                System.err.println("vida " + l1 + "coste " + game.getCardT2().getDamage());
                 int d2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
                 isCard2OnTable.setValue(false);
                 isCard2Playable.setValue(false);
                 life1.setValue(l1);
                 numDice2.setValue(d2);
-                if(l1 <= 0){
-                    winner.setValue(false);
-                    playRef.setValue("lose");
-                }
             }
         }
     }
@@ -248,5 +245,9 @@ public class PartidaViewModel extends ViewModel {
             isDice2Rolled.setValue(false);
             turnChanged.setValue(true);
         }
+    }
+
+    public void objectiveP1(String objectivep1){
+            objective1.setValue(objectivep1);
     }
 }

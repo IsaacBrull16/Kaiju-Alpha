@@ -88,13 +88,6 @@ public class Deck {
      * Creamos nuestra baraja de cartas
      */
 
-    /*Card Trotowild = new Card(0, "Trotowild", 1, 2, 5, "Nature");
-    Card PlantBot = new Card(1, "PlantBot", 2, 6, 2, "Technology");
-    Card ElectroRazz = new Card(2, "ElectroRazz", 3, 2, 4, "Science");
-    Card TechnoLight = new Card(3, "TechnoLight", 5, 10, 2, "Technology");
-    Card DuckWind = new Card(4, "DuckWind", 4, 2, 9, "Nature");
-    Card PlasticKiller = new Card(5, "PlasticKiller", 6, 11, 3, "Science");*/
-
     public void getPersonalDeck(final OnDataLoadedListener listener) {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -122,17 +115,12 @@ public class Deck {
         for (int i = 0; i < personalDeck.size(); i++){
             int idPD = Integer.parseInt(personalDeck.get(i).getId());
             for (int j = 0; j < totalCards.size(); j++){
-                if (totalCards.get(j).getId() == idPD){
+                if (totalCards.get(j).getId() == idPD) {
                     Card cardj = totalCards.get(j);
                     Log.d(myClassTag, cardj.getName());
                     deckCards.add(cardj);
-                } else {
-                    System.err.println("Error of Cards");
                 }
             }
-        }
-        for (int i = 0; i < deckCards.size(); i++) {
-            System.out.println(deckCards.get(i).getName());
         }
         Shuffle();
     }
