@@ -6,12 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.viewmodels.PartidaViewModel;
@@ -45,11 +49,11 @@ public class Player1Win extends AppCompatActivity {
             playRef = db.getReference(id).child("last_game_result");
         }
 
-        /*playRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        playRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 result = snapshot.getValue(String.class);
-                if (result == "win"){
+                if (result.equals("win")){
                     winnerConditionsText.setText(R.string.YouWin);
                 } else {
                     winnerConditionsText.setText(R.string.YouLose);
@@ -60,7 +64,7 @@ public class Player1Win extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });*/
+        });
 
         /**
          * Si el usuario quiere volver al menú pulsará esta opción

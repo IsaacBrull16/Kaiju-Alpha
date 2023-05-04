@@ -16,6 +16,9 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
@@ -35,8 +38,15 @@ public class Partida extends AppCompatActivity {
     TextView turnIndicator;
     TextView lifeP1;
     TextView lifeP2;
+
+    TextView vidaCarta1;
+    TextView vidaCarta2;
     ImageButton dice1Button;
     ImageButton dice2Button;
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
+    private DatabaseReference playRef;
 
     private PartidaViewModel partidaviewModel;
     private boolean diceRolledP1;
@@ -76,9 +86,19 @@ public class Partida extends AppCompatActivity {
         card2 = findViewById(R.id.card2);
         dice1Button = findViewById(R.id.dice1Button);
         dice2Button = findViewById(R.id.dice2Button);
+        vidaCarta1 = findViewById(R.id.vidaCarta1);
+        vidaCarta2 = findViewById(R.id.vidaCarta2);
 
         card1.setVisibility(View.INVISIBLE);
         card2.setVisibility(View.INVISIBLE);
+
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null){
+            String id = mAuth.getCurrentUser().getUid();
+            String url = GlobalInfo.getInstance().getFB_DB();
+            db = FirebaseDatabase.getInstance(url);
+            playRef = db.getReference(id).child("last_game_result");
+        }
 
         /**
          * Ponemos color gris a las cartas cuando no se pueden usar y ponemos información en los textos
@@ -118,6 +138,7 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if (integer <= 0){
+                    playRef.setValue("lose");
                     Intent i2 = new Intent (Partida.this, Player1Win.class);
                     startActivity(i2);
                     finish();
@@ -130,6 +151,7 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if (integer <= 0){
+                    playRef.setValue("win");
                     Intent i3 = new Intent (Partida.this, Player1Win.class);
                     startActivity(i3);
                     finish();
@@ -272,6 +294,34 @@ public class Partida extends AppCompatActivity {
                 } catch (InterruptedException e){
                     e.printStackTrace();
                 }
+            }
+        });
+
+        partidaviewModel.getObjective1().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+            }
+        });
+
+        partidaviewModel.getObjective2().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+            }
+        });
+
+        partidaviewModel.getCard1Life().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                vidaCarta1.setText(String.valueOf(integer));
+            }
+        });
+
+        partidaviewModel.getCard2Life().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                vidaCarta2.setText(String.valueOf(integer));
             }
         });
 
