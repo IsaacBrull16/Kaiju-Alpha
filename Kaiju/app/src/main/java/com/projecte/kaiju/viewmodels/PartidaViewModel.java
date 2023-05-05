@@ -1,20 +1,24 @@
 package com.projecte.kaiju.viewmodels;
 
-import android.widget.Toast;
-
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.models.Game;
-import com.projecte.kaiju.views.Partida;
 
 public class PartidaViewModel extends ViewModel {
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase db;
+    private DatabaseReference usrRef;
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
     private MutableLiveData<Integer> numDice2 = new MutableLiveData<>();
     private MutableLiveData<Card> cardOnT1 = new MutableLiveData<Card>();
@@ -143,6 +147,25 @@ public class PartidaViewModel extends ViewModel {
         turnChanged.setValue(true);
         l1 = game.getBoard().getPlayer1().getLife();
         l2 = game.getBoard().getPlayer2().getLife();
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null){
+            String id = mAuth.getCurrentUser().getUid();
+            String url = GlobalInfo.getInstance().getFB_DB();
+            db = FirebaseDatabase.getInstance(url);
+            usrRef = db.getReference(id).child("name");
+            usrRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String name = snapshot.getValue(String.class);
+                    game.getBoard().getPlayer1().setName(name);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
         currentPlayer.setValue(game.getBoard().getPlayer1().getName());
     }
 
