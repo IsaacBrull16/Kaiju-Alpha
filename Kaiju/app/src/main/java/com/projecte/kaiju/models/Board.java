@@ -1,15 +1,5 @@
 package com.projecte.kaiju.models;
 
-import androidx.annotation.NonNull;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.projecte.kaiju.helpers.GlobalInfo;
-
 /**
  * @author: Álex Pellitero García
  * @version: 17/02/2023/A
@@ -25,36 +15,13 @@ public class Board {
     private static Player player1;
     private static Player player2;
 
-    private FirebaseAuth mAuth;
-
-    private FirebaseDatabase db;
-
-    private DatabaseReference nameRef;
-
     public Board() {
-        mAuth = FirebaseAuth.getInstance();
-        String url= GlobalInfo.getInstance().getFB_DB();
-        db = FirebaseDatabase.getInstance(url);
-
-        if(mAuth.getCurrentUser() != null){
-            nameRef = db.getReference("users").child(mAuth.getCurrentUser().getUid()).child("name");
-            nameRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String name = snapshot.getValue(String.class);
-                    player1 = new Player(name);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-
+        player1 = new Player("J1");
         player2 = new Player("J2");
         player1.setLife(25);
         player2.setLife(25);
+        player1.getDeckOfPlayer().Shuffle();
+        player2.getDeckOfPlayer().Shuffle();
     }
 
     /**
