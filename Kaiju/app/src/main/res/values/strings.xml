@@ -69,4 +69,5 @@
     <string name="CantUseCard">You can\'t use this card</string>
     <string name="LastLogin">The last time you LoggedIn was at: </string>
     <string name="FirstLogin">Congratulations it\'s your first LogIn! =)</string>
+    <string name="your_cards">Your Cards</string>
 </resources>
