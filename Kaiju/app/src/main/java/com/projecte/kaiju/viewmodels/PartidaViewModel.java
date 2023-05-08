@@ -152,8 +152,8 @@ public class PartidaViewModel extends ViewModel {
             String id = mAuth.getCurrentUser().getUid();
             String url = GlobalInfo.getInstance().getFB_DB();
             db = FirebaseDatabase.getInstance(url);
-            usrRef = db.getReference(id).child("name");
-            usrRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            usrRef = db.getReference(id);
+            usrRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String name = snapshot.getValue(String.class);
@@ -165,6 +165,7 @@ public class PartidaViewModel extends ViewModel {
 
                 }
             });
+
         }
         currentPlayer.setValue(game.getBoard().getPlayer1().getName());
     }

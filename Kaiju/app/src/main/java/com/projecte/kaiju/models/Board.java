@@ -1,5 +1,17 @@
 package com.projecte.kaiju.models;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.projecte.kaiju.helpers.GlobalInfo;
+
 /**
  * @author: Álex Pellitero García
  * @version: 17/02/2023/A
@@ -8,6 +20,8 @@ package com.projecte.kaiju.models;
 
 public class Board {
 
+    private String LastMode;
+
     private boolean cardTableP1 = false;
     private boolean cardTableP2 = false;
     private boolean diceRolledP1 = false;
@@ -15,13 +29,48 @@ public class Board {
     private static Player player1;
     private static Player player2;
 
+    protected String myClassTag = this.getClass().getSimpleName();
+
+    private FirebaseAuth mAuth;
+
+    private FirebaseDatabase db;
+
+    private DatabaseReference playRef;
+
+
     public Board() {
+        //final CountDownLatch latch = new CountDownLatch(1);
         player1 = new Player("J1");
         player2 = new Player("J2");
         player1.setLife(25);
         player2.setLife(25);
-        //player1.getDeckOfPlayer().Shuffle();
-        //player2.getDeckOfPlayer().Shuffle();
+
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null){
+            String id = mAuth.getCurrentUser().getUid();
+            String url = GlobalInfo.getInstance().getFB_DB();
+            db = FirebaseDatabase.getInstance(url);
+            playRef = db.getReference(id);
+
+            Board.OnDataLoadedListener listener = new Board.OnDataLoadedListener() {
+                @Override
+                public void onDataLoaded(String LastMode) {
+                    assignPlayer2(LastMode);
+                    //latch.countDown();
+
+                }
+
+            };
+            getLastMode(listener);
+            /*try {
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
+
+
+        }
+
     }
 
     /**
@@ -124,6 +173,41 @@ public class Board {
         } else {
             this.diceRolledP2 = true;
         }
+    }
+
+    public void getLastMode(final Board.OnDataLoadedListener listener){
+        playRef.child("play_mode").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                LastMode = snapshot.getValue(String.class);
+                Log.d(myClassTag, "Play mode: " + LastMode);
+
+                listener.onDataLoaded(LastMode);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void assignPlayer2(String mode){
+        if (mode.equals("IA")){
+            player2.setName("IA");
+            player2.setType("IA");
+        } else {
+            player2.setType("player");
+        }
+        String type = player2.getType();
+        Log.d(myClassTag, "Player 2 type: " + type);
+    }
+    public interface OnDataLoadedListener {
+        void onDataLoaded(String LastMode);
     }
 
 }

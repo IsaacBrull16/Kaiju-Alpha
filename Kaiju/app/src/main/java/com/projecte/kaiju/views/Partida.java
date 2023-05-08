@@ -29,7 +29,7 @@ public class Partida extends AppCompatActivity {
     /**
      * Declaramos todos los objetos del layout que querramos modificar/usar
      */
-
+    protected String myClassTag = this.getClass().getSimpleName();
     ImageButton card1;
     ImageButton card2;
 
@@ -73,6 +73,8 @@ public class Partida extends AppCompatActivity {
 
         partidaviewModel = new ViewModelProvider(this).get(PartidaViewModel.class);
 
+
+
         /**
          * Encontramos las id de cada objeto del layout que querramos usar
          */
@@ -97,7 +99,8 @@ public class Partida extends AppCompatActivity {
             String id = mAuth.getCurrentUser().getUid();
             String url = GlobalInfo.getInstance().getFB_DB();
             db = FirebaseDatabase.getInstance(url);
-            playRef = db.getReference(id).child("last_game_result");
+            playRef = db.getReference(id);
+
         }
 
         /**
@@ -138,7 +141,7 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if (integer <= 0){
-                    playRef.setValue("lose");
+                    playRef.child("last_game_result").setValue("lose");
                     Intent i2 = new Intent (Partida.this, Player1Win.class);
                     startActivity(i2);
                     finish();
@@ -151,7 +154,7 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if (integer <= 0){
-                    playRef.setValue("win");
+                    playRef.child("last_game_result").setValue("win");
                     Intent i3 = new Intent (Partida.this, Player1Win.class);
                     startActivity(i3);
                     finish();
