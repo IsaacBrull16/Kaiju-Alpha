@@ -190,20 +190,24 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getIsCard1OnTable().observe(this, Boolean -> {
             if (Boolean == false){
                 card1.setVisibility(View.INVISIBLE);
+                vidaCarta1.setVisibility(View.INVISIBLE);
                 cardUsedP1 = false;
             } else {
                 cardUsedP1 = true;
                 card1.setVisibility(View.VISIBLE);
+                vidaCarta1.setVisibility(View.VISIBLE);
             }
         });
 
         partidaviewModel.getIsCard2OnTable().observe(this, Boolean -> {
             if (Boolean == false) {
                 card2.setVisibility(View.INVISIBLE);
+                vidaCarta2.setVisibility(View.INVISIBLE);
                 cardUsedP2 = false;
             } else {
                 cardUsedP2 = true;
                 card2.setVisibility(View.VISIBLE);
+                vidaCarta2.setVisibility(View.VISIBLE);
             }
         });
 
