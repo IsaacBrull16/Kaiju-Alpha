@@ -2,6 +2,7 @@ package com.projecte.kaiju.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,23 +15,24 @@ import com.projecte.kaiju.helpers.GlobalInfo;
 
 public class PlayModeActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    /*private FirebaseAuth mAuth;
 
     private FirebaseDatabase db;
 
-    private DatabaseReference userRef;
+    private DatabaseReference userRef;*/
+    protected String myClassTag = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_mode);
-        mAuth = FirebaseAuth.getInstance();
+        /*mAuth = FirebaseAuth.getInstance();
         String url= GlobalInfo.getInstance().getFB_DB();
         db = FirebaseDatabase.getInstance(url);
         if (mAuth.getCurrentUser() != null) {
             String id = mAuth.getCurrentUser().getUid();
             userRef = db.getReference("users").child(id).child("play_mode");
-        }
+        }*/
 
         findViewById(R.id.localButton).setOnClickListener(v -> toPlay());
         findViewById(R.id.multijugadorButton).setOnClickListener(v -> toPlay());
@@ -41,8 +43,8 @@ public class PlayModeActivity extends AppCompatActivity {
 
     }
     public void toPlay(){
-        userRef.setValue("player");
         Intent intent = new Intent(this, Partida.class);
+        intent.putExtra("tipusdejoc", "player");
         startActivity(intent);
         finish();
     }
@@ -53,8 +55,8 @@ public class PlayModeActivity extends AppCompatActivity {
     }
 
     public void iaMode(){
-        userRef.setValue("IA");
         Intent intent = new Intent(this, Partida.class);
+        intent.putExtra("tipusdejoc", "IA");
         startActivity(intent);
         finish();
     }

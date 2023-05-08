@@ -5,6 +5,8 @@ import android.content.Context;
 public class GlobalInfo {
     private String FB_DB = "https://kaiju-f8483-default-rtdb.europe-west1.firebasedatabase.app/";
 
+    private String lastMode;
+
     private static GlobalInfo instance = new GlobalInfo();
 
     /*private GlobalInfo(){
@@ -28,5 +30,4 @@ public class GlobalInfo {
     }
 
     private static Context context = null;
-
 }

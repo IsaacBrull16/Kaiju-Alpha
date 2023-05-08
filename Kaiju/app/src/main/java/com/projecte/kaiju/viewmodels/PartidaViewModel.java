@@ -305,4 +305,8 @@ public class PartidaViewModel extends ViewModel {
             turnChanged.setValue(true);
         }
     }
+
+    public void setPlayerMode(String mode){
+        game.getBoard().getPlayer2().setType(mode);
+    }
 }

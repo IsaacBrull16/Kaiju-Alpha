@@ -20,7 +20,7 @@ import com.projecte.kaiju.helpers.GlobalInfo;
 
 public class Board {
 
-    private String LastMode;
+    //private String LastMode;
 
     private boolean cardTableP1 = false;
     private boolean cardTableP2 = false;
@@ -31,11 +31,11 @@ public class Board {
 
     protected String myClassTag = this.getClass().getSimpleName();
 
-    private FirebaseAuth mAuth;
+    /*private FirebaseAuth mAuth;
 
     private FirebaseDatabase db;
 
-    private DatabaseReference playRef;
+    private DatabaseReference playRef;*/
 
 
     public Board() {
@@ -45,7 +45,14 @@ public class Board {
         player1.setLife(25);
         player2.setLife(25);
 
-        mAuth = FirebaseAuth.getInstance();
+        if (player2.getType().equals("IA")){
+            player2.setName("IA");
+        }
+
+        /*LastMode = GlobalInfo.getInstance().getLastMode();
+        Log.d(myClassTag, LastMode);*/
+
+        /*mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null){
             String id = mAuth.getCurrentUser().getUid();
             String url = GlobalInfo.getInstance().getFB_DB();
@@ -66,10 +73,10 @@ public class Board {
                 latch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }
 
 
-        }
+        }*/
 
     }
 
@@ -175,7 +182,7 @@ public class Board {
         }
     }
 
-    public void getLastMode(final Board.OnDataLoadedListener listener){
+    /*public void getLastMode(final Board.OnDataLoadedListener listener){
         playRef.child("play_mode").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -208,6 +215,6 @@ public class Board {
     }
     public interface OnDataLoadedListener {
         void onDataLoaded(String LastMode);
-    }
+    }*/
 
 }
