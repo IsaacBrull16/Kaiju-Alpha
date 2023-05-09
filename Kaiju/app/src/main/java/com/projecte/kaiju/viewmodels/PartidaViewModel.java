@@ -1,5 +1,7 @@
 package com.projecte.kaiju.viewmodels;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.models.Game;
+import com.projecte.kaiju.views.Partida;
 
 public class PartidaViewModel extends ViewModel {
     private FirebaseAuth mAuth;
@@ -346,6 +349,7 @@ public class PartidaViewModel extends ViewModel {
         } catch (InterruptedException e) {
         }
         changeTurn2();
+
     }
 
 }

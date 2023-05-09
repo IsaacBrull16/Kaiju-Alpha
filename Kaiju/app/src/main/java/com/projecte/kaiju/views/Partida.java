@@ -254,6 +254,7 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getTurnChanged().observe(this, Boolean -> {
             if (Boolean == true){
                 currentPlayer = true;
+                Toast.makeText(Partida.this, "Player 1 Turn", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.deckButton2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.INVISIBLE);
@@ -263,6 +264,7 @@ public class Partida extends AppCompatActivity {
                 findViewById(R.id.dice1Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.VISIBLE);
             } else if(player2Type == false) {
+                Toast.makeText(Partida.this, "Player 2 Turn", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.deckButton2).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.VISIBLE);
