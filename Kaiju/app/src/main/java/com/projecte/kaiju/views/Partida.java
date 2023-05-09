@@ -64,7 +64,7 @@ public class Partida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partida);
 
-        Bundle bundle = getIntent().getExtras();
+
 
         currentPlayer = true;
         diceRolledP1 = false;
@@ -76,11 +76,14 @@ public class Partida extends AppCompatActivity {
 
         partidaviewModel = new ViewModelProvider(this).get(PartidaViewModel.class);
 
-        if(bundle.getString("tipusdejoc")!= null) {
-            String tipus = bundle.getString("tipusdejoc");
-            partidaviewModel.setPlayerMode(tipus);
-            Log.d(myClassTag, tipus);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null && bundle.getString("tipusdejoc") != null) {
+            String type = bundle.getString("tipusdejoc");
+            partidaviewModel.setPlayerMode(type);
+            Log.d(myClassTag, type);
         }
+
+
 
         /**
          * Encontramos las id de cada objeto del layout que querramos usar

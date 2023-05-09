@@ -1,17 +1,5 @@
 package com.projecte.kaiju.models;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.projecte.kaiju.helpers.GlobalInfo;
-
 /**
  * @author: Álex Pellitero García
  * @version: 17/02/2023/A
@@ -44,6 +32,7 @@ public class Board {
         player2 = new Player("J2");
         player1.setLife(25);
         player2.setLife(25);
+        player2.setType("player");
 
         if (player2.getType().equals("IA")){
             player2.setName("IA");

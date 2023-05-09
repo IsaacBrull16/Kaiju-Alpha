@@ -2,16 +2,11 @@ package com.projecte.kaiju.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.projecte.kaiju.R;
-import com.projecte.kaiju.helpers.GlobalInfo;
 
 public class PlayModeActivity extends AppCompatActivity {
 
@@ -44,9 +39,12 @@ public class PlayModeActivity extends AppCompatActivity {
     }
     public void toPlay(){
         Intent intent = new Intent(this, Partida.class);
-        intent.putExtra("tipusdejoc", "player");
+        Bundle bundle = new Bundle();
+        bundle.putString("tipusdejoc", "player");
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
+
     }
     public void toHome(){
         Intent intent = new Intent(this, MainActivity.class);
@@ -56,8 +54,11 @@ public class PlayModeActivity extends AppCompatActivity {
 
     public void iaMode(){
         Intent intent = new Intent(this, Partida.class);
-        intent.putExtra("tipusdejoc", "IA");
+        Bundle bundle = new Bundle();
+        bundle.putString("tipusdejoc", "IA");
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
+
     }
 }

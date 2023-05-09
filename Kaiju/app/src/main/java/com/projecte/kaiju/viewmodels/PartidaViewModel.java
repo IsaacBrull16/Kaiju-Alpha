@@ -308,5 +308,11 @@ public class PartidaViewModel extends ViewModel {
 
     public void setPlayerMode(String mode){
         game.getBoard().getPlayer2().setType(mode);
+        if (mode.equals("player")){
+            game.getBoard().getPlayer2().setName("J2");
+        } else {
+            game.getBoard().getPlayer2().setName("IA");
+        }
     }
+
 }
