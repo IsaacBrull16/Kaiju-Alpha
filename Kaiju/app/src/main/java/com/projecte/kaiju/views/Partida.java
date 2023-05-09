@@ -59,6 +59,8 @@ public class Partida extends AppCompatActivity {
 
     private boolean currentPlayer;
 
+    private boolean player2Type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,25 +153,34 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if (integer <= 0){
-                    playRef.child("last_game_result").setValue("lose");
-                    Intent i2 = new Intent (Partida.this, Player1Win.class);
-                    startActivity(i2);
+                    lifeP1.setText(String.valueOf(0));
+                    Intent intent = new Intent(Partida.this, Player1Win.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("result", "J2");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                     finish();
+                } else {
+                    lifeP1.setText(String.valueOf(integer));
                 }
-                lifeP1.setText(String.valueOf(integer));
+
             }
         });
 
         partidaviewModel.getLife2().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                if (integer <= 0){
-                    playRef.child("last_game_result").setValue("win");
-                    Intent i3 = new Intent (Partida.this, Player1Win.class);
-                    startActivity(i3);
+                if (integer <= 0) {
+                    lifeP2.setText(String.valueOf(0));
+                    Intent intent = new Intent(Partida.this, Player1Win.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("result", "J1");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                     finish();
+                } else {
+                    lifeP2.setText(String.valueOf(integer));
                 }
-                lifeP2.setText(String.valueOf(integer));
             }
         });
 
@@ -251,11 +262,17 @@ public class Partida extends AppCompatActivity {
                 findViewById(R.id.endTurn1).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.VISIBLE);
-            } else {
+            } else if(player2Type == false) {
                 findViewById(R.id.deckButton2).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado2).setVisibility(View.VISIBLE);
+                findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
+                findViewById(R.id.valorDado1).setVisibility(View.INVISIBLE);
+                currentPlayer = false;
+            } else {
                 findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
@@ -342,6 +359,22 @@ public class Partida extends AppCompatActivity {
             }
         });
 
+        partidaviewModel.getPlayer2Type().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+                if (s.equals("IA")){
+                    player2Type = true;
+                    findViewById(R.id.deckButton2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.endTurn2).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.dice2Button).setVisibility(View.INVISIBLE);
+                    findViewById(R.id.valorDado2).setVisibility(View.INVISIBLE);
+                } else {
+                    player2Type = false;
+                }
+            }
+        });
+
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
          * pondrá el valor por texto y te indicará si la carta la puedes usar
@@ -401,7 +434,7 @@ public class Partida extends AppCompatActivity {
          * Para acabar el turno, el jugador pulsa el botón
          */
 
-        findViewById(R.id.endTurn1).setOnClickListener(v -> partidaviewModel.changeTurn1());
+        findViewById(R.id.endTurn1).setOnClickListener(v -> endTurn1());
 
         /**
          * Mismas condiciones del botón acabar turno del jugador 1 se aplican para el jugador 2
@@ -409,6 +442,7 @@ public class Partida extends AppCompatActivity {
 
         findViewById(R.id.endTurn2).setOnClickListener(v -> partidaviewModel.changeTurn2());
     }
+
 
     public void playingDice1(){
         if(diceRolledP1 == false){
@@ -540,6 +574,15 @@ public class Partida extends AppCompatActivity {
                 return ContextCompat.getDrawable(cont, R.drawable.sharkmaster);
             default:
                 return null;
+        }
+    }
+    public void endTurn1() {
+        if (player2Type == true) {
+            partidaviewModel.changeTurn1();
+            partidaviewModel.IAMode();
+        } else {
+            partidaviewModel.changeTurn1();
+
         }
     }
 }

@@ -49,6 +49,8 @@ public class PartidaViewModel extends ViewModel {
     private MutableLiveData<Integer> card1Life = new MutableLiveData<>();
     private MutableLiveData<Integer> card2Life = new MutableLiveData<>();
 
+    private  MutableLiveData<String> player2Type = new MutableLiveData<>();
+
     private Game game;
 
     public LiveData<Integer> getDice1(){
@@ -131,6 +133,12 @@ public class PartidaViewModel extends ViewModel {
         return card2Life;
     }
 
+    public MutableLiveData<String> getPlayer2Type() {
+        return player2Type;
+    }
+
+    protected String myClassTag = this.getClass().getSimpleName();
+
     private int l1;
     private int l2;
 
@@ -198,11 +206,11 @@ public class PartidaViewModel extends ViewModel {
             int act = game.getBoard().getPlayer2().getPlayerDice().getOriginalValue();
             int acum = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
             actNum2.setValue(act);
-            if (!((acum - act) == 0)){
+            /*if (!((acum - act) == 0)){
                 actPlusNewDiceNum2.setValue(String.valueOf(act) + " + " + String.valueOf(acum - act));
             } else {
                 actPlusNewDiceNum2.setValue(String.valueOf(act));
-            }
+            }*/
             numDice2.setValue(acum);
             isDice2Rolled.setValue(game.getBoard().getDiceRolledP2());
         }
@@ -290,6 +298,7 @@ public class PartidaViewModel extends ViewModel {
         if (game.getTurn().getTurnValue() == true) {
             game.endTurn1();
             String p2 = game.getBoard().getPlayer2().getName();
+            //Log.d(myClassTag, "player2 name: " + p2);
             currentPlayer.setValue(p2);
             isDice1Rolled.setValue(false);
             turnChanged.setValue(false);
@@ -313,6 +322,30 @@ public class PartidaViewModel extends ViewModel {
         } else {
             game.getBoard().getPlayer2().setName("IA");
         }
+        player2Type.setValue(game.getBoard().getPlayer2().getType());
+    }
+
+    public void IAMode() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        launchDice2();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        setCardOnT2();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        useCard2();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        changeTurn2();
     }
 
 }
