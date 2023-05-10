@@ -1,7 +1,5 @@
 package com.projecte.kaiju.viewmodels;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,12 +14,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.models.Game;
-import com.projecte.kaiju.views.Partida;
 
 public class PartidaViewModel extends ViewModel {
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
     private DatabaseReference usrRef;
+
+    private boolean canUseCard2;
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
     private MutableLiveData<Integer> numDice2 = new MutableLiveData<>();
     private MutableLiveData<Card> cardOnT1 = new MutableLiveData<Card>();
@@ -205,6 +204,7 @@ public class PartidaViewModel extends ViewModel {
             game.dice2Actions();
             if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) && (game.getBoard().isCardOnTableP2() == true)){
                 isCard2Playable.setValue(true);
+                canUseCard2 = true;
             }
             int act = game.getBoard().getPlayer2().getPlayerDice().getOriginalValue();
             int acum = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
@@ -248,6 +248,7 @@ public class PartidaViewModel extends ViewModel {
                 isCard2OnTable.setValue(true);
                 if (card2.getCost() <= numDice2.getValue()){
                     isCard2Playable.setValue(true);
+                    canUseCard2 = true;
                 }
             }
         }
@@ -291,6 +292,7 @@ public class PartidaViewModel extends ViewModel {
                 int d2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
                 isCard2OnTable.setValue(false);
                 isCard2Playable.setValue(false);
+                canUseCard2 = false;
                 life1.setValue(l1);
                 numDice2.setValue(d2);
             }
@@ -334,22 +336,24 @@ public class PartidaViewModel extends ViewModel {
         } catch (InterruptedException e) {
         }
         launchDice2();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
+        while ((game.getBoard().isCardOnTableP2() == false) && (canUseCard2 == false)) {
+            if (game.getBoard().isCardOnTableP2() == false) {
+                setCardOnT2();
+                if (canUseCard2 == true) {
+                    useCard2();
+                } else if (canUseCard2 == false && game.getBoard().isCardOnTableP2() == true) {
+                    break;
+                }
+
+            }
+
         }
-        setCardOnT2();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-        }
-        useCard2();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
         changeTurn2();
-
     }
+
 
 }
