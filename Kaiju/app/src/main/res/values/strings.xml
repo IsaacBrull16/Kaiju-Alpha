@@ -70,4 +70,7 @@
     <string name="LastLogin">The last time you LoggedIn was at: </string>
     <string name="FirstLogin">Congratulations it\'s your first LogIn! =)</string>
     <string name="your_cards">Your Cards</string>
+    <string name="turn2">Player 2 Turn</string>
+    <string name="turn1">Player 1 Turn</string>
+
 </resources>
