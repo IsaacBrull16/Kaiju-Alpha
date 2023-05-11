@@ -21,6 +21,8 @@ public class PartidaViewModel extends ViewModel {
     private DatabaseReference usrRef;
 
     private boolean canUseCard2;
+
+    private boolean cardTable2;
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
     private MutableLiveData<Integer> numDice2 = new MutableLiveData<>();
     private MutableLiveData<Card> cardOnT1 = new MutableLiveData<Card>();
@@ -246,6 +248,7 @@ public class PartidaViewModel extends ViewModel {
                 card2Life.setValue(cl2);
                 cardOnT2.setValue(card2);
                 isCard2OnTable.setValue(true);
+                cardTable2 = true;
                 if (card2.getCost() <= numDice2.getValue()){
                     isCard2Playable.setValue(true);
                     canUseCard2 = true;
@@ -291,6 +294,7 @@ public class PartidaViewModel extends ViewModel {
                 }*/
                 int d2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
                 isCard2OnTable.setValue(false);
+                cardTable2 = false;
                 isCard2Playable.setValue(false);
                 canUseCard2 = false;
                 life1.setValue(l1);
@@ -336,18 +340,26 @@ public class PartidaViewModel extends ViewModel {
         } catch (InterruptedException e) {
         }
         launchDice2();
-        while ((game.getBoard().isCardOnTableP2() == false) && (canUseCard2 == false)) {
-            if (game.getBoard().isCardOnTableP2() == false) {
-                setCardOnT2();
-                if (canUseCard2 == true) {
-                    useCard2();
-                } else if (canUseCard2 == false && game.getBoard().isCardOnTableP2() == true) {
+        if ((cardTable2 == true) && (canUseCard2 == true)) {
+            useCard2();
+        }
+            while ((cardTable2 == false) && (canUseCard2 == false)) {
+                if (l1 <= 0) {
                     break;
+                }
+                if (cardTable2 == false) {
+                    setCardOnT2();
+                    if (canUseCard2 == true) {
+                        useCard2();
+                    } else if (canUseCard2 == false && cardTable2 == true) {
+                        break;
+                    }
+
+
                 }
 
             }
 
-        }
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
