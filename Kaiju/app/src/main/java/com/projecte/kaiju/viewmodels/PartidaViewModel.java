@@ -22,6 +22,7 @@ public class PartidaViewModel extends ViewModel {
 
     private boolean canUseCard2;
 
+    private boolean cardTable1;
     private boolean cardTable2;
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
     private MutableLiveData<Integer> numDice2 = new MutableLiveData<>();
@@ -159,6 +160,7 @@ public class PartidaViewModel extends ViewModel {
         turnChanged.setValue(true);
         l1 = game.getBoard().getPlayer1().getLife();
         l2 = game.getBoard().getPlayer2().getLife();
+        objective1.setValue("none");
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null){
             String id = mAuth.getCurrentUser().getUid();
@@ -231,6 +233,7 @@ public class PartidaViewModel extends ViewModel {
                 card1Life.setValue(cl1);
                 cardOnT1.setValue(card1);
                 isCard1OnTable.setValue(true);
+                cardTable1 = true;
                 if (card1.getCost() <= numDice1.getValue()){
                     isCard1Playable.setValue(true);
                 }
@@ -262,19 +265,21 @@ public class PartidaViewModel extends ViewModel {
             if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) {
                 game.card1Actions();
                 String objectiveP1 = objective1.getValue();
-                //if (objectiveP1.equals("player")){
+                if (objectiveP1.equals("player")){
                     l2 = l2 - game.getCardT1().getDamage();
                     game.getBoard().getPlayer2().setLife(l2);
-                /*} else if (objectiveP1.equals("card1")){
-                    cl1 = cl1 - game.getCardT1().getDamage();
-                    game.getCardT1().setLife(cl1);
-                    card1Life.setValue(cl1);
-                }*/
+                } else if (objectiveP1.equals("card1")){
+                    cl2 = cl2 - game.getCardT1().getDamage();
+                    game.getCardT1().setLife(cl2);
+                    card2Life.setValue(cl2);
+                }
                 int d1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
                 isCard1OnTable.setValue(false);
+                cardTable1 = false;
                 isCard1Playable.setValue(false);
                 numDice1.setValue(d1);
                 life2.setValue(l2);
+                objective1.setValue("none");
             }
         }
     }
@@ -284,14 +289,14 @@ public class PartidaViewModel extends ViewModel {
             if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) {
                 game.card2Actions();
                 String objectiveP2 = objective2.getValue();
-                //if (objectiveP2.equals("player")){
+                if (objectiveP2.equals("player")){
                     l1 = l1 - game.getCardT1().getDamage();
                     game.getBoard().getPlayer2().setLife(l1);
-                /*} else if (objectiveP2.equals("card1")) {
-                    cl2 = cl2 - game.getCardT2().getDamage();
-                    game.getCardT1().setLife(cl2);
-                    card2Life.setValue(cl2);
-                }*/
+                } else if (objectiveP2.equals("card1")) {
+                    cl1 = cl1 - game.getCardT2().getDamage();
+                    game.getCardT1().setLife(cl1);
+                    card1Life.setValue(cl1);
+                }
                 int d2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
                 isCard2OnTable.setValue(false);
                 cardTable2 = false;
@@ -341,7 +346,12 @@ public class PartidaViewModel extends ViewModel {
         }
         launchDice2();
         if ((cardTable2 == true) && (canUseCard2 == true)) {
-            useCard2();
+            if (cardTable1 == true){
+                setObjective2("card1");
+            } else {
+              setObjective2("player");
+            }
+             useCard2();
         }
             while ((cardTable2 == false) && (canUseCard2 == false)) {
                 if (l1 <= 0) {
@@ -350,6 +360,11 @@ public class PartidaViewModel extends ViewModel {
                 if (cardTable2 == false) {
                     setCardOnT2();
                     if (canUseCard2 == true) {
+                        if (cardTable1 == true){
+                            setObjective2("card1");
+                        } else {
+                            setObjective2("player");
+                        }
                         useCard2();
                     } else if (canUseCard2 == false && cardTable2 == true) {
                         break;
@@ -361,5 +376,14 @@ public class PartidaViewModel extends ViewModel {
         } catch (InterruptedException e) {
         }
         changeTurn2();
+    }
+
+    public void setObjective1(String objective1) {
+        String objectiveP1 = objective1;
+        this.objective1.setValue(objectiveP1);
+    }
+    public void setObjective2(String objective2) {
+        String objectiveP2 = objective2;
+        this.objective2.setValue(objectiveP2);
     }
 }
