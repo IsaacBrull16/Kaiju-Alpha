@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/android_small"
-    tools:context=".views.Player2Win">
+    android:background="@drawable/android_small___1"
+    tools:context=".views.WinActivity">
 
     <TextView
-        android:id="@+id/winnerConditionsText2"
+        android:id="@+id/winnerConditionsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/player_2_wins"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="40dp"
         android:textStyle="italic"
@@ -51,14 +51,15 @@
         app:layout_constraintVertical_bias="0.639" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imageView4"
         android:layout_width="243dp"
         android:layout_height="253dp"
-        app:layout_constraintBottom_toTopOf="@+id/winnerConditionsText2"
+        android:backgroundTint="#9C27B0"
+        android:src="@drawable/logogame1"
+        app:layout_constraintBottom_toTopOf="@+id/playButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.662"
-        app:srcCompat="@drawable/logogame1" />
+        app:layout_constraintVertical_bias="0.309" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

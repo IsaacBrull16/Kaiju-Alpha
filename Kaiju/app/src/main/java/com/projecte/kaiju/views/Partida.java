@@ -154,7 +154,7 @@ public class Partida extends AppCompatActivity {
             public void onChanged(Integer integer) {
                 if (integer <= 0){
                     lifeP1.setText(String.valueOf(0));
-                    Intent intent = new Intent(Partida.this, Player1Win.class);
+                    Intent intent = new Intent(Partida.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J2");
                     intent.putExtras(bundle);
@@ -172,7 +172,7 @@ public class Partida extends AppCompatActivity {
             public void onChanged(Integer integer) {
                 if (integer <= 0) {
                     lifeP2.setText(String.valueOf(0));
-                    Intent intent = new Intent(Partida.this, Player1Win.class);
+                    Intent intent = new Intent(Partida.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J1");
                     intent.putExtras(bundle);

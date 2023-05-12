@@ -354,18 +354,12 @@ public class PartidaViewModel extends ViewModel {
                     } else if (canUseCard2 == false && cardTable2 == true) {
                         break;
                     }
-
-
                 }
-
             }
-
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
         changeTurn2();
     }
-
-
 }
