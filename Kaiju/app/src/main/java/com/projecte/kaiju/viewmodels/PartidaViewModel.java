@@ -296,7 +296,7 @@ public class PartidaViewModel extends ViewModel {
                     life2.setValue(l2);
                 } else if (objectiveP1.equals("card1")){
                     //cl2=game.getCardT2().getLife();
-                    cl2 = cl2 - game.getCardT1().getDamage();
+                    cl2 = cl2 - game.getCardT1().getDamage() + detectType(game.getCardT1().getType(), game.getCardT2().getType());
                     if(cl2<=0){
                         isCard2OnTable.setValue(false);
                         game.getBoard().changeCardOnTableP2();
@@ -335,7 +335,7 @@ public class PartidaViewModel extends ViewModel {
                     life1.setValue(l1);
                 } else if (objectiveP2.equals("card1")) {
                     //cl1=game.getCardT1().getLife();
-                    cl1 = cl1 - game.getCardT2().getDamage();
+                    cl1 = cl1 - game.getCardT2().getDamage() + detectType(game.getCardT2().getType(), game.getCardT1().getType());
                     if(cl1<=0){
                         isCard1OnTable.setValue(false);
                         game.getBoard().changeCardOnTableP1();
@@ -430,5 +430,23 @@ public class PartidaViewModel extends ViewModel {
     public void setObjective2(String objective2) {
         String objectiveP2 = objective2;
         this.objective2.setValue(objectiveP2);
+    }
+
+    public int detectType(String card1Type, String card2Type){
+        if ((card1Type.equalsIgnoreCase("Technology") && (card2Type.equalsIgnoreCase("Science")))){
+            return -1;
+        } else if ((card1Type.equalsIgnoreCase("Science") && (card2Type.equalsIgnoreCase("Nature")))){
+            return -1;
+        } else if ((card1Type.equalsIgnoreCase("Nature") && (card2Type.equalsIgnoreCase("Technology")))) {
+            return -1;
+        } else if ((card1Type.equalsIgnoreCase("Technology") && (card2Type.equalsIgnoreCase("Nature")))){
+            return +1;
+        } else if ((card1Type.equalsIgnoreCase("Nature") && (card2Type.equalsIgnoreCase("Science")))) {
+            return +1;
+        } else if ((card1Type.equalsIgnoreCase("Science") && (card2Type.equalsIgnoreCase("Technology")))) {
+            return +1;
+        } else {
+            return 0;
+        }
     }
 }

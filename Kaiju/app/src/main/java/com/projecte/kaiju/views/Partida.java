@@ -455,7 +455,7 @@ public class Partida extends AppCompatActivity {
          * Mismas condiciones del botón acabar turno del jugador 1 se aplican para el jugador 2
          */
 
-        findViewById(R.id.endTurn2).setOnClickListener(v -> partidaviewModel.changeTurn2());
+        findViewById(R.id.endTurn2).setOnClickListener(v -> endTurn2());
 
         findViewById(R.id.imageBusuario1).setOnClickListener(v -> attackPlayer1());
 
@@ -616,11 +616,24 @@ public class Partida extends AppCompatActivity {
         }
     }
     public void endTurn1() {
-        if (player2Type == true) {
+        if (!diceRolledP1){
+            Toast.makeText(this, R.string.NotDiceRolled, Toast.LENGTH_SHORT).show();
+        } else if (player2Type == true) {
             partidaviewModel.changeTurn1();
             partidaviewModel.IAMode();
         } else {
             partidaviewModel.changeTurn1();
+
+        }
+    }
+
+    public void endTurn2() {
+        if (!diceRolledP2){
+            Toast toast = Toast.makeText(this, R.string.NotDiceRolled, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
+        } else {
+            partidaviewModel.changeTurn2();
 
         }
     }
