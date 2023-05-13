@@ -164,6 +164,7 @@ public class PartidaViewModel extends ViewModel {
         l1 = game.getBoard().getPlayer1().getLife();
         l2 = game.getBoard().getPlayer2().getLife();
         objective1.setValue("none");
+        objective2.setValue("none");
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null){
             String id = mAuth.getCurrentUser().getUid();
@@ -280,16 +281,19 @@ public class PartidaViewModel extends ViewModel {
             if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) {
                 game.card1Actions();
                 int diceValue1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
-                diceValue1 = diceValue1 - game.getCardT1().getDamage();
-                if (diceValue1 >= game.getCardT1().getCost()){
-                    isCard1Playable.setValue(true);
-                } else {
+                diceValue1 = diceValue1 - game.getCardT1().getCost();
+                game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
+                numDice1.setValue(diceValue1);
+                if (diceValue1 < game.getCardT1().getCost()){
                     isCard1Playable.setValue(false);
+                } else {
+                    isCard1Playable.setValue(true);
                 }
                 String objectiveP1 = objective1.getValue();
                 if (objectiveP1.equals("player")){
                     l2 = l2 - game.getCardT1().getDamage();
                     game.getBoard().getPlayer2().setLife(l2);
+                    life2.setValue(l2);
                 } else if (objectiveP1.equals("card1")){
                     //cl2=game.getCardT2().getLife();
                     cl2 = cl2 - game.getCardT1().getDamage();
@@ -306,8 +310,6 @@ public class PartidaViewModel extends ViewModel {
                     game.getCardT2().setLife(cl2);
                     card2Life.setValue(cl2);
                 }
-                numDice1.setValue(diceValue1);
-                life2.setValue(l2);
                 objective1.setValue("none");
             }
         }
@@ -318,16 +320,19 @@ public class PartidaViewModel extends ViewModel {
             if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) {
                 game.card2Actions();
                 int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
-                diceValue2 = diceValue2 - game.getCardT2().getDamage();
-                if (diceValue2 >= game.getCardT2().getCost()){
-                    isCard2Playable.setValue(true);
-                } else {
+                diceValue2 = diceValue2 - game.getCardT2().getCost();
+                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+                numDice2.setValue(diceValue2);
+                if (diceValue2 < game.getCardT2().getCost()){
                     isCard2Playable.setValue(false);
+                } else {
+                    isCard2Playable.setValue(true);
                 }
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
-                    l1 = l1 - game.getCardT1().getDamage();
+                    l1 = l1 - game.getCardT2().getDamage();
                     game.getBoard().getPlayer2().setLife(l1);
+                    life1.setValue(l1);
                 } else if (objectiveP2.equals("card1")) {
                     //cl1=game.getCardT1().getLife();
                     cl1 = cl1 - game.getCardT2().getDamage();
@@ -343,8 +348,7 @@ public class PartidaViewModel extends ViewModel {
                     game.getCardT1().setLife(cl1);
                     card1Life.setValue(cl1);
                 }
-                life1.setValue(l1);
-                numDice2.setValue(diceValue2);
+                objective2.setValue("none");
             }
         }
     }

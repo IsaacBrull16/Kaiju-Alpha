@@ -211,7 +211,7 @@ public class Partida extends AppCompatActivity {
                 cardCantUseP2 = false;
             } else {
                 cardCantUseP2 = true;
-                card1.setBackgroundColor(Color.LTGRAY);
+                card2.setBackgroundColor(Color.LTGRAY);
             }
         });
 
@@ -357,8 +357,9 @@ public class Partida extends AppCompatActivity {
                 if(integer<=0) {
                     card1.setVisibility(View.INVISIBLE);
                     vidaCarta1.setVisibility(View.INVISIBLE);
+                } else {
+                    vidaCarta1.setText(String.valueOf(integer));
                 }
-                vidaCarta1.setText(String.valueOf(integer));
             }
         });
 
@@ -368,15 +369,15 @@ public class Partida extends AppCompatActivity {
                 if(integer<=0) {
                     card2.setVisibility(View.INVISIBLE);
                     vidaCarta2.setVisibility(View.INVISIBLE);
+                } else {
+                    vidaCarta2.setText(String.valueOf(integer));
                 }
-                vidaCarta2.setText(String.valueOf(integer));
             }
         });
 
         partidaviewModel.getPlayer2Type().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-
                 if (s.equals("IA")){
                     player2Type = true;
                     findViewById(R.id.deckButton2).setVisibility(View.INVISIBLE);
