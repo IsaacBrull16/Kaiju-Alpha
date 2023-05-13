@@ -128,5 +128,9 @@ public class Deck {
     public interface OnDataLoadedListener {
         void onDataLoaded(List<CardHelper> personalDeck);
     }
+
+    public ArrayList<Card> getDeckCards() {
+        return deckCards;
+    }
 }
 

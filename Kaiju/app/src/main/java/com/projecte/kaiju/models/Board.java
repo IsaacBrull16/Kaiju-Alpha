@@ -14,8 +14,8 @@ public class Board {
     private boolean cardTableP2 = false;
     private boolean diceRolledP1 = false;
     private boolean diceRolledP2 = false;
-    private static Player player1;
-    private static Player player2;
+    private Player player1;
+    private Player player2;
 
     protected String myClassTag = this.getClass().getSimpleName();
 
@@ -28,14 +28,14 @@ public class Board {
 
     public Board() {
         //final CountDownLatch latch = new CountDownLatch(1);
-        player1 = new Player("J1");
-        player2 = new Player("J2");
+        this.player1 = new Player("J1");
+        this.player2 = new Player("J2");
         player1.setLife(25);
         player2.setLife(25);
         player2.setType("player");
 
-        if (player2.getType().equals("IA")){
-            player2.setName("IA");
+        if (this.player2.getType().equals("IA")){
+            this.player2.setName("IA");
         }
 
         /*LastMode = GlobalInfo.getInstance().getLastMode();

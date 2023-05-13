@@ -93,7 +93,7 @@ public class Game {
 
     public void card1Actions(){
                 diceValue1 = board.getPlayer1().getPlayerDice().getAcumValue();
-                diceValue1 = diceValue1 - cardT1.getCost();
+                //diceValue1 = diceValue1 - cardT1.getCost();
                 if (diceValue1 >= 0){
                     board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 } else {
@@ -105,7 +105,7 @@ public class Game {
 
     public void card2Actions(){
                 diceValue2 = board.getPlayer2().getPlayerDice().getAcumValue();
-                diceValue2 = diceValue2 - cardT2.getCost();
+                //diceValue2 = diceValue2 - cardT2.getCost();
                 if (diceValue2 >= 0){
                     board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 } else {

@@ -3,7 +3,7 @@ package com.projecte.kaiju.models;
 
 public class Player {
     private String name;
-    private static Deck deckOfPlayer;
+    private Deck deckOfPlayer;
     private Dice playerDice;
     private int life;
 
@@ -32,6 +32,10 @@ public class Player {
     }
     public Deck getDeckOfPlayer(){
         return this.deckOfPlayer;
+    }
+
+    public void setDeckOfPlayer(Deck deckOfPlayer) {
+        this.deckOfPlayer = deckOfPlayer;
     }
 
     public Dice getPlayerDice(){
