@@ -21,22 +21,40 @@ public class PartidaViewModel extends ViewModel {
     private FirebaseDatabase db;
     private DatabaseReference usrRef;
 
-    private boolean canUseCard2;
+    private boolean canUseCard21;
+    private boolean canUseCard22;
+    private boolean canUseCard23;
 
-    private boolean cardTable1;
-    private boolean cardTable2;
+    private boolean cardTable11;
+    private boolean cardTable12;
+    private boolean cardTable13;
+    private boolean cardTable21;
+    private boolean cardTable22;
+    private boolean cardTable23;
     private MutableLiveData<Integer> numDice1 = new MutableLiveData<>();
     private MutableLiveData<Integer> numDice2 = new MutableLiveData<>();
-    private MutableLiveData<Card> cardOnT1 = new MutableLiveData<Card>();
-    private MutableLiveData<Card> cardOnT2 = new MutableLiveData<Card>();
+    private MutableLiveData<Card> cardOnT11 = new MutableLiveData<Card>();
+    private MutableLiveData<Card> cardOnT12 = new MutableLiveData<Card>();
+    private MutableLiveData<Card> cardOnT13 = new MutableLiveData<Card>();
+    private MutableLiveData<Card> cardOnT21 = new MutableLiveData<Card>();
+    private MutableLiveData<Card> cardOnT22 = new MutableLiveData<Card>();
+    private MutableLiveData<Card> cardOnT23 = new MutableLiveData<Card>();
     private MutableLiveData<Integer> life1 = new MutableLiveData<>();
     private MutableLiveData<Integer> life2 = new MutableLiveData<>();
 
     private MutableLiveData<String> currentPlayer = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isCard1Playable = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isCard2Playable = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isCard1OnTable = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isCard2OnTable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard11Playable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard12Playable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard13Playable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard21Playable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard22Playable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard23Playable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard11OnTable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard12OnTable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard13OnTable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard21OnTable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard22OnTable = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isCard23OnTable = new MutableLiveData<>();
 
     private MutableLiveData<Boolean> winner = new MutableLiveData<>();
 
@@ -52,8 +70,12 @@ public class PartidaViewModel extends ViewModel {
     private MutableLiveData<String> actPlusNewDiceNum2 = new MutableLiveData<>();
     private MutableLiveData<String> objective1 = new MutableLiveData<>();
     private MutableLiveData<String> objective2 = new MutableLiveData<>();
-    private MutableLiveData<Integer> card1Life = new MutableLiveData<>();
-    private MutableLiveData<Integer> card2Life = new MutableLiveData<>();
+    private MutableLiveData<Integer> card11Life = new MutableLiveData<>();
+    private MutableLiveData<Integer> card12Life = new MutableLiveData<>();
+    private MutableLiveData<Integer> card13Life = new MutableLiveData<>();
+    private MutableLiveData<Integer> card21Life = new MutableLiveData<>();
+    private MutableLiveData<Integer> card22Life = new MutableLiveData<>();
+    private MutableLiveData<Integer> card23Life = new MutableLiveData<>();
 
     private  MutableLiveData<String> player2Type = new MutableLiveData<>();
 
@@ -67,12 +89,24 @@ public class PartidaViewModel extends ViewModel {
         return numDice2;
     }
 
-    public LiveData<Card> getCard1(){
-        return cardOnT1;
+    public LiveData<Card> getCard11(){
+        return cardOnT11;
+    }
+    public LiveData<Card> getCard12(){
+        return cardOnT12;
+    }
+    public LiveData<Card> getCard13(){
+        return cardOnT13;
     }
 
-    public LiveData<Card> getCard2(){
-        return cardOnT2;
+    public LiveData<Card> getCard21(){
+        return cardOnT21;
+    }
+    public LiveData<Card> getCard22(){
+        return cardOnT22;
+    }
+    public LiveData<Card> getCard23(){
+        return cardOnT23;
     }
 
     public LiveData<Integer> getLife1() {
@@ -86,17 +120,41 @@ public class PartidaViewModel extends ViewModel {
     public LiveData<String> getCurrentPlayer(){
         return currentPlayer;
     }
-    public LiveData<Boolean> getIsCard1Playable(){
-        return isCard1Playable;
+    public LiveData<Boolean> getIsCard11Playable(){
+        return isCard11Playable;
     }
-    public LiveData<Boolean> getIsCard2Playable(){
-        return isCard2Playable;
+    public LiveData<Boolean> getIsCard12Playable(){
+        return isCard12Playable;
     }
-    public LiveData<Boolean> getIsCard1OnTable(){
-        return isCard1OnTable;
+    public LiveData<Boolean> getIsCard13Playable(){
+        return isCard13Playable;
     }
-    public LiveData<Boolean> getIsCard2OnTable(){
-        return isCard2OnTable;
+    public LiveData<Boolean> getIsCard21Playable(){
+        return isCard21Playable;
+    }
+    public LiveData<Boolean> getIsCard22Playable(){
+        return isCard22Playable;
+    }
+    public LiveData<Boolean> getIsCard23Playable(){
+        return isCard23Playable;
+    }
+    public LiveData<Boolean> getIsCard11OnTable(){
+        return isCard11OnTable;
+    }
+    public LiveData<Boolean> getIsCard12OnTable(){
+        return isCard12OnTable;
+    }
+    public LiveData<Boolean> getIsCard13OnTable(){
+        return isCard13OnTable;
+    }
+    public LiveData<Boolean> getIsCard21OnTable(){
+        return isCard21OnTable;
+    }
+    public LiveData<Boolean> getIsCard22OnTable(){
+        return isCard22OnTable;
+    }
+    public LiveData<Boolean> getIsCard23OnTable(){
+        return isCard23OnTable;
     }
 
     public LiveData<Boolean> getWinner(){return winner;}
@@ -131,12 +189,24 @@ public class PartidaViewModel extends ViewModel {
         return objective2;
     }
 
-    public MutableLiveData<Integer> getCard1Life() {
-        return card1Life;
+    public MutableLiveData<Integer> getCard11Life() {
+        return card11Life;
+    }
+    public MutableLiveData<Integer> getCard12Life() {
+        return card12Life;
+    }
+    public MutableLiveData<Integer> getCard13Life() {
+        return card13Life;
     }
 
-    public MutableLiveData<Integer> getCard2Life() {
-        return card2Life;
+    public MutableLiveData<Integer> getCard21Life() {
+        return card21Life;
+    }
+    public MutableLiveData<Integer> getCard22Life() {
+        return card22Life;
+    }
+    public MutableLiveData<Integer> getCard23Life() {
+        return card23Life;
     }
 
     public MutableLiveData<String> getPlayer2Type() {
@@ -148,16 +218,28 @@ public class PartidaViewModel extends ViewModel {
     private int l1;
     private int l2;
 
-    private int cl1;
-    private int cl2;
+    private int cl11;
+    private int cl12;
+    private int cl13;
+    private int cl21;
+    private int cl22;
+    private int cl23;
 
     public PartidaViewModel() {
         game = new Game();
         isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
-        isCard1OnTable.setValue(false);
-        isCard2OnTable.setValue(false);
-        isCard1Playable.setValue(false);
-        isCard2Playable.setValue(false);
+        isCard11OnTable.setValue(false);
+        isCard12OnTable.setValue(false);
+        isCard13OnTable.setValue(false);
+        isCard21OnTable.setValue(false);
+        isCard22OnTable.setValue(false);
+        isCard23OnTable.setValue(false);
+        isCard11Playable.setValue(false);
+        isCard12Playable.setValue(false);
+        isCard13Playable.setValue(false);
+        isCard21Playable.setValue(false);
+        isCard22Playable.setValue(false);
+        isCard23Playable.setValue(false);
         life1.setValue(game.getBoard().getPlayer1().getLife());
         life2.setValue(game.getBoard().getPlayer2().getLife());
         turnChanged.setValue(true);
@@ -191,8 +273,8 @@ public class PartidaViewModel extends ViewModel {
     public void launchDice1() {
         if ((game.getTurn().getTurnValue() == true) && (game.getBoard().getDiceRolledP1() == false)) {
             game.dice1Actions();
-            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) && (game.getBoard().isCardOnTableP1() == true)){
-                isCard1Playable.setValue(true);
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT11().getCost()) && (game.getBoard().isCardOnTableP11() == true)){
+                isCard11Playable.setValue(true);
             }
             int act = game.getBoard().getPlayer1().getPlayerDice().getOriginalValue();
             int acum = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
@@ -210,9 +292,9 @@ public class PartidaViewModel extends ViewModel {
     public void launchDice2() {
         if ((game.getTurn().getTurnValue() == false) && (game.getBoard().getDiceRolledP2() == false)) {
             game.dice2Actions();
-            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) && (game.getBoard().isCardOnTableP2() == true)){
-                isCard2Playable.setValue(true);
-                canUseCard2 = true;
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT21().getCost()) && (game.getBoard().isCardOnTableP21() == true)){
+                isCard21Playable.setValue(true);
+                canUseCard21 = true;
             }
             int act = game.getBoard().getPlayer2().getPlayerDice().getOriginalValue();
             int acum = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
@@ -227,8 +309,8 @@ public class PartidaViewModel extends ViewModel {
         }
     }
 
-    public void setCardOnT1(){
-        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP1() == false) && (game.getBoard().getDiceRolledP1() == true) && (numDice1.getValue() != null)) {
+    public void setCardOnT11(){
+        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP11() == false) && (game.getBoard().getDiceRolledP1() == true) && (numDice1.getValue() != null)) {
             /*if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
                 game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
             }*/
@@ -237,22 +319,25 @@ public class PartidaViewModel extends ViewModel {
                     Log.d(myClassTag, game.getBoard().getPlayer1().getDeckOfPlayer().getDeckCards().get(i).getName());
                 }*/
                 game.deck1Actions();
-                Card card1 = game.getCardT1();
-                game.setCardT1(card1);
-                cl1 = game.getCardT1().getLife();
-                card1Life.setValue(cl1);
-                cardOnT1.setValue(card1);
-                isCard1OnTable.setValue(true);
-                cardTable1 = true;
+                Card card1 = game.getCardT11();
+                game.setCardT11(card1);
+                cl11 = game.getCardT11().getLife();
+                card11Life.setValue(cl11);
+                cardOnT11.setValue(card1);
+                isCard11OnTable.setValue(true);
+                cardTable11 = true;
                 if (card1.getCost() <= numDice1.getValue()){
-                    isCard1Playable.setValue(true);
+                    isCard11Playable.setValue(true);
                 }
             }
         }
     }
 
-    public void setCardOnT2(){
-        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP2() == false) && (game.getBoard().getDiceRolledP2() == true) && (numDice2.getValue() != null)) {
+    public void setCardOnT12(){}
+    public void setCardOnT13(){}
+
+    public void setCardOnT21(){
+        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP21() == false) && (game.getBoard().getDiceRolledP2() == true) && (numDice2.getValue() != null)) {
             /*if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
                 game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
             }*/
@@ -261,97 +346,106 @@ public class PartidaViewModel extends ViewModel {
                     Log.d(myClassTag, game.getBoard().getPlayer2().getDeckOfPlayer().getDeckCards().get(i).getName());
                 }*/
                 game.deck2Actions();
-                Card card2 = game.getCardT2();
-                game.setCardT2(card2);
-                cl2 = game.getCardT2().getLife();
-                card2Life.setValue(cl2);
-                cardOnT2.setValue(card2);
-                isCard2OnTable.setValue(true);
-                cardTable2 = true;
+                Card card2 = game.getCardT21();
+                game.setCardT21(card2);
+                cl21 = game.getCardT21().getLife();
+                card21Life.setValue(cl21);
+                cardOnT21.setValue(card2);
+                isCard21OnTable.setValue(true);
+                cardTable21 = true;
                 if (card2.getCost() <= numDice2.getValue()){
-                    isCard2Playable.setValue(true);
-                    canUseCard2 = true;
+                    isCard21Playable.setValue(true);
+                    canUseCard21 = true;
                 }
             }
         }
     }
 
-    public void useCard1(){
-        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP1() == true)) {
-            if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT1().getCost()) {
+    public void setCardOnT22(){}
+    public void setCardOnT23(){}
+
+    public void useCard11(){
+        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP11() == true)) {
+            if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT11().getCost()) {
                 game.card1Actions();
                 int diceValue1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
-                diceValue1 = diceValue1 - game.getCardT1().getCost();
+                diceValue1 = diceValue1 - game.getCardT11().getCost();
                 game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 numDice1.setValue(diceValue1);
-                if (diceValue1 < game.getCardT1().getCost()){
-                    isCard1Playable.setValue(false);
+                if (diceValue1 < game.getCardT11().getCost()){
+                    isCard11Playable.setValue(false);
                 } else {
-                    isCard1Playable.setValue(true);
+                    isCard11Playable.setValue(true);
                 }
                 String objectiveP1 = objective1.getValue();
                 if (objectiveP1.equals("player")){
-                    l2 = l2 - game.getCardT1().getDamage();
+                    l2 = l2 - game.getCardT11().getDamage();
                     game.getBoard().getPlayer2().setLife(l2);
                     life2.setValue(l2);
                 } else if (objectiveP1.equals("card1")){
                     //cl2=game.getCardT2().getLife();
-                    cl2 = cl2 - game.getCardT1().getDamage() + detectType(game.getCardT1().getType(), game.getCardT2().getType());
-                    if(cl2<=0){
-                        isCard2OnTable.setValue(false);
-                        game.getBoard().changeCardOnTableP2();
-                        cardTable2 = false;
-                        isCard2Playable.setValue(false);
-                        canUseCard2 = false;
+                    cl21 = cl21 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT21().getType());
+                    if(cl21<=0){
+                        isCard21OnTable.setValue(false);
+                        game.getBoard().changeCardOnTableP21();
+                        cardTable21 = false;
+                        isCard21Playable.setValue(false);
+                        canUseCard21 = false;
                         if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
                             game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
                         }
                     }
-                    game.getCardT2().setLife(cl2);
-                    card2Life.setValue(cl2);
+                    game.getCardT21().setLife(cl21);
+                    card21Life.setValue(cl21);
                 }
                 objective1.setValue("none");
             }
         }
     }
 
-    public void useCard2(){
-        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP2() == true)) {
-            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT2().getCost()) {
+    public void useCard12(){}
+    public void useCard13(){}
+
+    public void useCard21(){
+        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP21() == true)) {
+            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT21().getCost()) {
                 game.card2Actions();
                 int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
-                diceValue2 = diceValue2 - game.getCardT2().getCost();
+                diceValue2 = diceValue2 - game.getCardT21().getCost();
                 game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 numDice2.setValue(diceValue2);
-                if (diceValue2 < game.getCardT2().getCost()){
-                    isCard2Playable.setValue(false);
+                if (diceValue2 < game.getCardT21().getCost()){
+                    isCard21Playable.setValue(false);
                 } else {
-                    isCard2Playable.setValue(true);
+                    isCard21Playable.setValue(true);
                 }
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
-                    l1 = l1 - game.getCardT2().getDamage();
+                    l1 = l1 - game.getCardT21().getDamage();
                     game.getBoard().getPlayer2().setLife(l1);
                     life1.setValue(l1);
                 } else if (objectiveP2.equals("card1")) {
                     //cl1=game.getCardT1().getLife();
-                    cl1 = cl1 - game.getCardT2().getDamage() + detectType(game.getCardT2().getType(), game.getCardT1().getType());
-                    if(cl1<=0){
-                        isCard1OnTable.setValue(false);
-                        game.getBoard().changeCardOnTableP1();
-                        cardTable1 = false;
-                        isCard1Playable.setValue(false);
+                    cl11 = cl11 - game.getCardT21().getDamage() + detectType(game.getCardT21().getType(), game.getCardT11().getType());
+                    if(cl11<=0){
+                        isCard11OnTable.setValue(false);
+                        game.getBoard().changeCardOnTableP11();
+                        cardTable11 = false;
+                        isCard11Playable.setValue(false);
                         if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
                             game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
                         }
                     }
-                    game.getCardT1().setLife(cl1);
-                    card1Life.setValue(cl1);
+                    game.getCardT11().setLife(cl11);
+                    card11Life.setValue(cl11);
                 }
                 objective2.setValue("none");
             }
         }
     }
+
+    public void useCard22(){}
+    public void useCard23(){}
 
     public void changeTurn1(){
         if (game.getTurn().getTurnValue() == true) {
@@ -390,28 +484,28 @@ public class PartidaViewModel extends ViewModel {
         } catch (InterruptedException e) {
         }
         launchDice2();
-        if ((cardTable2 == true) && (canUseCard2 == true)) {
-            if (cardTable1 == true){
+        if ((cardTable21 == true) && (canUseCard21 == true)) {
+            if (cardTable11 == true){
                 setObjective2("card1");
             } else {
               setObjective2("player");
             }
-             useCard2();
+             useCard21();
         }
-            while ((cardTable2 == false) && (canUseCard2 == false)) {
+            while ((cardTable21 == false) && (canUseCard21 == false)) {
                 if (l1 <= 0) {
                     break;
                 }
-                if (cardTable2 == false) {
-                    setCardOnT2();
-                    if (canUseCard2 == true) {
-                        if (cardTable1 == true){
+                if (cardTable21 == false) {
+                    setCardOnT21();
+                    if (canUseCard21 == true) {
+                        if (cardTable11 == true){
                             setObjective2("card1");
                         } else {
                             setObjective2("player");
                         }
-                        useCard2();
-                    } else if (canUseCard2 == false && cardTable2 == true) {
+                        useCard21();
+                    } else if (canUseCard21 == false && cardTable21 == true) {
                         break;
                     }
                 }

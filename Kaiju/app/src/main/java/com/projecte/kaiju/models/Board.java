@@ -10,8 +10,12 @@ public class Board {
 
     //private String LastMode;
 
-    private boolean cardTableP1 = false;
-    private boolean cardTableP2 = false;
+    private boolean cardTableP11 = false;
+    private boolean cardTableP12 = false;
+    private boolean cardTableP13 = false;
+    private boolean cardTableP21 = false;
+    private boolean cardTableP22 = false;
+    private boolean cardTableP23 = false;
     private boolean diceRolledP1 = false;
     private boolean diceRolledP2 = false;
     private Player player1;
@@ -91,11 +95,27 @@ public class Board {
      * Método que nos permitirá decidir si hay una carta o no en el tablero del jugador 1
      */
 
-    public void changeCardOnTableP1(){
-        if (cardTableP1 == true){
-            this.cardTableP1 = false;
+    public void changeCardOnTableP11(){
+        if (cardTableP11 == true){
+            this.cardTableP11 = false;
         } else {
-            this.cardTableP1 = true;
+            this.cardTableP11 = true;
+        }
+    }
+
+    public void changeCardOnTableP12(){
+        if (cardTableP12 == true){
+            this.cardTableP12 = false;
+        } else {
+            this.cardTableP12 = true;
+        }
+    }
+
+    public void changeCardOnTableP13(){
+        if (cardTableP13 == true){
+            this.cardTableP13 = false;
+        } else {
+            this.cardTableP13 = true;
         }
     }
 
@@ -104,19 +124,41 @@ public class Board {
      * @return
      */
 
-    public boolean isCardOnTableP1(){
-        return this.cardTableP1;
+    public boolean isCardOnTableP11(){
+        return this.cardTableP11;
+    }
+    public boolean isCardOnTableP12(){
+        return this.cardTableP12;
+    }
+    public boolean isCardOnTableP13(){
+        return this.cardTableP13;
     }
 
     /**
      * Método que nos permitirá decidir si hay una carta o no en el tablero del jugador 2
      */
 
-    public void changeCardOnTableP2(){
-        if (cardTableP2 == true){
-            this.cardTableP2 = false;
+    public void changeCardOnTableP21(){
+        if (cardTableP21 == true){
+            this.cardTableP21 = false;
         } else {
-            this.cardTableP2 = true;
+            this.cardTableP21 = true;
+        }
+    }
+
+    public void changeCardOnTableP22(){
+        if (cardTableP22 == true){
+            this.cardTableP22 = false;
+        } else {
+            this.cardTableP22 = true;
+        }
+    }
+
+    public void changeCardOnTableP23(){
+        if (cardTableP23 == true){
+            this.cardTableP23 = false;
+        } else {
+            this.cardTableP23 = true;
         }
     }
 
@@ -125,8 +167,14 @@ public class Board {
      * @return
      */
 
-    public boolean isCardOnTableP2(){
-        return this.cardTableP2;
+    public boolean isCardOnTableP21(){
+        return this.cardTableP21;
+    }
+    public boolean isCardOnTableP22(){
+        return this.cardTableP22;
+    }
+    public boolean isCardOnTableP23(){
+        return this.cardTableP23;
     }
 
     /**
@@ -170,40 +218,5 @@ public class Board {
             this.diceRolledP2 = true;
         }
     }
-
-    /*public void getLastMode(final Board.OnDataLoadedListener listener){
-        playRef.child("play_mode").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                LastMode = snapshot.getValue(String.class);
-                Log.d(myClassTag, "Play mode: " + LastMode);
-
-                listener.onDataLoaded(LastMode);
-
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
-    public void assignPlayer2(String mode){
-        if (mode.equals("IA")){
-            player2.setName("IA");
-            player2.setType("IA");
-        } else {
-            player2.setType("player");
-        }
-        String type = player2.getType();
-        Log.d(myClassTag, "Player 2 type: " + type);
-    }
-    public interface OnDataLoadedListener {
-        void onDataLoaded(String LastMode);
-    }*/
 
 }

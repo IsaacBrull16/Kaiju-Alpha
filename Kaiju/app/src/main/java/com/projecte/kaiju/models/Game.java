@@ -10,8 +10,12 @@ public class Game {
     private static Turn turn = new Turn();
     private static int diceValue1;
     private static int diceValue2;
-    private static Card cardT1;
-    private static Card cardT2;
+    private static Card cardT11;
+    private static Card cardT12;
+    private static Card cardT13;
+    private static Card cardT21;
+    private static Card cardT22;
+    private static Card cardT23;
 
     private static int life1;
     private static int life2;
@@ -28,8 +32,12 @@ public class Game {
         board = new Board();
         diceValue1 = 0;
         diceValue2 = 0;
-        cardT1 = new Card(0,"",1000,0,0,"");
-        cardT2 = new Card(0,"",1000,0,0,"");
+        cardT11 = new Card(0,"",1000,0,0,"");
+        cardT12 = new Card(0,"",1000,0,0,"");
+        cardT13 = new Card(0,"",1000,0,0,"");
+        cardT21 = new Card(0,"",1000,0,0,"");
+        cardT22 = new Card(0,"",1000,0,0,"");
+        cardT23 = new Card(0,"",1000,0,0,"");
         life1 = board.getPlayer1().getLife();
         life2 = board.getPlayer2().getLife();
     }
@@ -53,66 +61,70 @@ public class Game {
     }
 
     public void dice1Actions(){
-            board.getPlayer1().getPlayerDice().rollDice();
-            board.changeDiceRolledP1();
+        board.getPlayer1().getPlayerDice().rollDice();
+        board.changeDiceRolledP1();
     }
 
     public void dice2Actions(){
-            board.getPlayer2().getPlayerDice().rollDice();
-            board.changeDiceRolledP2();
+        board.getPlayer2().getPlayerDice().rollDice();
+        board.changeDiceRolledP2();
     }
 
     public void deck1Actions(){
-        //if ((turn.getTurnValue() == true) && (board.isCardOnTableP1() == false) && (board.getDiceRolledP1() == true)) {
-            //if (board.getPlayer1().getDeckOfPlayer().deckSize() != 0) {
-                Card cardtemp1 = board.getPlayer1().getDeckOfPlayer().putCard();
-                cardT1 = cardtemp1;
-                board.changeCardOnTableP1();
-           //}
-        //}
+        Card cardtemp11 = board.getPlayer1().getDeckOfPlayer().putCard();
+        cardT11 = cardtemp11;
+        board.changeCardOnTableP11();
     }
 
     public void deck2Actions(){
-        //if ((turn.getTurnValue() == false) && (board.isCardOnTableP2() == false) && (board.getDiceRolledP2() == true)) {
-            //if (board.getPlayer2().getDeckOfPlayer().deckSize() != 0) {
-                Card cardtemp2 = board.getPlayer2().getDeckOfPlayer().putCard();
-                cardT2 = cardtemp2;
-                board.changeCardOnTableP2();
-            //}
-        //}
+        Card cardtemp21 = board.getPlayer2().getDeckOfPlayer().putCard();
+        cardT21 = cardtemp21;
+        board.changeCardOnTableP21();
     }
 
-    public Card getCardT1(){
-        return this.cardT1;
+    public Card getCardT11(){
+        return this.cardT11;
     }
-    public void setCardT1(Card card){this.cardT1 = card;}
-    public Card getCardT2(){
-        return this.cardT2;
+    public void setCardT11(Card card){this.cardT11 = card;}
+    public Card getCardT12(){
+        return this.cardT12;
     }
-    public void setCardT2(Card card){this.cardT2 = card;}
+    public void setCardT12(Card card){this.cardT12 = card;}
+    public Card getCardT13(){
+        return this.cardT12;
+    }
+    public void setCardT13(Card card){this.cardT12 = card;}
+    public Card getCardT21(){
+        return this.cardT21;
+    }
+    public void setCardT21(Card card){this.cardT21 = card;}
+    public Card getCardT22(){
+        return this.cardT21;
+    }
+    public void setCardT22(Card card){this.cardT21 = card;}
+    public Card getCardT23(){
+        return this.cardT21;
+    }
+    public void setCardT23(Card card){this.cardT21 = card;}
 
     public void card1Actions(){
                 diceValue1 = board.getPlayer1().getPlayerDice().getAcumValue();
-                //diceValue1 = diceValue1 - cardT1.getCost();
                 if (diceValue1 >= 0){
                     board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 } else {
                     diceValue1 = 0;
                     board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 }
-                //board.changeCardOnTableP1();
     }
 
     public void card2Actions(){
                 diceValue2 = board.getPlayer2().getPlayerDice().getAcumValue();
-                //diceValue2 = diceValue2 - cardT2.getCost();
                 if (diceValue2 >= 0){
                     board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 } else {
                     diceValue2 = 0;
                     board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 }
-                //board.changeCardOnTableP2();
     }
 
     public void endTurn1(){
