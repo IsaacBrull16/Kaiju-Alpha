@@ -1,6 +1,8 @@
 package com.projecte.kaiju.views;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -37,6 +39,10 @@ public class Login extends AppCompatActivity {
     private DatabaseReference userRef;
     private String previousLogin;
 
+    private ConnectivityManager cm;
+    private NetworkInfo activeNetwork;
+    private boolean isConnected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,10 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         String url= GlobalInfo.getInstance().getFB_DB();
         db = FirebaseDatabase.getInstance(url);
+        cm = (ConnectivityManager) getSystemService(GlobalInfo.getContext().CONNECTIVITY_SERVICE);
+        activeNetwork = cm.getActiveNetworkInfo();
+        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
 
         findViewById(R.id.changePswd2).setOnClickListener(v -> tochangePswd());
     }
@@ -63,7 +73,11 @@ public class Login extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        reload();
+        if (isConnected){
+            reload();
+        } else {
+            Toast.makeText(this, "You must have be connected to the internet!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void tochangePswd(){
@@ -72,28 +86,35 @@ public class Login extends AppCompatActivity {
     }
 
     private void login() {
-        String email = etName.getText().toString();
-        String password = etPassword.getText().toString();
+        cm = (ConnectivityManager) getSystemService(GlobalInfo.getContext().CONNECTIVITY_SERVICE);
+        activeNetwork = cm.getActiveNetworkInfo();
+        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if (isConnected) {
+            String email = etName.getText().toString();
+            String password = etPassword.getText().toString();
 
-        ActivityHelper.hideKeyboard(this);
+            ActivityHelper.hideKeyboard(this);
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(myClassTag, "signInWithEmail:success");
-                            reload();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(myClassTag, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Login.this, R.string.authentication_failed,
-                                    Toast.LENGTH_SHORT).show();
-                            etPassword.setText("");
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(myClassTag, "signInWithEmail:success");
+                                reload();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(myClassTag, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(Login.this, R.string.authentication_failed,
+                                        Toast.LENGTH_SHORT).show();
+                                etPassword.setText("");
+                            }
                         }
-                    }
-                });
+                    });
+        } else {
+            Toast.makeText(this, "You must be connected to the internet!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void reload(){
