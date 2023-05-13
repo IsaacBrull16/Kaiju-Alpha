@@ -92,8 +92,6 @@ public class Game {
     public void setCardT2(Card card){this.cardT2 = card;}
 
     public void card1Actions(){
-        //if ((turn.getTurnValue() == true) && (board.isCardOnTableP1() == true)) {
-            //if (diceValue1 >= cardT1.getCost()) {
                 diceValue1 = board.getPlayer1().getPlayerDice().getAcumValue();
                 diceValue1 = diceValue1 - cardT1.getCost();
                 if (diceValue1 >= 0){
@@ -102,17 +100,10 @@ public class Game {
                     diceValue1 = 0;
                     board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 }
-                /*life2 = life2 - getCardT1().getDamage();
-                board.getPlayer2().setLife(life2);
-                System.err.println("vida " + life2 + "coste " + getCardT1().getDamage());*/
-                board.changeCardOnTableP1();
-            //}
-        //}
+                //board.changeCardOnTableP1();
     }
 
     public void card2Actions(){
-        //if ((turn.getTurnValue() == false) && (board.isCardOnTableP2() == true)) {
-            //if (diceValue2 >= cardT2.getCost()) {
                 diceValue2 = board.getPlayer2().getPlayerDice().getAcumValue();
                 diceValue2 = diceValue2 - cardT2.getCost();
                 if (diceValue2 >= 0){
@@ -121,12 +112,7 @@ public class Game {
                     diceValue2 = 0;
                     board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 }
-                /*life1 = life1 - getCardT1().getDamage();
-                board.getPlayer2().setLife(life1);
-                System.err.println("vida " + life1 + "coste " + getCardT2().getDamage());*/
-                board.changeCardOnTableP2();
-            //}
-        //}
+                //board.changeCardOnTableP2();
     }
 
     public void endTurn1(){

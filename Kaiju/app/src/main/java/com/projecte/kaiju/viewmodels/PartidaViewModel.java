@@ -153,6 +153,8 @@ public class PartidaViewModel extends ViewModel {
     public PartidaViewModel() {
         game = new Game();
         isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
+        isCard1OnTable.setValue(false);
+        isCard2OnTable.setValue(false);
         isCard1Playable.setValue(false);
         isCard2Playable.setValue(false);
         life1.setValue(game.getBoard().getPlayer1().getLife());
@@ -269,14 +271,20 @@ public class PartidaViewModel extends ViewModel {
                     l2 = l2 - game.getCardT1().getDamage();
                     game.getBoard().getPlayer2().setLife(l2);
                 } else if (objectiveP1.equals("card1")){
+                    //cl2=game.getCardT2().getLife();
                     cl2 = cl2 - game.getCardT1().getDamage();
-                    game.getCardT1().setLife(cl2);
+                    if(cl2<=0){
+                        isCard2OnTable.setValue(false);
+                        game.getBoard().changeCardOnTableP2();
+                        cardTable2 = false;
+                        isCard2Playable.setValue(false);
+                        canUseCard2 = false;
+                    }
+                    game.getCardT2().setLife(cl2);
                     card2Life.setValue(cl2);
                 }
                 int d1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
-                isCard1OnTable.setValue(false);
-                cardTable1 = false;
-                isCard1Playable.setValue(false);
+
                 numDice1.setValue(d1);
                 life2.setValue(l2);
                 objective1.setValue("none");
@@ -293,15 +301,20 @@ public class PartidaViewModel extends ViewModel {
                     l1 = l1 - game.getCardT1().getDamage();
                     game.getBoard().getPlayer2().setLife(l1);
                 } else if (objectiveP2.equals("card1")) {
+                    //cl1=game.getCardT1().getLife();
                     cl1 = cl1 - game.getCardT2().getDamage();
+                    if(cl1<=0){
+                        isCard1OnTable.setValue(false);
+                        game.getBoard().changeCardOnTableP1();
+                        cardTable1 = false;
+                        isCard1Playable.setValue(false);
+
+                    }
                     game.getCardT1().setLife(cl1);
                     card1Life.setValue(cl1);
                 }
                 int d2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
-                isCard2OnTable.setValue(false);
-                cardTable2 = false;
-                isCard2Playable.setValue(false);
-                canUseCard2 = false;
+
                 life1.setValue(l1);
                 numDice2.setValue(d2);
             }

@@ -3,7 +3,7 @@ package com.projecte.kaiju.models;
 
 public class Player {
     private String name;
-    private Deck deckOfPlayer;
+    private static Deck deckOfPlayer;
     private Dice playerDice;
     private int life;
 
