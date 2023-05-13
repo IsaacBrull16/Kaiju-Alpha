@@ -100,8 +100,8 @@ public class Partida extends AppCompatActivity {
         turnIndicator = (TextView) findViewById(R.id.turnIndicator);
         lifeP1 = (TextView) findViewById(R.id.lifeP1);
         lifeP2 = (TextView) findViewById(R.id.lifeP2);
-        card1 = findViewById(R.id.card1);
-        card2 = findViewById(R.id.card2);
+        card1 = findViewById(R.id.card11);
+        card2 = findViewById(R.id.card21);
         dice1Button = findViewById(R.id.dice1Button);
         dice2Button = findViewById(R.id.dice2Button);
         vidaCarta1 = findViewById(R.id.vidaCarta1);
