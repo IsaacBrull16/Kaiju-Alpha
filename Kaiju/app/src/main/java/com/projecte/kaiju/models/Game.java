@@ -108,37 +108,33 @@ public class Game {
     public void setCardT23(Card card){this.cardT21 = card;}
 
     public void card1Actions(){
-                diceValue1 = board.getPlayer1().getPlayerDice().getAcumValue();
-                if (diceValue1 >= 0){
-                    board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
-                } else {
-                    diceValue1 = 0;
-                    board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
-                }
+        diceValue1 = board.getPlayer1().getPlayerDice().getAcumValue();
+        if (diceValue1 >= 0){
+            board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
+        } else {
+            diceValue1 = 0;
+            board.getPlayer1().getPlayerDice().setDiceValue(diceValue1);
+        }
     }
 
     public void card2Actions(){
-                diceValue2 = board.getPlayer2().getPlayerDice().getAcumValue();
-                if (diceValue2 >= 0){
-                    board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
-                } else {
-                    diceValue2 = 0;
-                    board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
-                }
+        diceValue2 = board.getPlayer2().getPlayerDice().getAcumValue();
+        if (diceValue2 >= 0){
+            board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+        } else {
+            diceValue2 = 0;
+            board.getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+        }
     }
 
     public void endTurn1(){
-        //if (turn.getTurnValue() == true) {
-            board.changeDiceRolledP1();
-            turn.changeTurn();
-        //}
+        board.changeDiceRolledP1();
+        turn.changeTurn();
     }
 
     public void endTurn2(){
-        //if (turn.getTurnValue() == false) {
-            board.changeDiceRolledP2();
-            turn.changeTurn();
-        //}
+        board.changeDiceRolledP2();
+        turn.changeTurn();
     }
 }
 
