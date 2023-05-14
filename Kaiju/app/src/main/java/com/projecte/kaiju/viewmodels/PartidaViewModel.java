@@ -1132,40 +1132,6 @@ public class PartidaViewModel extends ViewModel {
                     useCard21();
                 }
             }
-            /*if (canUseCard21) {
-                if (cardTable11) {
-                    setObjective2("card1");
-                } else if (cardTable12) {
-                    setObjective2("card2");
-                } else if (cardTable13) {
-                    setObjective2("card3");
-                } else {
-                    setObjective2("player");
-                }
-                useCard21();
-            } else if (canUseCard22) {
-                if (cardTable11) {
-                    setObjective2("card1");
-                } else if (cardTable12) {
-                    setObjective2("card2");
-                } else if (cardTable13) {
-                    setObjective2("card3");
-                } else {
-                    setObjective2("player");
-                }
-                useCard22();
-            } else if (canUseCard23) {
-                if (cardTable11) {
-                    setObjective2("card1");
-                } else if (cardTable12) {
-                    setObjective2("card2");
-                } else if (cardTable13) {
-                    setObjective2("card3");
-                } else {
-                    setObjective2("player");
-                }
-                useCard23();
-            }*/
             if (!canUseCard21 && !canUseCard22 && !canUseCard23 && cardTable21 && cardTable22 && cardTable23) {
                 finished = true;
             }
