@@ -71,15 +71,37 @@ public class Game {
     }
 
     public void deck1Actions(){
-        Card cardtemp11 = board.getPlayer1().getDeckOfPlayer().putCard();
-        cardT11 = cardtemp11;
-        board.changeCardOnTableP11();
+        Card cardtemp1 = board.getPlayer1().getDeckOfPlayer().putCard();
+        if (!cardT11.isOnTable()){
+            cardT11 = cardtemp1;
+            board.changeCardOnTableP11();
+            cardT11.setOnTable(true);
+        } else if (!cardT12.isOnTable()) {
+            cardT12 = cardtemp1;
+            board.changeCardOnTableP12();
+            cardT12.setOnTable(true);
+        } else if (!cardT13.isOnTable()) {
+            cardT13 = cardtemp1;
+            board.changeCardOnTableP13();
+            cardT13.setOnTable(true);
+        }
     }
 
     public void deck2Actions(){
-        Card cardtemp21 = board.getPlayer2().getDeckOfPlayer().putCard();
-        cardT21 = cardtemp21;
-        board.changeCardOnTableP21();
+        Card cardtemp2 = board.getPlayer2().getDeckOfPlayer().putCard();
+        if (!cardT21.isOnTable()){
+            cardT21 = cardtemp2;
+            board.changeCardOnTableP21();
+            cardT21.setOnTable(true);
+        } else if (!cardT22.isOnTable()) {
+            cardT22 = cardtemp2;
+            board.changeCardOnTableP22();
+            cardT22.setOnTable(true);
+        } else if (!cardT23.isOnTable()) {
+            cardT23 = cardtemp2;
+            board.changeCardOnTableP23();
+            cardT23.setOnTable(true);
+        }
     }
 
     public Card getCardT11(){
@@ -91,21 +113,21 @@ public class Game {
     }
     public void setCardT12(Card card){this.cardT12 = card;}
     public Card getCardT13(){
-        return this.cardT12;
+        return this.cardT13;
     }
-    public void setCardT13(Card card){this.cardT12 = card;}
+    public void setCardT13(Card card){this.cardT13 = card;}
     public Card getCardT21(){
         return this.cardT21;
     }
     public void setCardT21(Card card){this.cardT21 = card;}
     public Card getCardT22(){
-        return this.cardT21;
+        return this.cardT22;
     }
-    public void setCardT22(Card card){this.cardT21 = card;}
+    public void setCardT22(Card card){this.cardT22 = card;}
     public Card getCardT23(){
-        return this.cardT21;
+        return this.cardT23;
     }
-    public void setCardT23(Card card){this.cardT21 = card;}
+    public void setCardT23(Card card){this.cardT23 = card;}
 
     public void card1Actions(){
         diceValue1 = board.getPlayer1().getPlayerDice().getAcumValue();

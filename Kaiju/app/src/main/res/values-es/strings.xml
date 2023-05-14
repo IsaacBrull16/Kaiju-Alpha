@@ -64,7 +64,7 @@
     <string name="CardsSaved">Tus cartas han sido guardadas correctamente :D</string>
     <string name="DiceRolled">Ya has lanzado el dado</string>
     <string name="NotDiceRolled">Debes tirar el dado</string>
-    <string name="CardOnTable">Ya tienes una carta en el tablero</string>
+    <string name="CardOnTable">¡No puedes tener más cartas en el tablero!</string>
     <string name="NotTurn">No es tu turno</string>
     <string name="NotCardOnTable">No nay ninguna carta en el tablero</string>
     <string name="CantUseCard">No puedes usar esta carta</string>
