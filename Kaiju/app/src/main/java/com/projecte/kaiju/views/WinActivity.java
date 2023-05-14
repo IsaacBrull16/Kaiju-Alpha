@@ -12,6 +12,8 @@ import com.projecte.kaiju.R;
 
 public class WinActivity extends AppCompatActivity {
 
+    private String type;
+
     Button homeButton;
     Button playButton;
 
@@ -28,6 +30,7 @@ public class WinActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle != null && bundle.getString("result") != null) {
             String result = bundle.getString("result");
+            type = bundle.getString("tipusdejoc");
             if (result.equals("J1")) {
                 winnerConditionsText.setText(R.string.YouWin);
             } else {
@@ -58,6 +61,9 @@ public class WinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i2 = new Intent (WinActivity.this, Partida.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("tipusdejoc", type);
+                i2.putExtras(bundle);
                 startActivity(i2);
                 finish();
             }

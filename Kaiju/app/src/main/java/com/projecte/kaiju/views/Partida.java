@@ -56,6 +56,7 @@ public class Partida extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
     private DatabaseReference playRef;
+    private String type;
 
     private PartidaViewModel partidaviewModel;
     private boolean diceRolledP1;
@@ -112,7 +113,7 @@ public class Partida extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null && bundle.getString("tipusdejoc") != null) {
-            String type = bundle.getString("tipusdejoc");
+            type = bundle.getString("tipusdejoc");
             partidaviewModel.setPlayerMode(type);
             Log.d(myClassTag, type);
         }
@@ -233,6 +234,7 @@ public class Partida extends AppCompatActivity {
                     Intent intent = new Intent(Partida.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J2");
+                    bundle.putString("tipusdejoc", type);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
@@ -251,6 +253,7 @@ public class Partida extends AppCompatActivity {
                     Intent intent = new Intent(Partida.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J1");
+                    bundle.putString("tipusdejoc", type);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
@@ -701,17 +704,7 @@ public class Partida extends AppCompatActivity {
         } else if (cardUsedP11 && cardUsedP12 && cardUsedP13){
             Toast.makeText(this, R.string.CardOnTable, Toast.LENGTH_SHORT).show();
         } else {
-            partidaviewModel.setCardOnT11();
-            /*if ((card11.getVisibility() == View.INVISIBLE)){
-                card11.setVisibility(View.VISIBLE);
-                vidaCarta11.setVisibility(View.VISIBLE);
-            } else if (card12.getVisibility() == View.INVISIBLE) {
-                card12.setVisibility(View.VISIBLE);
-                vidaCarta12.setVisibility(View.VISIBLE);
-            } else if (card13.getVisibility() == View.INVISIBLE) {
-                card13.setVisibility(View.VISIBLE);
-                vidaCarta13.setVisibility(View.VISIBLE);
-            }*/
+            partidaviewModel.setCardOnT1();
         }
     }
 
@@ -725,17 +718,7 @@ public class Partida extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else {
-            partidaviewModel.setCardOnT21();
-            /*if (card21.getVisibility() == View.INVISIBLE){
-                card21.setVisibility(View.VISIBLE);
-                vidaCarta21.setVisibility(View.VISIBLE);
-            } else if ((card21.getVisibility() == View.VISIBLE) && (card22.getVisibility() == View.INVISIBLE)) {
-                card22.setVisibility(View.VISIBLE);
-                vidaCarta22.setVisibility(View.VISIBLE);
-            } else if ((card21.getVisibility() == View.VISIBLE) && (card22.getVisibility() == View.VISIBLE) && (card23.getVisibility() == View.INVISIBLE)) {
-                card23.setVisibility(View.VISIBLE);
-                vidaCarta23.setVisibility(View.VISIBLE);
-            }*/
+            partidaviewModel.setCardOnT2();
         }
     }
 
