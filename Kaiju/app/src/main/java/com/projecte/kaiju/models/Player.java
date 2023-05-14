@@ -1,11 +1,13 @@
 package com.projecte.kaiju.models;
 
+
 public class Player {
     private String name;
     private Deck deckOfPlayer;
     private Dice playerDice;
     private int life;
 
+    private String type;
 
 
     /**
@@ -15,6 +17,7 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
+        this.type = type;
         this.deckOfPlayer = new Deck();
         this.playerDice = new Dice();
         this.life = life;
@@ -31,6 +34,10 @@ public class Player {
         return this.deckOfPlayer;
     }
 
+    public void setDeckOfPlayer(Deck deckOfPlayer) {
+        this.deckOfPlayer = deckOfPlayer;
+    }
+
     public Dice getPlayerDice(){
         return this.playerDice;
     }
@@ -39,11 +46,19 @@ public class Player {
         return life;
     }
 
+    public String getType(){
+        return this.type;
+    }
+
     public void setLife(int l){
         this.life = l;
     }
 
     public void setName(String n){
         this.name = n;
+    }
+
+    public void setType(String t){
+        this.type = t;
     }
 }

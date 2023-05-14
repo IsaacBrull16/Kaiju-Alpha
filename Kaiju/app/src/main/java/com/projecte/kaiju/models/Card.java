@@ -6,6 +6,9 @@ public class Card {
     private int cost;
     private int damage;
     private int life;
+    private boolean onTable;
+
+    private boolean playable;
 
     private String type;
 
@@ -25,6 +28,8 @@ public class Card {
         this.damage = damage;
         this.life = life;
         this.type = type;
+        this.onTable = false;
+        this.playable = false;
     }
 
     /**
@@ -49,6 +54,14 @@ public class Card {
         return type;
     }
 
+    public boolean isOnTable() {
+        return onTable;
+    }
+
+    public boolean isPlayable() {
+        return playable;
+    }
+
     public void setId(int id){this.id = id;}
     public void setCost(int cost){
         this.cost = cost;
@@ -64,6 +77,14 @@ public class Card {
     }
     public void setName(String name){
         this.name = name;
+    }
+
+    public void setOnTable(boolean onTable) {
+        this.onTable = onTable;
+    }
+
+    public void setPlayable(boolean playable) {
+        this.playable = playable;
     }
 }
 

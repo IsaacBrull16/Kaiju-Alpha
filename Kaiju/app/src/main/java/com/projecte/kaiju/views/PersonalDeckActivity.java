@@ -123,12 +123,14 @@ public class PersonalDeckActivity extends AppCompatActivity {
         boolean found = false;
         CardHelper newCard = new CardHelper(newCardId, newCardName);
         for (CardHelper cardHelper : personalDeck) {
-            if (cardHelper.equals(newCard)) {
+            if (cardHelper.getId().equals(newCardId)) {
                 found = true;
                 break;
             }
         }
-        if(!found){
+        if (found){
+            Toast.makeText(this, "You already have this card in your deck =O", Toast.LENGTH_SHORT).show();
+        } else {
             depaintCard(personalDeck.get(0).getId());
             for(int i = 1; i < personalDeck.size(); i++){
                 personalDeck.set(i - 1, personalDeck.get(i));

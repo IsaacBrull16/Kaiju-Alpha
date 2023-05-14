@@ -52,7 +52,7 @@
     <string name="change_photo">Cambiar foto</string>
     <string name="personalDeck">Baraja personal</string>
     <string name="YouWin">¡Has ganado! :D </string>
-    <string name="YouLose">¡Has perdido :( </string>
+    <string name="YouLose">"¡Has perdido! :( "</string>
     <string name="about_us">Sobre Nosotros</string>
     <string name="vida_j1">Vida Jugador1</string>
     <string name="turno">Turno</string>
@@ -64,10 +64,13 @@
     <string name="CardsSaved">Tus cartas han sido guardadas correctamente :D</string>
     <string name="DiceRolled">Ya has lanzado el dado</string>
     <string name="NotDiceRolled">Debes tirar el dado</string>
-    <string name="CardOnTable">Ya tienes una carta en el tablero</string>
+    <string name="CardOnTable">¡No puedes tener más cartas en el tablero!</string>
     <string name="NotTurn">No es tu turno</string>
     <string name="NotCardOnTable">No nay ninguna carta en el tablero</string>
     <string name="CantUseCard">No puedes usar esta carta</string>
     <string name="LastLogin">La última vez que iniciaste sesión fue :</string>
     <string name="FirstLogin">¡Felicidades es tu primer registro! =)</string>
+    <string name="your_cards">Tus Cartas</string>
+    <string name="turn2">Turno del Jugador 2</string>
+    <string name="turn1">Turno del Jugador 1</string>
 </resources>

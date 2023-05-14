@@ -36,10 +36,7 @@
             android:name=".views.Login"
             android:exported="false" />
         <activity
-            android:name=".views.Player2Win"
-            android:exported="false" />
-        <activity
-            android:name=".views.Player1Win"
+            android:name=".views.WinActivity"
             android:exported="false" />
         <activity
             android:name=".views.Partida"
