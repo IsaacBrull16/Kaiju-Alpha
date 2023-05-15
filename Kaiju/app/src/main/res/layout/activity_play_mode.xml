@@ -27,29 +27,29 @@
         android:id="@+id/localButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/local"
         android:backgroundTint="#9F015887"
+        android:text="@string/local"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.453" />
 
     <Button
         android:id="@+id/IAButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ia"
         android:backgroundTint="#9F015887"
+        android:text="@string/ia"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintVertical_bias="0.613" />
 
     <TextView
         android:id="@+id/playmode"
@@ -69,13 +69,13 @@
         android:id="@+id/multijugadorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/multijugador"
         android:backgroundTint="#9F015887"
+        android:text="@string/multijugador"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.566" />
+        app:layout_constraintVertical_bias="0.78" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
