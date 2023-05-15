@@ -34,15 +34,15 @@
         app:layout_constraintVertical_bias="0.09" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="343dp"
-        android:layout_height="515dp"
-        android:text="@string/termsandcond"
+        android:id="@+id/textView13"
+        android:layout_width="361dp"
+        android:layout_height="571dp"
+        android:text="@string/acceptterms"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628" />
+        app:layout_constraintVertical_bias="0.737" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

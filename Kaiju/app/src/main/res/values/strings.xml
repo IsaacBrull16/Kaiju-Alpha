@@ -72,19 +72,5 @@
     <string name="your_cards">Your Cards</string>
     <string name="turn2">Player 2 Turn</string>
     <string name="turn1">Player 1 Turn</string>
-    <string name="termsandcond">Before using our application, we invite you to read and accept the following terms and conditions that govern the use of our game:
-
-1. Acceptance of the Terms and Conditions:
-By using our application, you accept and undertake to comply with the terms and conditions established in this document. If you do not agree with any of the terms, please do not use our application.
-
-2. Use of the Application:
-Our game is intended solely for personal use and entertainment. You must not use it for any illegal, fraudulent or unauthorized purpose. You agree to comply with all applicable laws and regulations while using our application.
-
-3. Content and Intellectual Property:
-All content in our application, including but not limited to graphics, designs, logos, text, images and software, is the exclusive property of the owners of the mobile card game and is protected by copyright and other property laws intellectual You may not copy, modify, distribute or use our content without our prior written consent.
-
-4. Privacy:
-We care about your privacy and security. By using our application, you accept our privacy policy, which you can consult in the corresponding section of the application. We collect and process certain personal data in order to provide you with an optimal gaming experience and improve our services.
-
-5. Responsibility:
-We are not responsible for any damage, loss or damage resulting from the use of our application. Nor are we responsible for any service interruption, technical errors or any other incident that may arise during the use of the application.</string></resources>
+    <string name="acceptterms">Before using our application, we invite you to read and accept the following terms and conditions that govern the use of our game:\n\n1. Acceptance of the Terms and Conditions:\nAl utilizar nuestra aplicación, aceptas y te comprometes a cumplir con los términos y condiciones establecidos en este documento. Si no estás de acuerdo con alguno de los términos, te pedimos que no utilices nuestra aplicación.\n\n2. Uso de la Aplicación:\nNuestra juego está destinada únicamente para uso personal y entretenimiento. No debes utilizarla para ningún propósito ilegal, fraudulento o no autorizado. Te comprometes a cumplir con todas las leyes y regulaciones aplicables mientras utilices nuestra aplicación.\n\n3. Contenido y Propiedad Intelectual:\nTodo el contenido presente en nuestra aplicación, incluyendo pero no limitado a gráficos, diseños, logotipos, texto, imágenes y software, es propiedad exclusiva de los propietarios del juego de cartas móvil y está protegido por leyes de derechos de autor y otras leyes de propiedad intelectual. No puedes copiar, modificar, distribuir o utilizar nuestro contenido sin nuestro consentimiento previo y por escrito.\n\n4. Privacidad:\nNos preocupamos por tu privacidad y seguridad. Al utilizar nuestra aplicación, aceptas nuestra política de privacidad, la cual puedes consultar en la sección correspondiente en la aplicación. Recopilamos y procesamos ciertos datos personales con el fin de proporcionarte una experiencia de juego óptima y mejorar nuestros servicios.\n\n5. Responsabilidad:\nNo nos hacemos responsables por cualquier daño, pérdida o perjuicio derivado del uso de nuestra aplicación. Tampoco nos hacemos responsables por cualquier interrupción en el servicio, errores técnicos o cualquier otra incidencia que pueda surgir durante el uso de la aplicación.\n</string>
+</resources>
