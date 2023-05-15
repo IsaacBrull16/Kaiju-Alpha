@@ -3,9 +3,14 @@ package com.projecte.kaiju.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.widget.TextView;
+
 import com.projecte.kaiju.R;
 
 public class TermsConditionsActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
