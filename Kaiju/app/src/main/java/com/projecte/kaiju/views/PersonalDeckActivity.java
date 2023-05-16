@@ -125,19 +125,27 @@ public class PersonalDeckActivity extends AppCompatActivity {
         for (CardHelper cardHelper : personalDeck) {
             if (cardHelper.getId().equals(newCardId)) {
                 found = true;
+                personalDeck.remove(cardHelper);
+                depaintCard(cardHelper.getId());
                 break;
             }
         }
-        if (found){
-            Toast.makeText(this, "You already have this card in your deck =O", Toast.LENGTH_SHORT).show();
-        } else {
-            depaintCard(personalDeck.get(0).getId());
-            for(int i = 1; i < personalDeck.size(); i++){
+        /*for (int i = 0; i < personalDeck.size(); i++) {
+            Log.d("baraja", personalDeck.get(i).getName());
+        }*/
+        if (personalDeck.size() < 6){
+            if (!found) {
+                //depaintCard(personalDeck.get(0).getId());
+            /*for(int i = 1; i < personalDeck.size(); i++){
                 personalDeck.set(i - 1, personalDeck.get(i));
                 paintCard(personalDeck.get(i).getId());
+            }*/
+                personalDeck.set(personalDeck.size() - 1, newCard);
+                paintCard(personalDeck.get(personalDeck.size() - 1).getId());
             }
-            personalDeck.set(personalDeck.size() - 1, newCard);
-            paintCard(personalDeck.get(personalDeck.size() - 1).getId());
+        }
+        for (int i = 0; i < personalDeck.size(); i++) {
+            Log.d("baraja", personalDeck.get(i).getName());
         }
     }
     public void saveDeck(){
