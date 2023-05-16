@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.327" />
+        app:layout_constraintVertical_bias="0.252" />
 
     <Button
         android:id="@+id/homebutton"
@@ -55,15 +55,16 @@
 
     <TextView
         android:id="@+id/textViewAbout"
-        android:layout_width="305dp"
-        android:layout_height="286dp"
-        android:text="Authors:\n\n\t\t\t- Paula Silland\n\t\t\t- Isaac Brull\n\t\t\t- Cesar Crespo\n\t\t\t- Alex Pellitero\n\nVersion: Alpha\n\nPica Projects Website: \n\t\t\t https://www.pica-projects.com/"
+        android:layout_width="292dp"
+        android:layout_height="318dp"
+        android:text="@string/aboutus"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintVertical_bias="0.615" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -73,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168"
+        app:layout_constraintVertical_bias="0.08"
         app:srcCompat="@drawable/ic_launcher" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
