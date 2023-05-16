@@ -72,5 +72,21 @@
     <string name="your_cards">Your Cards</string>
     <string name="turn2">Player 2 Turn</string>
     <string name="turn1">Player 1 Turn</string>
-    <string name="aboutus">Welcome to our Kaiju game!\n\nAuthors:\n-Paula Silland\n-Isaac Brull\n- Cesar Crespo\n-Alex Pellitero\n\nVersion: Alpha\n\nYou can find us on our Pica Projects website:\n\nhttps://www.pica-projects.com/</string>
+    <string name="aboutus">Welcome to our Kaiju game!\n\nAuthors:\n-Paula Silland\n-Isaac Brull\n- Cesar Crespo\n-Alex Pellitero\n\nVersion: Alpha\n\nYou can find us on our Pica Projects website:\n\nhttps://www.pica-projects.com/\n\nThank you for playing our game, hope you enjoy it!</string>
+    <string name="Scroll">Before using our application, we invite you to read and accept the following terms and conditions that govern the use of our game:\n" +
+             "\n" +
+             "1. Acceptance of the Terms and Conditions:\n" +
+             "By using our application, you accept and agree to abide by the terms and conditions set forth in this document. If you do not agree with any of the terms, we ask that you do not use our application.\n" +
+             "\n" +
+             "2. Using the Application:\n" +
+             "Our game is intended for personal use and entertainment only. You must not use it for any illegal, fraudulent or unauthorized purpose. You agree to comply with all applicable laws and regulations while using our application.\n" +
+             "\n" +
+             "3. Content and Intellectual Property:\n" +
+             "All content present in our application, including but not limited to graphics, designs, logos, text, images and software, is the exclusive property of the owners of the mobile card game and is protected by copyright laws and other laws of intellectual property. You may not copy, modify, distribute or use our content without our prior written consent.\n" +
+             "\n" +
+             "4. Privacy:\n" +
+             "We care about your privacy and security. By using our application, you agree to our privacy policy, which you can consult in the corresponding section in the application. We collect and process certain personal data in order to provide you with an optimal gaming experience and to improve our services.\n" +
+             "\n" +
+             "5. Responsibility:\n" +
+             "We are not responsible for any damage, loss or damage derived from the use of our application. We are also not responsible for any interruption in service, technical errors or any other incident that may arise during the use of the application.</string>
 </resources>

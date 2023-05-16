@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
+        app:layout_constraintVertical_bias="0.228" />
 
     <Button
         android:id="@+id/homebutton"
@@ -50,13 +50,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874"
-        />
+        app:layout_constraintVertical_bias="0.903" />
 
     <TextView
         android:id="@+id/textViewAbout"
-        android:layout_width="292dp"
-        android:layout_height="318dp"
+        android:layout_width="353dp"
+        android:layout_height="364dp"
         android:text="@string/aboutus"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
