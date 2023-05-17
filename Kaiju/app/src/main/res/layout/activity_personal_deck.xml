@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.101"
-            android:layout_marginRight="60dp"
+            android:layout_marginRight="45dp"
             android:layout_marginLeft="20dp"/>
 
         <Button
@@ -427,6 +427,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
                 android:backgroundTint="#9F015887"
                 android:text="@string/save"
                 android:textColor="@color/white"
