@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.projecte.kaiju.R;
 
-public class About extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
     Button homebutton;
     @Override
@@ -26,7 +26,7 @@ public class About extends AppCompatActivity {
         homebutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent (About.this, MainActivity.class);
+                Intent i = new Intent (AboutActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }

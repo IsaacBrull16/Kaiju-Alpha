@@ -60,7 +60,7 @@ public class WinActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i2 = new Intent (WinActivity.this, Partida.class);
+                Intent i2 = new Intent (WinActivity.this, PartidaActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("tipusdejoc", type);
                 i2.putExtras(bundle);

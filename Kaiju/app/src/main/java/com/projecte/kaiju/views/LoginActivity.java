@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     protected String myClassTag = this.getClass().getSimpleName();
     EditText etName;
@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void loginToSignUp() {
-        Intent i = new Intent(this, SignUp.class);
+        Intent i = new Intent(this, SignUpActivity.class);
         startActivity(i);
     }
 
@@ -106,7 +106,7 @@ public class Login extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(myClassTag, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(Login.this, R.string.authentication_failed,
+                                Toast.makeText(LoginActivity.this, R.string.authentication_failed,
                                         Toast.LENGTH_SHORT).show();
                                 etPassword.setText("");
                             }
@@ -130,7 +130,7 @@ public class Login extends AppCompatActivity {
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }else{
-                Toast.makeText(Login.this, R.string.VerifyEmail,
+                Toast.makeText(LoginActivity.this, R.string.VerifyEmail,
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -149,12 +149,12 @@ public class Login extends AppCompatActivity {
                         userRef.child("last_login").setValue(time);
                         String loggedText = "The last time you LoggedIn was at: "; //Frase a traducir
                         String previousLoginText = loggedText + previousLogin;
-                        Toast.makeText(Login.this, previousLoginText, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, previousLoginText, Toast.LENGTH_SHORT).show();
                     } else {
                         String time = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).format(new Date());
                         userRef.child("last_login").setValue(time);
                         Log.d(myClassTag, "error: datasnapshot does not exist:");
-                        Toast.makeText(Login.this, "Congratulations it's your first LogIn! =)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Congratulations it's your first LogIn! =)", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Log.d(myClassTag, "error: task not successful:");

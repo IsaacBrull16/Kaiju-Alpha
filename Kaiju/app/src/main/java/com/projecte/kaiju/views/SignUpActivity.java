@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class SignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
@@ -69,9 +69,9 @@ public class SignUp extends AppCompatActivity {
         ActivityHelper.hideKeyboard(this);
 
         if (email.equals("") || password.equals("")){
-            Toast.makeText(SignUp.this, R.string.FillGasps, Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, R.string.FillGasps, Toast.LENGTH_SHORT).show();
         } else if (!checkTC.isChecked()){
-            Toast.makeText(SignUp.this, R.string.AcceptTerms, Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, R.string.AcceptTerms, Toast.LENGTH_SHORT).show();
         }else {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
@@ -114,11 +114,11 @@ public class SignUp extends AppCompatActivity {
                             usrRef.child("first_login").setValue(time);
 
                             mAuth.signOut();
-                            Toast.makeText(SignUp.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, R.string.VerifyEmail, Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     } else {
-                        Toast.makeText(SignUp.this, R.string.ErrorEmail, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, R.string.ErrorEmail, Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }

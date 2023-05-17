@@ -30,19 +30,19 @@
             android:name=".views.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".views.SignUp"
+            android:name=".views.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".views.Login"
+            android:name=".views.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".views.WinActivity"
             android:exported="false" />
         <activity
-            android:name=".views.Partida"
+            android:name=".views.PartidaActivity"
             android:exported="false" />
         <activity
-            android:name=".views.About"
+            android:name=".views.AboutActivity"
             android:exported="false" />
         <activity
             android:name=".views.SplashScreenActivity"

@@ -25,7 +25,7 @@ import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.viewmodels.PartidaViewModel;
 
-public class Partida extends AppCompatActivity {
+public class PartidaActivity extends AppCompatActivity {
 
     /**
      * Declaramos todos los objetos del layout que querramos modificar/usar
@@ -231,7 +231,7 @@ public class Partida extends AppCompatActivity {
             public void onChanged(Integer integer) {
                 if (integer <= 0){
                     lifeP1.setText(String.valueOf(0));
-                    Intent intent = new Intent(Partida.this, WinActivity.class);
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J2");
                     bundle.putString("tipusdejoc", type);
@@ -250,7 +250,7 @@ public class Partida extends AppCompatActivity {
             public void onChanged(Integer integer) {
                 if (integer <= 0) {
                     lifeP2.setText(String.valueOf(0));
-                    Intent intent = new Intent(Partida.this, WinActivity.class);
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J1");
                     bundle.putString("tipusdejoc", type);
@@ -421,31 +421,36 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getTurnChanged().observe(this, Boolean -> {
             if (Boolean == true){
                 currentPlayer = true;
-                Toast.makeText(Partida.this, "Player 1 Turn", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PartidaActivity.this, "Player 1 Turn", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.deckButton2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.VISIBLE);
             } else if(player2Type == false) {
-                Toast.makeText(Partida.this, "Player 2 Turn", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PartidaActivity.this, "Player 2 Turn", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.deckButton2).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado2).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario2).setVisibility(View.VISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
                 currentPlayer = false;
             } else {
                 findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
                 currentPlayer = false;
             }
         });
@@ -622,7 +627,7 @@ public class Partida extends AppCompatActivity {
         findViewById(R.id.homeButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent (Partida.this, MainActivity.class);
+                Intent i = new Intent (PartidaActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }
