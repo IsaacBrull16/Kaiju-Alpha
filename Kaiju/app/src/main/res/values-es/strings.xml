@@ -59,7 +59,7 @@
     <string name="vida_j2">Vida Jugador2</string>
     <string name="local">Local</string>
     <string name="multijugador">Multijugador</string>
-    <string name="ia">IA</string>
+    <string name="computer">Computadora</string>
     <string name="play_mode">Modo de juego</string>
     <string name="CardsSaved">Tus cartas han sido guardadas correctamente :D</string>
     <string name="DiceRolled">Ya has lanzado el dado</string>
