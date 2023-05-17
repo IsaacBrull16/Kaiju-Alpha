@@ -426,31 +426,32 @@ public class PartidaActivity extends AppCompatActivity {
                 findViewById(R.id.endTurn2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado2).setVisibility(View.INVISIBLE);
-                findViewById(R.id.imageBusuario2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario2).setVisibility(View.VISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.VISIBLE);
-                findViewById(R.id.imageBusuario1).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
             } else if(player2Type == false) {
                 Toast.makeText(PartidaActivity.this, "Player 2 Turn", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.deckButton2).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado2).setVisibility(View.VISIBLE);
-                findViewById(R.id.imageBusuario2).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.INVISIBLE);
-                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
                 currentPlayer = false;
             } else {
                 findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.INVISIBLE);
-                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.VISIBLE);
                 currentPlayer = false;
             }
         });
