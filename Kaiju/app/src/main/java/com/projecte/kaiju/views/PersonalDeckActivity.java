@@ -251,9 +251,11 @@ public class PersonalDeckActivity extends AppCompatActivity {
     public void depaintCard(String idCard){
         switch(idCard){
             case "0":
+                cardImgButton1.setAlpha(0.5f);
                 cardImgButton1.setBackgroundColor(Color.LTGRAY);
                 break;
             case "1":
+                cardImgButton2.setAlpha(0.5f);
                 cardImgButton2.setBackgroundColor(Color.LTGRAY);
                 break;
             case "2":
