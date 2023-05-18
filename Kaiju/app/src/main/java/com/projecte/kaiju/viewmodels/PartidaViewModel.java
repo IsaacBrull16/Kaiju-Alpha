@@ -288,6 +288,12 @@ public class PartidaViewModel extends ViewModel {
         isCard21Playable.setValue(false);
         isCard22Playable.setValue(false);
         isCard23Playable.setValue(false);
+        isCard11Selected.setValue(false);
+        isCard12Selected.setValue(false);
+        isCard13Selected.setValue(false);
+        isCard21Selected.setValue(false);
+        isCard22Selected.setValue(false);
+        isCard23Selected.setValue(false);
         noCards1.setValue(false);
         noCards2.setValue(false);
         life1.setValue(game.getBoard().getPlayer1().getLife());
