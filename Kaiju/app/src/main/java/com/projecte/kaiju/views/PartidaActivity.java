@@ -859,6 +859,14 @@ public class PartidaActivity extends AppCompatActivity {
         if ((cardCantUseP11 == false) && (isCard11Pressed == false) && (currentPlayer==true)) {
             isCard11Pressed = true;
             partidaviewModel.changeCard11Status();
+            if(partidaviewModel.getIsCard12Selected().getValue()){
+                isCard12Pressed = false;
+                partidaviewModel.changeCard12Status();
+            }
+            if(partidaviewModel.getIsCard13Selected().getValue()){
+                isCard13Pressed = false;
+                partidaviewModel.changeCard13Status();
+            }
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card1");
             partidaviewModel.useCard21();
@@ -886,6 +894,14 @@ public class PartidaActivity extends AppCompatActivity {
         if ((cardCantUseP12 == false) && (isCard12Pressed == false) && (currentPlayer==true)) {
             isCard12Pressed = true;
             partidaviewModel.changeCard12Status();
+            if(partidaviewModel.getIsCard11Selected().getValue()){
+                isCard11Pressed = false;
+                partidaviewModel.changeCard11Status();
+            }
+            if(partidaviewModel.getIsCard13Selected().getValue()){
+                isCard13Pressed = false;
+                partidaviewModel.changeCard13Status();
+            }
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card2");
             partidaviewModel.useCard21();
@@ -912,6 +928,14 @@ public class PartidaActivity extends AppCompatActivity {
         if ((cardCantUseP13 == false) && (isCard13Pressed == false) && (currentPlayer==true)) {
             isCard13Pressed = true;
             partidaviewModel.changeCard13Status();
+            if(partidaviewModel.getIsCard12Selected().getValue()){
+                isCard12Pressed = false;
+                partidaviewModel.changeCard12Status();
+            }
+            if(partidaviewModel.getIsCard11Selected().getValue()){
+                isCard11Pressed = false;
+                partidaviewModel.changeCard11Status();
+            }
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card3");
             partidaviewModel.useCard21();
@@ -939,6 +963,14 @@ public class PartidaActivity extends AppCompatActivity {
         if ((cardCantUseP21 == false) && (isCard21Pressed == false) && (currentPlayer == false)) {
             isCard21Pressed = true;
             partidaviewModel.changeCard21Status();
+            if(partidaviewModel.getIsCard22Selected().getValue()){
+                isCard22Pressed = false;
+                partidaviewModel.changeCard22Status();
+            }
+            if(partidaviewModel.getIsCard23Selected().getValue()){
+                isCard23Pressed = false;
+                partidaviewModel.changeCard23Status();
+            }
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card1");
             partidaviewModel.useCard11();
@@ -974,6 +1006,14 @@ public class PartidaActivity extends AppCompatActivity {
         if ((cardCantUseP22 == false) && (isCard22Pressed == false) && (currentPlayer == false)) {
             isCard22Pressed = true;
             partidaviewModel.changeCard22Status();
+            if(partidaviewModel.getIsCard21Selected().getValue()){
+                isCard21Pressed = false;
+                partidaviewModel.changeCard21Status();
+            }
+            if(partidaviewModel.getIsCard23Selected().getValue()){
+                isCard23Pressed = false;
+                partidaviewModel.changeCard23Status();
+            }
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card2");
             partidaviewModel.useCard11();
@@ -1008,6 +1048,14 @@ public class PartidaActivity extends AppCompatActivity {
         if ((cardCantUseP23 == false) && (isCard23Pressed == false) && (currentPlayer == false)) {
             isCard23Pressed = true;
             partidaviewModel.changeCard23Status();
+            if(partidaviewModel.getIsCard22Selected().getValue()){
+                isCard22Pressed = false;
+                partidaviewModel.changeCard22Status();
+            }
+            if(partidaviewModel.getIsCard21Selected().getValue()){
+                isCard21Pressed = false;
+                partidaviewModel.changeCard21Status();
+            }
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card3");
             partidaviewModel.useCard11();
