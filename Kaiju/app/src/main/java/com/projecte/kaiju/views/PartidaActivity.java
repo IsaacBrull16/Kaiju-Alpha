@@ -607,6 +607,72 @@ public class PartidaActivity extends AppCompatActivity {
             }
         });
 
+        partidaviewModel.getNoCards1().observe(this, Boolean -> {
+           // if (partidaviewModel.getNoCards2().getValue()) {
+
+                /*if (partidaviewModel.getLife1().getValue() > partidaviewModel.getLife2().getValue()) {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J1");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                } else if (partidaviewModel.getLife1().getValue() < partidaviewModel.getLife2().getValue()) {*/
+                if(Boolean ==true) {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J2");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+
+                } /*else {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "E");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                }*/
+            //}
+        });
+
+        partidaviewModel.getNoCards2().observe(this, Boolean -> {
+           // if (partidaviewModel.getNoCards1().getValue()) {
+
+                /*if (partidaviewModel.getLife1().getValue() > partidaviewModel.getLife2().getValue()) {*/
+            if(Boolean ==true){
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J1");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                } /*else if (partidaviewModel.getLife1().getValue() < partidaviewModel.getLife2().getValue()) {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J2");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "E");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                }*/
+           // }
+        });
+
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
          * pondrá el valor por texto y te indicará si la carta la puedes usar
