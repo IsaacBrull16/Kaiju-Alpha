@@ -1,5 +1,7 @@
 package com.projecte.kaiju.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -13,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
-import com.projecte.kaiju.models.Deck;
 import com.projecte.kaiju.models.Game;
 
 public class PartidaViewModel extends ViewModel {
@@ -78,6 +79,10 @@ public class PartidaViewModel extends ViewModel {
     private MutableLiveData<Integer> card23Life = new MutableLiveData<>();
 
     private  MutableLiveData<String> player2Type = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> noCards1 = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> noCards2 = new MutableLiveData<>();
 
     private Game game;
 
@@ -213,6 +218,13 @@ public class PartidaViewModel extends ViewModel {
         return player2Type;
     }
 
+    public MutableLiveData<Boolean> getNoCards1() {
+        return noCards1;
+    }
+    public MutableLiveData<Boolean> getNoCards2() {
+        return noCards2;
+    }
+
     protected String myClassTag = this.getClass().getSimpleName();
 
     private int l1;
@@ -240,6 +252,8 @@ public class PartidaViewModel extends ViewModel {
         isCard21Playable.setValue(false);
         isCard22Playable.setValue(false);
         isCard23Playable.setValue(false);
+        noCards1.setValue(false);
+        noCards2.setValue(false);
         life1.setValue(game.getBoard().getPlayer1().getLife());
         life2.setValue(game.getBoard().getPlayer2().getLife());
         turnChanged.setValue(true);
@@ -343,7 +357,7 @@ public class PartidaViewModel extends ViewModel {
             /*if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
                 game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
             }*/
-            if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() != 0) {
+            if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() > 0) {
                 /*for (int i = 0; i < game.getBoard().getPlayer1().getDeckOfPlayer().deckSize(); i++){
                     Log.d(myClassTag, game.getBoard().getPlayer1().getDeckOfPlayer().getDeckCards().get(i).getName());
                 }*/
@@ -390,7 +404,7 @@ public class PartidaViewModel extends ViewModel {
             /*if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
                 game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
             }*/
-            if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() != 0) {
+            if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() > 0) {
                 /*for (int i = 0; i < game.getBoard().getPlayer2().getDeckOfPlayer().deckSize(); i++){
                     Log.d(myClassTag, game.getBoard().getPlayer2().getDeckOfPlayer().getDeckCards().get(i).getName());
                 }*/
@@ -464,7 +478,6 @@ public class PartidaViewModel extends ViewModel {
                     game.getBoard().getPlayer2().setLife(l2);
                     life2.setValue(l2);
                 } else if (objectiveP1.equals("card1")){
-                    //cl2=game.getCardT2().getLife();
                     cl21 = cl21 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT21().getType());
                     if(cl21<=0){
                         isCard21OnTable.setValue(false);
@@ -475,9 +488,7 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl21;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT21().setLife(cl21);
                     card21Life.setValue(cl21);
@@ -492,9 +503,7 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl22;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT22().setLife(cl22);
                     card22Life.setValue(cl22);
@@ -509,14 +518,19 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl23;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT23().setLife(cl23);
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
+
+            }
+        }
+        Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable21 && !cardTable22 && !cardTable23){
+                noCards2.setValue(true);
             }
         }
     }
@@ -561,9 +575,7 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl21;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT21().setLife(cl21);
                     card21Life.setValue(cl21);
@@ -578,9 +590,7 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl22;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT22().setLife(cl22);
                     card22Life.setValue(cl22);
@@ -595,14 +605,18 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl23;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT23().setLife(cl23);
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
+            }
+        }
+        Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable21 && !cardTable22 && !cardTable23){
+                noCards2.setValue(true);
             }
         }
     }
@@ -646,9 +660,7 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl21;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT21().setLife(cl21);
                     card21Life.setValue(cl21);
@@ -663,9 +675,7 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl22;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT22().setLife(cl22);
                     card22Life.setValue(cl22);
@@ -680,14 +690,18 @@ public class PartidaViewModel extends ViewModel {
                         l2 = l2 + cl23;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT23().setLife(cl23);
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
+            }
+        }
+        Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable21 && !cardTable22 && !cardTable23){
+                noCards2.setValue(true);
             }
         }
     }
@@ -737,9 +751,7 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl11;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT11().setLife(cl11);
                     card11Life.setValue(cl11);
@@ -754,9 +766,7 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl12;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT12().setLife(cl12);
                     card12Life.setValue(cl12);
@@ -770,14 +780,18 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl13;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT13().setLife(cl13);
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
             }
         }
     }
@@ -827,9 +841,7 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl11;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT11().setLife(cl11);
                     card11Life.setValue(cl11);
@@ -844,9 +856,7 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl12;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT12().setLife(cl12);
                     card12Life.setValue(cl12);
@@ -860,14 +870,18 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl13;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT13().setLife(cl13);
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
             }
         }
     }
@@ -916,9 +930,7 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl11;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT11().setLife(cl11);
                     card11Life.setValue(cl11);
@@ -933,9 +945,7 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl12;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT12().setLife(cl12);
                     card12Life.setValue(cl12);
@@ -949,14 +959,18 @@ public class PartidaViewModel extends ViewModel {
                         l1 = l1 + cl13;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+
                     }
                     game.getCardT13().setLife(cl13);
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
             }
         }
     }
