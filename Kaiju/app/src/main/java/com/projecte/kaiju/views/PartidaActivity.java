@@ -685,6 +685,55 @@ public class PartidaActivity extends AppCompatActivity {
            // }
         });
 
+        partidaviewModel.getIsCard11Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card11.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card11.setBackgroundColor(Color.LTGRAY);
+            }
+        });
+        partidaviewModel.getIsCard12Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card12.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card12.setBackgroundColor(Color.LTGRAY);
+            }
+        });
+        partidaviewModel.getIsCard13Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card13.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card13.setBackgroundColor(Color.LTGRAY);
+            }
+        });
+        partidaviewModel.getIsCard21Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card21.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card21.setBackgroundColor(Color.LTGRAY);
+            }
+        });
+        partidaviewModel.getIsCard22Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card22.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card22.setBackgroundColor(Color.LTGRAY);
+            }
+        });
+        partidaviewModel.getIsCard23Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card23.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card23.setBackgroundColor(Color.LTGRAY);
+            }
+        });
+
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
          * pondrá el valor por texto y te indicará si la carta la puedes usar
@@ -809,6 +858,7 @@ public class PartidaActivity extends AppCompatActivity {
     public void useCard11() {
         if ((cardCantUseP11 == false) && (isCard11Pressed == false) && (currentPlayer==true)) {
             isCard11Pressed = true;
+            partidaviewModel.changeCard11Status();
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card1");
             partidaviewModel.useCard21();
@@ -835,6 +885,7 @@ public class PartidaActivity extends AppCompatActivity {
     public void useCard12(){
         if ((cardCantUseP12 == false) && (isCard12Pressed == false) && (currentPlayer==true)) {
             isCard12Pressed = true;
+            partidaviewModel.changeCard12Status();
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card2");
             partidaviewModel.useCard21();
@@ -860,6 +911,7 @@ public class PartidaActivity extends AppCompatActivity {
     public void useCard13(){
         if ((cardCantUseP13 == false) && (isCard13Pressed == false) && (currentPlayer==true)) {
             isCard13Pressed = true;
+            partidaviewModel.changeCard13Status();
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card3");
             partidaviewModel.useCard21();
@@ -886,6 +938,7 @@ public class PartidaActivity extends AppCompatActivity {
     public void useCard21(){
         if ((cardCantUseP21 == false) && (isCard21Pressed == false) && (currentPlayer == false)) {
             isCard21Pressed = true;
+            partidaviewModel.changeCard21Status();
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card1");
             partidaviewModel.useCard11();
@@ -920,6 +973,7 @@ public class PartidaActivity extends AppCompatActivity {
     public void useCard22(){
         if ((cardCantUseP22 == false) && (isCard22Pressed == false) && (currentPlayer == false)) {
             isCard22Pressed = true;
+            partidaviewModel.changeCard22Status();
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card2");
             partidaviewModel.useCard11();
@@ -953,6 +1007,7 @@ public class PartidaActivity extends AppCompatActivity {
     public void useCard23(){
         if ((cardCantUseP23 == false) && (isCard23Pressed == false) && (currentPlayer == false)) {
             isCard23Pressed = true;
+            partidaviewModel.changeCard23Status();
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card3");
             partidaviewModel.useCard11();

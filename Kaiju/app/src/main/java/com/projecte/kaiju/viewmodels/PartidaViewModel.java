@@ -84,6 +84,18 @@ public class PartidaViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> noCards2 = new MutableLiveData<>();
 
+    private MutableLiveData<Boolean> isCard11Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard12Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard13Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard21Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard22Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard23Selected = new MutableLiveData<>();
+
     private Game game;
 
     public LiveData<Integer> getDice1(){
@@ -223,6 +235,30 @@ public class PartidaViewModel extends ViewModel {
     }
     public MutableLiveData<Boolean> getNoCards2() {
         return noCards2;
+    }
+
+    public MutableLiveData<Boolean> getIsCard11Selected() {
+        return isCard11Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard12Selected() {
+        return isCard12Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard13Selected() {
+        return isCard13Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard21Selected() {
+        return isCard21Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard22Selected() {
+        return isCard22Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard23Selected() {
+        return isCard23Selected;
     }
 
     protected String myClassTag = this.getClass().getSimpleName();
@@ -524,7 +560,7 @@ public class PartidaViewModel extends ViewModel {
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
-
+                isCard11Selected.setValue(false);
             }
         }
         Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
@@ -611,6 +647,7 @@ public class PartidaViewModel extends ViewModel {
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
+                isCard12Selected.setValue(false);
             }
         }
         Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
@@ -696,6 +733,7 @@ public class PartidaViewModel extends ViewModel {
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
+                isCard13Selected.setValue(false);
             }
         }
         Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
@@ -786,6 +824,7 @@ public class PartidaViewModel extends ViewModel {
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
+                isCard21Selected.setValue(false);
             }
         }
         Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
@@ -876,6 +915,7 @@ public class PartidaViewModel extends ViewModel {
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
+                isCard22Selected.setValue(false);
             }
         }
         Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
@@ -965,6 +1005,7 @@ public class PartidaViewModel extends ViewModel {
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
+                isCard23Selected.setValue(false);
             }
         }
         Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
@@ -1271,5 +1312,33 @@ public class PartidaViewModel extends ViewModel {
         } else {
             return 0;
         }
+    }
+
+    public boolean selectedCard(boolean status){
+        if (status){
+            status = false;
+        } else {
+            status= true;
+        }
+        return status;
+    }
+
+    public void changeCard11Status() {
+        isCard11Selected.setValue(true);
+    }
+    public void changeCard12Status() {
+        isCard12Selected.setValue(true);
+    }
+    public void changeCard13Status() {
+        isCard13Selected.setValue(true);
+    }
+    public void changeCard21Status() {
+        isCard21Selected.setValue(true);
+    }
+    public void changeCard22Status() {
+        isCard22Selected.setValue(true);
+    }
+    public void changeCard23Status() {
+        isCard23Selected.setValue(true);
     }
 }
