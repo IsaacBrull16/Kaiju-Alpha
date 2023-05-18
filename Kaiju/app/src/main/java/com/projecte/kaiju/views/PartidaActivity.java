@@ -272,9 +272,11 @@ public class PartidaActivity extends AppCompatActivity {
 
         partidaviewModel.getIsCard11Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card11.setAlpha(1f);
                 card11.setBackgroundColor(Color.GREEN);
                 cardCantUseP11 = false;
             } else {
+                card11.setAlpha(0.5f);
                 cardCantUseP11 = true;
                 card11.setBackgroundColor(Color.LTGRAY);
             }
@@ -282,9 +284,11 @@ public class PartidaActivity extends AppCompatActivity {
 
         partidaviewModel.getIsCard12Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card12.setAlpha(1f);
                 card12.setBackgroundColor(Color.GREEN);
                 cardCantUseP12 = false;
             } else {
+                card12.setAlpha(0.5f);
                 cardCantUseP12 = true;
                 card12.setBackgroundColor(Color.LTGRAY);
             }
@@ -292,9 +296,11 @@ public class PartidaActivity extends AppCompatActivity {
 
         partidaviewModel.getIsCard13Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card13.setAlpha(1f);
                 card13.setBackgroundColor(Color.GREEN);
                 cardCantUseP13 = false;
             } else {
+                card13.setAlpha(0.5f);
                 cardCantUseP13 = true;
                 card13.setBackgroundColor(Color.LTGRAY);
             }
@@ -302,9 +308,11 @@ public class PartidaActivity extends AppCompatActivity {
 
         partidaviewModel.getIsCard21Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card21.setAlpha(1f);
                 card21.setBackgroundColor(Color.GREEN);
                 cardCantUseP21 = false;
             } else {
+                card21.setAlpha(0.5f);
                 cardCantUseP21 = true;
                 card21.setBackgroundColor(Color.LTGRAY);
             }
@@ -312,9 +320,11 @@ public class PartidaActivity extends AppCompatActivity {
 
         partidaviewModel.getIsCard22Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card22.setAlpha(1f);
                 card22.setBackgroundColor(Color.GREEN);
                 cardCantUseP22 = false;
             } else {
+                card22.setAlpha(0.5f);
                 cardCantUseP22 = true;
                 card22.setBackgroundColor(Color.LTGRAY);
             }
@@ -322,9 +332,11 @@ public class PartidaActivity extends AppCompatActivity {
 
         partidaviewModel.getIsCard23Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card23.setAlpha(1f);
                 card23.setBackgroundColor(Color.GREEN);
                 cardCantUseP23 = false;
             } else {
+                card23.setAlpha(0.5f);
                 cardCantUseP23 = true;
                 card23.setBackgroundColor(Color.LTGRAY);
             }
