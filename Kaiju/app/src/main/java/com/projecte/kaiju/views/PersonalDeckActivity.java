@@ -134,11 +134,13 @@ public class PersonalDeckActivity extends AppCompatActivity {
             }
         }
 
-        if (personalDeck.size() < 6) {
+        if (personalDeck.size() < 10) {
             if (!found) {
                 personalDeck.add(newCard);
                 paintCard(newCard.getId());
             }
+        } else {
+            Toast.makeText(this, "You already have 10 cards!", Toast.LENGTH_SHORT).show();
         }
 
         for (CardHelper cardHelper : personalDeck) {
@@ -177,26 +179,31 @@ public class PersonalDeckActivity extends AppCompatActivity {
         }
     }*/
     public void saveDeck(){
-        Map<String, String> deck = new HashMap<>();
-        mRef.removeValue(new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                if (error == null){
-                    for (int i = 0; i < personalDeck.size(); i++){
-                        String idCard = personalDeck.get(i).getId();
-                        String idName = personalDeck.get(i).getName();
-                        deck.put(idCard, idName);
+        if (personalDeck.size() == 10){
+            Map<String, String> deck = new HashMap<>();
+            mRef.removeValue(new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                    if (error == null){
+                        for (int i = 0; i < personalDeck.size(); i++){
+                            String idCard = personalDeck.get(i).getId();
+                            String idName = personalDeck.get(i).getName();
+                            deck.put(idCard, idName);
+                        }
+                        mRef.setValue(deck);
+                        Toast.makeText(PersonalDeckActivity.this, R.string.CardsSaved, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.d(myClassTag, "error loading into firebase");
                     }
-                    mRef.setValue(deck);
-                    Toast.makeText(PersonalDeckActivity.this, R.string.CardsSaved, Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.d(myClassTag, "error loading into firebase");
                 }
-            }
-        });
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+            });
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "The deck should have at least 10 cards! :D", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void getPersonalDeck(){
