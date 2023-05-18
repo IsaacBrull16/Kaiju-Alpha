@@ -42,7 +42,7 @@ public class ChangePhotoActivity extends AppCompatActivity {
         findViewById(R.id.returnButton).setOnClickListener(v -> notSave());
         findViewById(R.id.profImgButton1).setOnClickListener(v -> selectImg("component_11"));
         findViewById(R.id.profImgButton2).setOnClickListener(v -> selectImg("component_1"));
-        findViewById(R.id.profImgButton3).setOnClickListener(v -> selectImg("logogame1"));
+        findViewById(R.id.profImgButton3).setOnClickListener(v -> selectImg("carita"));
         findViewById(R.id.profImgButton4).setOnClickListener(v -> selectImg("component_2"));
     }
 
