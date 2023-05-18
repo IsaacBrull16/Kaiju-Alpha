@@ -124,8 +124,8 @@
 
     <ImageButton
         android:id="@+id/card11"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,8 +136,8 @@
 
     <ImageButton
         android:id="@+id/card12"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -148,8 +148,8 @@
 
     <ImageButton
         android:id="@+id/card13"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -160,8 +160,8 @@
 
     <ImageButton
         android:id="@+id/card21"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,8 +172,8 @@
 
     <ImageButton
         android:id="@+id/card22"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -184,8 +184,8 @@
 
     <ImageButton
         android:id="@+id/card23"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
