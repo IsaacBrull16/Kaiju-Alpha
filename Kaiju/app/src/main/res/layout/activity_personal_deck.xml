@@ -22,6 +22,22 @@
         android:dividerPadding="16dp"
         android:layout_marginTop="20dp">
 
+        <ImageButton
+            android:id="@+id/ReturnbuttonDeck"
+            android:layout_width="53dp"
+            android:layout_height="50dp"
+            android:background="@drawable/backarrow"
+            android:layout_marginRight="40dp"
+            android:text="@string/home"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.106"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.048"/>
+            <!--app:strokeColor="#9F015887" -->
+
 
         <TextView
             android:id="@+id/textView12"
@@ -36,26 +52,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.101"
-            android:layout_marginRight="45dp"
-            android:layout_marginLeft="20dp"/>
-
-        <Button
-            android:id="@+id/ReturnbuttonDeck"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="60dp"
-            android:text="@string/home"
-            android:textColor="#9F015887"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.106"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.048"
-            app:strokeColor="#9F015887" />
+            android:layout_marginRight="60dp"
+            />
 
     </LinearLayout>
 
