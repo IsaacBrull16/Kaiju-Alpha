@@ -438,6 +438,7 @@ public class PartidaViewModel extends ViewModel {
                     }
                 }
             }
+            Log.d("Deck1 Size:", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
         }
     }
 
@@ -488,6 +489,7 @@ public class PartidaViewModel extends ViewModel {
                     }
                 }
             }
+            Log.d("Deck2 Size:", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
         }
     }
 
@@ -499,21 +501,6 @@ public class PartidaViewModel extends ViewModel {
                 diceValue1 = diceValue1 - game.getCardT11().getCost();
                 game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 numDice1.setValue(diceValue1);
-                if (diceValue1 < game.getCardT11().getCost()){
-                    isCard11Playable.setValue(false);
-                } else {
-                    isCard11Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT12().getCost()){
-                    isCard12Playable.setValue(false);
-                } else {
-                    isCard12Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT13().getCost()){
-                    isCard13Playable.setValue(false);
-                } else {
-                    isCard13Playable.setValue(true);
-                }
                 String objectiveP1 = objective1.getValue();
                 if (objectiveP1.equals("player")){
                     l2 = l2 - game.getCardT11().getDamage();
@@ -567,6 +554,21 @@ public class PartidaViewModel extends ViewModel {
                 }
                 objective1.setValue("none");
                 isCard11Selected.setValue(false);
+                if (diceValue1 < game.getCardT11().getCost()){
+                    isCard11Playable.setValue(false);
+                } else {
+                    isCard11Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT12().getCost()){
+                    isCard12Playable.setValue(false);
+                } else {
+                    isCard12Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT13().getCost()){
+                    isCard13Playable.setValue(false);
+                } else {
+                    isCard13Playable.setValue(true);
+                }
             }
         }
         Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
@@ -585,21 +587,6 @@ public class PartidaViewModel extends ViewModel {
                 diceValue1 = diceValue1 - game.getCardT12().getCost();
                 game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 numDice1.setValue(diceValue1);
-                if (diceValue1 < game.getCardT11().getCost()){
-                    isCard11Playable.setValue(false);
-                } else {
-                    isCard11Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT12().getCost()){
-                    isCard12Playable.setValue(false);
-                } else {
-                    isCard12Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT13().getCost()){
-                    isCard13Playable.setValue(false);
-                } else {
-                    isCard13Playable.setValue(true);
-                }
                 String objectiveP1 = objective1.getValue();
                 if (objectiveP1.equals("player")){
                     l2 = l2 - game.getCardT12().getDamage();
@@ -654,6 +641,21 @@ public class PartidaViewModel extends ViewModel {
                 }
                 objective1.setValue("none");
                 isCard12Selected.setValue(false);
+                if (diceValue1 < game.getCardT11().getCost()){
+                    isCard11Playable.setValue(false);
+                } else {
+                    isCard11Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT12().getCost()){
+                    isCard12Playable.setValue(false);
+                } else {
+                    isCard12Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT13().getCost()){
+                    isCard13Playable.setValue(false);
+                } else {
+                    isCard13Playable.setValue(true);
+                }
             }
         }
         Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
@@ -671,21 +673,6 @@ public class PartidaViewModel extends ViewModel {
                 diceValue1 = diceValue1 - game.getCardT13().getCost();
                 game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 numDice1.setValue(diceValue1);
-                if (diceValue1 < game.getCardT11().getCost()){
-                    isCard11Playable.setValue(false);
-                } else {
-                    isCard11Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT12().getCost()){
-                    isCard12Playable.setValue(false);
-                } else {
-                    isCard12Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT13().getCost()){
-                    isCard13Playable.setValue(false);
-                } else {
-                    isCard13Playable.setValue(true);
-                }
                 String objectiveP1 = objective1.getValue();
                 if (objectiveP1.equals("player")){
                     l2 = l2 - game.getCardT13().getDamage();
@@ -740,6 +727,21 @@ public class PartidaViewModel extends ViewModel {
                 }
                 objective1.setValue("none");
                 isCard13Selected.setValue(false);
+                if (diceValue1 < game.getCardT11().getCost()){
+                    isCard11Playable.setValue(false);
+                } else {
+                    isCard11Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT12().getCost()){
+                    isCard12Playable.setValue(false);
+                } else {
+                    isCard12Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT13().getCost()){
+                    isCard13Playable.setValue(false);
+                } else {
+                    isCard13Playable.setValue(true);
+                }
             }
         }
         Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
@@ -758,27 +760,6 @@ public class PartidaViewModel extends ViewModel {
                 diceValue2 = diceValue2 - game.getCardT21().getCost();
                 game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 numDice2.setValue(diceValue2);
-                if (diceValue2 < game.getCardT21().getCost()){
-                    isCard21Playable.setValue(false);
-                    canUseCard21 = false;
-                } else {
-                    isCard21Playable.setValue(true);
-                    canUseCard21 = true;
-                }
-                if (diceValue2 < game.getCardT22().getCost()){
-                    isCard22Playable.setValue(false);
-                    canUseCard22 = false;
-                } else {
-                    isCard22Playable.setValue(true);
-                    canUseCard22 = true;
-                }
-                if (diceValue2 < game.getCardT23().getCost()){
-                    isCard23Playable.setValue(false);
-                    canUseCard23 = false;
-                } else {
-                    isCard23Playable.setValue(true);
-                    canUseCard23 = true;
-                }
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
                     l1 = l1 - game.getCardT21().getDamage();
@@ -831,24 +812,6 @@ public class PartidaViewModel extends ViewModel {
                 }
                 objective2.setValue("none");
                 isCard21Selected.setValue(false);
-            }
-        }
-        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
-        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-            if (!cardTable11 && !cardTable12 && !cardTable13){
-                noCards1.setValue(true);
-            }
-        }
-    }
-
-    public void useCard22(){
-        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP22() == true)) {
-            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) {
-                game.card2Actions();
-                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
-                diceValue2 = diceValue2 - game.getCardT22().getCost();
-                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
-                numDice2.setValue(diceValue2);
                 if (diceValue2 < game.getCardT21().getCost()){
                     isCard21Playable.setValue(false);
                     canUseCard21 = false;
@@ -870,6 +833,24 @@ public class PartidaViewModel extends ViewModel {
                     isCard23Playable.setValue(true);
                     canUseCard23 = true;
                 }
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
+            }
+        }
+    }
+
+    public void useCard22(){
+        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP22() == true)) {
+            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) {
+                game.card2Actions();
+                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
+                diceValue2 = diceValue2 - game.getCardT22().getCost();
+                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+                numDice2.setValue(diceValue2);
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
                     l1 = l1 - game.getCardT22().getDamage();
@@ -922,23 +903,6 @@ public class PartidaViewModel extends ViewModel {
                 }
                 objective2.setValue("none");
                 isCard22Selected.setValue(false);
-            }
-        }
-        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
-        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-            if (!cardTable11 && !cardTable12 && !cardTable13){
-                noCards1.setValue(true);
-            }
-        }
-    }
-    public void useCard23(){
-        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP23() == true)) {
-            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) {
-                game.card2Actions();
-                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
-                diceValue2 = diceValue2 - game.getCardT23().getCost();
-                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
-                numDice2.setValue(diceValue2);
                 if (diceValue2 < game.getCardT21().getCost()){
                     isCard21Playable.setValue(false);
                     canUseCard21 = false;
@@ -960,6 +924,23 @@ public class PartidaViewModel extends ViewModel {
                     isCard23Playable.setValue(true);
                     canUseCard23 = true;
                 }
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
+            }
+        }
+    }
+    public void useCard23(){
+        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP23() == true)) {
+            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) {
+                game.card2Actions();
+                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
+                diceValue2 = diceValue2 - game.getCardT23().getCost();
+                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+                numDice2.setValue(diceValue2);
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
                     l1 = l1 - game.getCardT23().getDamage();
@@ -1012,6 +993,27 @@ public class PartidaViewModel extends ViewModel {
                 }
                 objective2.setValue("none");
                 isCard23Selected.setValue(false);
+                if (diceValue2 < game.getCardT21().getCost()){
+                    isCard21Playable.setValue(false);
+                    canUseCard21 = false;
+                } else {
+                    isCard21Playable.setValue(true);
+                    canUseCard21 = true;
+                }
+                if (diceValue2 < game.getCardT22().getCost()){
+                    isCard22Playable.setValue(false);
+                    canUseCard22 = false;
+                } else {
+                    isCard22Playable.setValue(true);
+                    canUseCard22 = true;
+                }
+                if (diceValue2 < game.getCardT23().getCost()){
+                    isCard23Playable.setValue(false);
+                    canUseCard23 = false;
+                } else {
+                    isCard23Playable.setValue(true);
+                    canUseCard23 = true;
+                }
             }
         }
         Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
@@ -1029,6 +1031,18 @@ public class PartidaViewModel extends ViewModel {
             //Log.d(myClassTag, "player2 name: " + p2);
             currentPlayer.setValue(p2);
             isDice1Rolled.setValue(false);
+            isCard11Selected.setValue(false);
+            isCard12Selected.setValue(false);
+            isCard13Selected.setValue(false);
+            if (isCard11Playable.getValue()){
+                isCard11Playable.setValue(true);
+            }
+            if (isCard12Playable.getValue()){
+                isCard12Playable.setValue(true);
+            }
+            if (isCard13Playable.getValue()){
+                isCard13Playable.setValue(true);
+            }
             turnChanged.setValue(false);
         }
     }
@@ -1039,6 +1053,18 @@ public class PartidaViewModel extends ViewModel {
             String p1 = game.getBoard().getPlayer1().getName();
             currentPlayer.setValue(p1);
             isDice2Rolled.setValue(false);
+            isCard21Selected.setValue(false);
+            isCard22Selected.setValue(false);
+            isCard23Selected.setValue(false);
+            if (isCard21Playable.getValue()){
+                isCard21Playable.setValue(true);
+            }
+            if (isCard22Playable.getValue()){
+                isCard22Playable.setValue(true);
+            }
+            if (isCard23Playable.getValue()){
+                isCard23Playable.setValue(true);
+            }
             turnChanged.setValue(true);
         }
     }
@@ -1331,20 +1357,92 @@ public class PartidaViewModel extends ViewModel {
 
     public void changeCard11Status() {
         isCard11Selected.setValue(true);
+        if (isCard12Selected.getValue()){
+            isCard12Selected.setValue(false);
+            if (isCard12Playable.getValue()){
+                isCard12Playable.setValue(true);
+            }
+        }
+        if (isCard13Selected.getValue()){
+            isCard13Selected.setValue(false);
+            if (isCard13Playable.getValue()){
+                isCard13Playable.setValue(true);
+            }
+        }
     }
     public void changeCard12Status() {
         isCard12Selected.setValue(true);
+        if (isCard11Selected.getValue()){
+            isCard11Selected.setValue(false);
+            if (isCard11Playable.getValue()){
+                isCard11Playable.setValue(true);
+            }
+        }
+        if (isCard13Selected.getValue()){
+            isCard13Selected.setValue(false);
+            if (isCard13Playable.getValue()){
+                isCard13Playable.setValue(true);
+            }
+        }
     }
     public void changeCard13Status() {
         isCard13Selected.setValue(true);
+        if (isCard11Selected.getValue()){
+            isCard11Selected.setValue(false);
+            if (isCard11Playable.getValue()){
+                isCard11Playable.setValue(true);
+            }
+        }
+        if (isCard12Selected.getValue()){
+            isCard12Selected.setValue(false);
+            if (isCard12Playable.getValue()){
+                isCard12Playable.setValue(true);
+            }
+        }
     }
     public void changeCard21Status() {
         isCard21Selected.setValue(true);
+        if (isCard22Selected.getValue()){
+            isCard22Selected.setValue(false);
+            if (isCard22Playable.getValue()){
+                isCard22Playable.setValue(true);
+            }
+        }
+        if (isCard23Selected.getValue()){
+            isCard23Selected.setValue(false);
+            if (isCard23Playable.getValue()){
+                isCard23Playable.setValue(true);
+            }
+        }
     }
     public void changeCard22Status() {
         isCard22Selected.setValue(true);
+        if (isCard21Selected.getValue()){
+            isCard21Selected.setValue(false);
+            if (isCard21Playable.getValue()){
+                isCard21Playable.setValue(true);
+            }
+        }
+        if (isCard23Selected.getValue()){
+            isCard23Selected.setValue(false);
+            if (isCard23Playable.getValue()){
+                isCard23Playable.setValue(true);
+            }
+        }
     }
     public void changeCard23Status() {
         isCard23Selected.setValue(true);
+        if (isCard21Selected.getValue()){
+            isCard21Selected.setValue(false);
+            if (isCard21Playable.getValue()){
+                isCard21Playable.setValue(true);
+            }
+        }
+        if (isCard22Selected.getValue()){
+            isCard22Selected.setValue(false);
+            if (isCard22Playable.getValue()){
+                isCard22Playable.setValue(true);
+            }
+        }
     }
 }

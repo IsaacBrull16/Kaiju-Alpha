@@ -1,5 +1,7 @@
 package com.projecte.kaiju.models;
 
+import android.util.Log;
+
 public class Game {
 
     /**
@@ -72,35 +74,55 @@ public class Game {
 
     public void deck1Actions(){
         Card cardtemp1 = board.getPlayer1().getDeckOfPlayer().putCard();
+        Log.d("NewCard1: ", cardtemp1.getName());
+        for (int i = 0; i < board.getPlayer1().getDeckOfPlayer().deckSize(); i++) {
+            Log.d("AllDeck1: ", board.getPlayer1().getDeckOfPlayer().getDeckCards().get(i).getName());
+        }
         if (!cardT11.isOnTable()){
-            cardT11 = cardtemp1;
+            setCardT11(cardtemp1);
+            //cardT11 = cardtemp1;
             board.changeCardOnTableP11();
             cardT11.setOnTable(true);
+            Log.d("NameC11: ", cardT11.getName());
         } else if (!cardT12.isOnTable()) {
-            cardT12 = cardtemp1;
+            setCardT12(cardtemp1);
+            //cardT12 = cardtemp1;
             board.changeCardOnTableP12();
             cardT12.setOnTable(true);
+            Log.d("NameC12: ", cardT12.getName());
         } else if (!cardT13.isOnTable()) {
-            cardT13 = cardtemp1;
+            setCardT13(cardtemp1);
+            //cardT13 = cardtemp1;
             board.changeCardOnTableP13();
             cardT13.setOnTable(true);
+            Log.d("NameC13: ", cardT13.getName());
         }
     }
 
     public void deck2Actions(){
         Card cardtemp2 = board.getPlayer2().getDeckOfPlayer().putCard();
+        Log.d("NewCard2: ", cardtemp2.getName());
+        for (int i = 0; i < board.getPlayer2().getDeckOfPlayer().deckSize(); i++) {
+            Log.d("AllDeck2: ", board.getPlayer2().getDeckOfPlayer().getDeckCards().get(i).getName());
+        }
         if (!cardT21.isOnTable()){
-            cardT21 = cardtemp2;
+            setCardT21(cardtemp2);
+            //cardT21 = cardtemp2;
             board.changeCardOnTableP21();
             cardT21.setOnTable(true);
+            Log.d("NameC21: ", cardT21.getName());
         } else if (!cardT22.isOnTable()) {
-            cardT22 = cardtemp2;
+            setCardT22(cardtemp2);
+            //cardT22 = cardtemp2;
             board.changeCardOnTableP22();
             cardT22.setOnTable(true);
+            Log.d("NameC22: ", cardT22.getName());
         } else if (!cardT23.isOnTable()) {
-            cardT23 = cardtemp2;
+            setCardT23(cardtemp2);
+            //cardT23 = cardtemp2;
             board.changeCardOnTableP23();
             cardT23.setOnTable(true);
+            Log.d("NameC23: ", cardT23.getName());
         }
     }
 
