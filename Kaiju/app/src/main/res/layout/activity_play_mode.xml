@@ -8,11 +8,11 @@
     android:background="@drawable/fondofigma"
     tools:context=".views.PlayModeActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/homePModeButton"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:background="@drawable/backarrow"
         android:text="@string/home"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,8 +20,8 @@
         app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093"
-        app:strokeColor="@color/purple_500" />
+        app:layout_constraintVertical_bias="0.093"/>
+        <!--style="?attr/materialButtonOutlinedStyle"-->
 
     <Button
         android:id="@+id/localButton"

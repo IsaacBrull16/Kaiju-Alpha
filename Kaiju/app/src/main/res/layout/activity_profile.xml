@@ -41,7 +41,7 @@
         android:id="@+id/homeButtonP"
         android:layout_width="53dp"
         android:layout_height="50dp"
-        android:background="@drawable/goback"
+        android:background="@drawable/backarrow"
         android:text="Home"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
