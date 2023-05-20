@@ -514,6 +514,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable21 = false;
                         isCard21Playable.setValue(false);
                         canUseCard21 = false;
+                        game.getCardT21().setOnTable(false);
                         l2 = l2 + cl21;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -529,6 +530,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable22 = false;
                         isCard22Playable.setValue(false);
                         canUseCard22 = false;
+                        game.getCardT22().setOnTable(false);
                         l2 = l2 + cl22;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -544,6 +546,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable23 = false;
                         isCard23Playable.setValue(false);
                         canUseCard23 = false;
+                        game.getCardT23().setOnTable(false);
                         l2 = l2 + cl23;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -601,6 +604,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable21 = false;
                         isCard21Playable.setValue(false);
                         canUseCard21 = false;
+                        game.getCardT21().setOnTable(false);
                         l2 = l2 + cl21;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -616,6 +620,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable22 = false;
                         isCard22Playable.setValue(false);
                         canUseCard22 = false;
+                        game.getCardT22().setOnTable(false);
                         l2 = l2 + cl22;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -631,6 +636,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable23 = false;
                         isCard23Playable.setValue(false);
                         canUseCard23 = false;
+                        game.getCardT23().setOnTable(false);
                         l2 = l2 + cl23;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -687,6 +693,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable21 = false;
                         isCard21Playable.setValue(false);
                         canUseCard21 = false;
+                        game.getCardT21().setOnTable(false);
                         l2 = l2 + cl21;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -702,6 +709,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable22 = false;
                         isCard22Playable.setValue(false);
                         canUseCard22 = false;
+                        game.getCardT22().setOnTable(false);
                         l2 = l2 + cl22;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -717,6 +725,7 @@ public class PartidaViewModel extends ViewModel {
                         cardTable23 = false;
                         isCard23Playable.setValue(false);
                         canUseCard23 = false;
+                        game.getCardT23().setOnTable(false);
                         l2 = l2 + cl23;
                         game.getBoard().getPlayer2().setLife(l2);
                         life2.setValue(l2);
@@ -773,6 +782,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP11();
                         cardTable11 = false;
                         isCard11Playable.setValue(false);
+                        game.getCardT11().setOnTable(false);
                         l1 = l1 + cl11;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -788,6 +798,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP12();
                         cardTable12 = false;
                         isCard12Playable.setValue(false);
+                        game.getCardT12().setOnTable(false);
                         l1 = l1 + cl12;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -802,6 +813,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP13();
                         cardTable13 = false;
                         isCard13Playable.setValue(false);
+                        game.getCardT13().setOnTable(false);
                         l1 = l1 + cl13;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -864,6 +876,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP11();
                         cardTable11 = false;
                         isCard11Playable.setValue(false);
+                        game.getCardT11().setOnTable(false);
                         l1 = l1 + cl11;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -879,6 +892,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP12();
                         cardTable12 = false;
                         isCard12Playable.setValue(false);
+                        game.getCardT12().setOnTable(false);
                         l1 = l1 + cl12;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -893,6 +907,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP13();
                         cardTable13 = false;
                         isCard13Playable.setValue(false);
+                        game.getCardT13().setOnTable(false);
                         l1 = l1 + cl13;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -954,6 +969,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP11();
                         cardTable11 = false;
                         isCard11Playable.setValue(false);
+                        game.getCardT11().setOnTable(false);
                         l1 = l1 + cl11;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -969,6 +985,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP12();
                         cardTable12 = false;
                         isCard12Playable.setValue(false);
+                        game.getCardT12().setOnTable(false);
                         l1 = l1 + cl12;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
@@ -983,6 +1000,7 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP13();
                         cardTable13 = false;
                         isCard13Playable.setValue(false);
+                        game.getCardT13().setOnTable(false);
                         l1 = l1 + cl13;
                         game.getBoard().getPlayer2().setLife(l1);
                         life1.setValue(l1);
