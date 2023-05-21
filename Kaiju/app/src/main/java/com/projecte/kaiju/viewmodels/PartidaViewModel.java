@@ -1117,7 +1117,7 @@ public class PartidaViewModel extends ViewModel {
             if (l1 <= 0) {
                 finished = true;
             }
-            else if (game.getCardT21().getDamage() >= game.getCardT22().getDamage()) {
+            if (game.getCardT21().getDamage() >= game.getCardT22().getDamage()) {
                 if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21) {
                     if (cardTable11) {
                         setObjective2("card1");
@@ -1175,7 +1175,7 @@ public class PartidaViewModel extends ViewModel {
                     useCard22();
                 }
             }
-            else if (game.getCardT22().getDamage() >= game.getCardT21().getDamage()){
+            if (game.getCardT22().getDamage() >= game.getCardT21().getDamage()){
                 if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
                     if (cardTable11) {
                         setObjective2("card1");
@@ -1233,7 +1233,7 @@ public class PartidaViewModel extends ViewModel {
                     useCard21();
                 }
             }
-            else if (game.getCardT23().getDamage() >= game.getCardT21().getDamage()) {
+            if (game.getCardT23().getDamage() >= game.getCardT21().getDamage()) {
                 if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
                     if (cardTable11) {
                         setObjective2("card1");
@@ -1291,7 +1291,7 @@ public class PartidaViewModel extends ViewModel {
                     useCard21();
                 }
             }
-            else if (canUseCard21) {
+            if (canUseCard21) {
                 if (cardTable11) {
                     setObjective2("card1");
                 } else if (cardTable12) {
