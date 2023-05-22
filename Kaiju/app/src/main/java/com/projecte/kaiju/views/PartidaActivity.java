@@ -313,7 +313,7 @@ public class PartidaActivity extends AppCompatActivity {
         partidaviewModel.getCurrentPlayer().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String string) {
-                turnIndicator.setText("Turn of: " + string);
+                turnIndicator.setText(string);
             }
         });
 

@@ -54,7 +54,7 @@
     <string name="YouLose">You Lose! :( </string>
     <string name="about_us">About Us</string>
     <string name="vida_j1">Player1 Life</string>
-    <string name="turno">Turn</string>
+    <string name="turno">Turn of:</string>
     <string name="vida_j2">Player2 Life</string>
     <string name="local">Local</string>
     <string name="multijugador">Multiplayer</string>
