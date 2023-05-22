@@ -12,14 +12,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
@@ -50,6 +54,10 @@ public class PartidaActivity extends AppCompatActivity {
     TextView vidaCarta21;
     TextView vidaCarta22;
     TextView vidaCarta23;
+
+    TextView userName1;
+
+    TextView userName2;
     ImageButton dice1Button;
     ImageButton dice2Button;
 
@@ -143,6 +151,8 @@ public class PartidaActivity extends AppCompatActivity {
         vidaCarta21 = findViewById(R.id.vidaCarta21);
         vidaCarta22 = findViewById(R.id.vidaCarta22);
         vidaCarta23 = findViewById(R.id.vidaCarta23);
+        userName1 = findViewById(R.id.userName1);
+        userName2 = findViewById(R.id.userName2);
 
         card11.setVisibility(View.INVISIBLE);
         card12.setVisibility(View.INVISIBLE);
@@ -151,12 +161,27 @@ public class PartidaActivity extends AppCompatActivity {
         card22.setVisibility(View.INVISIBLE);
         card23.setVisibility(View.INVISIBLE);
 
+
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null){
             String id = mAuth.getCurrentUser().getUid();
             String url = GlobalInfo.getInstance().getFB_DB();
             db = FirebaseDatabase.getInstance(url);
             playRef = db.getReference(id);
+
+            playRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String name1 = snapshot.getValue(String.class);
+                    partidaviewModel.setName1(name1);
+                    userName1.setText(name1);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
         }
 
@@ -738,6 +763,13 @@ public class PartidaActivity extends AppCompatActivity {
             else{
                 card23.setBackgroundColor(Color.LTGRAY);
                 card23.setAlpha(0.5f);
+            }
+        });
+
+        partidaviewModel.getUserName2().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                userName2.setText(s);
             }
         });
 

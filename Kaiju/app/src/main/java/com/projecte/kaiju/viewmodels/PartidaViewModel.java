@@ -96,6 +96,8 @@ public class PartidaViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> isCard23Selected = new MutableLiveData<>();
 
+    private MutableLiveData<String> userName2 = new MutableLiveData<>();
+
     private Game game;
 
     public LiveData<Integer> getDice1(){
@@ -261,6 +263,10 @@ public class PartidaViewModel extends ViewModel {
         return isCard23Selected;
     }
 
+    public MutableLiveData<String> getUserName2() {
+        return userName2;
+    }
+
     protected String myClassTag = this.getClass().getSimpleName();
 
     private int l1;
@@ -324,6 +330,7 @@ public class PartidaViewModel extends ViewModel {
 
         }
         currentPlayer.setValue(game.getBoard().getPlayer1().getName());
+        userName2.setValue(game.getBoard().getPlayer2().getName());
     }
 
     public void launchDice1() {
@@ -1462,5 +1469,9 @@ public class PartidaViewModel extends ViewModel {
                 isCard22Playable.setValue(true);
             }
         }
+    }
+
+    public void setName1(String name1) {
+        game.getBoard().getPlayer1().setName(name1);
     }
 }
