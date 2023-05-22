@@ -1,5 +1,7 @@
 package com.projecte.kaiju.views;
 
+import static com.projecte.kaiju.views.ProfileActivity.idDrawable;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -60,6 +62,8 @@ public class PartidaActivity extends AppCompatActivity {
     TextView userName2;
     ImageButton dice1Button;
     ImageButton dice2Button;
+    ImageButton imageBusuario1;
+    ImageButton imageBusuario2;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
@@ -153,6 +157,8 @@ public class PartidaActivity extends AppCompatActivity {
         vidaCarta23 = findViewById(R.id.vidaCarta23);
         userName1 = findViewById(R.id.userName1);
         userName2 = findViewById(R.id.userName2);
+        imageBusuario1 = findViewById(R.id.imageBusuario1);
+        imageBusuario2 = findViewById(R.id.imageBusuario2);
 
         card11.setVisibility(View.INVISIBLE);
         card12.setVisibility(View.INVISIBLE);
@@ -175,6 +181,22 @@ public class PartidaActivity extends AppCompatActivity {
                     String name1 = snapshot.getValue(String.class);
                     partidaviewModel.setName1(name1);
                     userName1.setText(name1);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            playRef.child("profile_image").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String image = snapshot.getValue(String.class);
+
+                    if (image != null){
+                        imageBusuario1.setImageDrawable(idDrawable(getApplicationContext(), image));
+                    }
                 }
 
                 @Override
