@@ -58,7 +58,7 @@
     <string name="vida_j2">Player2 Life</string>
     <string name="local">Local</string>
     <string name="multijugador">Multiplayer</string>
-    <string name="computer">Computer</string>
+    <string name="computer">Player VS Bot</string>
     <string name="play_mode">Play Mode</string>
     <string name="CardsSaved">Your cards have been saved correctly :D</string>
     <string name="DiceRolled">You have already rolled the dice</string>

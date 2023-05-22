@@ -167,7 +167,7 @@ public class PartidaActivity extends AppCompatActivity {
             String id = mAuth.getCurrentUser().getUid();
             String url = GlobalInfo.getInstance().getFB_DB();
             db = FirebaseDatabase.getInstance(url);
-            playRef = db.getReference(id);
+            playRef = db.getReference("users/" + id);
 
             playRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
