@@ -12,13 +12,13 @@ import com.projecte.kaiju.R;
 public class TermsConditionsActivity extends AppCompatActivity {
 
     TextView textView;
-    String Scroll="Antes de utilizar nuestra aplicación, te invitamos a leer y aceptar los siguientes términos y condiciones que rigen el uso de nuestro juego:\n" +
+    String terms="Antes de utilizar nuestra aplicación, te invitamos a leer y aceptar los siguientes términos y condiciones que rigen el uso de nuestro juego:\n" +
             "\n" +
             "1. Aceptación de los Términos y Condiciones:\n" +
             "Al utilizar nuestra aplicación, aceptas y te comprometes a cumplir con los términos y condiciones establecidos en este documento. Si no estás de acuerdo con alguno de los términos, te pedimos que no utilices nuestra aplicación.\n" +
             "\n" +
             "2. Uso de la Aplicación:\n" +
-            "Nuestra  juego está destinada únicamente para uso personal y entretenimiento. No debes utilizarla para ningún propósito ilegal, fraudulento o no autorizado. Te comprometes a cumplir con todas las leyes y regulaciones aplicables mientras utilices nuestra aplicación.\n" +
+            "Nuestro  juego está destinado únicamente para uso personal y entretenimiento. No debes utilizarla para ningún propósito ilegal, fraudulento o no autorizado. Te comprometes a cumplir con todas las leyes y regulaciones aplicables mientras utilices nuestra aplicación.\n" +
             "\n" +
             "3. Contenido y Propiedad Intelectual:\n" +
             "Todo el contenido presente en nuestra aplicación, incluyendo pero no limitado a gráficos, diseños, logotipos, texto, imágenes y software, es propiedad exclusiva de los propietarios del juego de cartas móvil y está protegido por leyes de derechos de autor y otras leyes de propiedad intelectual. No puedes copiar, modificar, distribuir o utilizar nuestro contenido sin nuestro consentimiento previo y por escrito.\n" +
@@ -35,7 +35,7 @@ public class TermsConditionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_terms_conditions);
         textView=findViewById(R.id.scrollableTextView);
         textView.setMovementMethod(new ScrollingMovementMethod());
-        textView.setText(Scroll);
+        textView.setText(R.string.terms);
 
        findViewById(R.id.understoodButton).setOnClickListener(v -> finish());
     }
