@@ -73,6 +73,7 @@
     <string name="your_cards">Tus Cartas</string>
     <string name="turn2">Turno del Jugador 2</string>
     <string name="turn1">Turno del Jugador 1</string>
+    <string name="objective">Selecciona tu objetivo</string>
     <string name="aboutus">¡Bienvenido a nuestro juego Kaiju!\n\nAutores:\n-Paula Silland\n-Isaac Brull\n- Cesar Crespo\n-Alex Pellitero\n\nVersión: Alpha\n\nNos puedes encontrar en nuestra web de Pica Projects:\n\nhttps://www.pica-projects.com/\n\nGracias por jugar nuestro juego, ¡espero que lo disfrutes!</string>
     <string name="terms">Antes de utilizar nuestra aplicación, te invitamos a leer y aceptar los siguientes términos y condiciones que rigen el uso de nuestro juego:\n"
     "\n"
