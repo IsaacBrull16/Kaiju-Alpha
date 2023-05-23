@@ -160,12 +160,6 @@ public class PartidaActivity extends AppCompatActivity {
         imageBusuario1 = findViewById(R.id.imageBusuario1);
         imageBusuario2 = findViewById(R.id.imageBusuario2);
 
-        card11.setVisibility(View.INVISIBLE);
-        card12.setVisibility(View.INVISIBLE);
-        card13.setVisibility(View.INVISIBLE);
-        card21.setVisibility(View.INVISIBLE);
-        card22.setVisibility(View.INVISIBLE);
-        card23.setVisibility(View.INVISIBLE);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -391,72 +385,73 @@ public class PartidaActivity extends AppCompatActivity {
 
         partidaviewModel.getIsCard11OnTable().observe(this, Boolean -> {
             if (Boolean == false){
-                card11.setVisibility(View.INVISIBLE);
+                card11.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta11.setVisibility(View.INVISIBLE);
+                card11.setAlpha(1f);
                 cardUsedP11 = false;
             } else {
                 cardUsedP11 = true;
-                card11.setVisibility(View.VISIBLE);
+                //card11.setVisibility(View.VISIBLE);
                 vidaCarta11.setVisibility(View.VISIBLE);
             }
         });
 
         partidaviewModel.getIsCard12OnTable().observe(this, Boolean -> {
             if (Boolean == false){
-                card12.setVisibility(View.INVISIBLE);
+                card12.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta12.setVisibility(View.INVISIBLE);
+                card12.setAlpha(1f);
                 cardUsedP12 = false;
             } else {
                 cardUsedP12 = true;
-                card12.setVisibility(View.VISIBLE);
                 vidaCarta12.setVisibility(View.VISIBLE);
             }
         });
 
         partidaviewModel.getIsCard13OnTable().observe(this, Boolean -> {
             if (Boolean == false){
-                card13.setVisibility(View.INVISIBLE);
+                card13.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta13.setVisibility(View.INVISIBLE);
+                card13.setAlpha(1f);
                 cardUsedP13 = false;
             } else {
                 cardUsedP13 = true;
-                card13.setVisibility(View.VISIBLE);
                 vidaCarta13.setVisibility(View.VISIBLE);
             }
         });
 
         partidaviewModel.getIsCard21OnTable().observe(this, Boolean -> {
             if (Boolean == false) {
-                card21.setVisibility(View.INVISIBLE);
+                card21.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta21.setVisibility(View.INVISIBLE);
+                card21.setAlpha(1f);
                 cardUsedP21 = false;
             } else {
                 cardUsedP21 = true;
-                card21.setVisibility(View.VISIBLE);
                 vidaCarta21.setVisibility(View.VISIBLE);
             }
         });
 
         partidaviewModel.getIsCard22OnTable().observe(this, Boolean -> {
             if (Boolean == false) {
-                card22.setVisibility(View.INVISIBLE);
+                card22.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta22.setVisibility(View.INVISIBLE);
+                card22.setAlpha(1f);
                 cardUsedP22 = false;
             } else {
                 cardUsedP22 = true;
-                card22.setVisibility(View.VISIBLE);
                 vidaCarta22.setVisibility(View.VISIBLE);
             }
         });
 
         partidaviewModel.getIsCard23OnTable().observe(this, Boolean -> {
             if (Boolean == false) {
-                card23.setVisibility(View.INVISIBLE);
+                card23.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta23.setVisibility(View.INVISIBLE);
+                card23.setAlpha(1f);
                 cardUsedP23 = false;
             } else {
                 cardUsedP23 = true;
-                card23.setVisibility(View.VISIBLE);
                 vidaCarta23.setVisibility(View.VISIBLE);
             }
         });
@@ -583,7 +578,8 @@ public class PartidaActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer)  {
                 if(integer<=0) {
-                    card11.setVisibility(View.INVISIBLE);
+                    card11.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card11.setAlpha(1f);
                     vidaCarta11.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta11.setText(String.valueOf(integer));
@@ -595,7 +591,8 @@ public class PartidaActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer)  {
                 if(integer<=0) {
-                    card12.setVisibility(View.INVISIBLE);
+                    card12.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card12.setAlpha(1f);
                     vidaCarta12.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta12.setText(String.valueOf(integer));
@@ -607,7 +604,8 @@ public class PartidaActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer)  {
                 if(integer<=0) {
-                    card13.setVisibility(View.INVISIBLE);
+                    card13.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card13.setAlpha(1f);
                     vidaCarta13.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta13.setText(String.valueOf(integer));
@@ -619,7 +617,8 @@ public class PartidaActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if(integer<=0) {
-                    card21.setVisibility(View.INVISIBLE);
+                    card21.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card21.setAlpha(1f);
                     vidaCarta21.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta21.setText(String.valueOf(integer));
@@ -631,7 +630,8 @@ public class PartidaActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if(integer<=0) {
-                    card22.setVisibility(View.INVISIBLE);
+                    card22.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card22.setAlpha(1f);
                     vidaCarta22.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta22.setText(String.valueOf(integer));
@@ -643,7 +643,8 @@ public class PartidaActivity extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if(integer<=0) {
-                    card23.setVisibility(View.INVISIBLE);
+                    card23.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card23.setAlpha(1f);
                     vidaCarta23.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta23.setText(String.valueOf(integer));
@@ -930,7 +931,6 @@ public class PartidaActivity extends AppCompatActivity {
             partidaviewModel.setObjective2("card1");
             partidaviewModel.useCard21();
             isCard21Pressed = false;
-            partidaviewModel.changeCard21Status();
         } else if ((isCard22Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card1");
             partidaviewModel.useCard22();

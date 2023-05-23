@@ -282,18 +282,18 @@ public class PartidaViewModel extends ViewModel {
     public PartidaViewModel() {
         game = new Game();
         isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
-        isCard11OnTable.setValue(false);
-        isCard12OnTable.setValue(false);
-        isCard13OnTable.setValue(false);
-        isCard21OnTable.setValue(false);
-        isCard22OnTable.setValue(false);
-        isCard23OnTable.setValue(false);
         isCard11Playable.setValue(false);
         isCard12Playable.setValue(false);
         isCard13Playable.setValue(false);
         isCard21Playable.setValue(false);
         isCard22Playable.setValue(false);
         isCard23Playable.setValue(false);
+        isCard11OnTable.setValue(false);
+        isCard12OnTable.setValue(false);
+        isCard13OnTable.setValue(false);
+        isCard21OnTable.setValue(false);
+        isCard22OnTable.setValue(false);
+        isCard23OnTable.setValue(false);
         isCard11Selected.setValue(false);
         isCard12Selected.setValue(false);
         isCard13Selected.setValue(false);
