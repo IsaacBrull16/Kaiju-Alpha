@@ -944,7 +944,7 @@ public class PartidaActivity extends AppCompatActivity {
         } else if (cardUsedP11 == false){
             Toast.makeText(this, R.string.NotCardOnTable, Toast.LENGTH_SHORT).show();
         } else if (isCard11Pressed){
-            Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.CantUseCard, Toast.LENGTH_SHORT).show();
         }
@@ -977,7 +977,7 @@ public class PartidaActivity extends AppCompatActivity {
         } else if (cardUsedP12 == false){
             Toast.makeText(this, R.string.NotCardOnTable, Toast.LENGTH_SHORT).show();
         } else if (isCard12Pressed){
-            Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.CantUseCard, Toast.LENGTH_SHORT).show();
         }
@@ -1009,7 +1009,7 @@ public class PartidaActivity extends AppCompatActivity {
         } else if (cardUsedP13 == false){
             Toast.makeText(this, R.string.NotCardOnTable, Toast.LENGTH_SHORT).show();
         } else if (isCard13Pressed){
-            Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.CantUseCard, Toast.LENGTH_SHORT).show();
         }
@@ -1046,7 +1046,7 @@ public class PartidaActivity extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else if (isCard21Pressed){
-            Toast toast = Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else {
@@ -1087,7 +1087,7 @@ public class PartidaActivity extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else if (isCard22Pressed){
-            Toast toast = Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else {
@@ -1127,7 +1127,7 @@ public class PartidaActivity extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else if (isCard23Pressed){
-            Toast toast = Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else {
