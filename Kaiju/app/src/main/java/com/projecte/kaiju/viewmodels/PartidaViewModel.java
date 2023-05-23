@@ -337,17 +337,17 @@ public class PartidaViewModel extends ViewModel {
     public void launchDice1() {
         if ((game.getTurn().getTurnValue() == true) && (game.getBoard().getDiceRolledP1() == false)) {
             game.dice1Actions();
-            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT11().getCost()) && (game.getBoard().isCardOnTableP11() == true)){
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT11().getCost()) && (game.getCardT11().isOnTable())){
                 isCard11Playable.setValue(true);
             } else {
                 isCard11Playable.setValue(false);
             }
-            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT12().getCost()) && (game.getBoard().isCardOnTableP12() == true)){
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT12().getCost()) && (game.getCardT12().isOnTable())){
                 isCard12Playable.setValue(true);
             } else {
                 isCard12Playable.setValue(false);
             }
-            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT13().getCost()) && (game.getBoard().isCardOnTableP13() == true)){
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT13().getCost()) && (game.getCardT13().isOnTable())){
                 isCard13Playable.setValue(true);
             } else {
                 isCard13Playable.setValue(false);
@@ -368,21 +368,21 @@ public class PartidaViewModel extends ViewModel {
     public void launchDice2() {
         if ((game.getTurn().getTurnValue() == false) && (game.getBoard().getDiceRolledP2() == false)) {
             game.dice2Actions();
-            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT21().getCost()) && (game.getBoard().isCardOnTableP21() == true)){
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT21().getCost()) && (game.getCardT21().isOnTable())){
                 isCard21Playable.setValue(true);
                 canUseCard21 = true;
             } else {
                 isCard21Playable.setValue(false);
                 canUseCard21 = false;
             }
-            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) && (game.getBoard().isCardOnTableP22() == true)){
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) && (game.getCardT22().isOnTable())){
                 isCard22Playable.setValue(true);
                 canUseCard22 = true;
             } else {
                 isCard22Playable.setValue(false);
                 canUseCard22 = false;
             }
-            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) && (game.getBoard().isCardOnTableP23() == true)){
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) && (game.getCardT23().isOnTable())){
                 isCard23Playable.setValue(true);
                 canUseCard23 = true;
             } else {
