@@ -5,7 +5,8 @@ Ja que deisenyem el nostre joc de manera que pugui cobrir un 90% de dispositius 
 
 A continuació, hem implementat el sigüent model de diseny: 
  
-<img width="329" alt="2023-05-23 (4)" src="https://github.com/IsaacBrull16/Kaiju-Alpha/assets/101247767/2e177def-538b-4915-80df-b05b6c707f97">
+<img width="326" alt="2023-05-23 (4)" src="https://github.com/IsaacBrull16/Kaiju-Alpha/assets/101247767/285b7637-8a8d-4770-a530-81e9f97b9c46">
+
 
 
 
