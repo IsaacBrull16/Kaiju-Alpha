@@ -201,8 +201,6 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/configuration"
-        android:text="@string/home"
-        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
