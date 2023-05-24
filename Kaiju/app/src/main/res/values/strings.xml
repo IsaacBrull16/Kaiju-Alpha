@@ -90,4 +90,9 @@
     "\n"
     "5. Responsibility:\n"
     "We are not responsible for any damage, loss or harm derived from the use of our application. We are also not responsible for any interruption in service, technical errors or any other incident that may arise during the use of the application.</string>
+    <string name="instruccions">Instruccions to play:</string>
+    <string name="introduccion">Antes de empezar la partida, el usuario podrá personalizar su baraja y escoger 10 de las mejores cartas.\nExisten tres tipos:\n</string>
+    <string name="costeexplicacion">El número es el coste de la carta y el jugador la podrá usar según su suerte con el dado. \nCada carta también tiene su daño, si el jugador decide atacar a las cartas del oponente para eliminarlas serán los puntos que restarán</string>
+    <string name="numero1">Durante la partida el jugador deberá tirar primero el dado. \n-Los valores que salgan se irán sumando para así acumular puntos de acción y poder usar las cartas\n</string>
+    <string name="numero2">Una vez se haya tirado el dado podrá sacar hasta tres cartas de la baraja\n</string>
 </resources>
