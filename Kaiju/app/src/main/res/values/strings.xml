@@ -91,8 +91,12 @@
     "5. Responsibility:\n"
     "We are not responsible for any damage, loss or harm derived from the use of our application. We are also not responsible for any interruption in service, technical errors or any other incident that may arise during the use of the application.</string>
     <string name="instruccions">Instruccions to play:</string>
-    <string name="introduccion">Antes de empezar la partida, el usuario podrá personalizar su baraja y escoger 10 de las mejores cartas.\nExisten tres tipos:\n</string>
-    <string name="costeexplicacion">El número es el coste de la carta y el jugador la podrá usar según su suerte con el dado. \nCada carta también tiene su daño, si el jugador decide atacar a las cartas del oponente para eliminarlas serán los puntos que restarán</string>
-    <string name="numero1">Durante la partida el jugador deberá tirar primero el dado. \n-Los valores que salgan se irán sumando para así acumular puntos de acción y poder usar las cartas\n</string>
-    <string name="numero2">Una vez se haya tirado el dado podrá sacar hasta tres cartas de la baraja\n</string>
+    <string name="introduccion">Before starting the game, the user will be able to customize their deck and choose 10 of the best cards.\nThere are three types:\n</string>
+    <string name="costeexplicacion">The number is the cost of the card and the player can use it according to his luck with the dice.\nEach card has its damage, if the player decides to attack the opponent's cards to eliminate them, they will be the points that will remain</string>
+    <string name="numero1">During the game the player must roll the dice first. \n-The values that come out will be added in order to accumulate action points and be able to use the cards\n</string>
+    <string name="numero2">Once the dice has been rolled, you can draw up to three cards from the deck.\n</string>
+    <string name="numer3">The player will find that there are three states for the cards:\n- if they are seen with low opacity, it means that you will not be able to use them during that turn, since the value of the die has to be greater than that of the card\n- if the card has a green border, it means that it accumulates enough points to attack\n- if the player selects the card to attack, it will turn blue\n</string>
+    <string name="numero4">The player will be able to decide whether to attack the opponent\'s cards to remove them from his deck, or attack the opponent\'s life directly.\n- Each player starts with 25 of life\n- The number under the card represents it\'s life\n</string>
+    <string name="numero5">Once the player has attacked and can no longer use any more cards, they will have to end the turn</string>
+    <string name="numero6">The player who has not run out of cards and/or is still with life will win.\n</string>
 </resources>
