@@ -1,8 +1,13 @@
-Ya que tenemos que diseñar nuestro juego de modo que pueda cubrir alrededor del 90% de dispositivos android, hemos acabado definiendo las siguienets versiones:
+Ja que deisenyem el nostre joc de manera que pugui cobrir un 90% de dispositius android, hem acabat definint les següents versions:
 
-Android version: 8.0 (Oreo)
-Java version: 17.0
+ - Android version: 8.0 (Oreo)
+ - Java version: 17.0
 
-A continuación, hemos implementado el siguiente modelo de diseño:
+A continuació, hem implementat el sigüent model de diseny: 
+ 
+<img width="329" alt="2023-05-23 (4)" src="https://github.com/IsaacBrull16/Kaiju-Alpha/assets/101247767/2e177def-538b-4915-80df-b05b6c707f97">
 
-[model design.drawio.pdf](https://github.com/IsaacBrull16/ProyectoPICAOrganitation/files/10768473/model.design.drawio.pdf)
+
+
+
+
