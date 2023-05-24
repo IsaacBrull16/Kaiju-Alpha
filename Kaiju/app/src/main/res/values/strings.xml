@@ -63,7 +63,7 @@
     <string name="CardsSaved">Your cards have been saved correctly :D</string>
     <string name="DiceRolled">You have already rolled the dice</string>
     <string name="NotDiceRolled">You must roll the dice!</string>
-    <string name="CardOnTable">You have can\'t have more cards on the table!</string>
+    <string name="CardOnTable">You can\'t have more cards on the table!</string>
     <string name="NotTurn">It\'s not your turn</string>
     <string name="NotCardOnTable">There is no Card on Table</string>
     <string name="CantUseCard">You can\'t use this card</string>
