@@ -14,12 +14,14 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
 
-        //findViewById(R.id.exitGame).setOnClickListener(v -> toExit());
+        findViewById(R.id.exitGame).setOnClickListener(v -> toExit());
+        findViewById(R.id.returnToGame).setOnClickListener(v -> finish());
     }
 
-  /*  public void toExit(){
+    public void toExit(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
-    }*/
+        finish();
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,7 @@ public class WinActivity extends AppCompatActivity {
 
     private String type;
 
-    Button homeButton;
+    ImageButton homeButton;
     Button playButton;
 
     TextView winnerConditionsText;
@@ -24,7 +25,7 @@ public class WinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win);
         winnerConditionsText = (TextView) findViewById(R.id.winnerConditionsText);
-        homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton = (ImageButton) findViewById(R.id.tutorialButton);
         playButton = (Button) findViewById(R.id.playButton);
 
         Bundle bundle = getIntent().getExtras();

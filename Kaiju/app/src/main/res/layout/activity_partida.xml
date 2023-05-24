@@ -197,7 +197,7 @@
         app:layout_constraintVertical_bias="0.226" />
 
     <ImageButton
-        android:id="@+id/homeButton"
+        android:id="@+id/tutorialButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/configuration"

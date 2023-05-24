@@ -315,7 +315,7 @@ public class PartidaActivity extends AppCompatActivity {
             if (Boolean == false){
                 card11.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta11.setVisibility(View.INVISIBLE);
-                card11.setAlpha(1f);
+                card11.setAlpha(0.5f);
                 cardUsedP11 = false;
             } else {
                 cardUsedP11 = true;
@@ -328,7 +328,7 @@ public class PartidaActivity extends AppCompatActivity {
             if (Boolean == false){
                 card12.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta12.setVisibility(View.INVISIBLE);
-                card12.setAlpha(1f);
+                card12.setAlpha(0.5f);
                 cardUsedP12 = false;
             } else {
                 cardUsedP12 = true;
@@ -340,7 +340,7 @@ public class PartidaActivity extends AppCompatActivity {
             if (Boolean == false){
                 card13.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta13.setVisibility(View.INVISIBLE);
-                card13.setAlpha(1f);
+                card13.setAlpha(0.5f);
                 cardUsedP13 = false;
             } else {
                 cardUsedP13 = true;
@@ -352,7 +352,7 @@ public class PartidaActivity extends AppCompatActivity {
             if (Boolean == false) {
                 card21.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta21.setVisibility(View.INVISIBLE);
-                card21.setAlpha(1f);
+                card21.setAlpha(0.5f);
                 cardUsedP21 = false;
             } else {
                 cardUsedP21 = true;
@@ -364,7 +364,7 @@ public class PartidaActivity extends AppCompatActivity {
             if (Boolean == false) {
                 card22.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta22.setVisibility(View.INVISIBLE);
-                card22.setAlpha(1f);
+                card22.setAlpha(0.5f);
                 cardUsedP22 = false;
             } else {
                 cardUsedP22 = true;
@@ -376,7 +376,7 @@ public class PartidaActivity extends AppCompatActivity {
             if (Boolean == false) {
                 card23.setImageDrawable(getDrawable(R.drawable.cardback));
                 vidaCarta23.setVisibility(View.INVISIBLE);
-                card23.setAlpha(1f);
+                card23.setAlpha(0.5f);
                 cardUsedP23 = false;
             } else {
                 cardUsedP23 = true;
@@ -814,14 +814,7 @@ public class PartidaActivity extends AppCompatActivity {
          * Hacemos un botón para ir a la MainActivity(Página Principal)
          */
 
-        findViewById(R.id.homeButton).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent (PartidaActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
+        findViewById(R.id.tutorialButton).setOnClickListener(v -> toTutorial());
 
         /**
          * La baraja del jugador 1 al ser pulsada sacará una carta que se mostrará en el tablero y
@@ -1251,5 +1244,10 @@ public class PartidaActivity extends AppCompatActivity {
                 isCard13Pressed = false;
             }
         }
+    }
+
+    public void toTutorial(){
+        Intent i = new Intent (PartidaActivity.this, TutorialActivity.class);
+        startActivity(i);
     }
 }
