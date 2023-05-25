@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     EditText userNameP;
-    EditText userEmail;
+    TextView userEmail;
 
     TextView LastLoginText;
 
@@ -133,7 +133,7 @@ public class ProfileActivity extends AppCompatActivity {
         usrRef.child("name").setValue(newname).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
+                Toast.makeText(ProfileActivity.this, "Your name has been changed succesfully! :D", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -157,8 +157,8 @@ public class ProfileActivity extends AppCompatActivity {
                 return ContextCompat.getDrawable(cont, R.drawable.component_1);
             case "component_2":
                 return ContextCompat.getDrawable(cont, R.drawable.component_2);
-            case "logogame1":
-                return ContextCompat.getDrawable(cont, R.drawable.logogame1);
+            case "carita":
+                return ContextCompat.getDrawable(cont, R.drawable.carita);
             default:
                 return null;
         }
