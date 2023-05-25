@@ -248,7 +248,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.002"
-        app:srcCompat="@drawable/dado_5" />
+        app:srcCompat="@drawable/jue_0018" />
 
     <ImageButton
         android:id="@+id/dice1Button"
@@ -261,7 +261,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.997"
-        app:srcCompat="@drawable/dado_5" />
+        app:srcCompat="@drawable/jue_0018" />
 
     <TextView
         android:id="@+id/vidaCarta11"
