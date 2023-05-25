@@ -94,10 +94,10 @@
     <string name="instruccions">Instrucciones para jugar:</string>
     <string name="introduccion">Antes de empezar la partida, el usuario podrá personalizar su baraja y escoger 10 de las mejores cartas.\nExisten tres tipos:\n</string>
     <string name="coste">El número enseña el coste de la carta y el jugador la podrá usar según su suerte con el dado. \n Cada carta también tiene su daño, si el jugador decide atacar a las cartas del oponente para eliminarlas serán los puntos que restarán</string>
-    <string name="numero1">Durante la partida el jugador deberá tirar primero el dado. \n-Los valores que salgan se irán sumando para así acumular puntos de acción y poder usar las cartas\n</string>
+    <string name="numero1">Durante la partida el jugador deberá tirar primero el dado. \n- Los valores que salgan se irán sumando para así acumular puntos de acción y poder usar las cartas\n</string>
     <string name="numero2">Una vez se haya tirado el dado podrá sacar hasta tres cartas de la baraja\n</string>
-    <string name="numer3">El jugador se encontrará que hay tres estados para las cartas:\nsi se ven con la opacidad baja, es que no las podrá usar durante ese turno, ya que el valor del dado tiene que ser mayor que el de la carta\nsi la carta está con el borde verde, quiere decir que acumula suficientes puntos para atacar\nsi el jugador selecciona la carta para atacar, se pondrá en azul\n</string>
-    <string name="numero4">El jugador podrá decidir si atacar a las cartas del oponente para eliminarlas de su baraja, o atacar a la vida del oponente directamente.\nCada jugador empieza con 25 de vida\nEl número debajo de la carta representa su vida\n</string>
+    <string name="numer3">El jugador se encontrará que hay tres estados para las cartas:\n- Si se ven con la opacidad baja, es que no las podrá usar durante ese turno, ya que el valor del dado tiene que ser mayor que el de la carta\n- Si la carta está con el borde verde, quiere decir que acumula suficientes puntos para atacar\n- Si el jugador selecciona la carta para atacar, se pondrá en azul\n</string>
+    <string name="numero4">El jugador podrá decidir si atacar a las cartas del oponente para eliminarlas de su baraja, o atacar a la vida del oponente directamente.\n- Cada jugador empieza con 25 de vida\nEl número debajo de la carta representa su vida\n</string>
     <string name="numero5">Una vez el jugador haya atacado y ya no pueda utilizar más cartas, tendrá que finalizar el turno</string>
     <string name="numero6">Ganará el jugador que no se haya quedado sin cartas y/o le quede vida.\n</string>
 </resources>

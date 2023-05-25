@@ -20,10 +20,10 @@
 
         <ImageButton
             android:id="@+id/returnToGame"
-            android:layout_width="43dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="7dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="7dp"
             android:background="@drawable/backarrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,6 @@
             android:id="@+id/textInstruccions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
             android:text="@string/instruccions"
             android:textSize="25dp"
             android:textStyle="bold"
@@ -50,8 +49,8 @@
 
         <ImageButton
             android:id="@+id/exitGame"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="20dp"
             android:background="@drawable/exit_to_app"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -77,34 +76,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="center"
             android:divider="@null">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:divider="@null"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp">
-
-                <TextView
-                    android:id="@+id/instruccionsToplay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="@string/introduccion"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.559"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.101" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/instruccionsToplay"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/introduccion"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.559"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.101" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -130,33 +121,21 @@
                     android:layout_marginRight="40dp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:divider="@null"
-                android:showDividers="middle"
-                android:dividerPadding="16dp"
+            <TextView
+                android:id="@+id/explicacionDaño"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp">
-
-                <TextView
-                    android:id="@+id/explicacionDaño"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="@string/coste"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.559"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.101" />
-            </LinearLayout>
+                android:layout_marginRight="15dp"
+                android:text="@string/coste"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.559"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.101" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -200,7 +179,7 @@
                     android:layout_height="50dp"
                     android:scaleType="centerCrop"
                     android:layout_marginRight="15dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="25dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.935"
