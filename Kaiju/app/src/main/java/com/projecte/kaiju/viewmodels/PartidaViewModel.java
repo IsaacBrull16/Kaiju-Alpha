@@ -1112,229 +1112,437 @@ public class PartidaViewModel extends ViewModel {
         } catch (InterruptedException e) {
         }
         launchDice2();
-        if (!cardTable21) {
-            setCardOnT2();
-        }
-        if (!cardTable22) {
-            setCardOnT2();
-        }
-        if (!cardTable23) {
-            setCardOnT2();
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() > 0){
+            if (!cardTable21) {
+                setCardOnT2();
+            }
+            if (!cardTable22) {
+                setCardOnT2();
+            }
+            if (!cardTable23) {
+                setCardOnT2();
+            }
         }
         while (!finished) {
             if (l1 <= 0) {
                 finished = true;
             }
-            if (game.getCardT21().getDamage() >= game.getCardT22().getDamage()) {
-                if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if (canUseCard22){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                }
-            }
-            if (game.getCardT22().getDamage() >= game.getCardT21().getDamage()){
-                if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if (canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                }
-            }
-            if (game.getCardT23().getDamage() >= game.getCardT21().getDamage()) {
-                if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if ((game.getCardT21().getDamage() >= game.getCardT22().getDamage()) && canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                } else if ((game.getCardT22().getDamage() >= game.getCardT21().getDamage()) && canUseCard22) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if (canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                }
-            }
-            if (canUseCard21) {
-                if (cardTable11) {
-                    setObjective2("card1");
-                } else if (cardTable12) {
-                    setObjective2("card2");
-                } else if (cardTable13) {
-                    setObjective2("card3");
-                } else {
-                    setObjective2("player");
-                }
-                useCard21();
-            } else if (canUseCard22) {
-                if (cardTable11) {
-                    setObjective2("card1");
-                } else if (cardTable12) {
-                    setObjective2("card2");
-                } else if (cardTable13) {
-                    setObjective2("card3");
-                } else {
-                    setObjective2("player");
-                }
-                useCard22();
-            } else if (canUseCard23) {
-                if (cardTable11) {
-                    setObjective2("card1");
-                } else if (cardTable12) {
-                    setObjective2("card2");
-                } else if (cardTable13) {
-                    setObjective2("card3");
-                } else {
-                    setObjective2("player");
-                }
-                useCard23();
-            }
-            if (!canUseCard21 && !canUseCard22 && !canUseCard23 && cardTable21 && cardTable22 && cardTable23) {
+            if (!canUseCard21 && !canUseCard22 && !canUseCard23 && (cardTable21 || cardTable22 || cardTable23)) {
                 finished = true;
+            }
+            if ((cardTable21 && cardTable22 && cardTable23) && (canUseCard21 || canUseCard22 || canUseCard23)) {
+                if (game.getCardT21().getDamage() >= game.getCardT22().getDamage()) {
+                    if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+                if (game.getCardT22().getDamage() >= game.getCardT21().getDamage()) {
+                    if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                }
+                if (game.getCardT23().getDamage() >= game.getCardT21().getDamage()) {
+                    if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if ((game.getCardT21().getDamage() >= game.getCardT22().getDamage()) && canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    } else if ((game.getCardT22().getDamage() >= game.getCardT21().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                }
+                if (canUseCard21) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard21();
+                } else if (canUseCard22) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard22();
+                } else if (canUseCard23) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard23();
+                }
+            } else if ((cardTable21 && cardTable22) && (canUseCard21 || canUseCard22)){
+                if ((game.getCardT21().getDamage() >= game.getCardT22().getDamage()) && canUseCard21){
+                    if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                } else {
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+                if ((game.getCardT22().getDamage() >= game.getCardT21().getDamage()) && canUseCard22){
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                } else {
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+            } else if ((cardTable21 && cardTable23) && (canUseCard21 || canUseCard23)) {
+                if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21){
+                    if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                } else {
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                }
+                if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23){
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                } else {
+                    if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                }
+            } else if ((cardTable22 && cardTable23) && (canUseCard22 || canUseCard23)) {
+                if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22){
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                } else {
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+                if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23){
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                } else {
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                }
+            } else if (cardTable21 && canUseCard21) {
+                if (canUseCard21) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard21();
+                }
+            } else if (cardTable22 && canUseCard22) {
+                if (canUseCard22) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard22();
+                }
+            } else if (cardTable23 && canUseCard23) {
+                if (canUseCard23) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard23();
+                }
             }
         }
 

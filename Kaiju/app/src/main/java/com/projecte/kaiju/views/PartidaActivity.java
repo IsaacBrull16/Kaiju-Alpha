@@ -893,6 +893,7 @@ public class PartidaActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.CardOnTable, Toast.LENGTH_SHORT).show();
         } else {
             partidaviewModel.setCardOnT1();
+            Toast.makeText(this, "You can put more cards on the board :)", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -907,6 +908,9 @@ public class PartidaActivity extends AppCompatActivity {
             toast.show();
         } else {
             partidaviewModel.setCardOnT2();
+            Toast toast = Toast.makeText(this, "You can put more cards on the board :)", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
         }
     }
 
