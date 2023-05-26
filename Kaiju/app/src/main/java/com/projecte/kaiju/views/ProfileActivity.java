@@ -151,13 +151,13 @@ public class ProfileActivity extends AppCompatActivity {
 
     public static Drawable idDrawable(Context cont, String profile){
         switch (profile){
-            case "component_11":
+            case "user":
                 return ContextCompat.getDrawable(cont, R.drawable.component_11);
-            case "component_1":
+            case "estrella":
                 return ContextCompat.getDrawable(cont, R.drawable.component_1);
-            case "component_2":
+            case "user__1_":
                 return ContextCompat.getDrawable(cont, R.drawable.component_2);
-            case "carita":
+            case "caritaperfil":
                 return ContextCompat.getDrawable(cont, R.drawable.carita);
             default:
                 return null;

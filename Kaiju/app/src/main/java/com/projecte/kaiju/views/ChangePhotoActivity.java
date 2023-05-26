@@ -27,7 +27,7 @@ public class ChangePhotoActivity extends AppCompatActivity {
     private DatabaseReference usrRef;
     private String img;
 
-    private final String[] images = new String[] {"component_11", "component_1", "carita", "component_2"};
+    private final String[] images = new String[] {"user", "estrella", "caritaperfil", "user__1_"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +61,10 @@ public class ChangePhotoActivity extends AppCompatActivity {
 
         findViewById(R.id.savePhotoButton).setOnClickListener(v -> save());
         findViewById(R.id.returnButton).setOnClickListener(v -> notSave());
-        findViewById(R.id.profImgButton1).setOnClickListener(v -> selectImg("component_11"));
-        findViewById(R.id.profImgButton2).setOnClickListener(v -> selectImg("component_1"));
-        findViewById(R.id.profImgButton3).setOnClickListener(v -> selectImg("carita"));
-        findViewById(R.id.profImgButton4).setOnClickListener(v -> selectImg("component_2"));
+        findViewById(R.id.profImgButton1).setOnClickListener(v -> selectImg("user"));
+        findViewById(R.id.profImgButton2).setOnClickListener(v -> selectImg("estrella"));
+        findViewById(R.id.profImgButton3).setOnClickListener(v -> selectImg("caritaperfil"));
+        findViewById(R.id.profImgButton4).setOnClickListener(v -> selectImg("user__1_"));
     }
 
     public void save(){
@@ -100,16 +100,16 @@ public class ChangePhotoActivity extends AppCompatActivity {
 
     public void depaint(String dpimg){
         switch(dpimg){
-            case "component_11":
+            case "user":
                 findViewById(R.id.profImgButton1).setAlpha(0.3f);
                 break;
-            case "component_1":
+            case "estrella":
                 findViewById(R.id.profImgButton2).setAlpha(0.3f);
                 break;
-            case "carita":
+            case "caritaperfil":
                 findViewById(R.id.profImgButton3).setAlpha(0.3f);
                 break;
-            case "component_2":
+            case "user__1_":
                 findViewById(R.id.profImgButton4).setAlpha(0.3f);
                 break;
         }
@@ -117,16 +117,16 @@ public class ChangePhotoActivity extends AppCompatActivity {
 
     public void paint(String pimg){
         switch(pimg){
-            case "component_11":
+            case "user":
                 findViewById(R.id.profImgButton1).setAlpha(1f);
                 break;
-            case "component_1":
+            case "estrella":
                 findViewById(R.id.profImgButton2).setAlpha(1f);
                 break;
-            case "carita":
+            case "caritaperfil":
                 findViewById(R.id.profImgButton3).setAlpha(1f);
                 break;
-            case "component_2":
+            case "user__1_":
                 findViewById(R.id.profImgButton4).setAlpha(1f);
                 break;
         }
