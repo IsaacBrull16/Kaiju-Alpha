@@ -1,1 +1,3 @@
-<img width="739" alt="2023-05-23 (3)" src="https://github.com/IsaacBrull16/Kaiju-Alpha/assets/101247767/0d6b5562-1369-46d9-822c-bda10f86fd2b">
+
+<img width="736" alt="2023-05-27 (4)" src="https://github.com/IsaacBrull16/Kaiju-Alpha/assets/101247767/20228268-2e7d-48c0-a2f1-47c713a7fdb4">
+
