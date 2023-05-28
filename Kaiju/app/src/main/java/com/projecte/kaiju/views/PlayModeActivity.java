@@ -38,7 +38,7 @@ public class PlayModeActivity extends AppCompatActivity {
 
     }
     public void toPlay(){
-        Intent intent = new Intent(this, Partida.class);
+        Intent intent = new Intent(this, PartidaActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("tipusdejoc", "player");
         intent.putExtras(bundle);
@@ -53,7 +53,7 @@ public class PlayModeActivity extends AppCompatActivity {
     }
 
     public void iaMode(){
-        Intent intent = new Intent(this, Partida.class);
+        Intent intent = new Intent(this, PartidaActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("tipusdejoc", "IA");
         intent.putExtras(bundle);

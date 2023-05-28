@@ -55,11 +55,11 @@
     <string name="YouLose">"¡Has perdido! :( "</string>
     <string name="about_us">Sobre Nosotros</string>
     <string name="vida_j1">Vida Jugador1</string>
-    <string name="turno">Turno</string>
+    <string name="turno">Turno de:</string>
     <string name="vida_j2">Vida Jugador2</string>
     <string name="local">Local</string>
     <string name="multijugador">Multijugador</string>
-    <string name="ia">IA</string>
+    <string name="computer">Jugador VS Bot</string>
     <string name="play_mode">Modo de juego</string>
     <string name="CardsSaved">Tus cartas han sido guardadas correctamente :D</string>
     <string name="DiceRolled">Ya has lanzado el dado</string>
@@ -73,4 +73,31 @@
     <string name="your_cards">Tus Cartas</string>
     <string name="turn2">Turno del Jugador 2</string>
     <string name="turn1">Turno del Jugador 1</string>
+    <string name="objective">Selecciona tu objetivo</string>
+    <string name="aboutus">¡Bienvenido a nuestro juego Kaiju!\n\nAutores:\n-Paula Silland\n-Isaac Brull\n- Cesar Crespo\n-Alex Pellitero\n\nVersión: Alpha\n\nNos puedes encontrar en nuestra web de Pica Projects:\n\nhttps://www.pica-projects.com/\n\nGracias por jugar nuestro juego, ¡espero que lo disfrutes!</string>
+    <string name="terms">Antes de utilizar nuestra aplicación, te invitamos a leer y aceptar los siguientes términos y condiciones que rigen el uso de nuestro juego:\n"
+    "\n"
+    "1. Aceptación de los Términos y Condiciones:\n"
+    "Al utilizar nuestra aplicación, aceptas y te comprometes a cumplir con los términos y condiciones establecidos en este documento. Si no estás de acuerdo con alguno de los términos, te pedimos que no utilices nuestra aplicación.\n"
+    "\n"
+    "2. Uso de la Aplicación:\n"
+    "Nuestra  juego está destinada únicamente para uso personal y entretenimiento. No debes utilizarla para ningún propósito ilegal, fraudulento o no autorizado. Te comprometes a cumplir con todas las leyes y regulaciones aplicables mientras utilices nuestra aplicación.\n"
+    "\n"
+    "3. Contenido y Propiedad Intelectual:\n"
+    "Todo el contenido presente en nuestra aplicación, incluyendo pero no limitado a gráficos, diseños, logotipos, texto, imágenes y software, es propiedad exclusiva de los propietarios del juego de cartas móvil y está protegido por leyes de derechos de autor y otras leyes de propiedad intelectual. No puedes copiar, modificar, distribuir o utilizar nuestro contenido sin nuestro consentimiento previo y por escrito.\n"
+    "\n"
+    "4. Privacidad:\n"
+    "Nos preocupamos por tu privacidad y seguridad. Al utilizar nuestra aplicación, aceptas nuestra política de privacidad, la cual puedes consultar en la sección correspondiente en la aplicación. Recopilamos y procesamos ciertos datos personales con el fin de proporcionarte una experiencia de juego óptima y mejorar nuestros servicios.\n"
+    "\n"
+    "5. Responsabilidad:\n"
+    "No nos hacemos responsables por cualquier daño, pérdida o perjuicio derivado del uso de nuestra aplicación. Tampoco nos hacemos responsables por cualquier interrupción en el servicio, errores técnicos o cualquier otra incidencia que pueda surgir durante el uso de la aplicación.</string>
+    <string name="instruccions">Instrucciones para jugar:</string>
+    <string name="introduccion">Antes de empezar la partida, el usuario podrá personalizar su baraja y escoger 10 de las mejores cartas.\nExisten tres tipos (Naturaleza, Bacteria y Tecnología), cada uno tiene una ventaja y desventaja entre las otras, como se indica acontinuasion:\n</string>
+    <string name="coste">El número enseña el coste de la carta y el jugador la podrá usar según su suerte con el dado. \n Cada carta también tiene su daño, si el jugador decide atacar a las cartas del oponente para eliminarlas serán los puntos que restarán</string>
+    <string name="numero1">Durante la partida el jugador deberá tirar primero el dado. \n- Los valores que salgan se irán sumando para así acumular puntos de acción y poder usar las cartas\n</string>
+    <string name="numero2">Una vez se haya tirado el dado podrá sacar hasta tres cartas de la baraja\n</string>
+    <string name="numer3">El jugador se encontrará que hay tres estados para las cartas:\n- Si se ven con la opacidad baja, es que no las podrá usar durante ese turno, ya que el valor del dado tiene que ser mayor que el de la carta\n- Si la carta está con el borde verde, quiere decir que acumula suficientes puntos para atacar\n- Si el jugador selecciona la carta para atacar, se pondrá en azul\n</string>
+    <string name="numero4">El jugador podrá decidir si atacar a las cartas del oponente para eliminarlas de su baraja, o atacar a la vida del oponente directamente.\n- Cada jugador empieza con 25 de vida\nEl número debajo de la carta representa su vida\n</string>
+    <string name="numero5">Una vez el jugador haya atacado y ya no pueda utilizar más cartas, tendrá que finalizar el turno</string>
+    <string name="numero6">Ganará el jugador que no se haya quedado sin cartas y/o le quede vida.\n</string>
 </resources>

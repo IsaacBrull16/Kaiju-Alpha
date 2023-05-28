@@ -22,57 +22,38 @@
         android:dividerPadding="16dp"
         android:layout_marginTop="20dp">
 
-
-        <Button
+        <ImageButton
             android:id="@+id/ReturnbuttonDeck"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="43dp"
+            android:layout_height="40dp"
+            android:background="@drawable/backarrow"
+            android:layout_marginRight="40dp"
             android:text="@string/home"
-            android:textColor="#9F015887"
             app:cornerRadius="20dp"
-            app:strokeColor="#9F015887"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.106"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.048"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="10dp"/>
+            app:layout_constraintVertical_bias="0.048"/>
+            <!--app:strokeColor="#9F015887" -->
+
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/textInstruccions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/your_cards"
             android:textStyle="bold"
-            android:textSize="25dp"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.559"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.101"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="14dp"/>
-
-        <Button
-            android:id="@+id/SaveDeckButton"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:backgroundTint="#9F015887"
-            android:text="@string/save"
-            android:textColor="@color/white"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.919"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.048" />
+            android:layout_marginRight="60dp"
+            />
 
     </LinearLayout>
 
@@ -438,7 +419,24 @@
                     app:srcCompat="@drawable/sharkmaster" />
 
             </LinearLayout>
-
+            <Button
+                android:id="@+id/SaveDeckButton"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#9F015887"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.919"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.048" />
         </LinearLayout>
 
     </ScrollView>

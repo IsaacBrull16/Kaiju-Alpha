@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.projecte.kaiju.R;
 
-public class About extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
-    Button homebutton;
+    ImageButton homebutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +22,12 @@ public class About extends AppCompatActivity {
          * Creamos botón para ir a la MainActivity (Home)
          */
 
-        homebutton = (Button) findViewById(R.id.homebutton);
+        homebutton = (ImageButton) findViewById(R.id.homebutton);
 
         homebutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent (About.this, MainActivity.class);
+                Intent i = new Intent (AboutActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }

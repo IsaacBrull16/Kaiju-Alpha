@@ -1,5 +1,7 @@
 package com.projecte.kaiju.views;
 
+import static com.projecte.kaiju.views.ProfileActivity.idDrawable;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,20 +14,24 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.R;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
 import com.projecte.kaiju.viewmodels.PartidaViewModel;
 
-public class Partida extends AppCompatActivity {
+public class PartidaActivity extends AppCompatActivity {
 
     /**
      * Declaramos todos los objetos del layout que querramos modificar/usar
@@ -50,8 +56,14 @@ public class Partida extends AppCompatActivity {
     TextView vidaCarta21;
     TextView vidaCarta22;
     TextView vidaCarta23;
+
+    TextView userName1;
+
+    TextView userName2;
     ImageButton dice1Button;
     ImageButton dice2Button;
+    ImageButton imageBusuario1;
+    ImageButton imageBusuario2;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
@@ -143,20 +155,49 @@ public class Partida extends AppCompatActivity {
         vidaCarta21 = findViewById(R.id.vidaCarta21);
         vidaCarta22 = findViewById(R.id.vidaCarta22);
         vidaCarta23 = findViewById(R.id.vidaCarta23);
+        userName1 = findViewById(R.id.userName1);
+        userName2 = findViewById(R.id.userName2);
+        imageBusuario1 = findViewById(R.id.imageBusuario1);
+        imageBusuario2 = findViewById(R.id.imageBusuario2);
 
-        card11.setVisibility(View.INVISIBLE);
-        card12.setVisibility(View.INVISIBLE);
-        card13.setVisibility(View.INVISIBLE);
-        card21.setVisibility(View.INVISIBLE);
-        card22.setVisibility(View.INVISIBLE);
-        card23.setVisibility(View.INVISIBLE);
+
 
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null){
             String id = mAuth.getCurrentUser().getUid();
             String url = GlobalInfo.getInstance().getFB_DB();
             db = FirebaseDatabase.getInstance(url);
-            playRef = db.getReference(id);
+            playRef = db.getReference("users/" + id);
+
+            playRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String name1 = snapshot.getValue(String.class);
+                    partidaviewModel.setName1(name1);
+                    userName1.setText(name1);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            playRef.child("profile_image").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String image = snapshot.getValue(String.class);
+
+                    if (image != null){
+                        imageBusuario1.setImageDrawable(idDrawable(getApplicationContext(), image));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
         }
 
@@ -231,7 +272,7 @@ public class Partida extends AppCompatActivity {
             public void onChanged(Integer integer) {
                 if (integer <= 0){
                     lifeP1.setText(String.valueOf(0));
-                    Intent intent = new Intent(Partida.this, WinActivity.class);
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J2");
                     bundle.putString("tipusdejoc", type);
@@ -250,7 +291,7 @@ public class Partida extends AppCompatActivity {
             public void onChanged(Integer integer) {
                 if (integer <= 0) {
                     lifeP2.setText(String.valueOf(0));
-                    Intent intent = new Intent(Partida.this, WinActivity.class);
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("result", "J1");
                     bundle.putString("tipusdejoc", type);
@@ -266,15 +307,90 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getCurrentPlayer().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String string) {
-                turnIndicator.setText("Turn of: " + string);
+                turnIndicator.setText(string);
+            }
+        });
+
+        partidaviewModel.getIsCard11OnTable().observe(this, Boolean -> {
+            if (Boolean == false){
+                card11.setImageDrawable(getDrawable(R.drawable.cardback));
+                vidaCarta11.setVisibility(View.INVISIBLE);
+                card11.setAlpha(0.5f);
+                cardUsedP11 = false;
+            } else {
+                cardUsedP11 = true;
+                //card11.setVisibility(View.VISIBLE);
+                vidaCarta11.setVisibility(View.VISIBLE);
+            }
+        });
+
+        partidaviewModel.getIsCard12OnTable().observe(this, Boolean -> {
+            if (Boolean == false){
+                card12.setImageDrawable(getDrawable(R.drawable.cardback));
+                vidaCarta12.setVisibility(View.INVISIBLE);
+                card12.setAlpha(0.5f);
+                cardUsedP12 = false;
+            } else {
+                cardUsedP12 = true;
+                vidaCarta12.setVisibility(View.VISIBLE);
+            }
+        });
+
+        partidaviewModel.getIsCard13OnTable().observe(this, Boolean -> {
+            if (Boolean == false){
+                card13.setImageDrawable(getDrawable(R.drawable.cardback));
+                vidaCarta13.setVisibility(View.INVISIBLE);
+                card13.setAlpha(0.5f);
+                cardUsedP13 = false;
+            } else {
+                cardUsedP13 = true;
+                vidaCarta13.setVisibility(View.VISIBLE);
+            }
+        });
+
+        partidaviewModel.getIsCard21OnTable().observe(this, Boolean -> {
+            if (Boolean == false) {
+                card21.setImageDrawable(getDrawable(R.drawable.cardback));
+                vidaCarta21.setVisibility(View.INVISIBLE);
+                card21.setAlpha(0.5f);
+                cardUsedP21 = false;
+            } else {
+                cardUsedP21 = true;
+                vidaCarta21.setVisibility(View.VISIBLE);
+            }
+        });
+
+        partidaviewModel.getIsCard22OnTable().observe(this, Boolean -> {
+            if (Boolean == false) {
+                card22.setImageDrawable(getDrawable(R.drawable.cardback));
+                vidaCarta22.setVisibility(View.INVISIBLE);
+                card22.setAlpha(0.5f);
+                cardUsedP22 = false;
+            } else {
+                cardUsedP22 = true;
+                vidaCarta22.setVisibility(View.VISIBLE);
+            }
+        });
+
+        partidaviewModel.getIsCard23OnTable().observe(this, Boolean -> {
+            if (Boolean == false) {
+                card23.setImageDrawable(getDrawable(R.drawable.cardback));
+                vidaCarta23.setVisibility(View.INVISIBLE);
+                card23.setAlpha(0.5f);
+                cardUsedP23 = false;
+            } else {
+                cardUsedP23 = true;
+                vidaCarta23.setVisibility(View.VISIBLE);
             }
         });
 
         partidaviewModel.getIsCard11Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card11.setAlpha(1f);
                 card11.setBackgroundColor(Color.GREEN);
                 cardCantUseP11 = false;
             } else {
+                card11.setAlpha(0.5f);
                 cardCantUseP11 = true;
                 card11.setBackgroundColor(Color.LTGRAY);
             }
@@ -282,9 +398,11 @@ public class Partida extends AppCompatActivity {
 
         partidaviewModel.getIsCard12Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card12.setAlpha(1f);
                 card12.setBackgroundColor(Color.GREEN);
                 cardCantUseP12 = false;
             } else {
+                card12.setAlpha(0.5f);
                 cardCantUseP12 = true;
                 card12.setBackgroundColor(Color.LTGRAY);
             }
@@ -292,9 +410,11 @@ public class Partida extends AppCompatActivity {
 
         partidaviewModel.getIsCard13Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card13.setAlpha(1f);
                 card13.setBackgroundColor(Color.GREEN);
                 cardCantUseP13 = false;
             } else {
+                card13.setAlpha(0.5f);
                 cardCantUseP13 = true;
                 card13.setBackgroundColor(Color.LTGRAY);
             }
@@ -302,9 +422,11 @@ public class Partida extends AppCompatActivity {
 
         partidaviewModel.getIsCard21Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card21.setAlpha(1f);
                 card21.setBackgroundColor(Color.GREEN);
                 cardCantUseP21 = false;
             } else {
+                card21.setAlpha(0.5f);
                 cardCantUseP21 = true;
                 card21.setBackgroundColor(Color.LTGRAY);
             }
@@ -312,9 +434,11 @@ public class Partida extends AppCompatActivity {
 
         partidaviewModel.getIsCard22Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card22.setAlpha(1f);
                 card22.setBackgroundColor(Color.GREEN);
                 cardCantUseP22 = false;
             } else {
+                card22.setAlpha(0.5f);
                 cardCantUseP22 = true;
                 card22.setBackgroundColor(Color.LTGRAY);
             }
@@ -322,83 +446,13 @@ public class Partida extends AppCompatActivity {
 
         partidaviewModel.getIsCard23Playable().observe(this, Boolean -> {
             if (Boolean == true){
+                card23.setAlpha(1f);
                 card23.setBackgroundColor(Color.GREEN);
                 cardCantUseP23 = false;
             } else {
+                card23.setAlpha(0.5f);
                 cardCantUseP23 = true;
                 card23.setBackgroundColor(Color.LTGRAY);
-            }
-        });
-
-        partidaviewModel.getIsCard11OnTable().observe(this, Boolean -> {
-            if (Boolean == false){
-                card11.setVisibility(View.INVISIBLE);
-                vidaCarta11.setVisibility(View.INVISIBLE);
-                cardUsedP11 = false;
-            } else {
-                cardUsedP11 = true;
-                card11.setVisibility(View.VISIBLE);
-                vidaCarta11.setVisibility(View.VISIBLE);
-            }
-        });
-
-        partidaviewModel.getIsCard12OnTable().observe(this, Boolean -> {
-            if (Boolean == false){
-                card12.setVisibility(View.INVISIBLE);
-                vidaCarta12.setVisibility(View.INVISIBLE);
-                cardUsedP12 = false;
-            } else {
-                cardUsedP12 = true;
-                card12.setVisibility(View.VISIBLE);
-                vidaCarta12.setVisibility(View.VISIBLE);
-            }
-        });
-
-        partidaviewModel.getIsCard13OnTable().observe(this, Boolean -> {
-            if (Boolean == false){
-                card13.setVisibility(View.INVISIBLE);
-                vidaCarta13.setVisibility(View.INVISIBLE);
-                cardUsedP13 = false;
-            } else {
-                cardUsedP13 = true;
-                card13.setVisibility(View.VISIBLE);
-                vidaCarta13.setVisibility(View.VISIBLE);
-            }
-        });
-
-        partidaviewModel.getIsCard21OnTable().observe(this, Boolean -> {
-            if (Boolean == false) {
-                card21.setVisibility(View.INVISIBLE);
-                vidaCarta21.setVisibility(View.INVISIBLE);
-                cardUsedP21 = false;
-            } else {
-                cardUsedP21 = true;
-                card21.setVisibility(View.VISIBLE);
-                vidaCarta21.setVisibility(View.VISIBLE);
-            }
-        });
-
-        partidaviewModel.getIsCard22OnTable().observe(this, Boolean -> {
-            if (Boolean == false) {
-                card22.setVisibility(View.INVISIBLE);
-                vidaCarta22.setVisibility(View.INVISIBLE);
-                cardUsedP22 = false;
-            } else {
-                cardUsedP22 = true;
-                card22.setVisibility(View.VISIBLE);
-                vidaCarta22.setVisibility(View.VISIBLE);
-            }
-        });
-
-        partidaviewModel.getIsCard23OnTable().observe(this, Boolean -> {
-            if (Boolean == false) {
-                card23.setVisibility(View.INVISIBLE);
-                vidaCarta23.setVisibility(View.INVISIBLE);
-                cardUsedP23 = false;
-            } else {
-                cardUsedP23 = true;
-                card23.setVisibility(View.VISIBLE);
-                vidaCarta23.setVisibility(View.VISIBLE);
             }
         });
 
@@ -421,21 +475,26 @@ public class Partida extends AppCompatActivity {
         partidaviewModel.getTurnChanged().observe(this, Boolean -> {
             if (Boolean == true){
                 currentPlayer = true;
-                Toast.makeText(Partida.this, "Player 1 Turn", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PartidaActivity.this, "Player 1 Turn", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.deckButton2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado2).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario2).setVisibility(View.VISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.INVISIBLE);
             } else if(player2Type == false) {
-                Toast.makeText(Partida.this, "Player 2 Turn", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PartidaActivity.this, "Player 2 Turn", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.deckButton2).setVisibility(View.VISIBLE);
                 findViewById(R.id.endTurn2).setVisibility(View.VISIBLE);
                 findViewById(R.id.dice2Button).setVisibility(View.VISIBLE);
                 findViewById(R.id.valorDado2).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.VISIBLE);
+                findViewById(R.id.imageBusuario2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.deckButton1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
@@ -446,6 +505,7 @@ public class Partida extends AppCompatActivity {
                 findViewById(R.id.endTurn1).setVisibility(View.INVISIBLE);
                 findViewById(R.id.dice1Button).setVisibility(View.INVISIBLE);
                 findViewById(R.id.valorDado1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.imageBusuario1).setVisibility(View.VISIBLE);
                 currentPlayer = false;
             }
         });
@@ -518,7 +578,8 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer)  {
                 if(integer<=0) {
-                    card11.setVisibility(View.INVISIBLE);
+                    card11.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card11.setAlpha(1f);
                     vidaCarta11.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta11.setText(String.valueOf(integer));
@@ -530,7 +591,8 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer)  {
                 if(integer<=0) {
-                    card12.setVisibility(View.INVISIBLE);
+                    card12.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card12.setAlpha(1f);
                     vidaCarta12.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta12.setText(String.valueOf(integer));
@@ -542,7 +604,8 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer)  {
                 if(integer<=0) {
-                    card13.setVisibility(View.INVISIBLE);
+                    card13.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card13.setAlpha(1f);
                     vidaCarta13.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta13.setText(String.valueOf(integer));
@@ -554,7 +617,8 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if(integer<=0) {
-                    card21.setVisibility(View.INVISIBLE);
+                    card21.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card21.setAlpha(1f);
                     vidaCarta21.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta21.setText(String.valueOf(integer));
@@ -566,7 +630,8 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if(integer<=0) {
-                    card22.setVisibility(View.INVISIBLE);
+                    card22.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card22.setAlpha(1f);
                     vidaCarta22.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta22.setText(String.valueOf(integer));
@@ -578,7 +643,8 @@ public class Partida extends AppCompatActivity {
             @Override
             public void onChanged(Integer integer) {
                 if(integer<=0) {
-                    card23.setVisibility(View.INVISIBLE);
+                    card23.setImageDrawable(getDrawable(R.drawable.cardback));
+                    card23.setAlpha(1f);
                     vidaCarta23.setVisibility(View.INVISIBLE);
                 } else {
                     vidaCarta23.setText(String.valueOf(integer));
@@ -601,6 +667,135 @@ public class Partida extends AppCompatActivity {
             }
         });
 
+        partidaviewModel.getNoCards1().observe(this, Boolean -> {
+           // if (partidaviewModel.getNoCards2().getValue()) {
+
+                /*if (partidaviewModel.getLife1().getValue() > partidaviewModel.getLife2().getValue()) {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J1");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                } else if (partidaviewModel.getLife1().getValue() < partidaviewModel.getLife2().getValue()) {*/
+                if(Boolean ==true) {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J2");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+
+                } /*else {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "E");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                }*/
+            //}
+        });
+
+        partidaviewModel.getNoCards2().observe(this, Boolean -> {
+           // if (partidaviewModel.getNoCards1().getValue()) {
+
+                /*if (partidaviewModel.getLife1().getValue() > partidaviewModel.getLife2().getValue()) {*/
+            if(Boolean ==true){
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J1");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                } /*else if (partidaviewModel.getLife1().getValue() < partidaviewModel.getLife2().getValue()) {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "J2");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    Intent intent = new Intent(PartidaActivity.this, WinActivity.class);
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("result", "E");
+                    bundle2.putString("tipusdejoc", type);
+                    intent.putExtras(bundle2);
+                    startActivity(intent);
+                    finish();
+                }*/
+           // }
+        });
+
+        partidaviewModel.getIsCard11Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card11.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card11.setBackgroundColor(Color.LTGRAY);
+                card11.setAlpha(0.5f);
+
+            }
+        });
+        partidaviewModel.getIsCard12Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card12.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card12.setBackgroundColor(Color.LTGRAY);
+                card12.setAlpha(0.5f);
+            }
+        });
+        partidaviewModel.getIsCard13Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card13.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card13.setBackgroundColor(Color.LTGRAY);
+                card13.setAlpha(0.5f);
+            }
+        });
+        partidaviewModel.getIsCard21Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card21.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card21.setBackgroundColor(Color.LTGRAY);
+                card21.setAlpha(0.5f);
+            }
+        });
+        partidaviewModel.getIsCard22Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card22.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card22.setBackgroundColor(Color.LTGRAY);
+                card22.setAlpha(0.5f);
+            }
+        });
+        partidaviewModel.getIsCard23Selected().observe(this, Boolean -> {
+            if(Boolean){
+                card23.setBackgroundColor(Color.BLUE);
+            }
+            else{
+                card23.setBackgroundColor(Color.LTGRAY);
+                card23.setAlpha(0.5f);
+            }
+        });
+
+        partidaviewModel.getUserName2().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                userName2.setText(s);
+            }
+        });
+
         /**
          * Al dar al botón de dado, se lanzará, irá guardando el valor si no se va usando,
          * pondrá el valor por texto y te indicará si la carta la puedes usar
@@ -619,14 +814,7 @@ public class Partida extends AppCompatActivity {
          * Hacemos un botón para ir a la MainActivity(Página Principal)
          */
 
-        findViewById(R.id.homeButton).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent (Partida.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
+        findViewById(R.id.tutorialButton).setOnClickListener(v -> toTutorial());
 
         /**
          * La baraja del jugador 1 al ser pulsada sacará una carta que se mostrará en el tablero y
@@ -705,6 +893,7 @@ public class Partida extends AppCompatActivity {
             Toast.makeText(this, R.string.CardOnTable, Toast.LENGTH_SHORT).show();
         } else {
             partidaviewModel.setCardOnT1();
+            Toast.makeText(this, "You can put more cards on the board :)", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -719,12 +908,22 @@ public class Partida extends AppCompatActivity {
             toast.show();
         } else {
             partidaviewModel.setCardOnT2();
+            Toast toast = Toast.makeText(this, "You can put more cards on the board :)", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
+            toast.show();
         }
     }
 
     public void useCard11() {
         if ((cardCantUseP11 == false) && (isCard11Pressed == false) && (currentPlayer==true)) {
             isCard11Pressed = true;
+            partidaviewModel.changeCard11Status();
+            if(isCard12Pressed){
+                isCard12Pressed = false;
+            }
+            if(isCard13Pressed){
+                isCard13Pressed = false;
+            }
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card1");
             partidaviewModel.useCard21();
@@ -742,7 +941,7 @@ public class Partida extends AppCompatActivity {
         } else if (cardUsedP11 == false){
             Toast.makeText(this, R.string.NotCardOnTable, Toast.LENGTH_SHORT).show();
         } else if (isCard11Pressed){
-            Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.CantUseCard, Toast.LENGTH_SHORT).show();
         }
@@ -751,6 +950,13 @@ public class Partida extends AppCompatActivity {
     public void useCard12(){
         if ((cardCantUseP12 == false) && (isCard12Pressed == false) && (currentPlayer==true)) {
             isCard12Pressed = true;
+            partidaviewModel.changeCard12Status();
+            if(isCard11Pressed){
+                isCard11Pressed = false;
+            }
+            if(isCard13Pressed){
+                isCard13Pressed = false;
+            }
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card2");
             partidaviewModel.useCard21();
@@ -768,7 +974,7 @@ public class Partida extends AppCompatActivity {
         } else if (cardUsedP12 == false){
             Toast.makeText(this, R.string.NotCardOnTable, Toast.LENGTH_SHORT).show();
         } else if (isCard12Pressed){
-            Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.CantUseCard, Toast.LENGTH_SHORT).show();
         }
@@ -776,6 +982,13 @@ public class Partida extends AppCompatActivity {
     public void useCard13(){
         if ((cardCantUseP13 == false) && (isCard13Pressed == false) && (currentPlayer==true)) {
             isCard13Pressed = true;
+            partidaviewModel.changeCard13Status();
+            if(isCard12Pressed) {
+                isCard12Pressed = false;
+            }
+            if(isCard11Pressed){
+                isCard11Pressed = false;
+            }
         } else if ((isCard21Pressed == true) && (currentPlayer==false)){
             partidaviewModel.setObjective2("card3");
             partidaviewModel.useCard21();
@@ -793,7 +1006,7 @@ public class Partida extends AppCompatActivity {
         } else if (cardUsedP13 == false){
             Toast.makeText(this, R.string.NotCardOnTable, Toast.LENGTH_SHORT).show();
         } else if (isCard13Pressed){
-            Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, R.string.CantUseCard, Toast.LENGTH_SHORT).show();
         }
@@ -802,6 +1015,13 @@ public class Partida extends AppCompatActivity {
     public void useCard21(){
         if ((cardCantUseP21 == false) && (isCard21Pressed == false) && (currentPlayer == false)) {
             isCard21Pressed = true;
+            partidaviewModel.changeCard21Status();
+            if(isCard22Pressed){
+                isCard22Pressed = false;
+            }
+            if(isCard23Pressed){
+                isCard23Pressed = false;
+            }
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card1");
             partidaviewModel.useCard11();
@@ -823,7 +1043,7 @@ public class Partida extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else if (isCard21Pressed){
-            Toast toast = Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else {
@@ -836,6 +1056,13 @@ public class Partida extends AppCompatActivity {
     public void useCard22(){
         if ((cardCantUseP22 == false) && (isCard22Pressed == false) && (currentPlayer == false)) {
             isCard22Pressed = true;
+            partidaviewModel.changeCard22Status();
+            if(isCard21Pressed){
+                isCard21Pressed = false;
+            }
+            if(isCard23Pressed){
+                isCard23Pressed = false;
+            }
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card2");
             partidaviewModel.useCard11();
@@ -857,7 +1084,7 @@ public class Partida extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else if (isCard22Pressed){
-            Toast toast = Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else {
@@ -869,6 +1096,13 @@ public class Partida extends AppCompatActivity {
     public void useCard23(){
         if ((cardCantUseP23 == false) && (isCard23Pressed == false) && (currentPlayer == false)) {
             isCard23Pressed = true;
+            partidaviewModel.changeCard23Status();
+            if(isCard22Pressed){
+                isCard22Pressed = false;
+            }
+            if(isCard21Pressed){
+                isCard21Pressed = false;
+            }
         } else if ((isCard11Pressed == true) && (currentPlayer == true)){
             partidaviewModel.setObjective1("card3");
             partidaviewModel.useCard11();
@@ -890,7 +1124,7 @@ public class Partida extends AppCompatActivity {
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else if (isCard23Pressed){
-            Toast toast = Toast.makeText(this, "Select your objective", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.objective, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 100);
             toast.show();
         } else {
@@ -1014,5 +1248,10 @@ public class Partida extends AppCompatActivity {
                 isCard13Pressed = false;
             }
         }
+    }
+
+    public void toTutorial(){
+        Intent i = new Intent (PartidaActivity.this, TutorialActivity.class);
+        startActivity(i);
     }
 }

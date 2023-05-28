@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondofigma"
-    tools:context=".views.Partida">
+    android:background="@drawable/fondoespacio"
+    tools:context=".views.PartidaActivity">
 
     <TextView
         android:id="@+id/valorDado2"
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:autoText="true"
         android:text=""
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:autoText="true"
         android:text="@string/vida_j2"
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +44,7 @@
         android:layout_height="wrap_content"
         android:autoText="true"
         android:text="@string/vida_j1"
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,12 +54,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.566" />
 
-    <Button
+    <ImageButton
         android:id="@+id/deckButton2"
         android:layout_width="90dp"
-        android:layout_height="115dp"
-        android:backgroundTint="#9F015887"
-        android:text="@string/deck"
+        android:layout_height="90dp"
+        android:background="@drawable/deckback"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
@@ -70,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/end_turn"
-        android:textColor="#9F015887"
+        android:textColor="@color/white"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.997"
-        app:strokeColor="#9F015887" />
+        app:strokeColor="@color/white" />
 
     <Button
         android:id="@+id/endTurn2"
@@ -86,20 +88,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/end_turn"
-        android:textColor="#9F015887"
+        android:textColor="@color/white"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.002"
-        app:strokeColor="#9F015887" />
+        app:strokeColor="@color/white" />
 
     <TextView
         android:id="@+id/valorDado1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoText="true"
+        android:textColor="@color/white"
         android:text=""
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -109,12 +112,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.907" />
 
-    <Button
+    <ImageButton
         android:id="@+id/deckButton1"
         android:layout_width="90dp"
-        android:layout_height="115dp"
-        android:backgroundTint="#9F015887"
-        android:text="@string/deck"
+        android:layout_height="90dp"
+        android:background="@drawable/deckback"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
@@ -124,44 +126,44 @@
 
     <ImageButton
         android:id="@+id/card11"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.744" />
 
     <ImageButton
         android:id="@+id/card12"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card13"
+        app:layout_constraintHorizontal_bias="0.631"
+        app:layout_constraintStart_toEndOf="@+id/card11"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.744" />
 
     <ImageButton
         android:id="@+id/card13"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.744" />
 
     <ImageButton
         android:id="@+id/card21"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,53 +174,66 @@
 
     <ImageButton
         android:id="@+id/card22"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card21"
+        app:layout_constraintHorizontal_bias="0.685"
+        app:layout_constraintStart_toEndOf="@+id/card23"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.226" />
 
     <ImageButton
         android:id="@+id/card23"
-        android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_width="117dp"
+        android:layout_height="152dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.226" />
 
-    <Button
-        android:id="@+id/homeButton"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/home"
-        app:cornerRadius="20dp"
+    <ImageButton
+        android:id="@+id/tutorialButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/configuration"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.513"
-        app:strokeColor="@color/purple_500" />
+        app:layout_constraintVertical_bias="0.439" />
 
     <TextView
         android:id="@+id/turnIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/turno"
+        android:text=""
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.552" />
+
+    <TextView
+        android:id="@+id/turnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/turno"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -233,7 +248,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.002"
-        app:srcCompat="@drawable/dado_5" />
+        app:srcCompat="@drawable/jue_0018" />
 
     <ImageButton
         android:id="@+id/dice1Button"
@@ -246,13 +261,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.997"
-        app:srcCompat="@drawable/dado_5" />
+        app:srcCompat="@drawable/jue_0018" />
 
     <TextView
         android:id="@+id/vidaCarta11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.189"
@@ -265,6 +281,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -278,6 +295,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.805"
@@ -290,6 +308,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.805"
@@ -302,6 +321,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -314,6 +334,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.189"
@@ -325,24 +346,52 @@
         android:id="@+id/imageBusuario1"
         android:layout_width="59dp"
         android:layout_height="58dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/endTurn1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546"
+        app:layout_constraintVertical_bias="0.547"
         app:srcCompat="@drawable/component_1" />
 
     <ImageButton
         android:id="@+id/imageBusuario2"
         android:layout_width="59dp"
         android:layout_height="58dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.433"
-        app:srcCompat="@drawable/component_1" />
+        app:srcCompat="@drawable/user" />
+
+    <TextView
+        android:id="@+id/userName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41" />
+
+    <TextView
+        android:id="@+id/userName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

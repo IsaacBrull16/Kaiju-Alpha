@@ -1,5 +1,7 @@
 package com.projecte.kaiju.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -13,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.projecte.kaiju.helpers.GlobalInfo;
 import com.projecte.kaiju.models.Card;
-import com.projecte.kaiju.models.Deck;
 import com.projecte.kaiju.models.Game;
 
 public class PartidaViewModel extends ViewModel {
@@ -78,6 +79,24 @@ public class PartidaViewModel extends ViewModel {
     private MutableLiveData<Integer> card23Life = new MutableLiveData<>();
 
     private  MutableLiveData<String> player2Type = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> noCards1 = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> noCards2 = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard11Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard12Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard13Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard21Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard22Selected = new MutableLiveData<>();
+
+    private MutableLiveData<Boolean> isCard23Selected = new MutableLiveData<>();
+
+    private MutableLiveData<String> userName2 = new MutableLiveData<>();
 
     private Game game;
 
@@ -213,6 +232,41 @@ public class PartidaViewModel extends ViewModel {
         return player2Type;
     }
 
+    public MutableLiveData<Boolean> getNoCards1() {
+        return noCards1;
+    }
+    public MutableLiveData<Boolean> getNoCards2() {
+        return noCards2;
+    }
+
+    public MutableLiveData<Boolean> getIsCard11Selected() {
+        return isCard11Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard12Selected() {
+        return isCard12Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard13Selected() {
+        return isCard13Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard21Selected() {
+        return isCard21Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard22Selected() {
+        return isCard22Selected;
+    }
+
+    public MutableLiveData<Boolean> getIsCard23Selected() {
+        return isCard23Selected;
+    }
+
+    public MutableLiveData<String> getUserName2() {
+        return userName2;
+    }
+
     protected String myClassTag = this.getClass().getSimpleName();
 
     private int l1;
@@ -228,18 +282,26 @@ public class PartidaViewModel extends ViewModel {
     public PartidaViewModel() {
         game = new Game();
         isDice1Rolled.setValue(game.getBoard().getDiceRolledP1());
-        isCard11OnTable.setValue(false);
-        isCard12OnTable.setValue(false);
-        isCard13OnTable.setValue(false);
-        isCard21OnTable.setValue(false);
-        isCard22OnTable.setValue(false);
-        isCard23OnTable.setValue(false);
         isCard11Playable.setValue(false);
         isCard12Playable.setValue(false);
         isCard13Playable.setValue(false);
         isCard21Playable.setValue(false);
         isCard22Playable.setValue(false);
         isCard23Playable.setValue(false);
+        isCard11OnTable.setValue(false);
+        isCard12OnTable.setValue(false);
+        isCard13OnTable.setValue(false);
+        isCard21OnTable.setValue(false);
+        isCard22OnTable.setValue(false);
+        isCard23OnTable.setValue(false);
+        isCard11Selected.setValue(false);
+        isCard12Selected.setValue(false);
+        isCard13Selected.setValue(false);
+        isCard21Selected.setValue(false);
+        isCard22Selected.setValue(false);
+        isCard23Selected.setValue(false);
+        noCards1.setValue(false);
+        noCards2.setValue(false);
         life1.setValue(game.getBoard().getPlayer1().getLife());
         life2.setValue(game.getBoard().getPlayer2().getLife());
         turnChanged.setValue(true);
@@ -252,12 +314,15 @@ public class PartidaViewModel extends ViewModel {
             String id = mAuth.getCurrentUser().getUid();
             String url = GlobalInfo.getInstance().getFB_DB();
             db = FirebaseDatabase.getInstance(url);
-            usrRef = db.getReference(id);
+            usrRef = db.getReference("users/" + id);
             usrRef.child("name").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String name = snapshot.getValue(String.class);
                     game.getBoard().getPlayer1().setName(name);
+                    Log.d("NameP1: ", game.getBoard().getPlayer1().getName());
+                    currentPlayer.setValue(game.getBoard().getPlayer1().getName());
+                    userName2.setValue(game.getBoard().getPlayer2().getName());
                 }
 
                 @Override
@@ -267,23 +332,22 @@ public class PartidaViewModel extends ViewModel {
             });
 
         }
-        currentPlayer.setValue(game.getBoard().getPlayer1().getName());
     }
 
     public void launchDice1() {
         if ((game.getTurn().getTurnValue() == true) && (game.getBoard().getDiceRolledP1() == false)) {
             game.dice1Actions();
-            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT11().getCost()) && (game.getBoard().isCardOnTableP11() == true)){
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT11().getCost()) && (game.getCardT11().isOnTable())){
                 isCard11Playable.setValue(true);
             } else {
                 isCard11Playable.setValue(false);
             }
-            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT12().getCost()) && (game.getBoard().isCardOnTableP12() == true)){
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT12().getCost()) && (game.getCardT12().isOnTable())){
                 isCard12Playable.setValue(true);
             } else {
                 isCard12Playable.setValue(false);
             }
-            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT13().getCost()) && (game.getBoard().isCardOnTableP13() == true)){
+            if ((game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT13().getCost()) && (game.getCardT13().isOnTable())){
                 isCard13Playable.setValue(true);
             } else {
                 isCard13Playable.setValue(false);
@@ -304,21 +368,21 @@ public class PartidaViewModel extends ViewModel {
     public void launchDice2() {
         if ((game.getTurn().getTurnValue() == false) && (game.getBoard().getDiceRolledP2() == false)) {
             game.dice2Actions();
-            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT21().getCost()) && (game.getBoard().isCardOnTableP21() == true)){
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT21().getCost()) && (game.getCardT21().isOnTable())){
                 isCard21Playable.setValue(true);
                 canUseCard21 = true;
             } else {
                 isCard21Playable.setValue(false);
                 canUseCard21 = false;
             }
-            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) && (game.getBoard().isCardOnTableP22() == true)){
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) && (game.getCardT22().isOnTable())){
                 isCard22Playable.setValue(true);
                 canUseCard22 = true;
             } else {
                 isCard22Playable.setValue(false);
                 canUseCard22 = false;
             }
-            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) && (game.getBoard().isCardOnTableP23() == true)){
+            if ((game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) && (game.getCardT23().isOnTable())){
                 isCard23Playable.setValue(true);
                 canUseCard23 = true;
             } else {
@@ -343,7 +407,7 @@ public class PartidaViewModel extends ViewModel {
             /*if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
                 game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
             }*/
-            if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() != 0) {
+            if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() > 0) {
                 /*for (int i = 0; i < game.getBoard().getPlayer1().getDeckOfPlayer().deckSize(); i++){
                     Log.d(myClassTag, game.getBoard().getPlayer1().getDeckOfPlayer().getDeckCards().get(i).getName());
                 }*/
@@ -382,6 +446,7 @@ public class PartidaViewModel extends ViewModel {
                     }
                 }
             }
+            Log.d("Deck1 Size:", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
         }
     }
 
@@ -390,7 +455,7 @@ public class PartidaViewModel extends ViewModel {
             /*if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
                 game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
             }*/
-            if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() != 0) {
+            if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() > 0) {
                 /*for (int i = 0; i < game.getBoard().getPlayer2().getDeckOfPlayer().deckSize(); i++){
                     Log.d(myClassTag, game.getBoard().getPlayer2().getDeckOfPlayer().getDeckCards().get(i).getName());
                 }*/
@@ -432,6 +497,7 @@ public class PartidaViewModel extends ViewModel {
                     }
                 }
             }
+            Log.d("Deck2 Size:", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
         }
     }
 
@@ -443,6 +509,62 @@ public class PartidaViewModel extends ViewModel {
                 diceValue1 = diceValue1 - game.getCardT11().getCost();
                 game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 numDice1.setValue(diceValue1);
+                String objectiveP1 = objective1.getValue();
+                if (objectiveP1.equals("player")){
+                    l2 = l2 - game.getCardT11().getDamage();
+                    game.getBoard().getPlayer2().setLife(l2);
+                    life2.setValue(l2);
+                } else if (objectiveP1.equals("card1")){
+                    cl21 = cl21 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT21().getType());
+                    if(cl21<=0){
+                        isCard21OnTable.setValue(false);
+                        game.getBoard().changeCardOnTableP21();
+                        cardTable21 = false;
+                        isCard21Playable.setValue(false);
+                        canUseCard21 = false;
+                        game.getCardT21().setOnTable(false);
+                        l2 = l2 + cl21;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
+                    }
+                    game.getCardT21().setLife(cl21);
+                    card21Life.setValue(cl21);
+                } else if (objectiveP1.equals("card2")) {
+                    cl22 = cl22 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT22().getType());
+                    if(cl22<=0){
+                        isCard22OnTable.setValue(false);
+                        game.getBoard().changeCardOnTableP22();
+                        cardTable22 = false;
+                        isCard22Playable.setValue(false);
+                        canUseCard22 = false;
+                        game.getCardT22().setOnTable(false);
+                        l2 = l2 + cl22;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
+                    }
+                    game.getCardT22().setLife(cl22);
+                    card22Life.setValue(cl22);
+                } else if (objectiveP1.equals("card3")) {
+                    cl23 = cl23 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT23().getType());
+                    if(cl23<=0){
+                        isCard23OnTable.setValue(false);
+                        game.getBoard().changeCardOnTableP23();
+                        cardTable23 = false;
+                        isCard23Playable.setValue(false);
+                        canUseCard23 = false;
+                        game.getCardT23().setOnTable(false);
+                        l2 = l2 + cl23;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
+                    }
+                    game.getCardT23().setLife(cl23);
+                    card23Life.setValue(cl23);
+                }
+                objective1.setValue("none");
+                isCard11Selected.setValue(false);
                 if (diceValue1 < game.getCardT11().getCost()){
                     isCard11Playable.setValue(false);
                 } else {
@@ -458,56 +580,12 @@ public class PartidaViewModel extends ViewModel {
                 } else {
                     isCard13Playable.setValue(true);
                 }
-                String objectiveP1 = objective1.getValue();
-                if (objectiveP1.equals("player")){
-                    l2 = l2 - game.getCardT11().getDamage();
-                    game.getBoard().getPlayer2().setLife(l2);
-                    life2.setValue(l2);
-                } else if (objectiveP1.equals("card1")){
-                    //cl2=game.getCardT2().getLife();
-                    cl21 = cl21 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT21().getType());
-                    if(cl21<=0){
-                        isCard21OnTable.setValue(false);
-                        game.getBoard().changeCardOnTableP21();
-                        cardTable21 = false;
-                        isCard21Playable.setValue(false);
-                        canUseCard21 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
-                    }
-                    game.getCardT21().setLife(cl21);
-                    card21Life.setValue(cl21);
-                } else if (objectiveP1.equals("card2")) {
-                    cl22 = cl22 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT22().getType());
-                    if(cl22<=0){
-                        isCard22OnTable.setValue(false);
-                        game.getBoard().changeCardOnTableP22();
-                        cardTable22 = false;
-                        isCard22Playable.setValue(false);
-                        canUseCard22 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
-                    }
-                    game.getCardT22().setLife(cl22);
-                    card22Life.setValue(cl22);
-                } else if (objectiveP1.equals("card3")) {
-                    cl23 = cl23 - game.getCardT11().getDamage() + detectType(game.getCardT11().getType(), game.getCardT23().getType());
-                    if(cl23<=0){
-                        isCard23OnTable.setValue(false);
-                        game.getBoard().changeCardOnTableP23();
-                        cardTable23 = false;
-                        isCard23Playable.setValue(false);
-                        canUseCard23 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
-                    }
-                    game.getCardT23().setLife(cl23);
-                    card23Life.setValue(cl23);
-                }
-                objective1.setValue("none");
+            }
+        }
+        Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable21 && !cardTable22 && !cardTable23){
+                noCards2.setValue(true);
             }
         }
     }
@@ -520,21 +598,6 @@ public class PartidaViewModel extends ViewModel {
                 diceValue1 = diceValue1 - game.getCardT12().getCost();
                 game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
                 numDice1.setValue(diceValue1);
-                if (diceValue1 < game.getCardT11().getCost()){
-                    isCard11Playable.setValue(false);
-                } else {
-                    isCard11Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT12().getCost()){
-                    isCard12Playable.setValue(false);
-                } else {
-                    isCard12Playable.setValue(true);
-                }
-                if (diceValue1 < game.getCardT13().getCost()){
-                    isCard13Playable.setValue(false);
-                } else {
-                    isCard13Playable.setValue(true);
-                }
                 String objectiveP1 = objective1.getValue();
                 if (objectiveP1.equals("player")){
                     l2 = l2 - game.getCardT12().getDamage();
@@ -549,9 +612,11 @@ public class PartidaViewModel extends ViewModel {
                         cardTable21 = false;
                         isCard21Playable.setValue(false);
                         canUseCard21 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT21().setOnTable(false);
+                        l2 = l2 + cl21;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
                     }
                     game.getCardT21().setLife(cl21);
                     card21Life.setValue(cl21);
@@ -563,9 +628,11 @@ public class PartidaViewModel extends ViewModel {
                         cardTable22 = false;
                         isCard22Playable.setValue(false);
                         canUseCard22 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT22().setOnTable(false);
+                        l2 = l2 + cl22;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
                     }
                     game.getCardT22().setLife(cl22);
                     card22Life.setValue(cl22);
@@ -577,25 +644,17 @@ public class PartidaViewModel extends ViewModel {
                         cardTable23 = false;
                         isCard23Playable.setValue(false);
                         canUseCard23 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT23().setOnTable(false);
+                        l2 = l2 + cl23;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
                     }
                     game.getCardT23().setLife(cl23);
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
-            }
-        }
-    }
-    public void useCard13(){
-        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP13() == true)) {
-            if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT13().getCost()) {
-                game.card1Actions();
-                int diceValue1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
-                diceValue1 = diceValue1 - game.getCardT13().getCost();
-                game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
-                numDice1.setValue(diceValue1);
+                isCard12Selected.setValue(false);
                 if (diceValue1 < game.getCardT11().getCost()){
                     isCard11Playable.setValue(false);
                 } else {
@@ -611,6 +670,23 @@ public class PartidaViewModel extends ViewModel {
                 } else {
                     isCard13Playable.setValue(true);
                 }
+            }
+        }
+        Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable21 && !cardTable22 && !cardTable23){
+                noCards2.setValue(true);
+            }
+        }
+    }
+    public void useCard13(){
+        if ((game.getTurn().getTurnValue() == true) && (game.getBoard().isCardOnTableP13() == true)) {
+            if (game.getBoard().getPlayer1().getPlayerDice().getAcumValue() >= game.getCardT13().getCost()) {
+                game.card1Actions();
+                int diceValue1 = game.getBoard().getPlayer1().getPlayerDice().getAcumValue();
+                diceValue1 = diceValue1 - game.getCardT13().getCost();
+                game.getBoard().getPlayer1().getPlayerDice().setDiceValue(diceValue1);
+                numDice1.setValue(diceValue1);
                 String objectiveP1 = objective1.getValue();
                 if (objectiveP1.equals("player")){
                     l2 = l2 - game.getCardT13().getDamage();
@@ -625,9 +701,11 @@ public class PartidaViewModel extends ViewModel {
                         cardTable21 = false;
                         isCard21Playable.setValue(false);
                         canUseCard21 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT21().setOnTable(false);
+                        l2 = l2 + cl21;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
                     }
                     game.getCardT21().setLife(cl21);
                     card21Life.setValue(cl21);
@@ -639,9 +717,11 @@ public class PartidaViewModel extends ViewModel {
                         cardTable22 = false;
                         isCard22Playable.setValue(false);
                         canUseCard22 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT22().setOnTable(false);
+                        l2 = l2 + cl22;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
                     }
                     game.getCardT22().setLife(cl22);
                     card22Life.setValue(cl22);
@@ -653,14 +733,38 @@ public class PartidaViewModel extends ViewModel {
                         cardTable23 = false;
                         isCard23Playable.setValue(false);
                         canUseCard23 = false;
-                        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer2().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT23().setOnTable(false);
+                        l2 = l2 + cl23;
+                        game.getBoard().getPlayer2().setLife(l2);
+                        life2.setValue(l2);
+
                     }
                     game.getCardT23().setLife(cl23);
                     card23Life.setValue(cl23);
                 }
                 objective1.setValue("none");
+                isCard13Selected.setValue(false);
+                if (diceValue1 < game.getCardT11().getCost()){
+                    isCard11Playable.setValue(false);
+                } else {
+                    isCard11Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT12().getCost()){
+                    isCard12Playable.setValue(false);
+                } else {
+                    isCard12Playable.setValue(true);
+                }
+                if (diceValue1 < game.getCardT13().getCost()){
+                    isCard13Playable.setValue(false);
+                } else {
+                    isCard13Playable.setValue(true);
+                }
+            }
+        }
+        Log.d("baraja2", String.valueOf(game.getBoard().getPlayer2().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable21 && !cardTable22 && !cardTable23){
+                noCards2.setValue(true);
             }
         }
     }
@@ -673,27 +777,6 @@ public class PartidaViewModel extends ViewModel {
                 diceValue2 = diceValue2 - game.getCardT21().getCost();
                 game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
                 numDice2.setValue(diceValue2);
-                if (diceValue2 < game.getCardT21().getCost()){
-                    isCard21Playable.setValue(false);
-                    canUseCard21 = false;
-                } else {
-                    isCard21Playable.setValue(true);
-                    canUseCard21 = true;
-                }
-                if (diceValue2 < game.getCardT22().getCost()){
-                    isCard22Playable.setValue(false);
-                    canUseCard22 = false;
-                } else {
-                    isCard22Playable.setValue(true);
-                    canUseCard22 = true;
-                }
-                if (diceValue2 < game.getCardT23().getCost()){
-                    isCard23Playable.setValue(false);
-                    canUseCard23 = false;
-                } else {
-                    isCard23Playable.setValue(true);
-                    canUseCard23 = true;
-                }
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
                     l1 = l1 - game.getCardT21().getDamage();
@@ -707,9 +790,11 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP11();
                         cardTable11 = false;
                         isCard11Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT11().setOnTable(false);
+                        l1 = l1 + cl11;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT11().setLife(cl11);
                     card11Life.setValue(cl11);
@@ -721,9 +806,11 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP12();
                         cardTable12 = false;
                         isCard12Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT12().setOnTable(false);
+                        l1 = l1 + cl12;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT12().setLife(cl12);
                     card12Life.setValue(cl12);
@@ -734,26 +821,17 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP13();
                         cardTable13 = false;
                         isCard13Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT13().setOnTable(false);
+                        l1 = l1 + cl13;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT13().setLife(cl13);
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
-            }
-        }
-    }
-
-    public void useCard22(){
-        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP22() == true)) {
-            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) {
-                game.card2Actions();
-                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
-                diceValue2 = diceValue2 - game.getCardT22().getCost();
-                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
-                numDice2.setValue(diceValue2);
+                isCard21Selected.setValue(false);
                 if (diceValue2 < game.getCardT21().getCost()){
                     isCard21Playable.setValue(false);
                     canUseCard21 = false;
@@ -775,6 +853,24 @@ public class PartidaViewModel extends ViewModel {
                     isCard23Playable.setValue(true);
                     canUseCard23 = true;
                 }
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
+            }
+        }
+    }
+
+    public void useCard22(){
+        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP22() == true)) {
+            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT22().getCost()) {
+                game.card2Actions();
+                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
+                diceValue2 = diceValue2 - game.getCardT22().getCost();
+                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+                numDice2.setValue(diceValue2);
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
                     l1 = l1 - game.getCardT22().getDamage();
@@ -788,9 +884,11 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP11();
                         cardTable11 = false;
                         isCard11Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT11().setOnTable(false);
+                        l1 = l1 + cl11;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT11().setLife(cl11);
                     card11Life.setValue(cl11);
@@ -802,9 +900,11 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP12();
                         cardTable12 = false;
                         isCard12Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT12().setOnTable(false);
+                        l1 = l1 + cl12;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT12().setLife(cl12);
                     card12Life.setValue(cl12);
@@ -815,25 +915,17 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP13();
                         cardTable13 = false;
                         isCard13Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT13().setOnTable(false);
+                        l1 = l1 + cl13;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT13().setLife(cl13);
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
-            }
-        }
-    }
-    public void useCard23(){
-        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP23() == true)) {
-            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) {
-                game.card2Actions();
-                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
-                diceValue2 = diceValue2 - game.getCardT23().getCost();
-                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
-                numDice2.setValue(diceValue2);
+                isCard22Selected.setValue(false);
                 if (diceValue2 < game.getCardT21().getCost()){
                     isCard21Playable.setValue(false);
                     canUseCard21 = false;
@@ -855,6 +947,23 @@ public class PartidaViewModel extends ViewModel {
                     isCard23Playable.setValue(true);
                     canUseCard23 = true;
                 }
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
+            }
+        }
+    }
+    public void useCard23(){
+        if ((game.getTurn().getTurnValue() == false) && (game.getBoard().isCardOnTableP23() == true)) {
+            if (game.getBoard().getPlayer2().getPlayerDice().getAcumValue() >= game.getCardT23().getCost()) {
+                game.card2Actions();
+                int diceValue2 = game.getBoard().getPlayer2().getPlayerDice().getAcumValue();
+                diceValue2 = diceValue2 - game.getCardT23().getCost();
+                game.getBoard().getPlayer2().getPlayerDice().setDiceValue(diceValue2);
+                numDice2.setValue(diceValue2);
                 String objectiveP2 = objective2.getValue();
                 if (objectiveP2.equals("player")){
                     l1 = l1 - game.getCardT23().getDamage();
@@ -868,9 +977,11 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP11();
                         cardTable11 = false;
                         isCard11Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT11().setOnTable(false);
+                        l1 = l1 + cl11;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT11().setLife(cl11);
                     card11Life.setValue(cl11);
@@ -882,9 +993,11 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP12();
                         cardTable12 = false;
                         isCard12Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT12().setOnTable(false);
+                        l1 = l1 + cl12;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT12().setLife(cl12);
                     card12Life.setValue(cl12);
@@ -895,14 +1008,44 @@ public class PartidaViewModel extends ViewModel {
                         game.getBoard().changeCardOnTableP13();
                         cardTable13 = false;
                         isCard13Playable.setValue(false);
-                        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
-                            game.getBoard().getPlayer1().setDeckOfPlayer(new Deck());
-                        }
+                        game.getCardT13().setOnTable(false);
+                        l1 = l1 + cl13;
+                        game.getBoard().getPlayer2().setLife(l1);
+                        life1.setValue(l1);
+
                     }
                     game.getCardT13().setLife(cl13);
                     card13Life.setValue(cl13);
                 }
                 objective2.setValue("none");
+                isCard23Selected.setValue(false);
+                if (diceValue2 < game.getCardT21().getCost()){
+                    isCard21Playable.setValue(false);
+                    canUseCard21 = false;
+                } else {
+                    isCard21Playable.setValue(true);
+                    canUseCard21 = true;
+                }
+                if (diceValue2 < game.getCardT22().getCost()){
+                    isCard22Playable.setValue(false);
+                    canUseCard22 = false;
+                } else {
+                    isCard22Playable.setValue(true);
+                    canUseCard22 = true;
+                }
+                if (diceValue2 < game.getCardT23().getCost()){
+                    isCard23Playable.setValue(false);
+                    canUseCard23 = false;
+                } else {
+                    isCard23Playable.setValue(true);
+                    canUseCard23 = true;
+                }
+            }
+        }
+        Log.d("baraja1", String.valueOf(game.getBoard().getPlayer1().getDeckOfPlayer().deckSize()));
+        if (game.getBoard().getPlayer1().getDeckOfPlayer().deckSize() <= 0){
+            if (!cardTable11 && !cardTable12 && !cardTable13){
+                noCards1.setValue(true);
             }
         }
     }
@@ -914,6 +1057,18 @@ public class PartidaViewModel extends ViewModel {
             //Log.d(myClassTag, "player2 name: " + p2);
             currentPlayer.setValue(p2);
             isDice1Rolled.setValue(false);
+            isCard11Selected.setValue(false);
+            isCard12Selected.setValue(false);
+            isCard13Selected.setValue(false);
+            if (isCard11Playable.getValue()){
+                isCard11Playable.setValue(true);
+            }
+            if (isCard12Playable.getValue()){
+                isCard12Playable.setValue(true);
+            }
+            if (isCard13Playable.getValue()){
+                isCard13Playable.setValue(true);
+            }
             turnChanged.setValue(false);
         }
     }
@@ -924,6 +1079,18 @@ public class PartidaViewModel extends ViewModel {
             String p1 = game.getBoard().getPlayer1().getName();
             currentPlayer.setValue(p1);
             isDice2Rolled.setValue(false);
+            isCard21Selected.setValue(false);
+            isCard22Selected.setValue(false);
+            isCard23Selected.setValue(false);
+            if (isCard21Playable.getValue()){
+                isCard21Playable.setValue(true);
+            }
+            if (isCard22Playable.getValue()){
+                isCard22Playable.setValue(true);
+            }
+            if (isCard23Playable.getValue()){
+                isCard23Playable.setValue(true);
+            }
             turnChanged.setValue(true);
         }
     }
@@ -945,195 +1112,437 @@ public class PartidaViewModel extends ViewModel {
         } catch (InterruptedException e) {
         }
         launchDice2();
-        if (!cardTable21) {
-            setCardOnT2();
-        }
-        if (!cardTable22) {
-            setCardOnT2();
-        }
-        if (!cardTable23) {
-            setCardOnT2();
+        if (game.getBoard().getPlayer2().getDeckOfPlayer().deckSize() > 0){
+            if (!cardTable21) {
+                setCardOnT2();
+            }
+            if (!cardTable22) {
+                setCardOnT2();
+            }
+            if (!cardTable23) {
+                setCardOnT2();
+            }
         }
         while (!finished) {
             if (l1 <= 0) {
                 finished = true;
             }
-            if (game.getCardT21().getDamage() >= game.getCardT22().getDamage()) {
-                if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if (canUseCard22){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                }
-            }
-            if (game.getCardT22().getDamage() >= game.getCardT21().getDamage()){
-                if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if (canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                }
-            }
-            if (game.getCardT23().getDamage() >= game.getCardT21().getDamage()) {
-                if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard23();
-                } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22){
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if ((game.getCardT21().getDamage() >= game.getCardT22().getDamage()) && canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                } else if ((game.getCardT22().getDamage() >= game.getCardT21().getDamage()) && canUseCard22) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard22();
-                } else if (canUseCard21) {
-                    if (cardTable11) {
-                        setObjective2("card1");
-                    } else if (cardTable12) {
-                        setObjective2("card2");
-                    } else if (cardTable13) {
-                        setObjective2("card3");
-                    } else {
-                        setObjective2("player");
-                    }
-                    useCard21();
-                }
-            }
-            if (!canUseCard21 && !canUseCard22 && !canUseCard23 && cardTable21 && cardTable22 && cardTable23) {
+            if (!canUseCard21 && !canUseCard22 && !canUseCard23 && (cardTable21 || cardTable22 || cardTable23)) {
                 finished = true;
+            }
+            if ((cardTable21 && cardTable22 && cardTable23) && (canUseCard21 || canUseCard22 || canUseCard23)) {
+                if (game.getCardT21().getDamage() >= game.getCardT22().getDamage()) {
+                    if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+                if (game.getCardT22().getDamage() >= game.getCardT21().getDamage()) {
+                    if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    } else if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                }
+                if (game.getCardT23().getDamage() >= game.getCardT21().getDamage()) {
+                    if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    } else if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if ((game.getCardT21().getDamage() >= game.getCardT22().getDamage()) && canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    } else if ((game.getCardT22().getDamage() >= game.getCardT21().getDamage()) && canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    } else if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                }
+                if (canUseCard21) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard21();
+                } else if (canUseCard22) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard22();
+                } else if (canUseCard23) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard23();
+                }
+            } else if ((cardTable21 && cardTable22) && (canUseCard21 || canUseCard22)){
+                if ((game.getCardT21().getDamage() >= game.getCardT22().getDamage()) && canUseCard21){
+                    if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                } else {
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+                if ((game.getCardT22().getDamage() >= game.getCardT21().getDamage()) && canUseCard22){
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                } else {
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+            } else if ((cardTable21 && cardTable23) && (canUseCard21 || canUseCard23)) {
+                if ((game.getCardT21().getDamage() >= game.getCardT23().getDamage()) && canUseCard21){
+                    if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                } else {
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                }
+                if ((game.getCardT23().getDamage() >= game.getCardT21().getDamage()) && canUseCard23){
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                } else {
+                    if (canUseCard21) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard21();
+                    }
+                }
+            } else if ((cardTable22 && cardTable23) && (canUseCard22 || canUseCard23)) {
+                if ((game.getCardT22().getDamage() >= game.getCardT23().getDamage()) && canUseCard22){
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                } else {
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                }
+                if ((game.getCardT23().getDamage() >= game.getCardT22().getDamage()) && canUseCard23){
+                    if (canUseCard22) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard22();
+                    }
+                } else {
+                    if (canUseCard23) {
+                        if (cardTable11) {
+                            setObjective2("card1");
+                        } else if (cardTable12) {
+                            setObjective2("card2");
+                        } else if (cardTable13) {
+                            setObjective2("card3");
+                        } else {
+                            setObjective2("player");
+                        }
+                        useCard23();
+                    }
+                }
+            } else if (cardTable21 && canUseCard21) {
+                if (canUseCard21) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard21();
+                }
+            } else if (cardTable22 && canUseCard22) {
+                if (canUseCard22) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard22();
+                }
+            } else if (cardTable23 && canUseCard23) {
+                if (canUseCard23) {
+                    if (cardTable11) {
+                        setObjective2("card1");
+                    } else if (cardTable12) {
+                        setObjective2("card2");
+                    } else if (cardTable13) {
+                        setObjective2("card3");
+                    } else {
+                        setObjective2("player");
+                    }
+                    useCard23();
+                }
             }
         }
 
@@ -1169,5 +1578,109 @@ public class PartidaViewModel extends ViewModel {
         } else {
             return 0;
         }
+    }
+
+    public boolean selectedCard(boolean status){
+        if (status){
+            status = false;
+        } else {
+            status= true;
+        }
+        return status;
+    }
+
+    public void changeCard11Status() {
+        isCard11Selected.setValue(true);
+        if (isCard12Selected.getValue()){
+            isCard12Selected.setValue(false);
+            if (isCard12Playable.getValue()){
+                isCard12Playable.setValue(true);
+            }
+        }
+        if (isCard13Selected.getValue()){
+            isCard13Selected.setValue(false);
+            if (isCard13Playable.getValue()){
+                isCard13Playable.setValue(true);
+            }
+        }
+    }
+    public void changeCard12Status() {
+        isCard12Selected.setValue(true);
+        if (isCard11Selected.getValue()){
+            isCard11Selected.setValue(false);
+            if (isCard11Playable.getValue()){
+                isCard11Playable.setValue(true);
+            }
+        }
+        if (isCard13Selected.getValue()){
+            isCard13Selected.setValue(false);
+            if (isCard13Playable.getValue()){
+                isCard13Playable.setValue(true);
+            }
+        }
+    }
+    public void changeCard13Status() {
+        isCard13Selected.setValue(true);
+        if (isCard11Selected.getValue()){
+            isCard11Selected.setValue(false);
+            if (isCard11Playable.getValue()){
+                isCard11Playable.setValue(true);
+            }
+        }
+        if (isCard12Selected.getValue()){
+            isCard12Selected.setValue(false);
+            if (isCard12Playable.getValue()){
+                isCard12Playable.setValue(true);
+            }
+        }
+    }
+    public void changeCard21Status() {
+        isCard21Selected.setValue(true);
+        if (isCard22Selected.getValue()){
+            isCard22Selected.setValue(false);
+            if (isCard22Playable.getValue()){
+                isCard22Playable.setValue(true);
+            }
+        }
+        if (isCard23Selected.getValue()){
+            isCard23Selected.setValue(false);
+            if (isCard23Playable.getValue()){
+                isCard23Playable.setValue(true);
+            }
+        }
+    }
+    public void changeCard22Status() {
+        isCard22Selected.setValue(true);
+        if (isCard21Selected.getValue()){
+            isCard21Selected.setValue(false);
+            if (isCard21Playable.getValue()){
+                isCard21Playable.setValue(true);
+            }
+        }
+        if (isCard23Selected.getValue()){
+            isCard23Selected.setValue(false);
+            if (isCard23Playable.getValue()){
+                isCard23Playable.setValue(true);
+            }
+        }
+    }
+    public void changeCard23Status() {
+        isCard23Selected.setValue(true);
+        if (isCard21Selected.getValue()){
+            isCard21Selected.setValue(false);
+            if (isCard21Playable.getValue()){
+                isCard21Playable.setValue(true);
+            }
+        }
+        if (isCard22Selected.getValue()){
+            isCard22Selected.setValue(false);
+            if (isCard22Playable.getValue()){
+                isCard22Playable.setValue(true);
+            }
+        }
+    }
+
+    public void setName1(String name1) {
+        game.getBoard().getPlayer1().setName(name1);
     }
 }

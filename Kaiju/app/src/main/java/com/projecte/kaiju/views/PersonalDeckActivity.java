@@ -23,6 +23,7 @@ import com.projecte.kaiju.helpers.GlobalInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class PersonalDeckActivity extends AppCompatActivity {
@@ -118,49 +119,91 @@ public class PersonalDeckActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void addCard(String newCardId, String newCardName) {
+        boolean found = false;
+        CardHelper newCard = new CardHelper(newCardId, newCardName);
 
-    public void addCard(String newCardId, String newCardName){
+        Iterator<CardHelper> iterator = personalDeck.iterator();
+        while (iterator.hasNext()) {
+            CardHelper cardHelper = iterator.next();
+            if (cardHelper.getId().equals(newCardId)) {
+                found = true;
+                iterator.remove();
+                depaintCard(cardHelper.getId());
+                break;
+            }
+        }
+
+        if (personalDeck.size() < 10) {
+            if (!found) {
+                personalDeck.add(newCard);
+                paintCard(newCard.getId());
+            }
+        } else {
+            Toast.makeText(this, "You already have 10 cards!", Toast.LENGTH_SHORT).show();
+        }
+
+        for (CardHelper cardHelper : personalDeck) {
+            Log.d("baraja", cardHelper.getName());
+        }
+    }
+
+
+    /*public void addCard(String newCardId, String newCardName){
         boolean found = false;
         CardHelper newCard = new CardHelper(newCardId, newCardName);
         for (CardHelper cardHelper : personalDeck) {
             if (cardHelper.getId().equals(newCardId)) {
                 found = true;
+                personalDeck.remove(cardHelper);
+                depaintCard(cardHelper.getId());
                 break;
             }
         }
-        if (found){
-            Toast.makeText(this, "You already have this card in your deck =O", Toast.LENGTH_SHORT).show();
-        } else {
-            depaintCard(personalDeck.get(0).getId());
-            for(int i = 1; i < personalDeck.size(); i++){
+        /*for (int i = 0; i < personalDeck.size(); i++) {
+            Log.d("baraja", personalDeck.get(i).getName());
+        }*/
+        /*if (personalDeck.size() < 6){
+            if (!found) {
+                //depaintCard(personalDeck.get(0).getId());
+            /*for(int i = 1; i < personalDeck.size(); i++){
                 personalDeck.set(i - 1, personalDeck.get(i));
                 paintCard(personalDeck.get(i).getId());
+            }*/
+                /*personalDeck.set(personalDeck.size() - 1, newCard);
+                paintCard(personalDeck.get(personalDeck.size() - 1).getId());
             }
-            personalDeck.set(personalDeck.size() - 1, newCard);
-            paintCard(personalDeck.get(personalDeck.size() - 1).getId());
         }
-    }
+        for (int i = 0; i < personalDeck.size(); i++) {
+            Log.d("baraja", personalDeck.get(i).getName());
+        }
+    }*/
     public void saveDeck(){
-        Map<String, String> deck = new HashMap<>();
-        mRef.removeValue(new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                if (error == null){
-                    for (int i = 0; i < personalDeck.size(); i++){
-                        String idCard = personalDeck.get(i).getId();
-                        String idName = personalDeck.get(i).getName();
-                        deck.put(idCard, idName);
+        if (personalDeck.size() == 10){
+            Map<String, String> deck = new HashMap<>();
+            mRef.removeValue(new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                    if (error == null){
+                        for (int i = 0; i < personalDeck.size(); i++){
+                            String idCard = personalDeck.get(i).getId();
+                            String idName = personalDeck.get(i).getName();
+                            deck.put(idCard, idName);
+                        }
+                        mRef.setValue(deck);
+                        Toast.makeText(PersonalDeckActivity.this, R.string.CardsSaved, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.d(myClassTag, "error loading into firebase");
                     }
-                    mRef.setValue(deck);
-                    Toast.makeText(PersonalDeckActivity.this, R.string.CardsSaved, Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.d(myClassTag, "error loading into firebase");
                 }
-            }
-        });
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+            });
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "The deck should have at least 10 cards! :D", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void getPersonalDeck(){
@@ -184,57 +227,75 @@ public class PersonalDeckActivity extends AppCompatActivity {
     public void paintCard(String idCard){
         switch(idCard){
             case "0":
+                cardImgButton1.setAlpha(1f);
                 cardImgButton1.setBackgroundColor(Color.GREEN);
                 break;
             case "1":
+                cardImgButton2.setAlpha(1f);
                 cardImgButton2.setBackgroundColor(Color.GREEN);
                 break;
             case "2":
+                cardImgButton3.setAlpha(1f);
                 cardImgButton3.setBackgroundColor(Color.GREEN);
                 break;
             case "3":
+                cardImgButton4.setAlpha(1f);
                 cardImgButton4.setBackgroundColor(Color.GREEN);
                 break;
             case "4":
+                cardImgButton5.setAlpha(1f);
                 cardImgButton5.setBackgroundColor(Color.GREEN);
                 break;
             case "5":
+                cardImgButton6.setAlpha(1f);
                 cardImgButton6.setBackgroundColor(Color.GREEN);
                 break;
             case "6":
+                cardImgButton7.setAlpha(1f);
                 cardImgButton7.setBackgroundColor(Color.GREEN);
                 break;
             case "7":
+                cardImgButton8.setAlpha(1f);
                 cardImgButton8.setBackgroundColor(Color.GREEN);
                 break;
             case "8":
+                cardImgButton9.setAlpha(1f);
                 cardImgButton9.setBackgroundColor(Color.GREEN);
                 break;
             case "9":
+                cardImgButton10.setAlpha(1f);
                 cardImgButton10.setBackgroundColor(Color.GREEN);
                 break;
             case "10":
+                cardImgButton11.setAlpha(1f);
                 cardImgButton11.setBackgroundColor(Color.GREEN);
                 break;
             case "11":
+                cardImgButton12.setAlpha(1f);
                 cardImgButton12.setBackgroundColor(Color.GREEN);
                 break;
             case "12":
+                cardImgButton13.setAlpha(1f);
                 cardImgButton13.setBackgroundColor(Color.GREEN);
                 break;
             case "13":
+                cardImgButton14.setAlpha(1f);
                 cardImgButton14.setBackgroundColor(Color.GREEN);
                 break;
             case "14":
+                cardImgButton15.setAlpha(1f);
                 cardImgButton15.setBackgroundColor(Color.GREEN);
                 break;
             case "15":
+                cardImgButton16.setAlpha(1f);
                 cardImgButton16.setBackgroundColor(Color.GREEN);
                 break;
             case "16":
+                cardImgButton17.setAlpha(1f);
                 cardImgButton17.setBackgroundColor(Color.GREEN);
                 break;
             case "17":
+                cardImgButton18.setAlpha(1f);
                 cardImgButton18.setBackgroundColor(Color.GREEN);
                 break;
         }
@@ -243,57 +304,75 @@ public class PersonalDeckActivity extends AppCompatActivity {
     public void depaintCard(String idCard){
         switch(idCard){
             case "0":
+                cardImgButton1.setAlpha(0.5f);
                 cardImgButton1.setBackgroundColor(Color.LTGRAY);
                 break;
             case "1":
+                cardImgButton2.setAlpha(0.5f);
                 cardImgButton2.setBackgroundColor(Color.LTGRAY);
                 break;
             case "2":
+                cardImgButton3.setAlpha(0.5f);
                 cardImgButton3.setBackgroundColor(Color.LTGRAY);
                 break;
             case "3":
+                cardImgButton4.setAlpha(0.5f);
                 cardImgButton4.setBackgroundColor(Color.LTGRAY);
                 break;
             case "4":
+                cardImgButton5.setAlpha(0.5f);
                 cardImgButton5.setBackgroundColor(Color.LTGRAY);
                 break;
             case "5":
+                cardImgButton6.setAlpha(0.5f);
                 cardImgButton6.setBackgroundColor(Color.LTGRAY);
                 break;
             case "6":
+                cardImgButton7.setAlpha(0.5f);
                 cardImgButton7.setBackgroundColor(Color.LTGRAY);
                 break;
             case "7":
+                cardImgButton8.setAlpha(0.5f);
                 cardImgButton8.setBackgroundColor(Color.LTGRAY);
                 break;
             case "8":
+                cardImgButton9.setAlpha(0.5f);
                 cardImgButton9.setBackgroundColor(Color.LTGRAY);
                 break;
             case "9":
+                cardImgButton10.setAlpha(0.5f);
                 cardImgButton10.setBackgroundColor(Color.LTGRAY);
                 break;
             case "10":
+                cardImgButton11.setAlpha(0.5f);
                 cardImgButton11.setBackgroundColor(Color.LTGRAY);
                 break;
             case "11":
+                cardImgButton12.setAlpha(0.5f);
                 cardImgButton12.setBackgroundColor(Color.LTGRAY);
                 break;
             case "12":
+                cardImgButton13.setAlpha(0.5f);
                 cardImgButton13.setBackgroundColor(Color.LTGRAY);
                 break;
             case "13":
+                cardImgButton14.setAlpha(0.5f);
                 cardImgButton14.setBackgroundColor(Color.LTGRAY);
                 break;
             case "14":
+                cardImgButton15.setAlpha(0.5f);
                 cardImgButton15.setBackgroundColor(Color.LTGRAY);
                 break;
             case "15":
+                cardImgButton16.setAlpha(0.5f);
                 cardImgButton16.setBackgroundColor(Color.LTGRAY);
                 break;
             case "16":
+                cardImgButton17.setAlpha(0.5f);
                 cardImgButton17.setBackgroundColor(Color.LTGRAY);
                 break;
             case "17":
+                cardImgButton18.setAlpha(0.5f);
                 cardImgButton18.setBackgroundColor(Color.LTGRAY);
                 break;
         }

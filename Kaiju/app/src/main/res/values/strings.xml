@@ -54,16 +54,16 @@
     <string name="YouLose">You Lose! :( </string>
     <string name="about_us">About Us</string>
     <string name="vida_j1">Player1 Life</string>
-    <string name="turno">Turn</string>
+    <string name="turno">Turn of:</string>
     <string name="vida_j2">Player2 Life</string>
     <string name="local">Local</string>
     <string name="multijugador">Multiplayer</string>
-    <string name="ia">AI</string>
+    <string name="computer">Player VS Bot</string>
     <string name="play_mode">Play Mode</string>
     <string name="CardsSaved">Your cards have been saved correctly :D</string>
     <string name="DiceRolled">You have already rolled the dice</string>
     <string name="NotDiceRolled">You must roll the dice!</string>
-    <string name="CardOnTable">You have can\'t have more cards on the table!</string>
+    <string name="CardOnTable">You can\'t have more cards on the table!</string>
     <string name="NotTurn">It\'s not your turn</string>
     <string name="NotCardOnTable">There is no Card on Table</string>
     <string name="CantUseCard">You can\'t use this card</string>
@@ -72,5 +72,31 @@
     <string name="your_cards">Your Cards</string>
     <string name="turn2">Player 2 Turn</string>
     <string name="turn1">Player 1 Turn</string>
-
+    <string name="objective">"Select your objective"</string>
+    <string name="aboutus">Welcome to our Kaiju game!\n\nAuthors:\n-Paula Silland\n-Isaac Brull\n- Cesar Crespo\n-Alex Pellitero\n\nVersion: Alpha\n\nYou can find us on our Pica Projects website:\n\nhttps://www.pica-projects.com/\n\nThank you for playing our game, hope you enjoy it!</string>
+    <string name="terms">Before using our application, we invite you to read and accept the following terms and conditions that govern the use of our game:\n"
+    "\n"
+    "1. Acceptance of the Terms and Conditions:\n"
+    "By using our application, you accept and agree to abide by the terms and conditions set forth in this document. If you do not agree with any of the terms, we ask that you do not use our application.\n"
+    "\n"
+    "2. Using the Application:\n"
+    "Our game is intended for personal use and entertainment only. You must not use it for any illegal, fraudulent or unauthorized purpose. You agree to comply with all applicable laws and regulations while using our application.\n"
+    "\n"
+    "3. Content and Intellectual Property:\n"
+    "All content present in our application, including but not limited to graphics, designs, logos, text, images and software, is the exclusive property of the owners of the mobile card game and is protected by copyright laws and other laws of intellectual property. You may not copy, modify, distribute or use our content without our prior written consent.\n"
+    "\n"
+    "4. Privacy:\n"
+    "We care about your privacy and security. By using our application, you agree to our privacy policy, which you can consult in the corresponding section in the application. We collect and process certain personal data in order to provide you with an optimal gaming experience and to improve our services.\n"
+    "\n"
+    "5. Responsibility:\n"
+    "We are not responsible for any damage, loss or harm derived from the use of our application. We are also not responsible for any interruption in service, technical errors or any other incident that may arise during the use of the application.</string>
+    <string name="instruccions">Instruccions to play:</string>
+    <string name="introduccion">Before starting the game, the user will be able to customize their deck and choose 10 of the best cards.\nThere are three types (Nature, Bacterium and Technology), each one has an advantage and disadvantage among the others, as indicated below:\n</string>
+    <string name="coste">The number is the cost of the card and the player can use it according to his luck with the dice.\n- Each card has its damage, if the player decides to attack the opponent\'s cards to eliminate them, they will be the points that will remain</string>
+    <string name="numero1">During the game the player must roll the dice first. \n- The values that come out will be added in order to accumulate action points and be able to use the cards\n</string>
+    <string name="numero2">Once the dice has been rolled, you can draw up to three cards from the deck.\n</string>
+    <string name="numer3">The player will find that there are three states for the cards:\n- If they are seen with low opacity, it means that you will not be able to use them during that turn, since the value of the die has to be greater than that of the card\n- If the card has a green border, it means that it accumulates enough points to attack\n- If the player selects the card to attack, it will turn blue\n</string>
+    <string name="numero4">The player will be able to decide whether to attack the opponent\'s cards to remove them from his deck, or attack the opponent\'s life directly.\n- Each player starts with 25 of life\n- The number under the card represents it\'s life\n</string>
+    <string name="numero5">Once the player has attacked and can no longer use any more cards, they will have to end the turn</string>
+    <string name="numero6">The player who has not run out of cards and/or is still with life will win.\n</string>
 </resources>
