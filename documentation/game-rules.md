@@ -1,7 +1,19 @@
-Noves regles del nostre joc Kaiju:
+Instruccions del joc Kaiju:
 
-En una partida tenim 2 jugadors locals. Cada jugador comença amb un 25 de vida, i té la seva baralla de cartes, totes diferents i cada vegada que se'n posarà una al tauler, s'eliminarà de la baralla. 
-El primer que s'ha de fer és tirar el dau, que s'obtindrà un número del 1 al 6. Després tirarà una carta de la baralla, i si el valor del dau és més petit que el cost de la carta podrà tirar i atacar a l'oponent,
-si no haurà de tornar a treure un altre carta. 
-Finalment el jugador haurà de donar-li al botó End turn per donar-li el següent torn a l'oponent.
-La vida dels jugadors es va restant segons el damage que tingui la carta tirada, i guanyarà el jugador a qui la vida no s'hagui quedat a 0.
+1. Durant la partida el jugador haurà de llençar primer el dau.
+ - Els valors que surtin s'aniran sumant per així acumular punts d'acció i poder fer servir les cartes
+
+2. Un cop s'hagi llençat el dau podrà treure fins a tres cartes de la baralla
+
+3. El jugador es trobarà que hi ha tres estats de les cartes:
+ - si es veuen amb opacitat baixa, és que no les podrà fer servir durant aquest torn, ja que el valor del dau ha de ser més gran que el de la carta
+ - si la carta està amb la vora verda, vol dir que acumula suficients punts per atacar
+ - si el jugador selecciona la carta per atacar, canviará el contorn de la carta en blau
+
+4. El jugador podrà decidir si atacar les cartes de l'oponent per eliminar-les de la baralla, o atacar la vida de l'oponent directament.
+ - Cada jugador comença amb 25 de vida
+ - El número sota la carta representa el que té de vida aquella carta
+
+5. Un cop el jugador hagi atacat i ja no pugui utilitzar més cartes o no vulgui tirar, haurà de finalitzar el torn
+
+6. Guanyarà el jugador que no s'hagi quedat sense cartes i/o li quedi vida.
