@@ -92,7 +92,7 @@
     "5. Responsabilidad:\n"
     "No nos hacemos responsables por cualquier daño, pérdida o perjuicio derivado del uso de nuestra aplicación. Tampoco nos hacemos responsables por cualquier interrupción en el servicio, errores técnicos o cualquier otra incidencia que pueda surgir durante el uso de la aplicación.</string>
     <string name="instruccions">Instrucciones para jugar:</string>
-    <string name="introduccion">Antes de empezar la partida, el usuario podrá personalizar su baraja y escoger 10 de las mejores cartas.\nExisten tres tipos:\n</string>
+    <string name="introduccion">Antes de empezar la partida, el usuario podrá personalizar su baraja y escoger 10 de las mejores cartas.\nExisten tres tipos (Naturaleza, Bacteria y Tecnología), cada uno tiene una ventaja y desventaja entre las otras, como se indica acontinuasion:\n</string>
     <string name="coste">El número enseña el coste de la carta y el jugador la podrá usar según su suerte con el dado. \n Cada carta también tiene su daño, si el jugador decide atacar a las cartas del oponente para eliminarlas serán los puntos que restarán</string>
     <string name="numero1">Durante la partida el jugador deberá tirar primero el dado. \n- Los valores que salgan se irán sumando para así acumular puntos de acción y poder usar las cartas\n</string>
     <string name="numero2">Una vez se haya tirado el dado podrá sacar hasta tres cartas de la baraja\n</string>

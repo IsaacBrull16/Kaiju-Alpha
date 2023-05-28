@@ -91,7 +91,7 @@
     "5. Responsibility:\n"
     "We are not responsible for any damage, loss or harm derived from the use of our application. We are also not responsible for any interruption in service, technical errors or any other incident that may arise during the use of the application.</string>
     <string name="instruccions">Instruccions to play:</string>
-    <string name="introduccion">Before starting the game, the user will be able to customize their deck and choose 10 of the best cards.\nThere are three types:\n</string>
+    <string name="introduccion">Before starting the game, the user will be able to customize their deck and choose 10 of the best cards.\nThere are three types (Nature, Bacterium and Technology), each one has an advantage and disadvantage among the others, as indicated below:\n</string>
     <string name="coste">The number is the cost of the card and the player can use it according to his luck with the dice.\n- Each card has its damage, if the player decides to attack the opponent\'s cards to eliminate them, they will be the points that will remain</string>
     <string name="numero1">During the game the player must roll the dice first. \n- The values that come out will be added in order to accumulate action points and be able to use the cards\n</string>
     <string name="numero2">Once the dice has been rolled, you can draw up to three cards from the deck.\n</string>

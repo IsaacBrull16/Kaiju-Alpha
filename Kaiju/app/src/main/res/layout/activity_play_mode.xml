@@ -5,7 +5,7 @@
     android:id="@+id/homeButtonPMode"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondofigma"
+    android:background="@drawable/fondoconimagenes"
     tools:context=".views.PlayModeActivity">
 
     <ImageButton
