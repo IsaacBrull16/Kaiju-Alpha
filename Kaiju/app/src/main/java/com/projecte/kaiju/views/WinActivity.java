@@ -3,7 +3,6 @@ package com.projecte.kaiju.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -16,7 +15,7 @@ public class WinActivity extends AppCompatActivity {
     private String type;
 
     ImageButton homeButton;
-    Button playButton;
+    ImageButton playButton;
 
     TextView winnerConditionsText;
 
@@ -26,7 +25,7 @@ public class WinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_win);
         winnerConditionsText = (TextView) findViewById(R.id.winnerConditionsText);
         homeButton = (ImageButton) findViewById(R.id.tutorialButton);
-        playButton = (Button) findViewById(R.id.playButton);
+        playButton = (ImageButton) findViewById(R.id.playButton);
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null && bundle.getString("result") != null) {
