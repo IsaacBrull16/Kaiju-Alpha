@@ -7,3 +7,8 @@ El número es el coste de la carta y el jugador la podrá usar según su suerte 
 Cada carta tiene su daño, si el jugador decide atacar a las cartas del oponente para eliminarlas serán los puntos que restarán
 
 ![damage](https://github.com/IsaacBrull16/Kaiju-Alpha/assets/101247767/babf28f7-06d1-40c2-a442-5c7a4e6e8bb7)
+
+Ventajas de tipo: 
+
+![10 sin título_20230528180401](https://github.com/IsaacBrull16/Kaiju-Alpha/assets/101247767/090564af-9492-4a12-a5fc-e7581b2a409b)
+
